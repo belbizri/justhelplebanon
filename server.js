@@ -5,14 +5,27 @@ import path from 'path';
 import { isIP } from 'net';
 import { fileURLToPath } from 'url';
 
+console.log('Starting server with configuration:');
+
 const PORT = process.env.PORT || 3000;
+
 const __filename = fileURLToPath(import.meta.url);
 const ROOT = path.dirname(__filename);
-const HOSTINGER_PUBLIC_ROOT = path.resolve(ROOT, '../public_html');
-const STATIC_ROOT = process.env.STATIC_ROOT || (fs.existsSync(HOSTINGER_PUBLIC_ROOT) ? HOSTINGER_PUBLIC_ROOT : ROOT);
+
+/*
+  IMPORTANT:
+  Your React app builds into /dist.
+  That is what the server must serve in production.
+*/
+const STATIC_ROOT = path.join(ROOT, 'dist');
+
 const ANALYTICS_DIR = path.join(ROOT, 'data');
 const ANALYTICS_FILE = path.join(ANALYTICS_DIR, 'analytics.json');
 const ANALYTICS_KEY = process.env.ANALYTICS_KEY || '';
+
+console.log('ROOT:', ROOT);
+console.log('STATIC_ROOT:', STATIC_ROOT);
+console.log('PORT:', PORT);
 
 const LOG_LEVELS = {
   error: 0,
@@ -20,6 +33,8 @@ const LOG_LEVELS = {
   info: 2,
   debug: 3
 };
+
+
 
 const rawLogLevel = String(
   process.env.LOG_LEVEL || (process.env.NODE_ENV === 'production' ? 'info' : 'debug')
@@ -334,6 +349,16 @@ const server = http.createServer((req, res) => {
         eventsByName: analytics.eventsByName
       },
       recentEvents: analytics.events.slice(-25).reverse()
+    });
+    return;
+  }
+
+  if (method === 'GET' && urlPath === '/api/ping') {
+    sendJson(res, 200, {
+      ok: true,
+      message: 'Node server is alive',
+      time: new Date().toISOString(),
+      port: PORT
     });
     return;
   }

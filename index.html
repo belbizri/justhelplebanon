@@ -323,7 +323,7 @@
     <div class="content">
       <div class="eyebrow">Lebanon Humanitarian Appeal • Ottawa • Montreal</div>
       <h1 class="hero-ar" lang="ar">لبيك يا لبنان</h1>
-      <p class="subline">For Dignity • For Families • For Lebanon</p>
+      <p class="subline">For Families • For Lebanon</p>
       <p class="lead">
         Your home country is calling.<br>Stand up for Lebanon and give what you can to help your people now.
       </p>
@@ -410,6 +410,26 @@
         });
       });
     }
+  </script>
+  <script>
+    async function testNodeConnection() {
+      try {
+        console.log('Testing Node connection...');
+
+        const res = await fetch('/api/ping');
+        const data = await res.json();
+
+        console.log('Node response:', data);
+
+        if (data.ok) {
+          console.log('✅ Node server confirmed working');
+        }
+      } catch (err) {
+        console.error('❌ Node connection failed:', err);
+      }
+    }
+
+    testNodeConnection();
   </script>
 </body>
 </html>
