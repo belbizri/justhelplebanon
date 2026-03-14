@@ -78,9 +78,10 @@ export default function SocialPage() {
         </div>
       </nav>
 
-      <header className="page-header">
-        <h1 className="page-title">Social Hub</h1>
-        <p className="page-subtitle">Follow, share, and amplify the cause across every platform</p>
+      <header className="social-hero">
+        <div className="social-hero-glow" />
+        <h1 className="social-hero-title">📢 Social Hub</h1>
+        <p className="social-hero-subtitle">Follow, share, and amplify the cause across every platform</p>
       </header>
 
       {/* Platform cards */}
@@ -92,7 +93,7 @@ export default function SocialPage() {
             onClick={() => setActivePlatform(activePlatform === platform.platform ? null : platform.platform)}
           >
             <div className="platform-header">
-              <span className="platform-icon" style={{ color: platform.color }}>{platform.icon}</span>
+              <span className="platform-icon" style={{ color: platform.color, background: `${platform.color}18`, borderColor: `${platform.color}30` }}>{platform.icon}</span>
               <span className="platform-name">{platform.platform}</span>
               <span className="platform-count">{platform.accounts.length} accounts</span>
               <span className="platform-toggle">{activePlatform === platform.platform ? '−' : '+'}</span>
