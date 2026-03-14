@@ -253,6 +253,7 @@ function WhoWeAreSection({ title, paragraphs }) {
             alt="The founders"
             className="who-img"
           />
+          <span className="who-img-caption">Yes, that's me on the right not left</span>
         </div>
         <div className="who-text-wrap">
           {paragraphs.map((p, i) => (
