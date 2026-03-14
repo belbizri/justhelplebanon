@@ -24,9 +24,9 @@ const TRANSLATIONS = {
     testimonialTitle: 'From the Ground',
     whoTitle: 'Who We Are',
     whoParagraphs: [
-      'So yes, I\'m the guy on the right. Not the one on the left &mdash; mostly because, unfortunately, he still doesn\'t know how to code in Node.js.',
+      'So yes, I\'m the guy on the right. Not the one on the left, mostly because, unfortunately, he still doesn\'t know how to code in Node.js.',
       'At some point I got bored, and boredom can be a dangerous thing.',
-      'Instead of doing absolutely nothing about the problems around us, I decided to build something &mdash; something that stands up for my home country, a country I haven\'t spoken to in over twenty years, for reasons I still don\'t fully understand.',
+      'Instead of doing absolutely nothing about the problems around us, I decided to build something, something that stands up for my home country, a country I haven\'t spoken to in over twenty years, for reasons I still don\'t fully understand.',
       'As a friend of mine, who happens to be the finance minister of a small country where everyone has an opinion, half the population is building startups, nobody waits for permission to act, and the driving skills are&hellip; let\'s say, very similar to my people\'s, once said, <strong>&ldquo;If you do nothing, you get nothing.&rdquo;</strong> So I decided to stop doing nothing and stand up for my home country.',
       'That\'s how this initiative started.',
     ],
