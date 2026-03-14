@@ -23,7 +23,12 @@ const TRANSLATIONS = {
     impactSub: 'See how your donation helps',
     testimonialTitle: 'From the Ground',
     whoTitle: 'Who We Are',
-    whoText: 'We are Lebanese-Canadians in Ottawa and Montreal, united to support our homeland through the Lebanese Red Cross. Every dollar goes directly to verified relief operations.',
+    whoParagraphs: [
+      'At some point I got bored, and boredom can be a dangerous thing.',
+      'Instead of doing absolutely nothing about the problems around us, I decided to build something &mdash; something that stands up for my home country, a country I haven\'t spoken to in over twenty years, for reasons I still don\'t fully understand.',
+      'As a friend of mine, who happens to be a finance minister, once said, <strong>&ldquo;If you do nothing, you get nothing,&rdquo;</strong> so I decided to stop doing nothing and stand up for my home country.',
+      'That\'s how this initiative started.',
+    ],
     shareTitle: 'Spread the Word',
     shareText: 'Share this page and help us reach more people.',
     urgency: 'Every minute counts — families in Lebanon need your help now',
@@ -43,7 +48,12 @@ const TRANSLATIONS = {
     impactSub: 'شاهد كيف يساعد تبرّعك',
     testimonialTitle: 'من الميدان',
     whoTitle: 'من نحن',
-    whoText: 'نحن لبنانيون-كنديون في أوتاوا ومونتريال، متحدون لدعم وطننا من خلال الصليب الأحمر اللبناني. كل دولار يذهب مباشرة لعمليات الإغاثة.',
+    whoParagraphs: [
+      'في مرحلة ما شعرت بالملل، والملل قد يكون شيئاً خطيراً.',
+      'بدلاً من عدم فعل أي شيء حيال المشاكل من حولنا، قررت أن أبني شيئاً &mdash; شيئاً يقف لأجل وطني، بلد لم أتحدث إليه منذ أكثر من عشرين عاماً، لأسباب لا أفهمها حتى الآن.',
+      'كما قال صديق لي، وهو وزير مالية، <strong>&ldquo;إذا لم تفعل شيئاً، لن تحصل على شيء،&rdquo;</strong> لذلك قررت التوقف عن عدم فعل أي شيء والوقوف لأجل وطني.',
+      'هكذا بدأت هذه المبادرة.',
+    ],
     shareTitle: 'انشر الكلمة',
     shareText: '.شارك هذه الصفحة وساعدنا في الوصول لأكبر عدد',
     urgency: 'كل دقيقة مهمة — عائلات في لبنان بحاجة لمساعدتك الآن',
@@ -63,7 +73,12 @@ const TRANSLATIONS = {
     impactSub: 'Voyez comment votre don aide',
     testimonialTitle: 'Du Terrain',
     whoTitle: 'Qui sommes-nous',
-    whoText: 'Nous sommes des Libano-Canadiens à Ottawa et Montréal, unis pour soutenir notre patrie à travers la Croix-Rouge libanaise. Chaque dollar va directement aux opérations de secours.',
+    whoParagraphs: [
+      'À un moment donné, je m\'ennuyais, et l\'ennui peut être dangereux.',
+      'Au lieu de ne rien faire face aux problèmes autour de nous, j\'ai décidé de construire quelque chose &mdash; quelque chose qui défend mon pays d\'origine, un pays à qui je n\'ai pas parlé depuis plus de vingt ans, pour des raisons que je ne comprends toujours pas.',
+      'Comme l\'a dit un ami à moi, qui se trouve être ministre des finances, <strong>&laquo; Si tu ne fais rien, tu n\'obtiens rien, &raquo;</strong> alors j\'ai décidé d\'arrêter de ne rien faire et de défendre mon pays.',
+      'C\'est comme ça que cette initiative a commencé.',
+    ],
     shareTitle: 'Partagez',
     shareText: 'Partagez cette page et aidez-nous à atteindre plus de gens.',
     urgency: 'Chaque minute compte — des familles au Liban ont besoin de votre aide',
@@ -223,17 +238,25 @@ function TestimonialSection({ title }) {
 }
 
 /* ── Who We Are (#8) ── */
-function WhoWeAreSection({ title, text }) {
+function WhoWeAreSection({ title, paragraphs }) {
   const [ref, visible] = useReveal();
   return (
     <section ref={ref} className={`who-section reveal-section ${visible ? 'revealed' : ''}`}>
       <h2 className="section-title">{title}</h2>
       <div className="who-content">
-        <div className="who-image-placeholder">
-          {/* Drop your team photo in public/images/team.jpg */}
-          <img src="/images/team.jpg" alt="Our team" className="who-img" onError={(e) => { e.target.style.display = 'none'; }} />
+        <div className="who-image-wrap">
+          <img
+            src="https://i.imgur.com/gL95eWA.jpeg"
+            alt="The founders"
+            className="who-img"
+          />
+          <span className="who-img-caption">That's me on the right.</span>
         </div>
-        <p className="who-text">{text}</p>
+        <div className="who-text-wrap">
+          {paragraphs.map((p, i) => (
+            <p key={i} className="who-text" dangerouslySetInnerHTML={{ __html: p }} />
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -351,7 +374,7 @@ export default function App() {
       <TestimonialSection title={t.testimonialTitle} />
 
       {/* #8 Who We Are */}
-      <WhoWeAreSection title={t.whoTitle} text={t.whoText} />
+      <WhoWeAreSection title={t.whoTitle} paragraphs={t.whoParagraphs} />
 
       {/* Gallery (scroll-triggered #10) */}
       <GallerySection />
