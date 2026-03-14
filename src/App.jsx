@@ -179,13 +179,15 @@ function VideoSection() {
   const [ref, visible] = useReveal();
   return (
     <section ref={ref} className={`video-section reveal-section ${visible ? 'revealed' : ''}`}>
-         <div className="video-container">
-        <iframe
-          src="https://www.youtube.com/embed/8DHgGOHlYV0"
-          title="Lebanon humanitarian aid"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
+      <div className="video-container">
+        {visible && (
+          <iframe
+            src="https://www.youtube.com/embed/8DHgGOHlYV0?autoplay=1&mute=1"
+            title="Lebanon humanitarian aid"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        )}
       </div>
     </section>
   );
