@@ -1,6 +1,8 @@
+import 'dotenv/config';
 import http from 'http';
 import fs from 'fs';
 import path from 'path';
+import { isIP } from 'net';
 import { fileURLToPath } from 'url';
 
 const PORT = process.env.PORT || 3000;
@@ -11,6 +13,44 @@ const STATIC_ROOT = process.env.STATIC_ROOT || (fs.existsSync(HOSTINGER_PUBLIC_R
 const ANALYTICS_DIR = path.join(ROOT, 'data');
 const ANALYTICS_FILE = path.join(ANALYTICS_DIR, 'analytics.json');
 const ANALYTICS_KEY = process.env.ANALYTICS_KEY || '';
+
+const LOG_LEVELS = {
+  error: 0,
+  warn: 1,
+  info: 2,
+  debug: 3
+};
+
+const rawLogLevel = String(
+  process.env.LOG_LEVEL || (process.env.NODE_ENV === 'production' ? 'info' : 'debug')
+).toLowerCase();
+const LOG_LEVEL = Object.prototype.hasOwnProperty.call(LOG_LEVELS, rawLogLevel) ? rawLogLevel : 'info';
+const LOG_REQUESTS = !['0', 'false', 'off', 'no'].includes(String(process.env.LOG_REQUESTS || 'true').toLowerCase());
+
+function log(level, message, details) {
+  if (LOG_LEVELS[level] > LOG_LEVELS[LOG_LEVEL]) {
+    return;
+  }
+
+  const timestamp = new Date().toISOString();
+  const prefix = `[${timestamp}] [${level.toUpperCase()}]`;
+
+  if (details !== undefined) {
+    console.log(prefix, message, details);
+    return;
+  }
+
+  console.log(prefix, message);
+}
+
+function getClientIp(req) {
+  const forwarded = req.headers['x-forwarded-for'];
+  if (typeof forwarded === 'string' && forwarded.trim()) {
+    return forwarded.split(',')[0].trim();
+  }
+
+  return req.socket?.remoteAddress || 'unknown';
+}
 
 const defaultAnalytics = {
   generatedAt: new Date().toISOString(),
@@ -43,11 +83,13 @@ function sendFile(filePath, res) {
   fs.readFile(filePath, (err, data) => {
     if (err) {
       if (err.code === 'ENOENT') {
+        log('warn', 'Static file not found', { filePath });
         res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
         res.end('Not Found');
         return;
       }
 
+      log('error', 'Failed reading static file', { filePath, error: err.message });
       res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
       res.end('Internal Server Error');
       return;
@@ -56,6 +98,7 @@ function sendFile(filePath, res) {
     const ext = path.extname(filePath).toLowerCase();
     const contentType = MIME_TYPES[ext] || 'application/octet-stream';
 
+    log('debug', 'Served static file', { filePath, contentType });
     res.writeHead(200, { 'Content-Type': contentType });
     res.end(data);
   });
@@ -115,6 +158,7 @@ function parseBody(req) {
       body += chunk;
 
       if (body.length > 100_000) {
+        log('warn', 'Rejected oversized request body', { path: req.url, size: body.length });
         reject(new Error('Payload too large'));
       }
     });
@@ -128,11 +172,15 @@ function parseBody(req) {
       try {
         resolve(JSON.parse(body));
       } catch {
+        log('warn', 'Rejected invalid JSON payload', { path: req.url });
         reject(new Error('Invalid JSON'));
       }
     });
 
-    req.on('error', reject);
+    req.on('error', (err) => {
+      log('error', 'Request stream error', { path: req.url, error: err.message });
+      reject(err);
+    });
   });
 }
 
@@ -143,6 +191,10 @@ function requireAnalyticsKey(req, res) {
 
   const provided = req.headers['x-analytics-key'];
   if (provided !== ANALYTICS_KEY) {
+    log('warn', 'Unauthorized analytics access attempt', {
+      path: req.url,
+      ip: getClientIp(req)
+    });
     sendJson(res, 401, { ok: false, error: 'Unauthorized' });
     return false;
   }
@@ -153,6 +205,7 @@ function requireAnalyticsKey(req, res) {
 function recordEvent(payload) {
   const name = String(payload.event || '').trim();
   if (!name) {
+    log('warn', 'Event rejected: missing event name', { payload });
     return { ok: false, error: 'Missing event name' };
   }
 
@@ -192,6 +245,13 @@ function recordEvent(payload) {
 
   writeAnalytics(analytics);
 
+  log('info', 'Tracked analytics event', {
+    event: name,
+    amount,
+    path: String(payload.path || '/'),
+    totals: analytics.totals
+  });
+
   return { ok: true };
 }
 
@@ -205,6 +265,30 @@ function resolveStaticPath(urlPath) {
 const server = http.createServer((req, res) => {
   const method = req.method || 'GET';
   const urlPath = decodeURIComponent((req.url || '/').split('?')[0]);
+  const startedAt = Date.now();
+  const requestId = `${Date.now().toString(36)}-${Math.random().toString(16).slice(2, 8)}`;
+
+  if (LOG_REQUESTS) {
+    log('info', `[${requestId}] Incoming request`, {
+      method,
+      path: urlPath,
+      ip: getClientIp(req),
+      userAgent: req.headers['user-agent'] || ''
+    });
+  }
+
+  res.on('finish', () => {
+    if (!LOG_REQUESTS) {
+      return;
+    }
+
+    log('info', `[${requestId}] Request completed`, {
+      method,
+      path: urlPath,
+      statusCode: res.statusCode,
+      durationMs: Date.now() - startedAt
+    });
+  });
 
   if (method === 'POST' && urlPath === '/api/track') {
     parseBody(req)
@@ -220,6 +304,11 @@ const server = http.createServer((req, res) => {
       })
       .catch((err) => {
         const isPayloadError = err.message === 'Payload too large';
+        log('warn', 'Failed tracking request', {
+          path: urlPath,
+          error: err.message,
+          statusCode: isPayloadError ? 413 : 400
+        });
         sendJson(res, isPayloadError ? 413 : 400, { ok: false, error: err.message });
       });
     return;
@@ -231,6 +320,11 @@ const server = http.createServer((req, res) => {
     }
 
     const analytics = readAnalytics();
+    log('debug', 'Analytics summary requested', {
+      ip: getClientIp(req),
+      totals: analytics.totals,
+      eventsByName: analytics.eventsByName
+    });
     sendJson(res, 200, {
       ok: true,
       summary: {
@@ -261,8 +355,20 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, () => {
-  const host = process.env.HOST || '0.0.0.0';
-  console.log(`Server listening on ${host}:${PORT}`);
-  console.log(`Serving static files from: ${STATIC_ROOT}`);
+const DEFAULT_HOST = process.env.NODE_ENV === 'production' ? '0.0.0.0' : '127.0.0.1';
+const rawHost = process.env.HOST || '';
+const hostIsValid = rawHost === '' || rawHost === 'localhost' || isIP(rawHost) !== 0;
+const host = hostIsValid ? (rawHost || DEFAULT_HOST) : DEFAULT_HOST;
+
+if (!hostIsValid) {
+  log('warn', 'Invalid HOST value detected. Falling back to default host.', {
+    providedHost: rawHost,
+    fallbackHost: DEFAULT_HOST
+  });
+}
+
+server.listen(PORT, host, () => {
+  log('info', `Server listening on ${host}:${PORT}`);
+  log('info', `Serving static files from: ${STATIC_ROOT}`);
+  log('info', 'Logging configuration', { LOG_LEVEL, LOG_REQUESTS });
 });
