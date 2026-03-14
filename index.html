@@ -352,25 +352,6 @@
     const donate=document.getElementById('donateBtn');
     const base='https://give.redcross.ca/page/LHNA';
 
-    function track(event, details = {}) {
-      const payload = {
-        event,
-        path: window.location.pathname,
-        referrer: document.referrer || '',
-        userAgent: navigator.userAgent,
-        ...details
-      };
-
-      fetch('/api/track', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        keepalive: true
-      }).catch(() => {});
-    }
-
-    track('page_view');
-
     buttons.forEach(btn=>{
       btn.addEventListener('click',()=>{
         buttons.forEach(b=>b.classList.remove('active'));
@@ -378,17 +359,8 @@
         const amt=btn.dataset.amount;
         donate.href=`${base}?amount=${amt}`;
         donate.textContent=`Donate $${amt} to the Lebanese Red Cross`;
-        track('amount_selected', { amount: amt });
       })
-    });
-
-    donate.addEventListener('click', () => {
-      const active = document.querySelector('.amount-btn.active');
-      track('donation_click', {
-        amount: active ? active.dataset.amount : null,
-        targetUrl: donate.href
-      });
-    });
+    })
   </script>
 </body>
 </html>

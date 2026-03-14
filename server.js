@@ -262,6 +262,7 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  const host = process.env.HOST || '0.0.0.0';
+  console.log(`Server listening on ${host}:${PORT}`);
   console.log(`Serving static files from: ${STATIC_ROOT}`);
 });
