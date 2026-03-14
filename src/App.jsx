@@ -349,7 +349,7 @@ export default function App() {
       <LangToggle lang={lang} setLang={setLang} />
 
       {/* Widget with progress bar (#7) */}
-      <DonationWidget lang={lang} />
+      {/* <DonationWidget lang={lang} /> */}
 
       {/* Hero */}
       <section className="hero" aria-label="Donate to support the Lebanese Red Cross">
