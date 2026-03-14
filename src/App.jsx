@@ -5,7 +5,7 @@ const DONATION_OPTIONS = [20, 50, 100];
 
 const IMPACT_DATA = [
   { amount: 20, icon: '', desc: 'Emergency medical kits', image: '/images/medical-kit.jpg' },
-  { amount: 50, icon: '🏠', desc: 'Shelter supplies for a family' },
+  { amount: 50, icon: '🏠', desc: 'Shelter supplies for a family', image: '/images/lebanese-red-cros-shelters.jpg' },
   { amount: 100, icon: '🍞', desc: 'Food for a family for 1 month' },
 ];
 
