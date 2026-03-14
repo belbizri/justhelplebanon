@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const DONATION_BASE_URL = 'https://give.redcross.ca/page/LHNA';
 const DONATION_OPTIONS = [20, 50, 100];
@@ -399,8 +400,16 @@ export default function App() {
       {/* #1 Urgency Banner */}
       <UrgencyBanner text={t.urgency} />
 
-      {/* Language Toggle */}
-      <LangToggle lang={lang} setLang={setLang} />
+      {/* Navigation */}
+      <nav className="page-nav">
+        <Link to="/" className="nav-logo">Just Help Lebanon</Link>
+        <div className="nav-links">
+          <Link to="/" className="nav-link active">Home</Link>
+          <Link to="/news" className="nav-link">News</Link>
+          <Link to="/social" className="nav-link">Social</Link>
+          <LangToggle lang={lang} setLang={setLang} />
+        </div>
+      </nav>
 
       {/* Widget with progress bar (#7) */}
       {/* <DonationWidget lang={lang} /> */}
