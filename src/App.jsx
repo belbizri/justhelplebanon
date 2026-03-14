@@ -13,7 +13,7 @@ const TRANSLATIONS = {
   en: {
     eyebrow: 'Lebanon Humanitarian Appeal • Ottawa • MTL',
     heading: 'لبيك يا لبنان',
-    subline: 'For Dignity • For Families • For Lebanon',
+    subline: '• For Families • For Lebanon',
     lead: 'Your home country is calling.',
     lead2: 'Stand up for Lebanon and give what you can to help your people now.',
     donateBtn: (a) => `Donate $${a} to the Lebanese Red Cross`,
@@ -290,26 +290,80 @@ function WhoWeAreSection({ title, paragraphs }) {
   );
 }
 
-/* ── Gallery (#10 — scroll-triggered) ── */
+/* ── Gallery (#10 — dynamic from /images/galleries/) ── */
+const galleryModules = import.meta.glob('/public/images/galleries/*.{jpg,jpeg,png,webp}', { eager: true, import: 'default' });
+const GALLERY_IMAGES = Object.entries(galleryModules).map(([path, src]) => {
+  const name = path.split('/').pop().replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
+  return { src, alt: name };
+});
+
 function GallerySection() {
   const [ref, visible] = useReveal();
-  const images = [
-    { src: '/images/gallery-1.jpg', alt: 'Relief work in Lebanon' },
-    { src: '/images/gallery-2.jpg', alt: 'Medical aid delivery' },
-    { src: '/images/gallery-3.jpg', alt: 'Community support' },
-    { src: '/images/gallery-4.jpg', alt: 'Volunteer work' },
-  ];
+  const [lightbox, setLightbox] = useState(null);
+
+  const navigate = useCallback((dir) => {
+    setLightbox((cur) => {
+      if (cur === null) return null;
+      const next = cur + dir;
+      if (next < 0) return GALLERY_IMAGES.length - 1;
+      if (next >= GALLERY_IMAGES.length) return 0;
+      return next;
+    });
+  }, []);
+
+  useEffect(() => {
+    if (lightbox === null) return;
+    const onKey = (e) => {
+      if (e.key === 'Escape') setLightbox(null);
+      if (e.key === 'ArrowRight') navigate(1);
+      if (e.key === 'ArrowLeft') navigate(-1);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightbox, navigate]);
+
+  if (GALLERY_IMAGES.length === 0) return null;
 
   return (
-    <section ref={ref} className={`gallery-section reveal-section ${visible ? 'revealed' : ''}`}>
-      <div className="gallery-grid">
-        {images.map((img, i) => (
-          <div key={i} className="gallery-item">
-            <img src={img.src} alt={img.alt} className="gallery-img" onError={(e) => { e.target.parentElement.style.display = 'none'; }} />
-          </div>
-        ))}
-      </div>
-    </section>
+    <>
+      <section ref={ref} className={`gallery-section reveal-section ${visible ? 'revealed' : ''}`}>
+        <h2 className="section-title">Gallery</h2>
+        <p className="section-sub">Moments from the ground.</p>
+        <div className="gallery-masonry">
+          {GALLERY_IMAGES.map((img, i) => (
+            <div
+              key={i}
+              className={`gallery-brick ${visible ? 'pop-in' : ''}`}
+              style={{ animationDelay: `${i * 0.08}s` }}
+              onClick={() => setLightbox(i)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && setLightbox(i)}
+            >
+              <img src={img.src} alt={img.alt} className="gallery-brick-img" loading="lazy" />
+              <div className="gallery-overlay">
+                <span className="gallery-zoom-icon">⤢</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {lightbox !== null && (
+        <div className="lightbox-backdrop" onClick={() => setLightbox(null)}>
+          <button type="button" className="lightbox-close" onClick={() => setLightbox(null)} aria-label="Close">✕</button>
+          <button type="button" className="lightbox-arrow lightbox-prev" onClick={(e) => { e.stopPropagation(); navigate(-1); }} aria-label="Previous">‹</button>
+          <img
+            src={GALLERY_IMAGES[lightbox].src}
+            alt={GALLERY_IMAGES[lightbox].alt}
+            className="lightbox-img"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button type="button" className="lightbox-arrow lightbox-next" onClick={(e) => { e.stopPropagation(); navigate(1); }} aria-label="Next">›</button>
+          <div className="lightbox-counter">{lightbox + 1} / {GALLERY_IMAGES.length}</div>
+        </div>
+      )}
+    </>
   );
 }
 
