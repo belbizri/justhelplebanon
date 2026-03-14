@@ -4,7 +4,7 @@ const DONATION_BASE_URL = 'https://give.redcross.ca/page/LHNA';
 const DONATION_OPTIONS = [20, 50, 100];
 
 const IMPACT_DATA = [
-  { amount: 20, icon: '🩺', desc: 'Emergency medical kit' },
+  { amount: 20, icon: '', desc: 'Emergency medical kits', image: '/images/medical-kit.jpg' },
   { amount: 50, icon: '🏠', desc: 'Shelter supplies for a family' },
   { amount: 100, icon: '🍞', desc: 'Food for a family for 1 month' },
 ];
@@ -183,7 +183,11 @@ function ImpactSection({ title, sub }) {
       <p className="section-sub">{sub}</p>
       <div className="impact-cards">
         {IMPACT_DATA.map((item) => (
-          <div key={item.amount} className="impact-card">
+          <div
+            key={item.amount}
+            className={`impact-card ${item.image ? 'has-bg' : ''}`}
+            style={item.image ? { backgroundImage: `url(${item.image})` } : undefined}
+          >
             <div className="impact-icon">{item.icon}</div>
             <div className="impact-amount">${item.amount}</div>
             <div className="impact-desc">{item.desc}</div>

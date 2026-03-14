@@ -749,6 +749,29 @@ h1 {
   padding: 32px 20px;
   backdrop-filter: blur(8px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.impact-card.has-bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.impact-card.has-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5, 6, 10, 0.55) 0%, rgba(5, 6, 10, 0.85) 100%);
+  z-index: 0;
+}
+
+.impact-card.has-bg .impact-icon,
+.impact-card.has-bg .impact-amount,
+.impact-card.has-bg .impact-desc {
+  position: relative;
+  z-index: 1;
 }
 
 .impact-card:hover {
