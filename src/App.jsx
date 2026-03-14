@@ -14,7 +14,7 @@ export default function App() {
       <div className="grain" />
 
       <div className="content">
-        <div className="eyebrow">Lebanon Humanitarian Appeal • Ottawa</div>
+        <div className="eyebrow">Lebanon Humanitarian Appeal • Ottawa• MTL</div>
         <h1 className="hero-ar" lang="ar">لبيك يا لبنان</h1>
         <p className="subline">For Dignity • For Families • For Lebanon</p>
         <p className="lead">
