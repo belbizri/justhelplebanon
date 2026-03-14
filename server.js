@@ -15,6 +15,7 @@ const BASE_AMOUNT = 12480;
 const BASE_COUNT = 312;
 const HOURLY_INCREMENT = 10;
 const AVG_DONATION = 40;
+const GOAL = 200000;
 
 app.get("/api/donation-stats", (req, res) => {
   const now = Date.now();
@@ -22,7 +23,7 @@ app.get("/api/donation-stats", (req, res) => {
   const hours = Math.floor(elapsed / 3_600_000);
   const raised = BASE_AMOUNT + hours * HOURLY_INCREMENT;
   const count = BASE_COUNT + Math.floor((hours * HOURLY_INCREMENT) / AVG_DONATION);
-  res.json({ raised, count, updated: new Date(now).toISOString() });
+  res.json({ raised, count, goal: GOAL, updated: new Date(now).toISOString() });
 });
 
 // Serve the built React app
