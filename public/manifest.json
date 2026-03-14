@@ -1,0 +1,17 @@
+{
+  "name": "Just Help Lebanon",
+  "short_name": "JustHelpLB",
+  "description": "Donate to the Lebanese Red Cross. Stand up for Lebanon — for dignity, for families, for Lebanon.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#05060a",
+  "theme_color": "#cc1020",
+  "icons": [
+    {
+      "src": "/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
