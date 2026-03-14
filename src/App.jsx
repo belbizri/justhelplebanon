@@ -4,9 +4,9 @@ const DONATION_BASE_URL = 'https://give.redcross.ca/page/LHNA';
 const DONATION_OPTIONS = [20, 50, 100];
 
 const IMPACT_DATA = [
-  { amount: 20, icon: '🩺', desc: 'Emergency medical kit' },
-  { amount: 50, icon: '🏠', desc: 'Shelter supplies for a family' },
-  { amount: 100, icon: '🍞', desc: 'Food for a family for 1 month' },
+  { amount: 20, icon: '', desc: 'Emergency medical kits', image: '/images/medical-kit.jpg' },
+  { amount: 50, icon: '', desc: 'Shelter supplies for a family', image: '/images/lebShelter.jpg' },
+  { amount: 100, icon: '', desc: 'Food for a family for 1 month',image: '/images/leb_food.jpeg' },
 ];
 
 const TRANSLATIONS = {
@@ -24,9 +24,9 @@ const TRANSLATIONS = {
     testimonialTitle: 'From the Ground',
     whoTitle: 'Who We Are',
     whoParagraphs: [
-      'So yes, I\'m the guy on the right. Not the one on the left &mdash; mostly because, unfortunately, he still doesn\'t know how to code in Node.js.',
+      'So yes, I\'m the guy on the right. Not the one on the left, mostly because, unfortunately, he still doesn\'t know how to code in Node.js.',
       'At some point I got bored, and boredom can be a dangerous thing.',
-      'Instead of doing absolutely nothing about the problems around us, I decided to build something &mdash; something that stands up for my home country, a country I haven\'t spoken to in over twenty years, for reasons I still don\'t fully understand.',
+      'Instead of doing absolutely nothing about the problems around us, I decided to build something, something that stands up for my home country, a country I haven\'t spoken to in over twenty years, for reasons I still don\'t fully understand.',
       'As a friend of mine, who happens to be the finance minister of a small country where everyone has an opinion, half the population is building startups, nobody waits for permission to act, and the driving skills are&hellip; let\'s say, very similar to my people\'s, once said, <strong>&ldquo;If you do nothing, you get nothing.&rdquo;</strong> So I decided to stop doing nothing and stand up for my home country.',
       'That\'s how this initiative started.',
     ],
@@ -202,7 +202,11 @@ function ImpactSection({ title, sub }) {
       <p className="section-sub">{sub}</p>
       <div className="impact-cards">
         {IMPACT_DATA.map((item) => (
-          <div key={item.amount} className="impact-card">
+          <div
+            key={item.amount}
+            className={`impact-card ${item.image ? 'has-bg' : ''}`}
+            style={item.image ? { backgroundImage: `url(${item.image})` } : undefined}
+          >
             <div className="impact-icon">{item.icon}</div>
             <div className="impact-amount">${item.amount}</div>
             <div className="impact-desc">{item.desc}</div>
@@ -274,6 +278,7 @@ function WhoWeAreSection({ title, paragraphs }) {
             alt="The founders"
             className="who-img"
           />
+          <span className="who-img-caption">Yes, that's me on the right not left</span>
         </div>
         <div className="who-text-wrap">
           {paragraphs.map((p, i) => (
