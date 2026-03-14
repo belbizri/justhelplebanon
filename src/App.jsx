@@ -24,6 +24,7 @@ const TRANSLATIONS = {
     testimonialTitle: 'From the Ground',
     whoTitle: 'Who We Are',
     whoParagraphs: [
+      'So yes, I\'m the guy on the right. Not the one on the left &mdash; mostly because, unfortunately, he still doesn\'t know how to code in Node.js.',
       'At some point I got bored, and boredom can be a dangerous thing.',
       'Instead of doing absolutely nothing about the problems around us, I decided to build something &mdash; something that stands up for my home country, a country I haven\'t spoken to in over twenty years, for reasons I still don\'t fully understand.',
       'As a friend of mine, who happens to be the finance minister of a small country where everyone has an opinion, half the population is building startups, nobody waits for permission to act, and the driving skills are&hellip; let\'s say, very similar to my people\'s, once said, <strong>&ldquo;If you do nothing, you get nothing.&rdquo;</strong> So I decided to stop doing nothing and stand up for my home country.',
@@ -49,6 +50,7 @@ const TRANSLATIONS = {
     testimonialTitle: 'من الميدان',
     whoTitle: 'من نحن',
     whoParagraphs: [
+      'نعم، أنا الشخص على اليمين. ليس الذي على اليسار &mdash; غالباً لأنه، للأسف، لا يزال لا يعرف كيف يبرمج بـ Node.js.',
       'في مرحلة ما شعرت بالملل، والملل قد يكون شيئاً خطيراً.',
       'بدلاً من عدم فعل أي شيء حيال المشاكل من حولنا، قررت أن أبني شيئاً &mdash; شيئاً يقف لأجل وطني، بلد لم أتحدث إليه منذ أكثر من عشرين عاماً، لأسباب لا أفهمها حتى الآن.',
       'كما قال صديق لي، وهو وزير مالية بلد صغير حيث لكل شخص رأي، ونصف السكان يبنون شركات ناشئة، ولا أحد ينتظر إذناً للتصرف، ومهارات القيادة&hellip; لنقل إنها مشابهة جداً لمهارات شعبي، قال ذات مرة، <strong>&ldquo;إذا لم تفعل شيئاً، لن تحصل على شيء.&rdquo;</strong> لذلك قررت التوقف عن عدم فعل أي شيء والوقوف لأجل وطني.',
@@ -74,6 +76,7 @@ const TRANSLATIONS = {
     testimonialTitle: 'Du Terrain',
     whoTitle: 'Qui sommes-nous',
     whoParagraphs: [
+      'Alors oui, c\'est moi à droite. Pas celui à gauche &mdash; principalement parce que, malheureusement, il ne sait toujours pas coder en Node.js.',
       'À un moment donné, je m\'ennuyais, et l\'ennui peut être dangereux.',
       'Au lieu de ne rien faire face aux problèmes autour de nous, j\'ai décidé de construire quelque chose &mdash; quelque chose qui défend mon pays d\'origine, un pays à qui je n\'ai pas parlé depuis plus de vingt ans, pour des raisons que je ne comprends toujours pas.',
       'Comme l\'a dit un ami à moi, qui se trouve être le ministre des finances d\'un petit pays où tout le monde a un avis, la moitié de la population lance des startups, personne n\'attend la permission pour agir, et les compétences de conduite sont&hellip; disons, très similaires à celles de mon peuple, <strong>&laquo; Si tu ne fais rien, tu n\'obtiens rien. &raquo;</strong> Alors j\'ai décidé d\'arrêter de ne rien faire et de défendre mon pays.',
@@ -250,7 +253,6 @@ function WhoWeAreSection({ title, paragraphs }) {
             alt="The founders"
             className="who-img"
           />
-          <span className="who-img-caption">That's me on the right.</span>
         </div>
         <div className="who-text-wrap">
           {paragraphs.map((p, i) => (
