@@ -380,15 +380,27 @@ const server = http.createServer((req, res) => {
   });
 });
 
-const DEFAULT_HOST = process.env.NODE_ENV === 'production' ? '0.0.0.0' : '127.0.0.1';
+const isProduction = process.env.NODE_ENV === 'production';
+const DEFAULT_HOST = isProduction ? '0.0.0.0' : '127.0.0.1';
 const rawHost = process.env.HOST || '';
 const hostIsValid = rawHost === '' || rawHost === 'localhost' || isIP(rawHost) !== 0;
-const host = hostIsValid ? (rawHost || DEFAULT_HOST) : DEFAULT_HOST;
+let host = DEFAULT_HOST;
 
-if (!hostIsValid) {
+if (!isProduction && hostIsValid) {
+  host = rawHost || DEFAULT_HOST;
+}
+
+if (!isProduction && !hostIsValid) {
   log('warn', 'Invalid HOST value detected. Falling back to default host.', {
     providedHost: rawHost,
     fallbackHost: DEFAULT_HOST
+  });
+}
+
+if (isProduction && rawHost && rawHost !== '0.0.0.0') {
+  log('info', 'Ignoring HOST in production and binding to 0.0.0.0', {
+    providedHost: rawHost,
+    bindHost: DEFAULT_HOST
   });
 }
 
