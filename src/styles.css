@@ -629,17 +629,13 @@ h1 {
 
 /* ── Language Toggle (#9) ── */
 .lang-toggle {
-  position: fixed;
-  top: 48px;
-  right: 20px;
-  z-index: 150;
   display: flex;
   gap: 4px;
-  background: rgba(7, 10, 18, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 999px;
-  padding: 4px;
-  backdrop-filter: blur(12px);
+  padding: 3px;
+  margin-left: 8px;
 }
 
 .lang-btn {
@@ -1549,11 +1545,6 @@ h1 {
   .urgency-banner {
     font-size: 0.68rem;
     padding: 8px 14px;
-  }
-
-  .lang-toggle {
-    top: 44px;
-    right: 12px;
   }
 
   .lang-btn {

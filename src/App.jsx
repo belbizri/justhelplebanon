@@ -407,11 +407,9 @@ export default function App() {
           <Link to="/" className="nav-link active">Home</Link>
           <Link to="/news" className="nav-link">News</Link>
           <Link to="/social" className="nav-link">Social</Link>
+          <LangToggle lang={lang} setLang={setLang} />
         </div>
       </nav>
-
-      {/* Language Toggle */}
-      <LangToggle lang={lang} setLang={setLang} />
 
       {/* Widget with progress bar (#7) */}
       {/* <DonationWidget lang={lang} /> */}
