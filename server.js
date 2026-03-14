@@ -5,6 +5,10 @@ import path from 'path';
 import { isIP } from 'net';
 import { fileURLToPath } from 'url';
 
+
+console.log('Starting server with configuration:');
+console.log(`PORT: ${process.env.PORT || '3000' }`);
+console.log("HElllooo");
 const PORT = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
 const ROOT = path.dirname(__filename);
