@@ -3,6 +3,22 @@ import { Link } from 'react-router-dom';
 
 const SOCIAL_FEEDS = [
   {
+    platform: 'Instagram',
+    icon: '◎',
+    color: '#E4405F',
+    accounts: [
+      { handle: '@lebaneseredcross', name: 'Lebanese Red Cross', url: 'https://www.instagram.com/lebaneseredcross/' },
+      { handle: '@lebanon', name: 'Lebanon (Official)', url: 'https://www.instagram.com/lebanon/' },
+      { handle: '@beirut.com_', name: 'Beirut.com', url: 'https://www.instagram.com/beirut.com_/' },
+      { handle: '@livelebanon', name: 'Live Lebanon (UNDP)', url: 'https://www.instagram.com/livelebanon/' },
+      { handle: '@the961', name: 'The 961', url: 'https://www.instagram.com/the961/' },
+      { handle: '@libnanews', name: 'Libna News', url: 'https://www.instagram.com/libnanews/' },
+      { handle: '@waboradlebanon', name: 'Wa Borad Lebanon', url: 'https://www.instagram.com/waboradlebanon/' },
+      { handle: '@lbpresidency', name: 'Lebanese Presidency', url: 'https://www.instagram.com/lbpresidency/' },
+      { handle: '@embassyoflebanon_ottawa', name: 'Embassy of Lebanon — Ottawa', url: 'https://www.instagram.com/embassyoflebanon_ottawa/' },
+    ],
+  },
+  {
     platform: 'X (Twitter)',
     icon: '𝕏',
     color: '#fff',
@@ -20,15 +36,6 @@ const SOCIAL_FEEDS = [
     accounts: [
       { handle: 'Lebanese Red Cross', name: 'Lebanese Red Cross Official', url: 'https://www.facebook.com/LebaneseRedCross' },
       { handle: 'ICRC', name: 'ICRC', url: 'https://www.facebook.com/icrc' },
-    ],
-  },
-  {
-    platform: 'Instagram',
-    icon: '◎',
-    color: '#E4405F',
-    accounts: [
-      { handle: '@lebanese_red_cross', name: 'Lebanese Red Cross', url: 'https://www.instagram.com/lebanese_red_cross/' },
-      { handle: '@icrc', name: 'ICRC', url: 'https://www.instagram.com/icrc/' },
     ],
   },
   {
