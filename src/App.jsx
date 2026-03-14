@@ -26,7 +26,7 @@ const TRANSLATIONS = {
     whoParagraphs: [
       'At some point I got bored, and boredom can be a dangerous thing.',
       'Instead of doing absolutely nothing about the problems around us, I decided to build something &mdash; something that stands up for my home country, a country I haven\'t spoken to in over twenty years, for reasons I still don\'t fully understand.',
-      'As a friend of mine, who happens to be a finance minister, once said, <strong>&ldquo;If you do nothing, you get nothing,&rdquo;</strong> so I decided to stop doing nothing and stand up for my home country.',
+      'As a friend of mine, who happens to be the finance minister of a small country where everyone has an opinion, half the population is building startups, nobody waits for permission to act, and the driving skills are&hellip; let\'s say, very similar to my people\'s, once said, <strong>&ldquo;If you do nothing, you get nothing.&rdquo;</strong> So I decided to stop doing nothing and stand up for my home country.',
       'That\'s how this initiative started.',
     ],
     shareTitle: 'Spread the Word',
@@ -51,7 +51,7 @@ const TRANSLATIONS = {
     whoParagraphs: [
       'في مرحلة ما شعرت بالملل، والملل قد يكون شيئاً خطيراً.',
       'بدلاً من عدم فعل أي شيء حيال المشاكل من حولنا، قررت أن أبني شيئاً &mdash; شيئاً يقف لأجل وطني، بلد لم أتحدث إليه منذ أكثر من عشرين عاماً، لأسباب لا أفهمها حتى الآن.',
-      'كما قال صديق لي، وهو وزير مالية، <strong>&ldquo;إذا لم تفعل شيئاً، لن تحصل على شيء،&rdquo;</strong> لذلك قررت التوقف عن عدم فعل أي شيء والوقوف لأجل وطني.',
+      'كما قال صديق لي، وهو وزير مالية بلد صغير حيث لكل شخص رأي، ونصف السكان يبنون شركات ناشئة، ولا أحد ينتظر إذناً للتصرف، ومهارات القيادة&hellip; لنقل إنها مشابهة جداً لمهارات شعبي، قال ذات مرة، <strong>&ldquo;إذا لم تفعل شيئاً، لن تحصل على شيء.&rdquo;</strong> لذلك قررت التوقف عن عدم فعل أي شيء والوقوف لأجل وطني.',
       'هكذا بدأت هذه المبادرة.',
     ],
     shareTitle: 'انشر الكلمة',
@@ -76,7 +76,7 @@ const TRANSLATIONS = {
     whoParagraphs: [
       'À un moment donné, je m\'ennuyais, et l\'ennui peut être dangereux.',
       'Au lieu de ne rien faire face aux problèmes autour de nous, j\'ai décidé de construire quelque chose &mdash; quelque chose qui défend mon pays d\'origine, un pays à qui je n\'ai pas parlé depuis plus de vingt ans, pour des raisons que je ne comprends toujours pas.',
-      'Comme l\'a dit un ami à moi, qui se trouve être ministre des finances, <strong>&laquo; Si tu ne fais rien, tu n\'obtiens rien, &raquo;</strong> alors j\'ai décidé d\'arrêter de ne rien faire et de défendre mon pays.',
+      'Comme l\'a dit un ami à moi, qui se trouve être le ministre des finances d\'un petit pays où tout le monde a un avis, la moitié de la population lance des startups, personne n\'attend la permission pour agir, et les compétences de conduite sont&hellip; disons, très similaires à celles de mon peuple, <strong>&laquo; Si tu ne fais rien, tu n\'obtiens rien. &raquo;</strong> Alors j\'ai décidé d\'arrêter de ne rien faire et de défendre mon pays.',
       'C\'est comme ça que cette initiative a commencé.',
     ],
     shareTitle: 'Partagez',
