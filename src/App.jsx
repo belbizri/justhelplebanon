@@ -24,11 +24,15 @@ function DonationWidget() {
     <div className="donation-widget">
       <div className="widget-pulse" />
       <div className="widget-label">Community Impact</div>
-      <div className="widget-amount">${stats.raised.toLocaleString()}</div>
-      <div className="widget-sub">raised so far</div>
+      <div className="widget-stat">
+        <div className="widget-amount">${stats.raised.toLocaleString()}</div>
+        <div className="widget-sub">raised so far</div>
+      </div>
       <div className="widget-divider" />
-      <div className="widget-count">{stats.count.toLocaleString()}</div>
-      <div className="widget-sub">donations made</div>
+      <div className="widget-stat">
+        <div className="widget-count">{stats.count.toLocaleString()}</div>
+        <div className="widget-sub">donations made</div>
+      </div>
       <div className="widget-live">● Live</div>
     </div>
   );
