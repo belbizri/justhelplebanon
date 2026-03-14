@@ -1,7 +1,42 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 const DONATION_BASE_URL = 'https://give.redcross.ca/page/LHNA';
 const DONATION_OPTIONS = [20, 50, 100];
+
+function DonationWidget() {
+  const [stats, setStats] = useState(null);
+
+  useEffect(() => {
+    const fetchStats = () =>
+      fetch('/api/donation-stats')
+        .then((r) => r.json())
+        .then(setStats)
+        .catch(() => {});
+
+    fetchStats();
+    const id = setInterval(fetchStats, 60_000);
+    return () => clearInterval(id);
+  }, []);
+
+  if (!stats) return null;
+
+  return (
+    <div className="donation-widget">
+      <div className="widget-pulse" />
+      <div className="widget-label">Community Impact</div>
+      <div className="widget-stat">
+        <div className="widget-amount">${stats.raised.toLocaleString()}</div>
+        <div className="widget-sub">raised so far</div>
+      </div>
+      <div className="widget-divider" />
+      <div className="widget-stat">
+        <div className="widget-count">{stats.count.toLocaleString()}</div>
+        <div className="widget-sub">donations made</div>
+      </div>
+      <div className="widget-live">● Live</div>
+    </div>
+  );
+}
 
 export default function App() {
   const [amount, setAmount] = useState(20);
@@ -10,11 +45,12 @@ export default function App() {
 
   return (
     <section className="hero" aria-label="Donate to support the Lebanese Red Cross">
+      <DonationWidget />
       <div className="cross-glow" />
       <div className="grain" />
 
       <div className="content">
-        <div className="eyebrow">Lebanon Humanitarian Appeal • Ottawa</div>
+        <div className="eyebrow">Lebanon Humanitarian Appeal • Ottawa• MTL</div>
         <h1 className="hero-ar" lang="ar">لبيك يا لبنان</h1>
         <p className="subline">For Dignity • For Families • For Lebanon</p>
         <p className="lead">
