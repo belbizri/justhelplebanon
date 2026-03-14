@@ -174,6 +174,23 @@ function SocialProof({ text }) {
   );
 }
 
+/* ── Video Section ── */
+function VideoSection() {
+  const [ref, visible] = useReveal();
+  return (
+    <section ref={ref} className={`video-section reveal-section ${visible ? 'revealed' : ''}`}>
+         <div className="video-container">
+        <iframe
+          src="https://www.youtube.com/embed/8DHgGOHlYV0"
+          title="Lebanon humanitarian aid"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+    </section>
+  );
+}
+
 /* ── Impact Breakdown (#3) ── */
 function ImpactSection({ title, sub }) {
   const [ref, visible] = useReveal();
@@ -239,6 +256,8 @@ function TestimonialSection({ title }) {
     </section>
   );
 }
+
+
 
 /* ── Who We Are (#8) ── */
 function WhoWeAreSection({ title, paragraphs }) {
@@ -375,9 +394,12 @@ export default function App() {
       {/* #6 Testimonial */}
       <TestimonialSection title={t.testimonialTitle} />
 
+     
+
       {/* #8 Who We Are */}
       <WhoWeAreSection title={t.whoTitle} paragraphs={t.whoParagraphs} />
-
+ {/* Video */}
+      <VideoSection />
       {/* Gallery (scroll-triggered #10) */}
       <GallerySection />
 
