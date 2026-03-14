@@ -411,6 +411,26 @@
       });
     }
   </script>
+  <script>
+    async function testNodeConnection() {
+      try {
+        console.log('Testing Node connection...');
+
+        const res = await fetch('/api/ping');
+        const data = await res.json();
+
+        console.log('Node response:', data);
+
+        if (data.ok) {
+          console.log('✅ Node server confirmed working');
+        }
+      } catch (err) {
+        console.error('❌ Node connection failed:', err);
+      }
+    }
+
+    testNodeConnection();
+  </script>
 </body>
 </html>
 

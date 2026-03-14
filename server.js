@@ -353,6 +353,16 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (method === 'GET' && urlPath === '/api/ping') {
+    sendJson(res, 200, {
+      ok: true,
+      message: 'Node server is alive',
+      time: new Date().toISOString(),
+      port: PORT
+    });
+    return;
+  }
+
   let filePath = path.join(STATIC_ROOT, resolveStaticPath(urlPath));
 
   fs.stat(filePath, (err, stats) => {
