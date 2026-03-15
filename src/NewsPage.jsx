@@ -47,7 +47,7 @@ export default function NewsPage() {
   }, []);
 
   return (
-    <div className="page-root">
+    <div className="page-root news-page">
       <nav className="page-nav">
         <Link to="/" className="nav-logo">Just Help Lebanon</Link>
         <div className="nav-links">

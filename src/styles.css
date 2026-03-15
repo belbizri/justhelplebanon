@@ -36,6 +36,22 @@ body {
 
 .app-root {
   min-height: 100vh;
+  position: relative;
+}
+
+.app-root::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url('/images/cedar_background.png') center center / contain no-repeat;
+  opacity: 0.04;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.app-root > * {
+  position: relative;
+  z-index: 1;
 }
 
 .app-root.rtl {
@@ -1210,6 +1226,25 @@ h1 {
 .page-root {
   min-height: 100vh;
   background: #05060a;
+}
+
+.news-page {
+  position: relative;
+}
+
+.news-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url('/images/cedar_background.png') center center / contain no-repeat;
+  opacity: 0.04;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.news-page > * {
+  position: relative;
+  z-index: 1;
 }
 
 .page-header {
