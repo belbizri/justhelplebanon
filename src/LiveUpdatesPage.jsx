@@ -356,7 +356,7 @@ export default function LiveUpdatesPage() {
         />
         <h1 className="page-title">
           <span className="live-pulse" />
-          Healthcare incidents updates
+          Healthcare
 
          </h1>
         <p className="page-subtitle">
