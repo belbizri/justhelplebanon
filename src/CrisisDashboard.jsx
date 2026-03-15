@@ -199,7 +199,7 @@ export default function CrisisDashboard() {
           <span className="crisis-live-dot" />
           Live Data
         </span>
-        <h2 className="section-title">Lebanon Crisis Overview</h2>
+        <h2 className="section-title">Lebanon Crisis Overviews</h2>
         <p className="section-sub">
           Real-time humanitarian data from HDX, ReliefWeb &amp; UNHCR
         </p>
