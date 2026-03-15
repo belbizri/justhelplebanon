@@ -173,7 +173,14 @@ async function loadAllData() {
     ...(moph2024.features || []).map(f => normaliseMoph(f.attributes, '2024')),
   ];
 
-  return { hdxData, mophRecords };
+  // Keep only 2024-2026
+  const FOCUS_YEARS = ['2024', '2025', '2026'];
+  const hdxFiltered = hdxData.filter(r => {
+    const yr = r.date?.slice(0, 4);
+    return yr && FOCUS_YEARS.includes(yr);
+  });
+
+  return { hdxData: hdxFiltered, mophRecords };
 }
 
 /* ── Compute HDX stats ── */
@@ -373,7 +380,7 @@ export default function LiveUpdatesPage() {
           {/* Tab Switch */}
           <div className="live-tabs">
             <button className={`live-tab ${tab === 'hdx' ? 'active' : ''}`} onClick={() => setTab('hdx')}>
-              Insecurity Insight — 2016–2026 ({hdxData.length})
+              Insecurity Insight — 2024–2026 ({hdxData.length})
             </button>
             <button className={`live-tab ${tab === 'moph' ? 'active' : ''}`} onClick={() => setTab('moph')}>
               MoPH Hospital Data ({mophRecords.length})
