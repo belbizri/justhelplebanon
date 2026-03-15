@@ -2264,3 +2264,435 @@ h1 {
     padding-left: 4px;
   }
 }
+
+/* ════════════════════════════════════════════
+   LIVE UPDATES PAGE
+   ════════════════════════════════════════════ */
+
+.live-page {
+  background: linear-gradient(180deg, #060810, #0a0e1a 30%, #0d0f18 70%, #060810);
+}
+
+.live-page .page-header {
+  padding-top: 100px;
+}
+
+.live-page .page-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.live-pulse {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: var(--red-2);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(255, 58, 76, 0.5);
+  flex-shrink: 0;
+}
+
+/* Loading & Error */
+.live-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: 20px;
+  color: var(--soft);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.live-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: var(--soft);
+  font-size: 0.9rem;
+}
+
+/* Content */
+.live-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ── Filters ── */
+.live-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 48px;
+  justify-content: center;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.35);
+  margin-right: 6px;
+}
+
+.filter-btn {
+  padding: 6px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.filter-btn.active {
+  background: rgba(204, 16, 32, 0.1);
+  border-color: rgba(204, 16, 32, 0.25);
+  color: var(--red-2);
+}
+
+/* ── Stats Grid ── */
+.live-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  max-width: 900px;
+  margin: 0 auto 56px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.live-stat-card {
+  padding: 32px 20px 28px;
+  background: rgba(8, 10, 18, 0.9);
+  transition: background 0.3s ease;
+  opacity: 0;
+  transform: translateY(12px);
+  text-align: center;
+}
+
+.live-stat-card.pop-in {
+  animation: crisisCardPop 0.5s ease forwards;
+}
+
+.live-stat-card:hover {
+  background: rgba(14, 18, 30, 0.95);
+}
+
+.live-stat-card.accent-warn .live-stat-value {
+  color: #f59e0b;
+}
+
+.live-stat-card.accent-critical .live-stat-value {
+  color: var(--red-2);
+}
+
+.live-stat-icon {
+  width: 28px;
+  height: 28px;
+  margin: 0 auto 16px;
+  color: var(--red-2);
+  opacity: 0.7;
+}
+
+.live-stat-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.live-stat-value {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.live-stat-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Blocks ── */
+.live-block {
+  margin-bottom: 56px;
+  text-align: left;
+}
+
+.live-block-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.live-block-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--red-2);
+  opacity: 0.6;
+  display: flex;
+}
+
+.live-block-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Governorate Chart ── */
+.gov-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 700px;
+}
+
+.gov-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 48px;
+  align-items: center;
+  gap: 12px;
+}
+
+.gov-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: right;
+}
+
+.gov-bar-wrap {
+  height: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.gov-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(204, 16, 32, 0.6), rgba(204, 16, 32, 0.3));
+  border-radius: 3px 0 0 3px;
+  transition: width 1s ease;
+}
+
+.gov-count {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.55);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* ── Incident Table ── */
+.live-table-wrap {
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+}
+
+.live-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+  text-align: left;
+}
+
+.live-table thead {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.live-table th {
+  padding: 12px 14px;
+  font-weight: 800;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  white-space: nowrap;
+}
+
+.live-table td {
+  padding: 10px 14px;
+  color: rgba(255, 255, 255, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  vertical-align: top;
+}
+
+.live-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.live-table .cell-date {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.live-table .cell-name {
+  min-width: 180px;
+}
+
+.live-table .name-en {
+  display: block;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.live-table .name-ar {
+  display: block;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 2px;
+  direction: rtl;
+}
+
+.live-table .cell-num {
+  text-align: center;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.live-table .cell-martyrs {
+  color: var(--red-2);
+}
+
+/* ── Status Badge ── */
+.status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 3px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.status-badge.status-ok {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.status-badge.status-warn {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.status-badge.status-critical {
+  background: rgba(204, 16, 32, 0.1);
+  color: var(--red-2);
+  border: 1px solid rgba(204, 16, 32, 0.2);
+}
+
+/* ── Source Footer ── */
+.live-source-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  justify-content: center;
+}
+
+.live-source-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.live-updated {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.25);
+  margin-left: 8px;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .live-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .live-stat-card {
+    padding: 24px 14px 20px;
+  }
+
+  .live-stat-value {
+    font-size: 1.6rem;
+  }
+
+  .live-filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .filter-group {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .gov-row {
+    grid-template-columns: 100px 1fr 36px;
+  }
+
+  .gov-name {
+    font-size: 0.7rem;
+  }
+
+  .live-table {
+    font-size: 0.7rem;
+  }
+
+  .live-table th,
+  .live-table td {
+    padding: 8px 8px;
+  }
+
+  .live-table .cell-name {
+    min-width: 140px;
+  }
+}

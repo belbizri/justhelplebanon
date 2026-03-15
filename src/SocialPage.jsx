@@ -73,6 +73,7 @@ export default function SocialPage() {
         <Link to="/" className="nav-logo">Just Help Lebanon</Link>
         <div className="nav-links">
           <Link to="/" className="nav-link">Home</Link>
+          <Link to="/live" className="nav-link">Live Updates</Link>
           <Link to="/news" className="nav-link">News</Link>
           <Link to="/social" className="nav-link active">Social</Link>
         </div>
