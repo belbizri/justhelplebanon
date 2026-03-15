@@ -286,40 +286,45 @@ function GovBar({ name, count, max }) {
    Main Page Component
    ───────────────────────────────────────── */
 export default function LiveUpdatesPage() {
-  const [records, setRecords] = useState([]);
+  const [hdxData, setHdxData] = useState([]);
+  const [mophRecords, setMophRecords] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [filter, setFilter] = useState('all'); // all | 2024 | legacy
-  const [statusFilter, setStatusFilter] = useState('all');
+  const [yearFilter, setYearFilter] = useState('all');
+  const [tab, setTab] = useState('hdx'); // hdx | moph
 
   useEffect(() => {
-    loadMophData()
-      .then(setRecords)
+    loadAllData()
+      .then(({ hdxData: h, mophRecords: m }) => {
+        setHdxData(h);
+        setMophRecords(m);
+      })
       .catch(e => setError(e.message))
       .finally(() => setLoading(false));
   }, []);
 
-  const filtered = records.filter(r => {
-    if (filter !== 'all' && r.source !== filter) return false;
-    if (statusFilter !== 'all') {
-      const sl = getStatusLabel(r);
-      if (statusFilter === 'critical' && sl !== 'Forcibly Closed' && sl !== 'Closed' && sl !== 'Out of Service') return false;
-      if (statusFilter === 'operational' && sl !== 'Operational' && sl !== 'Reopened') return false;
-      if (statusFilter === 'partial' && sl !== 'Partial') return false;
-    }
-    return true;
-  });
+  const hdxStats = computeHdxStats(hdxData, yearFilter);
+  const mophStats = computeMophStats(mophRecords);
+  const maxGov = hdxStats.byGovernorate[0]?.count || 1;
+  const maxWeapon = hdxStats.byWeapon[0]?.count || 1;
+  const maxYear = Math.max(...hdxStats.byYear.map(y => y.count), 1);
 
-  const stats = computeStats(filtered);
-  const maxGov = stats.byGovernorate[0]?.count || 1;
+  // Available years for filter
+  const years = hdxStats.byYear.map(y => y.year);
 
-  // Sort records by date (newest first), handling DD/MM/YYYY format
-  const sorted = [...filtered].sort((a, b) => {
+  // HDX records filtered by year, sorted newest-first
+  const hdxFiltered = (yearFilter === 'all' ? hdxData : hdxData.filter(r => r.date?.startsWith(yearFilter)))
+    .slice()
+    .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+  // MoPH sorted newest-first
+  const mophSorted = [...mophRecords].sort((a, b) => {
     if (a.dateTs && b.dateTs) return b.dateTs - a.dateTs;
     const parseDate = (d) => {
       if (!d) return 0;
-      const [dd, mm, yyyy] = d.split('/');
-      return new Date(`${yyyy}-${mm}-${dd}`).getTime() || 0;
+      const parts = d.split('/');
+      if (parts.length === 3) return new Date(`${parts[2]}-${parts[1]}-${parts[0]}`).getTime() || 0;
+      return new Date(d).getTime() || 0;
     };
     return parseDate(b.date) - parseDate(a.date);
   });
@@ -347,113 +352,210 @@ export default function LiveUpdatesPage() {
           Attacks on Healthcare
         </h1>
         <p className="page-subtitle">
-          Official data from the Lebanese Ministry of Public Health (MoPH)
+          Verified incident data from Insecurity Insight (HDX) &amp; the Lebanese Ministry of Public Health
         </p>
       </header>
 
       {loading && (
         <div className="live-loading">
           <div className="crisis-spinner" />
-          <p>Loading MoPH data…</p>
+          <p>Loading data…</p>
         </div>
       )}
 
-      {error && !records.length && (
+      {error && !hdxData.length && !mophRecords.length && (
         <div className="live-error">
           <p>Unable to load data. Please try again later.</p>
         </div>
       )}
 
-      {!loading && records.length > 0 && (
+      {!loading && (hdxData.length > 0 || mophRecords.length > 0) && (
         <main className="live-content">
-          {/* Filters */}
-          <div className="live-filters">
-            <div className="filter-group">
-              <span className="filter-label">Dataset</span>
-              <button className={`filter-btn ${filter === 'all' ? 'active' : ''}`} onClick={() => setFilter('all')}>All ({records.length})</button>
-              <button className={`filter-btn ${filter === '2024' ? 'active' : ''}`} onClick={() => setFilter('2024')}>2024 ({records.filter(r => r.source === '2024').length})</button>
-              <button className={`filter-btn ${filter === 'legacy' ? 'active' : ''}`} onClick={() => setFilter('legacy')}>Earlier ({records.filter(r => r.source === 'legacy').length})</button>
-            </div>
-            <div className="filter-group">
-              <span className="filter-label">Status</span>
-              <button className={`filter-btn ${statusFilter === 'all' ? 'active' : ''}`} onClick={() => setStatusFilter('all')}>All</button>
-              <button className={`filter-btn ${statusFilter === 'critical' ? 'active' : ''}`} onClick={() => setStatusFilter('critical')}>Closed/Out</button>
-              <button className={`filter-btn ${statusFilter === 'operational' ? 'active' : ''}`} onClick={() => setStatusFilter('operational')}>Operational</button>
-              <button className={`filter-btn ${statusFilter === 'partial' ? 'active' : ''}`} onClick={() => setStatusFilter('partial')}>Partial</button>
-            </div>
+          {/* Tab Switch */}
+          <div className="live-tabs">
+            <button className={`live-tab ${tab === 'hdx' ? 'active' : ''}`} onClick={() => setTab('hdx')}>
+              Insecurity Insight — 2016–2026 ({hdxData.length})
+            </button>
+            <button className={`live-tab ${tab === 'moph' ? 'active' : ''}`} onClick={() => setTab('moph')}>
+              MoPH Hospital Data ({mophRecords.length})
+            </button>
           </div>
 
-          {/* Summary Stats */}
-          <div className="live-stats-grid">
-            <StatCard icon={ICONS.hospital} label="Hospitals Attacked" value={stats.totalAttacks} delay={0} />
-            <StatCard icon={ICONS.injured} label="Total Injured" value={stats.totalInjured} accent="accent-warn" delay={0.1} />
-            <StatCard icon={ICONS.martyrs} label="Martyrs" value={stats.totalMartyrs} accent="accent-critical" delay={0.2} />
-            <StatCard icon={ICONS.closed} label="Forced Closures" value={stats.forcedClosures} accent="accent-critical" delay={0.3} />
-          </div>
+          {/* ═══ HDX TAB ═══ */}
+          {tab === 'hdx' && (
+            <>
+              {/* Year filter */}
+              <div className="live-filters">
+                <div className="filter-group">
+                  <span className="filter-label">Year</span>
+                  <button className={`filter-btn ${yearFilter === 'all' ? 'active' : ''}`} onClick={() => setYearFilter('all')}>All ({hdxData.length})</button>
+                  {years.map(yr => (
+                    <button key={yr} className={`filter-btn ${yearFilter === yr ? 'active' : ''}`} onClick={() => setYearFilter(yr)}>{yr}</button>
+                  ))}
+                </div>
+              </div>
 
-          {/* Governorate Breakdown */}
-          <section className="live-block">
-            <h3 className="live-block-title">
-              <span className="live-block-icon">{ICONS.map}</span>
-              Attacks by Governorate
-            </h3>
-            <div className="gov-chart">
-              {stats.byGovernorate.map(g => (
-                <GovBar key={g.name} name={g.name} count={g.count} max={maxGov} />
-              ))}
-            </div>
-          </section>
+              {/* Summary Stats */}
+              <div className="live-stats-grid">
+                <StatCard icon={ICONS.alert} label="Total Incidents" value={hdxStats.total} delay={0} />
+                <StatCard icon={ICONS.martyrs} label="Health Workers Killed" value={hdxStats.killed} accent="accent-critical" delay={0.1} />
+                <StatCard icon={ICONS.injured} label="Health Workers Injured" value={hdxStats.injured} accent="accent-warn" delay={0.2} />
+                <StatCard icon={ICONS.hospital} label="Facilities Damaged" value={hdxStats.facilitiesDamaged + hdxStats.facilitiesDestroyed} delay={0.3} />
+              </div>
 
-          {/* Incident Table */}
-          <section className="live-block">
-            <h3 className="live-block-title">
-              <span className="live-block-icon">{ICONS.calendar}</span>
-              Incident Log — {sorted.length} Records
-            </h3>
-            <div className="live-table-wrap">
-              <table className="live-table">
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Hospital</th>
-                    <th>Governorate</th>
-                    <th>District</th>
-                    <th>Injured</th>
-                    <th>Martyrs</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {sorted.map((r, i) => {
-                    const sl = getStatusLabel(r);
-                    return (
-                      <tr key={i} className={getStatusClass(sl)}>
-                        <td className="cell-date">{r.date || '—'}</td>
-                        <td className="cell-name">
-                          <span className="name-en">{r.name}</span>
-                          {r.nameAr && r.name !== r.nameAr && <span className="name-ar">{r.nameAr}</span>}
-                        </td>
-                        <td>{r.governorate || '—'}</td>
-                        <td>{r.district || '—'}</td>
-                        <td className="cell-num">{r.injured}</td>
-                        <td className="cell-num cell-martyrs">{r.martyrs}</td>
-                        <td><span className={`status-badge ${getStatusClass(sl)}`}>{sl}</span></td>
+              {/* Year Timeline */}
+              {hdxStats.byYear.length > 1 && (
+                <section className="live-block">
+                  <h3 className="live-block-title">
+                    <span className="live-block-icon">{ICONS.calendar}</span>
+                    Incidents by Year
+                  </h3>
+                  <div className="year-chart">
+                    {hdxStats.byYear.map(y => (
+                      <div key={y.year} className="year-bar-col">
+                        <span className="year-bar-count">{y.count}</span>
+                        <div className="year-bar-track">
+                          <div className="year-bar-fill" style={{ height: `${(y.count / maxYear) * 100}%` }} />
+                        </div>
+                        <span className="year-bar-label">{y.year}</span>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* Governorate Breakdown */}
+              <section className="live-block">
+                <h3 className="live-block-title">
+                  <span className="live-block-icon">{ICONS.map}</span>
+                  Incidents by Governorate
+                </h3>
+                <div className="gov-chart">
+                  {hdxStats.byGovernorate.map(g => (
+                    <GovBar key={g.name} name={g.name} count={g.count} max={maxGov} />
+                  ))}
+                </div>
+              </section>
+
+              {/* Weapon Types */}
+              {hdxStats.byWeapon.length > 0 && (
+                <section className="live-block">
+                  <h3 className="live-block-title">
+                    <span className="live-block-icon">{ICONS.alert}</span>
+                    Weapon Types Used
+                  </h3>
+                  <div className="gov-chart">
+                    {hdxStats.byWeapon.map(w => (
+                      <GovBar key={w.name} name={w.name} count={w.count} max={maxWeapon} />
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* Incident Table */}
+              <section className="live-block">
+                <h3 className="live-block-title">
+                  <span className="live-block-icon">{ICONS.calendar}</span>
+                  Incident Log — {hdxFiltered.length} Records
+                </h3>
+                <div className="live-table-wrap">
+                  <table className="live-table">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Governorate</th>
+                        <th>Weapon</th>
+                        <th>Location</th>
+                        <th>Killed</th>
+                        <th>Injured</th>
+                        <th>Perpetrator</th>
                       </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </section>
+                    </thead>
+                    <tbody>
+                      {hdxFiltered.map((r, i) => (
+                        <tr key={i}>
+                          <td className="cell-date">{r.date || '—'}</td>
+                          <td>{r.admin1 || '—'}</td>
+                          <td>{r.weapon || '—'}</td>
+                          <td>{r.location || '—'}</td>
+                          <td className="cell-num cell-martyrs">{r.healthWorkersKilled || 0}</td>
+                          <td className="cell-num">{r.healthWorkersInjured || 0}</td>
+                          <td className="cell-perp">{r.perpetrator || '—'}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </>
+          )}
 
-          {/* Data Source */}
+          {/* ═══ MoPH TAB ═══ */}
+          {tab === 'moph' && (
+            <>
+              {/* Summary Stats */}
+              <div className="live-stats-grid">
+                <StatCard icon={ICONS.hospital} label="Hospitals Attacked" value={mophStats.totalAttacks} delay={0} />
+                <StatCard icon={ICONS.injured} label="Total Injured" value={mophStats.totalInjured} accent="accent-warn" delay={0.1} />
+                <StatCard icon={ICONS.martyrs} label="Martyrs" value={mophStats.totalMartyrs} accent="accent-critical" delay={0.2} />
+                <StatCard icon={ICONS.closed} label="Forced Closures" value={mophStats.forcedClosures} accent="accent-critical" delay={0.3} />
+              </div>
+
+              {/* Incident Table */}
+              <section className="live-block">
+                <h3 className="live-block-title">
+                  <span className="live-block-icon">{ICONS.calendar}</span>
+                  Hospital Incident Log — {mophSorted.length} Records
+                </h3>
+                <div className="live-table-wrap">
+                  <table className="live-table">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Hospital</th>
+                        <th>Governorate</th>
+                        <th>District</th>
+                        <th>Injured</th>
+                        <th>Martyrs</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {mophSorted.map((r, i) => {
+                        const sl = getStatusLabel(r);
+                        return (
+                          <tr key={i} className={getStatusClass(sl)}>
+                            <td className="cell-date">{r.date || '—'}</td>
+                            <td className="cell-name">
+                              <span className="name-en">{r.name}</span>
+                              {r.nameAr && r.name !== r.nameAr && <span className="name-ar">{r.nameAr}</span>}
+                            </td>
+                            <td>{r.governorate || '—'}</td>
+                            <td>{r.district || '—'}</td>
+                            <td className="cell-num">{r.injured}</td>
+                            <td className="cell-num cell-martyrs">{r.martyrs}</td>
+                            <td><span className={`status-badge ${getStatusClass(sl)}`}>{sl}</span></td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </>
+          )}
+
+          {/* Data Sources */}
           <div className="live-source-footer">
-            <span className="live-source-label">Data Source:</span>
+            <span className="live-source-label">Data Sources:</span>
+            <a href="https://data.humdata.org/dataset/aid-security-risk-in-lebanon" target="_blank" rel="noopener noreferrer" className="crisis-source-chip">
+              Insecurity Insight (HDX)
+            </a>
             <a href="https://maps.moph.gov.lb" target="_blank" rel="noopener noreferrer" className="crisis-source-chip">
               MoPH — Ministry of Public Health
             </a>
             <span className="live-updated">
-              Data refreshed at build time. {records.length} total records.
+              {hdxData.length + mophRecords.length} total records — data refreshed at build time.
             </span>
           </div>
         </main>

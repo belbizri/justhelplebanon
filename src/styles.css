@@ -2338,6 +2338,40 @@ h1 {
   padding: 0 24px 80px;
 }
 
+/* ── Tabs ── */
+.live-tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 36px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.live-tab {
+  flex: 1;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.live-tab:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.live-tab.active {
+  background: rgba(204, 16, 32, 0.1);
+  color: var(--red-2);
+  box-shadow: inset 0 -2px 0 var(--red-2);
+}
+
 /* ── Filters ── */
 .live-filters {
   display: flex;
@@ -2487,6 +2521,65 @@ h1 {
 .live-block-icon svg {
   width: 100%;
   height: 100%;
+}
+
+/* ── Year Chart ── */
+.year-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 180px;
+  padding-top: 24px;
+}
+
+.year-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.year-bar-count {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.5);
+  font-variant-numeric: tabular-nums;
+}
+
+.year-bar-track {
+  width: 100%;
+  max-width: 48px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 3px 3px 0 0;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: none;
+}
+
+.year-bar-fill {
+  width: 100%;
+  background: linear-gradient(180deg, rgba(204, 16, 32, 0.7), rgba(204, 16, 32, 0.3));
+  border-radius: 3px 3px 0 0;
+  transition: height 1s ease;
+}
+
+.year-bar-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.02em;
+}
+
+/* ── Perpetrator cell ── */
+.live-table .cell-perp {
+  max-width: 180px;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* ── Governorate Chart ── */
