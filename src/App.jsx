@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import CrisisDashboard from './CrisisDashboard.jsx';
 
 const DONATION_BASE_URL = 'https://give.redcross.ca/page/LHNA';
 const DONATION_OPTIONS = [20, 50, 100];
@@ -460,6 +461,9 @@ export default function App() {
 
       {/* #3 Impact Breakdown */}
       <ImpactSection title={t.impactTitle} sub={t.impactSub} />
+
+      {/* Crisis Dashboard — live data */}
+      <CrisisDashboard />
 
       {/* #6 Testimonial */}
       <TestimonialSection title={t.testimonialTitle} />
