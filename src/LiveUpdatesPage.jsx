@@ -336,7 +336,12 @@ export default function LiveUpdatesPage() {
         </div>
       </nav>
 
-      <header className="page-header">
+      <header className="page-header live-header-banner">
+        <img
+          src="/images/health_republic_ministry.png"
+          alt="Lebanese Republic — Ministry of Public Health"
+          className="live-banner-img"
+        />
         <h1 className="page-title">
           <span className="live-pulse" />
           Attacks on Healthcare

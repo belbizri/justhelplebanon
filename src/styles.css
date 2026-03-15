@@ -2277,6 +2277,20 @@ h1 {
   padding-top: 100px;
 }
 
+.live-header-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.live-banner-img {
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 28px;
+  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.4));
+}
+
 .live-page .page-title {
   display: flex;
   align-items: center;
