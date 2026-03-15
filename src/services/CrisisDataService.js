@@ -1,16 +1,21 @@
 /**
- * CrisisDataService — fetches live humanitarian data from proxied API endpoints.
+ * CrisisDataService — fetches live humanitarian data.
  *
  * Sources:
  *   1. HDX (Humanitarian Data Exchange) — dataset metadata for Lebanon IDPs
- *   2. ReliefWeb — latest humanitarian reports on Lebanon
+ *   2. ReliefWeb — latest humanitarian reports (via server proxy, optional)
  *   3. UNHCR — refugee population statistics
- *   4. IDMC — internal displacement estimates
  *
- * All requests go through our own server proxy to avoid CORS restrictions.
+ * HDX and UNHCR are called directly (both serve Access-Control-Allow-Origin: *).
+ * ReliefWeb RSS requires a server proxy (no CORS); if unavailable it degrades gracefully.
  */
 
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
+const HDX_URL =
+  'https://data.humdata.org/api/3/action/package_search?q=lebanon+idp&rows=6';
+const UNHCR_URL =
+  'https://api.unhcr.org/population/v1/population/?limit=100&year=2023&coa=LEB&coo_all=true';
 
 class CrisisDataService {
   constructor() {
@@ -38,15 +43,14 @@ class CrisisDataService {
   /* ── public methods ── */
 
   /**
-   * HDX — Lebanon IDP dataset search.
-   * Returns { count, datasets: [{ title, org, updated, resources, url }] }
+   * HDX — Lebanon IDP dataset search (direct call, CORS-safe).
    */
   async getHDXData() {
     const key = 'hdx';
     const cached = this._getCached(key);
     if (cached) return cached;
 
-    const raw = await this._fetch('/api/crisis/hdx');
+    const raw = await this._fetch(HDX_URL);
     const result = raw.result || {};
     const datasets = (result.results || []).slice(0, 6).map((pkg) => ({
       title: pkg.title,
@@ -62,36 +66,44 @@ class CrisisDataService {
   }
 
   /**
-   * ReliefWeb — latest Lebanon humanitarian reports (from RSS feed).
-   * Returns [{ title, date, source, url, summary }]
+   * ReliefWeb — latest Lebanon humanitarian reports.
+   * Tries our server proxy first (parses RSS server-side).
+   * Returns [] if the proxy is unavailable (e.g. static hosting).
    */
   async getReliefWebReports() {
     const key = 'reliefweb';
     const cached = this._getCached(key);
     if (cached) return cached;
 
-    const raw = await this._fetch('/api/crisis/reliefweb');
-    const data = (raw.data || []).slice(0, 6).map((item) => ({
-      title: item.title,
-      date: item.pubDate ? new Date(item.pubDate).toISOString().split('T')[0] : '',
-      source: 'ReliefWeb',
-      url: item.link,
-      summary: item.description?.slice(0, 180),
-    }));
-    this._setCache(key, data);
-    return data;
+    try {
+      const raw = await this._fetch('/api/crisis/reliefweb');
+      const data = (raw.data || []).slice(0, 6).map((item) => ({
+        title: item.title,
+        date: item.pubDate
+          ? new Date(item.pubDate).toISOString().split('T')[0]
+          : '',
+        source: 'ReliefWeb',
+        url: item.link,
+        summary: item.description?.slice(0, 180),
+      }));
+      this._setCache(key, data);
+      return data;
+    } catch {
+      // Proxy not available (static hosting) — degrade gracefully
+      this._setCache(key, []);
+      return [];
+    }
   }
 
   /**
-   * UNHCR — Lebanon refugee population statistics.
-   * Returns { totalRefugees, byOrigin: [{ origin, count }], year }
+   * UNHCR — Lebanon refugee population statistics (direct call, CORS-safe).
    */
   async getUNHCRData() {
     const key = 'unhcr';
     const cached = this._getCached(key);
     if (cached) return cached;
 
-    const raw = await this._fetch('/api/crisis/unhcr');
+    const raw = await this._fetch(UNHCR_URL);
     const items = raw.items || [];
     let totalRefugees = 0;
     const byOrigin = [];
