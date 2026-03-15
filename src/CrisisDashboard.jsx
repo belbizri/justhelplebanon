@@ -115,7 +115,6 @@ export default function CrisisDashboard() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [sectionRef, sectionVisible] = useReveal();
 
   useEffect(() => {
     let cancelled = false;
@@ -156,10 +155,7 @@ export default function CrisisDashboard() {
   const maxOrigin = unhcr?.byOrigin?.[0]?.count || 1;
 
   return (
-    <section
-      ref={sectionRef}
-      className={`crisis-dashboard reveal-section ${sectionVisible ? 'revealed' : ''}`}
-    >
+    <section className="crisis-dashboard">
       {/* Header */}
       <div className="crisis-header">
         <span className="crisis-live-badge">
