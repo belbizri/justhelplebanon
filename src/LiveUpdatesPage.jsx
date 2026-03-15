@@ -455,57 +455,8 @@ export default function LiveUpdatesPage() {
                 </div>
               </section>
 
-              {/* Weapon Types */}
-              {hdxStats.byWeapon.length > 0 && (
-                <section className="live-block">
-                  <h3 className="live-block-title">
-                    <span className="live-block-icon">{ICONS.alert}</span>
-                    Weapon Types Used
-                  </h3>
-                  <div className="gov-chart">
-                    {hdxStats.byWeapon.map(w => (
-                      <GovBar key={w.name} name={w.name} count={w.count} max={maxWeapon} />
-                    ))}
-                  </div>
-                </section>
-              )}
-
-              {/* Incident Table — hidden for now
-              <section className="live-block">
-                <h3 className="live-block-title">
-                  <span className="live-block-icon">{ICONS.calendar}</span>
-                  Incident Log — {hdxFiltered.length} Records
-                </h3>
-                <div className="live-table-wrap">
-                  <table className="live-table">
-                    <thead>
-                      <tr>
-                        <th>Date</th>
-                        <th>Governorate</th>
-                        <th>Weapon</th>
-                        <th>Location</th>
-                        <th>Killed</th>
-                        <th>Injured</th>
-                        <th>Perpetrator</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {hdxFiltered.map((r, i) => (
-                        <tr key={i}>
-                          <td className="cell-date">{r.date || '—'}</td>
-                          <td>{r.admin1 || '—'}</td>
-                          <td>{r.weapon || '—'}</td>
-                          <td>{r.location || '—'}</td>
-                          <td className="cell-num cell-martyrs">{r.healthWorkersKilled || 0}</td>
-                          <td className="cell-num">{r.healthWorkersInjured || 0}</td>
-                          <td className="cell-perp">{r.perpetrator || '—'}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </section>
-              */}
+              
+            
             </>
           )}
 
