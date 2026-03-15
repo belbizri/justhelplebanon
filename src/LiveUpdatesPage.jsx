@@ -343,7 +343,7 @@ export default function LiveUpdatesPage() {
 
       <header className="page-header live-header-banner">
         <img
-          src="/images/health_republic_ministry.png"
+          src="/images/minisry_banner_head.png"
           alt="Lebanese Republic — Ministry of Public Health"
           className="live-banner-img"
         />
@@ -452,7 +452,7 @@ export default function LiveUpdatesPage() {
                 </section>
               )}
 
-              {/* Incident Table */}
+              {/* Incident Table — hidden for now
               <section className="live-block">
                 <h3 className="live-block-title">
                   <span className="live-block-icon">{ICONS.calendar}</span>
@@ -487,6 +487,7 @@ export default function LiveUpdatesPage() {
                   </table>
                 </div>
               </section>
+              */}
             </>
           )}
 
