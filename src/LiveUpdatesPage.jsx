@@ -349,8 +349,7 @@ export default function LiveUpdatesPage() {
         />
         <h1 className="page-title">
           <span className="live-pulse" />
-          Attacks on Healthcare
-        </h1>
+         </h1>
         <p className="page-subtitle">
           Verified incident data from Insecurity Insight (HDX) &amp; the Lebanese Ministry of Public Health
         </p>
