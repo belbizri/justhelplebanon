@@ -81,7 +81,7 @@ export default function SocialPage() {
 
       <header className="social-hero">
         <div className="social-hero-glow" />
-        <h1 className="social-hero-title">📢 Social Hub</h1>
+        <h1 className="social-hero-title">Social Hub</h1>
         <p className="social-hero-subtitle">Follow, share, and amplify the cause across every platform</p>
       </header>
 
