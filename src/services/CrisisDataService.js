@@ -62,7 +62,7 @@ class CrisisDataService {
   }
 
   /**
-   * ReliefWeb — latest Lebanon humanitarian reports.
+   * ReliefWeb — latest Lebanon humanitarian reports (from RSS feed).
    * Returns [{ title, date, source, url, summary }]
    */
   async getReliefWebReports() {
@@ -71,16 +71,13 @@ class CrisisDataService {
     if (cached) return cached;
 
     const raw = await this._fetch('/api/crisis/reliefweb');
-    const data = (raw.data || []).slice(0, 6).map((item) => {
-      const f = item.fields || {};
-      return {
-        title: f.title,
-        date: f.date?.created?.split('T')[0],
-        source: f.source?.[0]?.name || 'ReliefWeb',
-        url: f.url_alias ? `https://reliefweb.int${f.url_alias}` : f.url,
-        summary: f.body?.slice(0, 180),
-      };
-    });
+    const data = (raw.data || []).slice(0, 6).map((item) => ({
+      title: item.title,
+      date: item.pubDate ? new Date(item.pubDate).toISOString().split('T')[0] : '',
+      source: 'ReliefWeb',
+      url: item.link,
+      summary: item.description?.slice(0, 180),
+    }));
     this._setCache(key, data);
     return data;
   }

@@ -43,10 +43,27 @@ app.get("/api/crisis/hdx", async (req, res) => {
 app.get("/api/crisis/reliefweb", async (req, res) => {
   try {
     const r = await fetch(
-      "https://api.reliefweb.int/v1/reports?appname=justhelplebanon&filter[field]=country.name&filter[value]=Lebanon&limit=6&sort[]=date:desc&fields[include][]=title&fields[include][]=date&fields[include][]=source&fields[include][]=url_alias&fields[include][]=body"
+      "https://reliefweb.int/updates/rss.xml?search=Lebanon&format=rss"
     );
-    const data = await r.json();
-    res.json(data);
+    const xml = await r.text();
+    // Parse RSS XML into simple JSON array
+    const items = [];
+    const itemRegex = /<item>([\s\S]*?)<\/item>/g;
+    let match;
+    while ((match = itemRegex.exec(xml)) !== null && items.length < 6) {
+      const block = match[1];
+      const get = (tag) => {
+        const m = block.match(new RegExp(`<${tag}>([\\s\\S]*?)</${tag}>`));
+        return m ? m[1].replace(/<!\[CDATA\[|\]\]>/g, "").trim() : "";
+      };
+      items.push({
+        title: get("title"),
+        link: get("link"),
+        pubDate: get("pubDate"),
+        description: get("description").slice(0, 200),
+      });
+    }
+    res.json({ data: items });
   } catch (e) {
     res.status(502).json({ error: "ReliefWeb upstream error" });
   }
@@ -55,15 +72,11 @@ app.get("/api/crisis/reliefweb", async (req, res) => {
 app.get("/api/crisis/unhcr", async (req, res) => {
   try {
     const r = await fetch(
-      "https://data.unhcr.org/api/population/?limit=20&country_of_asylum=LBN&year=2024"
+      "https://api.unhcr.org/population/v1/population/?limit=100&year=2023&coa=LEB&coo_all=true",
+      { headers: { Accept: "application/json" } }
     );
-    const text = await r.text();
-    try {
-      const data = JSON.parse(text);
-      res.json(data);
-    } catch {
-      res.json({ items: [] });
-    }
+    const data = await r.json();
+    res.json(data);
   } catch (e) {
     res.status(502).json({ error: "UNHCR upstream error" });
   }
