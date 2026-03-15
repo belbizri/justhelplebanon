@@ -360,6 +360,12 @@ export default function LiveUpdatesPage() {
         <p className="page-subtitle">
           Verified incident data from Insecurity Insight (HDX) &amp; the Lebanese Ministry of Public Health
         </p>
+        <p className="live-disclaimer">
+          This section is provided for informational and humanitarian documentation purposes only.
+          It does not attribute responsibility to any party, state, or entity, nor does it seek to
+          characterize any ongoing military or security operations. All data is sourced from
+          independent humanitarian organisations.
+        </p>
       </header>
 
       {loading && (
