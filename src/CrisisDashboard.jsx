@@ -37,6 +37,40 @@ function AnimatedNumber({ value, duration = 1200 }) {
   return <>{display.toLocaleString()}</>;
 }
 
+/* ── SVG Icons ── */
+const ICONS = {
+  database: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <ellipse cx="12" cy="5" rx="9" ry="3" /><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" /><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3" />
+    </svg>
+  ),
+  people: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  ),
+  file: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" />
+    </svg>
+  ),
+  globe: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" /><path d="M2 12h20" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  ),
+  displacement: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
+    </svg>
+  ),
+  arrow: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" />
+    </svg>
+  ),
+};
+
 /* ── Stat Card ── */
 function StatCard({ icon, label, value, sub, delay = 0 }) {
   const [ref, visible] = useReveal();
@@ -89,7 +123,10 @@ function ReportCard({ report, index }) {
     >
       <div className="report-source-badge">{report.source}</div>
       <h4 className="report-title">{report.title}</h4>
-      <span className="report-date">{report.date}</span>
+      <div className="report-footer">
+        <span className="report-date">{report.date}</span>
+        <span className="report-arrow">{ICONS.arrow}</span>
+      </div>
     </a>
   );
 }
@@ -172,7 +209,7 @@ export default function CrisisDashboard() {
       <div className="crisis-stats-grid">
         {hdx && (
           <StatCard
-            icon="📊"
+            icon={ICONS.database}
             label="HDX Datasets"
             value={hdx.count}
             sub="Lebanon IDP datasets available"
@@ -181,7 +218,7 @@ export default function CrisisDashboard() {
         )}
         {unhcr && (
           <StatCard
-            icon="🏠"
+            icon={ICONS.people}
             label="Refugees in Lebanon"
             value={unhcr.totalRefugees}
             sub={`Data year: ${unhcr.year}`}
@@ -189,7 +226,7 @@ export default function CrisisDashboard() {
           />
         )}
         <StatCard
-          icon="📰"
+          icon={ICONS.file}
           label="Recent Reports"
           value={reports.length}
           sub="From ReliefWeb"
@@ -197,7 +234,7 @@ export default function CrisisDashboard() {
         />
         {unhcr && (
           <StatCard
-            icon="🌍"
+            icon={ICONS.globe}
             label="Countries of Origin"
             value={unhcr.byOrigin?.length || 0}
             sub="Tracked by UNHCR"
@@ -210,7 +247,7 @@ export default function CrisisDashboard() {
       {unhcr?.byOrigin?.length > 0 && (
         <div className="crisis-block">
           <h3 className="crisis-block-title">
-            <span className="crisis-block-icon">🏠</span>
+            <span className="crisis-block-icon">{ICONS.displacement}</span>
             Refugees by Country of Origin
           </h3>
           <div className="origin-chart">
@@ -225,7 +262,7 @@ export default function CrisisDashboard() {
       {reports.length > 0 && (
         <div className="crisis-block">
           <h3 className="crisis-block-title">
-            <span className="crisis-block-icon">📰</span>
+            <span className="crisis-block-icon">{ICONS.file}</span>
             Latest Humanitarian Reports
           </h3>
           <div className="crisis-reports-grid">
@@ -240,7 +277,7 @@ export default function CrisisDashboard() {
       {hdx?.datasets?.length > 0 && (
         <div className="crisis-block">
           <h3 className="crisis-block-title">
-            <span className="crisis-block-icon">📊</span>
+            <span className="crisis-block-icon">{ICONS.database}</span>
             Open Humanitarian Datasets
           </h3>
           <div className="crisis-datasets-grid">
