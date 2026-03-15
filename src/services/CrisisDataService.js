@@ -40,6 +40,36 @@ class CrisisDataService {
     return res.json();
   }
 
+  async _fetchText(url) {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.text();
+  }
+
+  /**
+   * Parse ReliefWeb RSS XML string into report objects.
+   */
+  _parseRSS(xml) {
+    const items = [];
+    const re = /<item>([\s\S]*?)<\/item>/g;
+    let m;
+    while ((m = re.exec(xml)) !== null && items.length < 6) {
+      const block = m[1];
+      const get = (tag) => {
+        const mm = block.match(new RegExp(`<${tag}>([\\s\\S]*?)</${tag}>`));
+        return mm ? mm[1].replace(/<!\[CDATA\[|\]\]>/g, '').trim() : '';
+      };
+      const pubDate = get('pubDate');
+      items.push({
+        title: get('title'),
+        url: get('link'),
+        date: pubDate ? new Date(pubDate).toISOString().split('T')[0] : '',
+        source: 'ReliefWeb',
+      });
+    }
+    return items;
+  }
+
   /* ── public methods ── */
 
   /**
@@ -67,32 +97,44 @@ class CrisisDataService {
 
   /**
    * ReliefWeb — latest Lebanon humanitarian reports.
-   * Tries our server proxy first (parses RSS server-side).
-   * Returns [] if the proxy is unavailable (e.g. static hosting).
+   * Strategy:
+   *   1. Try our server proxy (works on Express / localhost)
+   *   2. Fall back to fetching RSS via CORS proxy + client-side XML parsing
    */
   async getReliefWebReports() {
     const key = 'reliefweb';
     const cached = this._getCached(key);
     if (cached) return cached;
 
+    let data = [];
+
+    // Attempt 1 — server proxy (works when Express is running)
     try {
       const raw = await this._fetch('/api/crisis/reliefweb');
-      const data = (raw.data || []).slice(0, 6).map((item) => ({
+      data = (raw.data || []).slice(0, 6).map((item) => ({
         title: item.title,
         date: item.pubDate
           ? new Date(item.pubDate).toISOString().split('T')[0]
           : '',
         source: 'ReliefWeb',
         url: item.link,
-        summary: item.description?.slice(0, 180),
       }));
-      this._setCache(key, data);
-      return data;
     } catch {
-      // Proxy not available (static hosting) — degrade gracefully
-      this._setCache(key, []);
-      return [];
+      // Attempt 2 — CORS proxy + client-side RSS parsing
+      try {
+        const rssUrl = 'https://reliefweb.int/updates/rss.xml?search=Lebanon';
+        const xml = await this._fetchText(
+          'https://api.codetabs.com/v1/proxy?quest=' +
+            encodeURIComponent(rssUrl)
+        );
+        data = this._parseRSS(xml);
+      } catch {
+        // Both failed — degrade gracefully
+      }
     }
+
+    this._setCache(key, data);
+    return data;
   }
 
   /**
