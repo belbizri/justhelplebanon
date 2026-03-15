@@ -26,6 +26,49 @@ app.get("/api/donation-stats", (req, res) => {
   res.json({ raised, count, goal: GOAL, updated: new Date(now).toISOString() });
 });
 
+// --- Crisis data proxy endpoints (avoids CORS) ---
+
+app.get("/api/crisis/hdx", async (req, res) => {
+  try {
+    const r = await fetch(
+      "https://data.humdata.org/api/3/action/package_search?q=lebanon+idp&rows=6"
+    );
+    const data = await r.json();
+    res.json(data);
+  } catch (e) {
+    res.status(502).json({ error: "HDX upstream error" });
+  }
+});
+
+app.get("/api/crisis/reliefweb", async (req, res) => {
+  try {
+    const r = await fetch(
+      "https://api.reliefweb.int/v1/reports?appname=justhelplebanon&filter[field]=country.name&filter[value]=Lebanon&limit=6&sort[]=date:desc&fields[include][]=title&fields[include][]=date&fields[include][]=source&fields[include][]=url_alias&fields[include][]=body"
+    );
+    const data = await r.json();
+    res.json(data);
+  } catch (e) {
+    res.status(502).json({ error: "ReliefWeb upstream error" });
+  }
+});
+
+app.get("/api/crisis/unhcr", async (req, res) => {
+  try {
+    const r = await fetch(
+      "https://data.unhcr.org/api/population/?limit=20&country_of_asylum=LBN&year=2024"
+    );
+    const text = await r.text();
+    try {
+      const data = JSON.parse(text);
+      res.json(data);
+    } catch {
+      res.json({ items: [] });
+    }
+  } catch (e) {
+    res.status(502).json({ error: "UNHCR upstream error" });
+  }
+});
+
 // Serve the built React app
 app.use(express.static(path.join(__dirname, "dist")));
 
