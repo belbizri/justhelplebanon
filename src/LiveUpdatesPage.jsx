@@ -84,8 +84,8 @@ const ICONS = {
   ),
 };
 
-/* ── Normalise records from both datasets ── */
-function normaliseRecord(attrs, source) {
+/* ── Normalise MoPH records ── */
+function normaliseMoph(attrs, source) {
   if (source === '2024') {
     return {
       name: attrs.name || attrs.name_ar || '—',
@@ -100,11 +100,8 @@ function normaliseRecord(attrs, source) {
       vehicles: attrs.vehicles ?? attrs['الاليات_المتضررة'] ?? 0,
       status: attrs.current_status || attrs['وضع_المستشفى_حالياً'] || '',
       statusAr: attrs['وضع_المستشفى_حالياً'] || '',
-      type: attrs.health_facility_type || '',
-      source: '2024',
     };
   }
-  // Legacy dataset (Arabic-only fields)
   return {
     name: attrs['إسم_المستشفى'] || '—',
     nameAr: attrs['إسم_المستشفى'] || '',
@@ -118,8 +115,6 @@ function normaliseRecord(attrs, source) {
     vehicles: attrs['الاليات_المتضررة'] ?? 0,
     status: '',
     statusAr: attrs['وضع_المستشفى_حالياً'] || '',
-    type: '',
-    source: 'legacy',
   };
 }
 
@@ -153,57 +148,109 @@ async function fetchJSON(url) {
   return r.json();
 }
 
-async function loadMophData() {
-  // Try server proxy first (dev), fall back to static JSON (prod/Hostinger)
-  let legacy, data2024;
+async function loadAllData() {
+  // Load HDX Insecurity Insight (primary, 2016-2026) + MoPH hospital data
+  let hdxData, mophLegacy, moph2024;
+
+  // HDX — static JSON only (pre-fetched from XLSX at build time)
+  hdxData = await fetchJSON('/data/hdx-health-attacks.json');
+
+  // MoPH — try server proxy, fall back to static JSON
   try {
-    [legacy, data2024] = await Promise.all([
+    [mophLegacy, moph2024] = await Promise.all([
       fetchJSON('/api/moph/attacks'),
       fetchJSON('/api/moph/attacks2024'),
     ]);
   } catch {
-    [legacy, data2024] = await Promise.all([
+    [mophLegacy, moph2024] = await Promise.all([
       fetchJSON('/data/moph-attacks.json'),
       fetchJSON('/data/moph-attacks-2024.json'),
     ]);
   }
 
-  const records = [
-    ...(legacy.features || []).map(f => normaliseRecord(f.attributes, 'legacy')),
-    ...(data2024.features || []).map(f => normaliseRecord(f.attributes, '2024')),
+  const mophRecords = [
+    ...(mophLegacy.features || []).map(f => normaliseMoph(f.attributes, 'legacy')),
+    ...(moph2024.features || []).map(f => normaliseMoph(f.attributes, '2024')),
   ];
 
-  return records;
+  return { hdxData, mophRecords };
 }
 
-/* ── Compute stats ── */
-function computeStats(records) {
-  let totalInjured = 0, totalMartyrs = 0, totalVehicles = 0;
-  const govCounts = {};
-  const statusCounts = {};
+/* ── Compute HDX stats ── */
+function computeHdxStats(records, yearFilter) {
+  const filtered = yearFilter === 'all'
+    ? records
+    : records.filter(r => r.date?.startsWith(yearFilter));
 
-  records.forEach(r => {
-    totalInjured += r.injured;
-    totalMartyrs += r.martyrs;
-    totalVehicles += r.vehicles;
-    const gov = r.governorate || 'Unknown';
+  let killed = 0, injured = 0, kidnapped = 0, arrested = 0;
+  let facilitiesDestroyed = 0, facilitiesDamaged = 0;
+  let transportDestroyed = 0, transportDamaged = 0;
+  const govCounts = {};
+  const weaponCounts = {};
+  const yearCounts = {};
+
+  filtered.forEach(r => {
+    killed += r.healthWorkersKilled || 0;
+    injured += r.healthWorkersInjured || 0;
+    kidnapped += r.healthWorkersKidnapped || 0;
+    arrested += r.healthWorkersArrested || 0;
+    facilitiesDestroyed += r.facilitiesDestroyed || 0;
+    facilitiesDamaged += r.facilitiesDamaged || 0;
+    transportDestroyed += r.transportDestroyed || 0;
+    transportDamaged += r.transportDamaged || 0;
+    const gov = r.admin1 || 'Unknown';
     govCounts[gov] = (govCounts[gov] || 0) + 1;
-    const st = getStatusLabel(r);
-    statusCounts[st] = (statusCounts[st] || 0) + 1;
+    if (r.weapon) weaponCounts[r.weapon] = (weaponCounts[r.weapon] || 0) + 1;
+    const yr = r.date?.slice(0, 4);
+    if (yr) yearCounts[yr] = (yearCounts[yr] || 0) + 1;
   });
 
   const byGovernorate = Object.entries(govCounts)
     .map(([name, count]) => ({ name, count }))
     .sort((a, b) => b.count - a.count);
 
+  const byWeapon = Object.entries(weaponCounts)
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 8);
+
+  const byYear = Object.entries(yearCounts)
+    .map(([year, count]) => ({ year, count }))
+    .sort((a, b) => a.year.localeCompare(b.year));
+
+  return {
+    total: filtered.length,
+    killed,
+    injured,
+    kidnapped,
+    arrested,
+    facilitiesDestroyed,
+    facilitiesDamaged,
+    transportDestroyed,
+    transportDamaged,
+    byGovernorate,
+    byWeapon,
+    byYear,
+  };
+}
+
+/* ── Compute MoPH stats ── */
+function computeMophStats(records) {
+  let totalInjured = 0, totalMartyrs = 0;
+  const statusCounts = {};
+
+  records.forEach(r => {
+    totalInjured += r.injured;
+    totalMartyrs += r.martyrs;
+    const st = getStatusLabel(r);
+    statusCounts[st] = (statusCounts[st] || 0) + 1;
+  });
+
   return {
     totalAttacks: records.length,
     totalInjured,
     totalMartyrs,
-    totalVehicles,
     forcedClosures: (statusCounts['Forcibly Closed'] || 0) + (statusCounts['Closed'] || 0) + (statusCounts['Out of Service'] || 0),
-    byGovernorate,
-    statusCounts,
   };
 }
 
