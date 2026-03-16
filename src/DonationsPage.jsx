@@ -335,20 +335,24 @@ export default function DonationsPage() {
               aria-selected={activeCategory === 'All'}
               className={`don-filter-btn ${activeCategory === 'All' ? 'active' : ''}`}
               onClick={() => setActiveCategory('All')}
-            >All</button>
-            {CATEGORIES.map(c => (
-              <button
-                key={c}
-                role="tab"
-                aria-selected={activeCategory === c}
-                className={`don-filter-btn ${activeCategory === c ? 'active' : ''}`}
-                onClick={() => setActiveCategory(c)}
-                style={{ '--tab-accent': CATEGORY_ACCENT[c] }}
-              >
-                <span className="don-filter-icon">{CATEGORY_ICONS[c]}</span>
-                {c}
-              </button>
-            ))}
+            >All <span className="don-filter-badge">{filtered.length}</span></button>
+            {CATEGORIES.map(c => {
+              const count = filtered.filter(o => o.category === c).length;
+              return (
+                <button
+                  key={c}
+                  role="tab"
+                  aria-selected={activeCategory === c}
+                  className={`don-filter-btn ${activeCategory === c ? 'active' : ''}`}
+                  onClick={() => setActiveCategory(c)}
+                  style={{ '--tab-accent': CATEGORY_ACCENT[c] }}
+                >
+                  <span className="don-filter-icon">{CATEGORY_ICONS[c]}</span>
+                  {c}
+                  <span className="don-filter-badge">{count}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 

@@ -3026,6 +3026,27 @@ h1 {
   height: 100%;
 }
 
+.don-filter-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.55);
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-left: 2px;
+}
+
+.don-filter-btn.active .don-filter-badge {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+}
+
 /* ── Category Section ── */
 .don-category-section {
   margin-bottom: 52px;
