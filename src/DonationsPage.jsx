@@ -295,11 +295,7 @@ export default function DonationsPage() {
 
       {/* Hero Header — Lebanese Flag Banner */}
       <header className="page-header donations-header">
-        <div className="flag-banner">
-          <div className="flag-stripe flag-red-top"></div>
-          <div className="flag-stripe flag-white"></div>
-          <div className="flag-stripe flag-red-bottom"></div>
-        </div>
+        <div className="flag-banner"></div>
         <div className="donations-header-overlay">
           <h1 className="page-title">Ways to Help Lebanon</h1>
           <p className="page-subtitle">
