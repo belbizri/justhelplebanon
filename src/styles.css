@@ -2907,16 +2907,6 @@ h1 {
 .flag-white {
   flex: 1.3;
   background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flag-cedar {
-  height: 80%;
-  max-height: 110px;
-  width: auto;
-  opacity: 0.85;
 }
 
 /* Dark overlay for text readability */
@@ -2930,22 +2920,24 @@ h1 {
   text-align: center;
   padding: 64px 24px 48px;
   min-height: 240px;
-  background: rgba(10, 12, 28, 0.55);
-}
-
-.donations-header::before {
-  display: none;
+  background: rgba(10, 12, 28, 0.62);
 }
 
 .donations-header .page-title {
   color: #fff;
-  font-size: 2.2rem;
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.50), 0 0 60px rgba(200, 40, 60, 0.30);
 }
 
 .donations-header .page-subtitle {
-  color: rgba(255,255,255,0.78);
+  color: rgba(255,255,255,0.72);
   font-size: 1rem;
   max-width: 640px;
+  margin-top: 12px;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.40);
 }
 
 .donations-content {
@@ -3444,7 +3436,7 @@ h1 {
   }
 
   .donations-header .page-title {
-    font-size: 1.6rem;
+    font-size: 1.9rem;
   }
 
   .donations-header {
@@ -3454,10 +3446,6 @@ h1 {
   .donations-header-overlay {
     min-height: 180px;
     padding: 48px 16px 36px;
-  }
-
-  .flag-cedar {
-    max-height: 70px;
   }
 }
 

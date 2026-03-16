@@ -297,26 +297,7 @@ export default function DonationsPage() {
       <header className="page-header donations-header">
         <div className="flag-banner">
           <div className="flag-stripe flag-red-top"></div>
-          <div className="flag-stripe flag-white">
-            <svg className="flag-cedar" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g fill="#00652B">
-                {/* Trunk */}
-                <rect x="94" y="160" width="12" height="30" rx="2" />
-                {/* Tier 1 (top) */}
-                <polygon points="100,12 85,50 115,50" />
-                {/* Tier 2 */}
-                <polygon points="100,35 75,75 125,75" />
-                {/* Tier 3 */}
-                <polygon points="100,55 65,100 135,100" />
-                {/* Tier 4 */}
-                <polygon points="100,75 55,125 145,125" />
-                {/* Tier 5 (bottom) */}
-                <polygon points="100,100 45,155 155,155" />
-                {/* Base */}
-                <rect x="70" y="155" width="60" height="8" rx="3" />
-              </g>
-            </svg>
-          </div>
+          <div className="flag-stripe flag-white"></div>
           <div className="flag-stripe flag-red-bottom"></div>
         </div>
         <div className="donations-header-overlay">
