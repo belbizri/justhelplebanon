@@ -3,17 +3,9 @@ import { Link } from 'react-router-dom';
 
 const BATCH_SIZE = 4;
 
-/* ── Single video card with native <video> ── */
-function VideoCard({ src, title }) {
+/* ── Single video card (thumbnail in iPhone frame) ── */
+function VideoCard({ src, title, onOpen }) {
   const videoRef = useRef(null);
-  const [playing, setPlaying] = useState(false);
-
-  const toggle = () => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (v.paused) { v.play(); setPlaying(true); }
-    else { v.pause(); setPlaying(false); }
-  };
 
   return (
     <div className="iphone-frame">
@@ -21,27 +13,81 @@ function VideoCard({ src, title }) {
         <div className="iphone-speaker" />
         <div className="iphone-camera" />
       </div>
-      <div className="iphone-screen" onClick={toggle}>
+      <div className="iphone-screen" onClick={() => onOpen(src, title)}>
         <video
           ref={videoRef}
           className="vid-native"
           src={src}
           playsInline
           loop
+          muted
           preload="metadata"
-          onPlay={() => setPlaying(true)}
-          onPause={() => setPlaying(false)}
         />
-        {!playing && (
-          <div className="vid-play-overlay">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </div>
-        )}
+        <div className="vid-play-overlay">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </div>
       </div>
       <div className="iphone-home-bar" />
       {title && <p className="vid-title">{title}</p>}
+    </div>
+  );
+}
+
+/* ── Fullscreen modal overlay ── */
+function VideoModal({ src, title, onClose }) {
+  const videoRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+
+  /* Auto-play on open */
+  useEffect(() => {
+    const v = videoRef.current;
+    if (v) v.play().catch(() => {});
+  }, []);
+
+  /* Close on Escape */
+  useEffect(() => {
+    const handler = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [onClose]);
+
+  const toggle = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) v.play();
+    else v.pause();
+  };
+
+  return (
+    <div className="vid-modal-backdrop" onClick={onClose}>
+      <div className="vid-modal" onClick={e => e.stopPropagation()}>
+        <button className="vid-modal-close" onClick={onClose} aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+            <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        <div className="vid-modal-video-wrap" onClick={toggle}>
+          <video
+            ref={videoRef}
+            className="vid-modal-video"
+            src={src}
+            playsInline
+            loop
+            onPlay={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
+          />
+          {!playing && (
+            <div className="vid-play-overlay vid-play-overlay--modal">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="64" height="64">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          )}
+        </div>
+        {title && <p className="vid-modal-title">{title}</p>}
+      </div>
     </div>
   );
 }
@@ -50,6 +96,7 @@ export default function VideosPage() {
   const [videos, setVideos] = useState([]);
   const [visible, setVisible] = useState(BATCH_SIZE);
   const [error, setError] = useState(null);
+  const [modal, setModal] = useState(null);          // { src, title }
   const sentinelRef = useRef(null);
 
   /* Fetch the video manifest */
@@ -84,8 +131,19 @@ export default function VideosPage() {
   const displayed = videos.slice(0, visible);
   const hasMore = visible < videos.length;
 
+  const openModal = useCallback((src, title) => {
+    setModal({ src, title });
+    document.body.style.overflow = 'hidden';
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setModal(null);
+    document.body.style.overflow = '';
+  }, []);
+
   return (
     <div className="page-root videos-page">
+      {modal && <VideoModal src={modal.src} title={modal.title} onClose={closeModal} />}
       <nav className="page-nav">
         <Link to="/" className="nav-logo">Just Help Lebanon</Link>
         <div className="nav-links">
@@ -113,7 +171,7 @@ export default function VideosPage() {
 
         <div className="vid-grid">
           {displayed.map((v, i) => (
-            <VideoCard key={v.src + i} src={v.src} title={v.title} />
+            <VideoCard key={v.src + i} src={v.src} title={v.title} onOpen={openModal} />
           ))}
         </div>
 
