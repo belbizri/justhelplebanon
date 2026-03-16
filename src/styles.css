@@ -3533,7 +3533,7 @@ h1 {
 .iphone-screen {
   position: relative;
   width: 100%;
-  height: 560px;
+  height: 440px;
   border-radius: 32px;
   overflow: hidden;
   background: #000;
@@ -3547,7 +3547,7 @@ h1 {
   transition: opacity 0.4s ease;
   position: relative;
   z-index: 1;
-  margin-top: -64px;
+  margin-top: -80px;
   margin-left: -1px;
 }
 
@@ -3652,12 +3652,13 @@ h1 {
   }
 
   .iphone-screen {
-    height: 480px;
+    height: 380px;
     border-radius: 26px;
   }
 
   .iphone-screen .vid-iframe {
     height: 720px;
+    margin-top: -70px;
   }
 
   .iphone-notch {
