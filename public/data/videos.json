@@ -2,5 +2,6 @@
   { "src": "/videos/video1.mp4", "title": "" },
   { "src": "/videos/video2.mp4", "title": "" },
   { "src": "/videos/video3.mp4", "title": "" },
-  { "src": "/videos/video4.mp4", "title": "" }
+  { "src": "/videos/video4.mp4", "title": "" },
+  { "src": "/videos/video5.mp4", "title": "" }
 ]
