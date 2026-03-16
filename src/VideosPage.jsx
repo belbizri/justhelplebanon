@@ -157,9 +157,9 @@ export default function VideosPage() {
 
       <header className="videos-header">
         <h1 className="page-title">Videos</h1>
-        <p className="page-subtitle">
+        {/* <p className="page-subtitle">
           Curated videos from the ground — scroll to load more
-        </p>
+        </p> */}
       </header>
 
       <main className="videos-content">
