@@ -2873,31 +2873,66 @@ h1 {
 }
 
 .donations-header {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 70%, #1a1a2e 100%);
   position: relative;
   overflow: hidden;
-  padding: 72px 24px 56px;
+  padding: 0;
+  min-height: 240px;
 }
 
-.donations-header::before {
-  content: '';
+/* ── Flag stripes ── */
+.flag-banner {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 90% 70% at 20% 0%, rgba(230, 57, 70, 0.18) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 60% at 80% 100%, rgba(52, 152, 219, 0.12) 0%, transparent 55%);
-  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  z-index: 0;
+}
+
+.flag-stripe {
+  flex: 1;
+}
+
+.flag-red-top,
+.flag-red-bottom {
+  background: linear-gradient(90deg,
+    #6b0000 0%, #c0101e 15%, #e8222e 30%, #ff2a2a 45%,
+    #e8222e 55%, #c0101e 70%, #8b0000 85%, #6b0000 100%);
+}
+
+.flag-white {
+  flex: 1.3;
+  background: #fff;
+}
+
+/* Dark overlay for text readability */
+.donations-header-overlay {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 64px 24px 48px;
+  min-height: 240px;
+  background: rgba(10, 12, 28, 0.62);
 }
 
 .donations-header .page-title {
   color: #fff;
-  font-size: 2.2rem;
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.50), 0 0 60px rgba(200, 40, 60, 0.30);
 }
 
 .donations-header .page-subtitle {
-  color: rgba(255,255,255,0.78);
+  color: rgba(255,255,255,0.72);
   font-size: 1rem;
   max-width: 640px;
+  margin-top: 12px;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.40);
 }
 
 .donations-content {
@@ -3396,6 +3431,237 @@ h1 {
   }
 
   .donations-header .page-title {
+    font-size: 1.9rem;
+  }
+
+  .donations-header {
+    min-height: 180px;
+  }
+
+  .donations-header-overlay {
+    min-height: 180px;
+    padding: 48px 16px 36px;
+  }
+}
+
+/* ═══════════════════════════════════════
+   Videos Page
+   ═══════════════════════════════════════ */
+
+.videos-header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 70%, #1a1a2e 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 72px 24px 48px;
+  text-align: center;
+}
+
+.videos-header .page-title {
+  color: #fff;
+  font-size: 2.2rem;
+}
+
+.videos-header .page-subtitle {
+  color: rgba(255,255,255,0.65);
+  font-size: 0.95rem;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.videos-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.vid-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+/* ── iPhone Frame ── */
+.iphone-frame {
+  position: relative;
+  background: #1a1a1a;
+  border-radius: 44px;
+  padding: 14px;
+  box-shadow:
+    0 0 0 2px #333,
+    0 0 0 4px #1a1a1a,
+    0 20px 60px rgba(0,0,0,0.50),
+    inset 0 0 4px rgba(255,255,255,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+/* Notch */
+.iphone-notch {
+  position: relative;
+  z-index: 3;
+  width: 120px;
+  height: 28px;
+  background: #1a1a1a;
+  border-radius: 0 0 18px 18px;
+  margin-top: -2px;
+  margin-bottom: -14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.iphone-speaker {
+  width: 40px;
+  height: 4px;
+  background: #2a2a2a;
+  border-radius: 2px;
+}
+
+.iphone-camera {
+  width: 8px;
+  height: 8px;
+  background: #1e2530;
+  border-radius: 50%;
+  border: 1.5px solid #2a2a2a;
+}
+
+/* Screen */
+.iphone-screen {
+  position: relative;
+  width: 100%;
+  height: 560px;
+  border-radius: 32px;
+  overflow: hidden;
+  background: #000;
+}
+
+.iphone-screen .vid-iframe {
+  width: calc(100% + 2px);
+  height: 820px;
+  border: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  position: relative;
+  z-index: 1;
+  margin-top: -64px;
+  margin-left: -1px;
+}
+
+.iphone-screen .vid-iframe--visible {
+  opacity: 1;
+}
+
+/* Home indicator */
+.iphone-home-bar {
+  width: 100px;
+  height: 4px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 2px;
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+
+/* Skeleton inside screen */
+.iphone-screen .vid-skeleton {
+  position: absolute;
+  inset: 0;
+  background: #111;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.vid-skeleton-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.06) 40%,
+    rgba(255,255,255,0.10) 50%,
+    rgba(255,255,255,0.06) 60%,
+    transparent 100%
+  );
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ── Sentinel & loading dots ── */
+.vid-sentinel {
+  height: 1px;
+}
+
+.vid-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px 0;
+}
+
+.vid-loading-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  animation: dotPulse 1.2s ease-in-out infinite;
+}
+
+.vid-loading-dot:nth-child(2) { animation-delay: 0.15s; }
+.vid-loading-dot:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes dotPulse {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+  40%           { opacity: 1;   transform: scale(1.2); }
+}
+
+.vid-empty, .vid-error {
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.92rem;
+}
+
+.vid-empty code {
+  background: rgba(255,255,255,0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 768px) {
+  .vid-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .videos-header .page-title {
     font-size: 1.6rem;
+  }
+
+  .iphone-frame {
+    max-width: 300px;
+    border-radius: 36px;
+    padding: 10px;
+  }
+
+  .iphone-screen {
+    height: 480px;
+    border-radius: 26px;
+  }
+
+  .iphone-screen .vid-iframe {
+    height: 720px;
+  }
+
+  .iphone-notch {
+    width: 100px;
+    height: 24px;
   }
 }

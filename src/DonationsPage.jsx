@@ -288,17 +288,25 @@ export default function DonationsPage() {
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/donations" className="nav-link active">Donations</Link>
           <Link to="/news" className="nav-link">News</Link>
+          <Link to="/videos" className="nav-link">Videos</Link>
           <Link to="/social" className="nav-link">Social</Link>
         </div>
       </nav>
 
-      {/* Hero Header */}
+      {/* Hero Header — Lebanese Flag Banner */}
       <header className="page-header donations-header">
-        <h1 className="page-title">Ways to Help Lebanon</h1>
-        <p className="page-subtitle">
-          Trusted organisations and verified donation destinations — grouped by cause.
-          Every contribution reaches families, hospitals, and communities in need.
-        </p>
+        <div className="flag-banner">
+          <div className="flag-stripe flag-red-top"></div>
+          <div className="flag-stripe flag-white"></div>
+          <div className="flag-stripe flag-red-bottom"></div>
+        </div>
+        <div className="donations-header-overlay">
+          <h1 className="page-title">Ways to Help Lebanon</h1>
+          <p className="page-subtitle">
+            Trusted organisations and verified donation destinations — grouped by cause.
+            Every contribution reaches families, hospitals, and communities in need.
+          </p>
+        </div>
       </header>
 
       <main className="donations-content">
