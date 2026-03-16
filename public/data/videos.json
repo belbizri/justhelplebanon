@@ -1,6 +1,4 @@
 [
-  "https://www.instagram.com/reel/DJWBRbYMcSD/",
-  "https://www.instagram.com/reel/DQwn5w8DKsY/",
-  "https://www.instagram.com/reel/DRkJWf6DIw-/",
-  "https://www.instagram.com/reel/DNKy6aEsGE0/"
+  { "src": "/videos/video1.mp4", "title": "" },
+  { "src": "/videos/video2.mp4", "title": "" }
 ]

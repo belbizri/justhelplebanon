@@ -3537,26 +3537,49 @@ h1 {
 .iphone-screen {
   position: relative;
   width: 100%;
-  height: 440px;
+  height: 520px;
   border-radius: 32px;
   overflow: hidden;
   background: #000;
+  cursor: pointer;
 }
 
-.iphone-screen .vid-iframe {
-  width: calc(100% + 2px);
-  height: 820px;
-  border: none;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  position: relative;
-  z-index: 1;
-  margin-top: -80px;
-  margin-left: -1px;
+/* Native video element */
+.vid-native {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.iphone-screen .vid-iframe--visible {
-  opacity: 1;
+/* Play overlay */
+.vid-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+.vid-play-overlay svg {
+  width: 56px;
+  height: 56px;
+  color: rgba(255, 255, 255, 0.9);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+}
+
+/* Video title below frame */
+.vid-title {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 8px;
+  padding: 0 8px;
+  line-height: 1.4;
 }
 
 /* Home indicator */
@@ -3567,34 +3590,6 @@ h1 {
   border-radius: 2px;
   margin-top: 10px;
   margin-bottom: 4px;
-}
-
-/* Skeleton inside screen */
-.iphone-screen .vid-skeleton {
-  position: absolute;
-  inset: 0;
-  background: #111;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.vid-skeleton-shimmer {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255,255,255,0.06) 40%,
-    rgba(255,255,255,0.10) 50%,
-    rgba(255,255,255,0.06) 60%,
-    transparent 100%
-  );
-  animation: shimmer 1.6s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-  0%   { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
 }
 
 /* ── Sentinel & loading dots ── */
@@ -3656,13 +3651,8 @@ h1 {
   }
 
   .iphone-screen {
-    height: 370px;
+    height: 440px;
     border-radius: 26px;
-  }
-
-  .iphone-screen .vid-iframe {
-    height: 720px;
-    margin-top: -65px;
   }
 
   .iphone-notch {
