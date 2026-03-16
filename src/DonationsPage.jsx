@@ -58,7 +58,7 @@ const ORGANIZATIONS = [
     url: 'https://www.empowerlebanon.org/', logo: 'https://www.google.com/s2/favicons?domain=empowerlebanon.org&sz=128' },
   { name: 'Beit Al Baraka', category: 'Food & Medical Aid', featured: true,
     desc: 'Social supermarket providing dignified access to free groceries for families in need across Beirut and beyond.',
-    url: 'https://www.beitalbaraka.org/', logo: 'https://www.google.com/s2/favicons?domain=beitalbaraka.org&sz=128' },
+    url: 'https://www.beitelbaraka.org/', logo: 'https://www.google.com/s2/favicons?domain=beitalbaraka.org&sz=128' },
   { name: 'Lebanese Food Bank', category: 'Food & Medical Aid', featured: false,
     desc: 'Fights hunger and food waste by collecting surplus food from restaurants and distributing it to those in need.',
     url: 'https://www.lebanesefoodbank.org/', logo: 'https://www.google.com/s2/favicons?domain=lebanesefoodbank.org&sz=128' },
