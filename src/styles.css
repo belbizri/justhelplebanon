@@ -3517,7 +3517,7 @@ h1 {
 .iphone-screen {
   position: relative;
   width: 100%;
-  height: 310px;
+  height: 440px;
   border-radius: 32px;
   overflow: hidden;
   background: #000;
@@ -3636,7 +3636,7 @@ h1 {
   }
 
   .iphone-screen {
-    height: 260px;
+    height: 370px;
     border-radius: 26px;
   }
 
