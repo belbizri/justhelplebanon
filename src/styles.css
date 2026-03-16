@@ -2854,27 +2854,27 @@ h1 {
    ═══════════════════════════════════════ */
 
 .donations-page {
-  background: linear-gradient(180deg, #f7f5f2 0%, #efeae4 40%, #f0ede9 100%);
-  color: #2a2a2a;
+  background: linear-gradient(180deg, #1e2030 0%, #252838 40%, #222536 100%);
+  color: #e0dfe6;
 }
 
 .donations-page .page-nav {
-  background: rgba(255,255,255,0.92);
+  background: rgba(30, 32, 48, 0.92);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
 .donations-page .nav-logo {
-  color: #1a1a2e;
+  color: #f0eff5;
 }
 
 .donations-page .nav-link {
-  color: #555;
+  color: rgba(255,255,255,0.6);
 }
 
 .donations-page .nav-link:hover,
 .donations-page .nav-link.active {
-  color: #c0392b;
+  color: #e63946;
 }
 
 .donations-header {
@@ -2923,7 +2923,7 @@ h1 {
   font-family: var(--font-display);
   font-size: 1.2rem;
   font-weight: 700;
-  color: #1a1a2e;
+  color: #f0eff5;
   text-align: center;
   justify-content: center;
   margin-bottom: 28px;
@@ -2933,7 +2933,7 @@ h1 {
   flex: 1;
   max-width: 120px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.10), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
 }
 
 /* ── Search & Filter Toolbar ── */
@@ -2945,22 +2945,22 @@ h1 {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.10);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
   border-radius: 14px;
   padding: 14px 20px;
   margin-bottom: 16px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .don-search:focus-within {
-  border-color: #c0392b;
-  box-shadow: 0 2px 16px rgba(192, 57, 43, 0.10);
+  border-color: #e63946;
+  box-shadow: 0 2px 16px rgba(230, 57, 70, 0.15);
 }
 
 .don-search svg {
-  color: #999;
+  color: rgba(255,255,255,0.4);
   flex-shrink: 0;
 }
 
@@ -2969,13 +2969,13 @@ h1 {
   background: none;
   border: none;
   outline: none;
-  color: #2a2a2a;
+  color: #e0dfe6;
   font-size: 0.92rem;
   font-family: var(--font-body);
 }
 
 .don-search input::placeholder {
-  color: #aaa;
+  color: rgba(255,255,255,0.35);
 }
 
 .don-filters {
@@ -2989,30 +2989,30 @@ h1 {
   align-items: center;
   gap: 6px;
   padding: 9px 18px;
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.10);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
   border-radius: 22px;
-  color: #666;
+  color: rgba(255,255,255,0.6);
   font-size: 0.78rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
   font-family: var(--font-body);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  box-shadow: none;
 }
 
 .don-filter-btn:hover {
-  background: #fafafa;
-  color: #333;
-  border-color: rgba(0,0,0,0.15);
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.85);
+  border-color: rgba(255,255,255,0.18);
 }
 
 .don-filter-btn.active {
-  background: #1a1a2e;
-  border-color: #1a1a2e;
+  background: rgba(230, 57, 70, 0.18);
+  border-color: rgba(230, 57, 70, 0.35);
   color: #fff;
-  box-shadow: 0 2px 10px rgba(26,26,46,0.20);
+  box-shadow: 0 2px 10px rgba(230, 57, 70, 0.12);
 }
 
 .don-filter-icon {
@@ -3038,10 +3038,10 @@ h1 {
   font-family: var(--font-display);
   font-size: 1.15rem;
   font-weight: 700;
-  color: #1a1a2e;
+  color: #f0eff5;
   margin-bottom: 22px;
   padding-bottom: 14px;
-  border-bottom: 2px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .don-cat-icon {
@@ -3058,8 +3058,8 @@ h1 {
 
 .don-cat-count {
   margin-left: auto;
-  background: rgba(0,0,0,0.05);
-  color: #888;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.50);
   font-size: 0.72rem;
   font-weight: 700;
   padding: 4px 12px;
@@ -3082,19 +3082,20 @@ h1 {
 .org-card {
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.07);
+  background: linear-gradient(165deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.04) 100%);
+  border: 1px solid rgba(255,255,255,0.10);
   border-radius: 16px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   min-width: 270px;
   flex-shrink: 0;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.20);
 }
 
 .org-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.12), 0 0 0 1px var(--card-accent, rgba(0,0,0,0.06));
+  border-color: var(--card-accent, rgba(255,255,255,0.18));
+  box-shadow: 0 16px 48px rgba(0,0,0,0.35), 0 0 0 1px var(--card-accent, rgba(255,255,255,0.10));
 }
 
 .org-card-logo {
@@ -3102,8 +3103,8 @@ h1 {
   align-items: center;
   justify-content: center;
   height: 130px;
-  background: linear-gradient(180deg, #fafafa 0%, #f2f0ed 100%);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  background: linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
   padding: 20px 28px;
 }
 
@@ -3112,6 +3113,7 @@ h1 {
   max-width: 200px;
   object-fit: contain;
   border-radius: 8px;
+  filter: brightness(1.05) contrast(1.02);
   transition: transform 0.3s ease;
 }
 
@@ -3123,8 +3125,9 @@ h1 {
   font-family: var(--font-display);
   font-size: 1.8rem;
   font-weight: 800;
-  color: var(--card-accent, #bbb);
+  color: var(--card-accent, rgba(255,255,255,0.45));
   letter-spacing: 0.08em;
+  opacity: 0.85;
   align-items: center;
   justify-content: center;
 }
@@ -3147,14 +3150,14 @@ h1 {
   font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 700;
-  color: #1a1a2e;
+  color: #f0eff5;
   margin-bottom: 10px;
   line-height: 1.35;
 }
 
 .org-card-desc {
   font-size: 0.86rem;
-  color: #666;
+  color: rgba(255,255,255,0.60);
   line-height: 1.7;
 }
 
@@ -3164,8 +3167,8 @@ h1 {
   justify-content: center;
   gap: 8px;
   padding: 16px 22px;
-  border-top: 1px solid rgba(0,0,0,0.06);
-  color: var(--card-accent, #c0392b);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  color: var(--card-accent, #e63946);
   font-size: 0.84rem;
   font-weight: 700;
   text-decoration: none;
@@ -3174,8 +3177,8 @@ h1 {
 }
 
 .org-card-cta:hover {
-  background: #faf7f5;
-  color: #1a1a2e;
+  background: rgba(255,255,255,0.06);
+  color: #fff;
 }
 
 .org-card-cta svg {
@@ -3215,20 +3218,21 @@ h1 {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.10);
-  color: #333;
+  background: rgba(30, 32, 48, 0.90);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: background 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
 }
 
 .carousel-arrow:hover {
-  background: #f5f5f5;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  background: rgba(40, 42, 60, 0.95);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35);
 }
 
 .carousel-arrow-left { left: -16px; }
@@ -3238,7 +3242,7 @@ h1 {
 .don-empty {
   text-align: center;
   padding: 60px 20px;
-  color: #999;
+  color: rgba(255,255,255,0.45);
   font-size: 0.92rem;
 }
 
@@ -3328,12 +3332,12 @@ h1 {
 
 /* Footer */
 .donations-page .page-footer {
-  background: #1a1a2e;
+  background: rgba(20, 22, 36, 0.6);
   text-align: center;
   padding: 32px 24px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.35);
   font-size: 0.78rem;
-  border-top: none;
+  border-top: 1px solid rgba(255,255,255,0.05);
 }
 
 /* ── Responsive ── */
