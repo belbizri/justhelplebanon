@@ -18,21 +18,31 @@ function VideoCard({ url }) {
   const embedUrl = `https://www.instagram.com/p/${code}/embed/`;
 
   return (
-    <div className="vid-card">
-      {!loaded && (
-        <div className="vid-skeleton">
-          <div className="vid-skeleton-shimmer" />
-        </div>
-      )}
-      <iframe
-        src={embedUrl}
-        className={`vid-iframe ${loaded ? 'vid-iframe--visible' : ''}`}
-        allowTransparency="true"
-        allow="encrypted-media"
-        loading="lazy"
-        title={`Instagram video ${code}`}
-        onLoad={() => setLoaded(true)}
-      />
+    <div className="iphone-frame">
+      {/* Notch */}
+      <div className="iphone-notch">
+        <div className="iphone-speaker" />
+        <div className="iphone-camera" />
+      </div>
+      {/* Screen */}
+      <div className="iphone-screen">
+        {!loaded && (
+          <div className="vid-skeleton">
+            <div className="vid-skeleton-shimmer" />
+          </div>
+        )}
+        <iframe
+          src={embedUrl}
+          className={`vid-iframe ${loaded ? 'vid-iframe--visible' : ''}`}
+          allowTransparency="true"
+          allow="encrypted-media"
+          loading="lazy"
+          title={`Instagram video ${code}`}
+          onLoad={() => setLoaded(true)}
+        />
+      </div>
+      {/* Home indicator */}
+      <div className="iphone-home-bar" />
     </div>
   );
 }

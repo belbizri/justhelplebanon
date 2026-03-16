@@ -3485,17 +3485,66 @@ h1 {
   gap: 24px;
 }
 
-/* ── Card & skeleton ── */
-.vid-card {
+/* ── iPhone Frame ── */
+.iphone-frame {
   position: relative;
-  border-radius: 14px;
-  overflow: hidden;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  height: 560px;
+  background: #1a1a1a;
+  border-radius: 44px;
+  padding: 14px;
+  box-shadow:
+    0 0 0 2px #333,
+    0 0 0 4px #1a1a1a,
+    0 20px 60px rgba(0,0,0,0.50),
+    inset 0 0 4px rgba(255,255,255,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 340px;
+  margin: 0 auto;
 }
 
-.vid-iframe {
+/* Notch */
+.iphone-notch {
+  position: relative;
+  z-index: 3;
+  width: 120px;
+  height: 28px;
+  background: #1a1a1a;
+  border-radius: 0 0 18px 18px;
+  margin-top: -2px;
+  margin-bottom: -14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.iphone-speaker {
+  width: 40px;
+  height: 4px;
+  background: #2a2a2a;
+  border-radius: 2px;
+}
+
+.iphone-camera {
+  width: 8px;
+  height: 8px;
+  background: #1e2530;
+  border-radius: 50%;
+  border: 1.5px solid #2a2a2a;
+}
+
+/* Screen */
+.iphone-screen {
+  position: relative;
+  width: 100%;
+  height: 560px;
+  border-radius: 32px;
+  overflow: hidden;
+  background: #000;
+}
+
+.iphone-screen .vid-iframe {
   width: calc(100% + 2px);
   height: 820px;
   border: none;
@@ -3507,15 +3556,25 @@ h1 {
   margin-left: -1px;
 }
 
-.vid-iframe--visible {
+.iphone-screen .vid-iframe--visible {
   opacity: 1;
 }
 
-/* Skeleton placeholder */
-.vid-skeleton {
+/* Home indicator */
+.iphone-home-bar {
+  width: 100px;
+  height: 4px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 2px;
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+
+/* Skeleton inside screen */
+.iphone-screen .vid-skeleton {
   position: absolute;
   inset: 0;
-  background: rgba(255,255,255,0.04);
+  background: #111;
   z-index: 0;
   overflow: hidden;
 }
@@ -3591,15 +3650,23 @@ h1 {
     font-size: 1.6rem;
   }
 
-  .vid-card, .vid-iframe {
-    min-height: auto;
+  .iphone-frame {
+    max-width: 300px;
+    border-radius: 36px;
+    padding: 10px;
   }
 
-  .vid-card {
+  .iphone-screen {
     height: 480px;
+    border-radius: 26px;
   }
 
-  .vid-iframe {
+  .iphone-screen .vid-iframe {
     height: 720px;
+  }
+
+  .iphone-notch {
+    width: 100px;
+    height: 24px;
   }
 }
