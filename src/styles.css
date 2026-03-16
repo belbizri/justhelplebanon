@@ -2848,3 +2848,219 @@ h1 {
     min-width: 140px;
   }
 }
+
+/* ═══════════════════════════════════════
+   Donations Page
+   ═══════════════════════════════════════ */
+
+.donations-header {
+  background: linear-gradient(135deg, #0a0f1c 0%, #1a1232 40%, #2a1028 70%, #0e1420 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.donations-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 30% 0%, rgba(200, 40, 60, 0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 70% 100%, rgba(30, 80, 180, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.donations-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.donations-section-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+/* Impact Cards */
+.donations-impact {
+  margin-bottom: 56px;
+}
+
+.donations-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.donation-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 28px 22px;
+  text-align: center;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.donation-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.donation-card-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
+  background: rgba(200, 40, 60, 0.12);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.donation-card-icon svg {
+  width: 26px;
+  height: 26px;
+  color: var(--red-2);
+}
+
+.donation-card h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.donation-card p {
+  font-size: 0.82rem;
+  color: var(--soft);
+  line-height: 1.6;
+}
+
+/* CTA Section */
+.donations-cta {
+  margin-bottom: 56px;
+}
+
+.donations-cta-inner {
+  background: linear-gradient(135deg, rgba(200, 40, 60, 0.10) 0%, rgba(200, 40, 60, 0.04) 100%);
+  border: 1px solid rgba(200, 40, 60, 0.20);
+  border-radius: 18px;
+  padding: 48px 32px;
+  text-align: center;
+}
+
+.donations-cta-inner h2 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.donations-cta-inner > p {
+  color: var(--soft);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  max-width: 560px;
+  margin: 0 auto 28px;
+}
+
+.donations-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: var(--red-2);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.donations-btn:hover {
+  background: #e63946;
+  transform: translateY(-2px);
+}
+
+.donations-btn-arrow {
+  width: 18px;
+  height: 18px;
+}
+
+.donations-secure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+/* Trust Grid */
+.donations-trust {
+  margin-bottom: 40px;
+}
+
+.donations-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.trust-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.trust-number {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--red-2);
+  margin-bottom: 6px;
+}
+
+.trust-label {
+  font-size: 0.78rem;
+  color: var(--soft);
+  font-weight: 500;
+}
+
+/* Footer */
+.page-footer {
+  text-align: center;
+  padding: 32px 24px;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+@media (max-width: 600px) {
+  .donations-content {
+    padding: 32px 16px 60px;
+  }
+
+  .donations-cta-inner {
+    padding: 32px 20px;
+  }
+
+  .donations-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

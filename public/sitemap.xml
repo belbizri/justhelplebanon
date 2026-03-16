@@ -18,6 +18,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://justhelplebanon.com/donations</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://justhelplebanon.com/live</loc>
     <lastmod>2026-03-15</lastmod>
     <changefreq>daily</changefreq>

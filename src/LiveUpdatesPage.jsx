@@ -342,7 +342,7 @@ export default function LiveUpdatesPage() {
         <Link to="/" className="nav-logo">Just Help Lebanon</Link>
         <div className="nav-links">
           <Link to="/" className="nav-link">Home</Link>
-          <Link to="/live" className="nav-link active">Live Updates</Link>
+          <Link to="/donations" className="nav-link">Donations</Link>
           <Link to="/news" className="nav-link">News</Link>
           <Link to="/social" className="nav-link">Social</Link>
         </div>
