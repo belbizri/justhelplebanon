@@ -3433,11 +3433,7 @@ h1 {
    ═══════════════════════════════════════ */
 
 .videos-header {
-  background:
-    radial-gradient(ellipse 70% 50% at 15% 10%, rgba(180, 30, 40, 0.25) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 60% at 85% 80%, rgba(20, 80, 45, 0.20) 0%, transparent 55%),
-    radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.04) 0%, transparent 50%),
-    linear-gradient(135deg, #1a0a12 0%, #2a0e1a 20%, #1c1028 40%, #0f1e30 60%, #0a1a1a 80%, #12080e 100%);
+  background: url('https://media.newyorker.com/photos/5e3c45380eb4a30008edb0a1/master/w_1920,c_limit/Zakharia-0-banner.jpg') center center / cover no-repeat;
   position: relative;
   overflow: hidden;
   padding: 72px 24px 48px;
@@ -3448,9 +3444,7 @@ h1 {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 40% 35% at 30% 20%, rgba(204, 16, 32, 0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 35% 40% at 70% 75%, rgba(0, 100, 60, 0.08) 0%, transparent 70%);
+  background: rgba(0, 0, 0, 0.55);
   pointer-events: none;
   z-index: 0;
 }
