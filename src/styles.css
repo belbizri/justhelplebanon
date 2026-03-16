@@ -2854,7 +2854,7 @@ h1 {
    ═══════════════════════════════════════ */
 
 .donations-header {
-  background: linear-gradient(135deg, #0a0f1c 0%, #121d3a 25%, #1a1232 50%, #2a1028 75%, #0e1420 100%);
+  background: linear-gradient(135deg, #0d1525 0%, #162040 25%, #1e1840 50%, #2e1535 75%, #121828 100%);
   position: relative;
   overflow: hidden;
 }
@@ -2864,8 +2864,9 @@ h1 {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(200, 40, 60, 0.10) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 100%, rgba(30, 80, 180, 0.08) 0%, transparent 60%);
+    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(220, 50, 70, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 80% 100%, rgba(40, 100, 200, 0.10) 0%, transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -2909,20 +2910,21 @@ h1 {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
   border-radius: 12px;
-  padding: 12px 18px;
+  padding: 14px 20px;
   margin-bottom: 16px;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .don-search:focus-within {
-  border-color: rgba(255,255,255,0.20);
+  border-color: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.08);
 }
 
 .don-search svg {
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.45);
   flex-shrink: 0;
 }
 
@@ -2932,12 +2934,12 @@ h1 {
   border: none;
   outline: none;
   color: #fff;
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   font-family: var(--font-body);
 }
 
 .don-search input::placeholder {
-  color: rgba(255,255,255,0.30);
+  color: rgba(255,255,255,0.38);
 }
 
 .don-filters {
@@ -2950,12 +2952,12 @@ h1 {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 16px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  padding: 9px 18px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
   border-radius: 20px;
-  color: rgba(255,255,255,0.55);
-  font-size: 0.76rem;
+  color: rgba(255,255,255,0.60);
+  font-size: 0.78rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -2964,13 +2966,13 @@ h1 {
 }
 
 .don-filter-btn:hover {
-  background: rgba(255,255,255,0.07);
-  color: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.09);
+  color: rgba(255,255,255,0.85);
 }
 
 .don-filter-btn.active {
-  background: rgba(255,255,255,0.10);
-  border-color: rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.22);
   color: #fff;
 }
 
@@ -2995,12 +2997,12 @@ h1 {
   align-items: center;
   gap: 10px;
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  color: #fff;
-  margin-bottom: 20px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .don-cat-icon {
@@ -3017,11 +3019,11 @@ h1 {
 
 .don-cat-count {
   margin-left: auto;
-  background: rgba(255,255,255,0.06);
-  color: rgba(255,255,255,0.45);
-  font-size: 0.7rem;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.55);
+  font-size: 0.72rem;
   font-weight: 700;
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: 10px;
 }
 
@@ -3041,93 +3043,96 @@ h1 {
 .org-card {
   display: flex;
   flex-direction: column;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 14px;
+  background: linear-gradient(165deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
   overflow: hidden;
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-  min-width: 260px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  min-width: 270px;
   flex-shrink: 0;
 }
 
 .org-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--card-accent, rgba(255,255,255,0.15));
-  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  transform: translateY(-6px);
+  border-color: var(--card-accent, rgba(255,255,255,0.22));
+  box-shadow: 0 12px 40px rgba(0,0,0,0.30), 0 0 0 1px var(--card-accent, rgba(255,255,255,0.08));
 }
 
 .org-card-logo {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 72px;
-  background: rgba(255,255,255,0.025);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  padding: 12px;
+  height: 80px;
+  background: rgba(255,255,255,0.055);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 14px 20px;
 }
 
 .org-card-logo img {
-  max-height: 44px;
-  max-width: 140px;
+  max-height: 48px;
+  max-width: 160px;
   object-fit: contain;
-  filter: brightness(0.95);
+  border-radius: 6px;
 }
 
 .org-card-initials {
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 800;
-  color: var(--card-accent, rgba(255,255,255,0.25));
+  color: var(--card-accent, rgba(255,255,255,0.35));
   letter-spacing: 0.06em;
-  opacity: 0.55;
+  opacity: 0.7;
+  align-items: center;
+  justify-content: center;
 }
 
 .org-card-body {
   flex: 1;
-  padding: 18px 18px 14px;
+  padding: 20px 20px 16px;
 }
 
 .org-card-cat {
   display: inline-block;
-  font-size: 0.64rem;
+  font-size: 0.66rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 6px;
-  opacity: 0.75;
+  letter-spacing: 0.07em;
+  margin-bottom: 8px;
+  opacity: 0.85;
 }
 
 .org-card-name {
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 8px;
-  line-height: 1.3;
+  margin-bottom: 10px;
+  line-height: 1.35;
 }
 
 .org-card-desc {
-  font-size: 0.78rem;
-  color: var(--soft);
-  line-height: 1.6;
+  font-size: 0.84rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
 }
 
 .org-card-cta {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 14px 18px;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  gap: 8px;
+  padding: 15px 20px;
+  border-top: 1px solid rgba(255,255,255,0.07);
   color: var(--card-accent, var(--red-2));
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 700;
   text-decoration: none;
+  letter-spacing: 0.02em;
   transition: background 0.2s ease, color 0.2s ease;
 }
 
 .org-card-cta:hover {
-  background: rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.06);
   color: #fff;
 }
 
