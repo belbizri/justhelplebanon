@@ -52,6 +52,7 @@ export default function NewsPage() {
         <Link to="/" className="nav-logo">Just Help Lebanon</Link>
         <div className="nav-links">
           <Link to="/" className="nav-link">Home</Link>
+          <Link to="/donations" className="nav-link">Donations</Link>
           <Link to="/news" className="nav-link active">News</Link>
           <Link to="/social" className="nav-link">Social</Link>
         </div>

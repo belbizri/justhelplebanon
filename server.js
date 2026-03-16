@@ -82,6 +82,32 @@ app.get("/api/crisis/unhcr", async (req, res) => {
   }
 });
 
+// --- MoPH ArcGIS proxy endpoints ---
+
+app.get("/api/moph/attacks", async (req, res) => {
+  try {
+    const r = await fetch(
+      "https://maps.moph.gov.lb/server/rest/services/Hosted/Attacks_on_hospitals/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json&resultRecordCount=1000"
+    );
+    const data = await r.json();
+    res.json(data);
+  } catch (e) {
+    res.status(502).json({ error: "MoPH upstream error" });
+  }
+});
+
+app.get("/api/moph/attacks2024", async (req, res) => {
+  try {
+    const r = await fetch(
+      "https://maps.moph.gov.lb/server/rest/services/Hosted/Hospitals_Attacks2024/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json&resultRecordCount=1000"
+    );
+    const data = await r.json();
+    res.json(data);
+  } catch (e) {
+    res.status(502).json({ error: "MoPH upstream error" });
+  }
+});
+
 // Serve the built React app
 app.use(express.static(path.join(__dirname, "dist")));
 
