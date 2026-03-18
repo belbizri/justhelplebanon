@@ -128,8 +128,9 @@ export default function VideosPage() {
     return () => obs.disconnect();
   }, [loadMore]);
 
-  const displayed = videos.slice(0, visible);
-  const hasMore = visible < videos.length;
+  const reversed = [...videos].reverse();
+  const displayed = reversed.slice(0, visible);
+  const hasMore = visible < reversed.length;
 
   const openModal = useCallback((src, title) => {
     setModal({ src, title });
