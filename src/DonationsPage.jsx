@@ -53,6 +53,12 @@ const ORGANIZATIONS = [
   { name: 'Lebanese Red Cross', category: 'Food & Medical Aid', featured: true,
     desc: 'The primary emergency-response organisation in Lebanon — providing ambulance services, disaster relief, and blood transfusion across the country.',
     url: 'https://www.redcross.org.lb/', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Lebanese_Red_Cross_Logo.svg/200px-Lebanese_Red_Cross_Logo.svg.png' },
+  { name: 'Morjan Group', category: 'Food & Medical Aid', featured: true,
+    desc: 'Community-driven organisation supporting humanitarian relief efforts across Lebanon.',
+    url: '', logo: '/images/morjan_group.png' },
+  { name: 'Mobile Clinique', category: 'Food & Medical Aid', featured: true,
+    desc: 'Providing mobile healthcare services to underserved communities across Lebanon.',
+    url: 'http://bluemission.org/index.php/donation-page/', logo: '/images/mobile_clinique.png' },
   { name: 'Empower Lebanon', category: 'Food & Medical Aid', featured: false,
     desc: 'Grassroots initiative delivering food parcels and hygiene kits to vulnerable families in underserved communities.',
     url: 'https://www.empowerlebanon.org/', logo: 'https://www.google.com/s2/favicons?domain=empowerlebanon.org&sz=128' },
@@ -202,9 +208,13 @@ function OrgCard({ org }) {
         <h3 className="org-card-name">{org.name}</h3>
         <p className="org-card-desc">{org.desc}</p>
       </div>
-      <a href={org.url} target="_blank" rel="noopener noreferrer" className="org-card-cta" aria-label={`Donate to ${org.name}`}>
-        View / Donate <ExternalIcon />
-      </a>
+      {org.url ? (
+        <a href={org.url} target="_blank" rel="noopener noreferrer" className="org-card-cta" aria-label={`Donate to ${org.name}`}>
+          View / Donate <ExternalIcon />
+        </a>
+      ) : (
+        <span className="org-card-cta" style={{ opacity: 0.4, cursor: 'default' }}>Coming Soon</span>
+      )}
     </article>
   );
 }
