@@ -157,10 +157,18 @@ export default function VideosPage() {
       </nav>
 
       <header className="videos-header">
+        <div className="vid-stars">
+          <span className="vid-star" /><span className="vid-star" /><span className="vid-star" />
+          <span className="vid-star" /><span className="vid-star" /><span className="vid-star" />
+          <span className="vid-star" /><span className="vid-star" /><span className="vid-star" />
+          <span className="vid-star" /><span className="vid-star" /><span className="vid-star" />
+        </div>
         <h1 className="page-title">Videos</h1>
+        <span className="vid-title-line" />
         <p className="page-subtitle">
          SCROLL DOWN TO WATCH
         </p>
+        <div className="vid-header-glow" />
       </header>
 
       <main className="videos-content">

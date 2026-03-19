@@ -3432,9 +3432,53 @@ h1 {
    Videos Page
    ═══════════════════════════════════════ */
 
+/* --- keyframes --- */
+@keyframes vidHeaderGradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes vidTitleShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes vidSubPulse {
+  0%, 100% { opacity: 0.75; }
+  50%      { opacity: 1; }
+}
+
+@keyframes vidStarTwinkle {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 1; }
+}
+
+@keyframes vidGlowPulse {
+  0%, 100% { opacity: 0.08; transform: scale(1); }
+  50%      { opacity: 0.18; transform: scale(1.15); }
+}
+
+@keyframes vidFlagFloat {
+  0%, 100% { transform: rotate(-8deg) translateY(0); }
+  50%      { transform: rotate(-6deg) translateY(-6px); }
+}
+
+@keyframes vidLineExpand {
+  from { width: 0; }
+  to   { width: 60px; }
+}
+
+/* --- header container --- */
 .videos-header {
-  height: 320px;
-  background: linear-gradient(135deg, #0a0e1a 0%, #141828 30%, #1a1232 55%, #0f1e2e 80%, #0a0e1a 100%);
+  height: 360px;
+  background:
+    linear-gradient(135deg,
+      #070a14 0%, #0d1225 15%, #161040 30%,
+      #1a0a2e 45%, #12182e 60%, #0a1620 75%,
+      #070a14 100%);
+  background-size: 300% 300%;
+  animation: vidHeaderGradient 12s ease infinite;
   position: relative;
   overflow: hidden;
   padding: 72px 24px 48px;
@@ -3445,29 +3489,83 @@ h1 {
   justify-content: center;
 }
 
+/* --- ambient light orbs --- */
 .videos-header::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 20% 20%, rgba(204, 16, 32, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(0, 100, 50, 0.08) 0%, transparent 60%);
+    radial-gradient(ellipse 55% 45% at 15% 25%, rgba(204, 16, 32, 0.15) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 35% at 85% 75%, rgba(0, 120, 60, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(180, 140, 60, 0.06) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
+  animation: vidGlowPulse 8s ease-in-out infinite;
 }
 
+/* --- Lebanese flag --- */
 .videos-header::after {
   content: '';
   position: absolute;
-  right: -60px;
-  bottom: -30px;
-  width: 320px;
-  height: 200px;
+  right: -40px;
+  bottom: -20px;
+  width: 300px;
+  height: 190px;
   background: url('https://media.magflags.net/media/catalog/product/cache/bbfe81b5dc693f3f88259968def067fa/L/B/LB-2.67x1_2.png') center / contain no-repeat;
-  opacity: 0.07;
+  opacity: 0.09;
   pointer-events: none;
   z-index: 0;
-  transform: rotate(-8deg);
+  filter: drop-shadow(0 0 30px rgba(204, 16, 32, 0.25));
+  animation: vidFlagFloat 6s ease-in-out infinite;
+}
+
+/* --- stars / particle layer --- */
+.vid-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.vid-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  animation: vidStarTwinkle 3s ease-in-out infinite;
+}
+
+/* stagger star positions & timing */
+.vid-star:nth-child(1)  { top: 12%; left: 8%;  animation-delay: 0s;    animation-duration: 2.5s; }
+.vid-star:nth-child(2)  { top: 25%; left: 22%; animation-delay: 0.7s;  animation-duration: 3.2s; }
+.vid-star:nth-child(3)  { top: 18%; left: 45%; animation-delay: 1.3s;  animation-duration: 2.8s; }
+.vid-star:nth-child(4)  { top: 40%; left: 65%; animation-delay: 0.3s;  animation-duration: 3.5s; }
+.vid-star:nth-child(5)  { top: 55%; left: 12%; animation-delay: 1.8s;  animation-duration: 2.2s; }
+.vid-star:nth-child(6)  { top: 30%; left: 78%; animation-delay: 0.5s;  animation-duration: 3.0s; }
+.vid-star:nth-child(7)  { top: 70%; left: 35%; animation-delay: 2.1s;  animation-duration: 2.7s; }
+.vid-star:nth-child(8)  { top: 15%; left: 90%; animation-delay: 1.0s;  animation-duration: 3.3s; }
+.vid-star:nth-child(9)  { top: 60%; left: 55%; animation-delay: 1.6s;  animation-duration: 2.4s; }
+.vid-star:nth-child(10) { top: 80%; left: 82%; animation-delay: 0.9s;  animation-duration: 2.9s; }
+.vid-star:nth-child(11) { top: 45%; left: 95%; animation-delay: 2.4s;  animation-duration: 3.1s; }
+.vid-star:nth-child(12) { top: 35%; left: 5%;  animation-delay: 1.1s;  animation-duration: 2.6s; }
+
+/* --- bottom edge glow --- */
+.vid-header-glow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(204, 16, 32, 0.5) 20%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(0, 120, 60, 0.5) 80%,
+    transparent 100%);
+  z-index: 2;
+  box-shadow: 0 0 20px 4px rgba(204, 16, 32, 0.15), 0 0 40px 8px rgba(0, 120, 60, 0.08);
 }
 
 .videos-header > * {
@@ -3475,19 +3573,49 @@ h1 {
   z-index: 1;
 }
 
+/* --- title --- */
 .videos-header .page-title {
-  color: #fff;
-  font-size: 2.2rem;
+  font-size: 2.6rem;
+  font-weight: 800;
+  background: linear-gradient(
+    120deg,
+    #e8dcc8 0%,
+    #fff 25%,
+    #f0d48a 50%,
+    #fff 75%,
+    #e8dcc8 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: vidTitleShimmer 4s linear infinite;
+  text-shadow: none;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
 }
 
+/* --- decorative line below title --- */
+.vid-title-line {
+  display: block;
+  width: 60px;
+  height: 2px;
+  margin: 10px auto 0;
+  background: linear-gradient(90deg, rgba(204, 16, 32, 0.7), rgba(255, 220, 120, 0.6), rgba(0, 120, 60, 0.7));
+  border-radius: 2px;
+  animation: vidLineExpand 1s ease-out forwards;
+  box-shadow: 0 0 12px rgba(204, 16, 32, 0.3);
+}
+
+/* --- subtitle --- */
 .videos-header .page-subtitle {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 2.4rem;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.3em;
   color: rgba(255, 255, 255, 0.85);
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
-  margin: 12px auto 0;
+  text-shadow: 0 0 30px rgba(180, 140, 60, 0.25), 0 2px 20px rgba(0, 0, 0, 0.6);
+  margin: 16px auto 0;
   max-width: 600px;
+  animation: vidSubPulse 4s ease-in-out infinite;
 }
 
 .videos-content {
@@ -3748,7 +3876,7 @@ h1 {
 /* Tablet */
 @media (max-width: 1024px) {
   .videos-header {
-    height: 280px;
+    height: 320px;
   }
 }
 
@@ -3758,7 +3886,7 @@ h1 {
   }
 
   .videos-header {
-    height: 240px;
+    height: 280px;
     padding: 56px 16px 32px;
   }
 
@@ -3770,12 +3898,12 @@ h1 {
   }
 
   .videos-header .page-title {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   .videos-header .page-subtitle {
-    font-size: 1.4rem;
-    letter-spacing: 0.15em;
+    font-size: 1.5rem;
+    letter-spacing: 0.18em;
   }
 
   .iphone-frame {
@@ -3798,7 +3926,7 @@ h1 {
 /* Small mobile */
 @media (max-width: 480px) {
   .videos-header {
-    height: 220px;
+    height: 250px;
     padding: 48px 12px 24px;
   }
 
@@ -3810,11 +3938,15 @@ h1 {
   }
 
   .videos-header .page-title {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 
   .videos-header .page-subtitle {
-    font-size: 1.1rem;
-    letter-spacing: 0.1em;
+    font-size: 1.15rem;
+    letter-spacing: 0.12em;
+  }
+
+  .vid-title-line {
+    width: 40px;
   }
 }
