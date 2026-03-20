@@ -150,6 +150,7 @@ export default function VideosPage() {
         <div className="nav-links">
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/donations" className="nav-link">Donations</Link>
+          <Link to="/from-lebanon" className="nav-link">From Lebanon</Link>
           <Link to="/news" className="nav-link">News</Link>
           <Link to="/videos" className="nav-link active">Videos</Link>
           <Link to="/social" className="nav-link">Social</Link>
@@ -157,18 +158,24 @@ export default function VideosPage() {
       </nav>
 
       <header className="videos-header">
-        <div className="vid-stars">
-          <span className="vid-star" /><span className="vid-star" /><span className="vid-star" />
-          <span className="vid-star" /><span className="vid-star" /><span className="vid-star" />
-          <span className="vid-star" /><span className="vid-star" /><span className="vid-star" />
-          <span className="vid-star" /><span className="vid-star" /><span className="vid-star" />
+        <div className="vid-header-bg" />
+        <div className="vid-header-scanlines" />
+        <div className="vid-header-particles">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <span key={i} className="vid-particle" />
+          ))}
         </div>
-        <h1 className="page-title">Videos</h1>
-        <span className="vid-title-line" />
-        <p className="page-subtitle">
-         SCROLL DOWN TO WATCH
-        </p>
-        <div className="vid-header-glow" />
+        <div className="vid-header-content">
+          <div className="vid-header-filmstrip">
+            <span /><span /><span /><span /><span /><span /><span /><span />
+          </div>
+          <p className="vid-header-eyebrow">Habibi, Welcome</p>
+          <h1 className="page-title vid-title-glow">Videos</h1>
+          <p className="page-subtitle vid-subtitle-neon">
+            SCROLL DOWN TO WATCH
+          </p>
+          <div className="vid-header-glow-line" />
+        </div>
       </header>
 
       <main className="videos-content">
