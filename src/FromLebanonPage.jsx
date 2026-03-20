@@ -295,6 +295,8 @@ export default function FromLebanonPage() {
   const [search, setSearch] = useState('');
   const [activeCat, setActiveCat] = useState('All');
   const [businesses, setBusinesses] = useState([]);
+  const [musicPlaying, setMusicPlaying] = useState(false);
+  const audioRef = useRef(null);
 
   /* Fetch businesses from JSON */
   useEffect(() => {
@@ -303,6 +305,13 @@ export default function FromLebanonPage() {
       .then(data => setBusinesses(Array.isArray(data) ? data : []))
       .catch(() => setBusinesses([]));
   }, []);
+
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+    if (musicPlaying) { audioRef.current.pause(); }
+    else { audioRef.current.play().catch(() => {}); }
+    setMusicPlaying(!musicPlaying);
+  };
 
   const filtered = useMemo(() => {
     let list = BRANDS;
@@ -355,6 +364,42 @@ export default function FromLebanonPage() {
               fill="currentColor" />
           </svg>
         </div>
+
+        {/* Waving Lebanese flag */}
+        <div className="fl-flag" />
+
+        {/* Gramophone music player */}
+        <button
+          className={`fl-gramophone ${musicPlaying ? 'playing' : ''}`}
+          onClick={toggleMusic}
+          aria-label={musicPlaying ? 'Pause music' : 'Play music'}
+          title={musicPlaying ? 'Pause music' : 'Play Lebanese vibes'}
+        >
+          <svg viewBox="0 0 64 64" fill="none" className="fl-gramophone-svg">
+            {/* horn */}
+            <path d="M32 18 C32 18 46 10 52 6 C54 5 56 6 56 8 L56 26 C56 28 54 29 52 28 C46 24 32 18 32 18Z" fill="currentColor" opacity="0.9"/>
+            {/* neck */}
+            <rect x="30" y="18" width="4" height="20" rx="2" fill="currentColor" opacity="0.7"/>
+            {/* base/turntable */}
+            <ellipse cx="32" cy="44" rx="16" ry="6" fill="currentColor" opacity="0.5"/>
+            <ellipse cx="32" cy="42" rx="14" ry="5" fill="currentColor" opacity="0.8"/>
+            {/* record */}
+            <ellipse cx="32" cy="42" rx="10" ry="3.5" fill="currentColor" opacity="0.3"/>
+            <ellipse cx="32" cy="42" rx="3" ry="1" fill="currentColor" opacity="0.6"/>
+            {/* legs */}
+            <line x1="20" y1="48" x2="18" y2="56" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.6"/>
+            <line x1="44" y1="48" x2="46" y2="56" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.6"/>
+          </svg>
+          {musicPlaying && (
+            <span className="fl-music-bars">
+              <span className="fl-music-bar" />
+              <span className="fl-music-bar" />
+              <span className="fl-music-bar" />
+            </span>
+          )}
+        </button>
+        <audio ref={audioRef} src="/music/track.mp3" loop preload="none" />
+
         <div className="fl-header-content">
           <p className="fl-header-eyebrow">Discover &bull; Support &bull; Celebrate</p>
           <h1 className="fl-header-title">From Lebanon</h1>
