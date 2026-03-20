@@ -410,7 +410,7 @@ export default function FromLebanonPage() {
           <p className="fl-header-eyebrow">Discover &bull; Support &bull; Celebrate</p>
           <h1 className="fl-header-title">From Lebanon</h1>
           <p className="fl-header-subtitle">
-            The finest Lebanese brands, flavours & artistry — shop local, support Lebanon.
+            The finest Lebanese brands, flavours & artistry, shop local, support Lebanon.
           </p>
         </div>
         <div className="fl-header-glow" />
