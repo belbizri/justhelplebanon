@@ -1176,12 +1176,50 @@ h1 {
   align-items: center;
   justify-content: space-between;
   padding: 14px 28px;
-  background: rgba(5, 6, 10, 0.92);
+  background:
+    linear-gradient(90deg, rgba(5, 6, 10, 0.96) 0%, rgba(11, 14, 22, 0.78) 24%, rgba(12, 17, 26, 0.42) 50%, rgba(11, 14, 22, 0.82) 76%, rgba(5, 6, 10, 0.96) 100%),
+    linear-gradient(125deg, rgba(204, 16, 32, 0.14), rgba(255, 255, 255, 0.02) 34%, rgba(0, 166, 81, 0.16) 70%, rgba(255, 255, 255, 0.03));
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   position: sticky;
   top: 37px;
   z-index: 150;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.page-nav::before {
+  content: '';
+  position: absolute;
+  inset: -55% -8%;
+  background:
+    radial-gradient(circle at 12% 48%, rgba(204, 16, 32, 0.2), rgba(204, 16, 32, 0) 30%),
+    radial-gradient(circle at 84% 40%, rgba(0, 166, 81, 0.24), rgba(0, 166, 81, 0) 34%),
+    url('/images/svg/canada-flag.svg') center center / auto 220% no-repeat;
+  opacity: 0.2;
+  filter: saturate(1.2) contrast(1.1) drop-shadow(0 0 26px rgba(255, 255, 255, 0.08));
+  transform-origin: center;
+  animation: navMapleDrift 18s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-nav::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(5, 6, 10, 0.94), rgba(5, 6, 10, 0.32) 18%, rgba(5, 6, 10, 0.08) 50%, rgba(5, 6, 10, 0.34) 82%, rgba(5, 6, 10, 0.94)),
+    repeating-linear-gradient(-24deg, rgba(255, 255, 255, 0.024) 0, rgba(255, 255, 255, 0.024) 2px, transparent 2px, transparent 18px);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-nav > * {
+  position: relative;
+  z-index: 1;
 }
 
 .nav-logo {
@@ -1228,6 +1266,11 @@ h1 {
   0% { transform: translateX(-22%) translateY(0) rotate(0deg); }
   50% { transform: translateX(18%) translateY(-3%) rotate(4deg); }
   100% { transform: translateX(-22%) translateY(0) rotate(0deg); }
+}
+
+@keyframes navMapleDrift {
+  0%, 100% { transform: translate3d(-2%, 0, 0) scale(1.02) rotate(-2deg); }
+  50% { transform: translate3d(2%, -2%, 0) scale(1.08) rotate(2deg); }
 }
 
 .nav-logo-flag-wrap {
@@ -2035,6 +2078,16 @@ h1 {
 @media (max-width: 640px) {
   .page-nav {
     padding: 10px 16px;
+  }
+
+  .page-nav::before {
+    inset: -36% -18%;
+    background-size: auto 170%;
+    opacity: 0.16;
+  }
+
+  .page-nav::after {
+    opacity: 0.56;
   }
 
   .nav-logo {
