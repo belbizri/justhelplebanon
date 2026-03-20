@@ -1,0 +1,88 @@
+[2026-03-20T20:35:02.618Z] ============================================================
+[2026-03-20T20:35:02.624Z] Repository Sync Script Started
+[2026-03-20T20:35:02.625Z] ============================================================
+[2026-03-20T20:35:02.686Z] Checking remotes...
+[2026-03-20T20:35:02.746Z] Fetching from both remotes...
+[2026-03-20T20:35:02.747Z] $ git fetch origin
+[2026-03-20T20:35:09.823Z] $ git fetch belbizri
+[2026-03-20T20:35:15.806Z] Syncing branch: dev
+[2026-03-20T20:35:16.017Z] ✓ Branch 'dev' is already in sync
+[2026-03-20T20:35:16.018Z] ============================================================
+[2026-03-20T20:35:16.019Z] ✓ Sync completed successfully
+[2026-03-20T20:35:16.020Z] Log saved to: C:\Users\basse\OneDrive\Desktop\VSTS\lebanese-red-cross\scripts\.sync-log.txt
+[2026-03-20T20:35:16.020Z] ============================================================
+[2026-03-20T20:37:54.354Z] ============================================================
+[2026-03-20T20:37:54.359Z] Repository Sync Script Started
+[2026-03-20T20:37:54.359Z] ============================================================
+[2026-03-20T20:37:54.416Z] Checking remotes...
+[2026-03-20T20:37:54.471Z] Fetching from both remotes...
+[2026-03-20T20:37:54.472Z] $ git fetch origin
+[2026-03-20T20:37:59.323Z] Error executing: git fetch origin
+[2026-03-20T20:37:59.323Z] Command failed: git fetch origin
+[2026-03-20T20:37:59.324Z] $ git fetch belbizri
+[2026-03-20T20:38:04.078Z] Error executing: git fetch belbizri
+[2026-03-20T20:38:04.078Z] Command failed: git fetch belbizri
+[2026-03-20T20:38:04.079Z] Syncing all branches...
+[2026-03-20T20:38:04.109Z] Error executing: git branch -r | grep origin/
+[2026-03-20T20:38:04.110Z] Command failed: git branch -r | grep origin/
+'grep' is not recognized as an internal or external command,
+operable program or batch file.
+
+[2026-03-20T20:38:04.111Z] Found 3 branches to sync
+[2026-03-20T20:38:04.111Z] Syncing branch: Command failed: git branch -r | grep 
+[2026-03-20T20:38:04.136Z] Error executing: git rev-parse refs/remotes/origin/Command failed: git branch -r | grep 
+[2026-03-20T20:38:04.137Z] Command failed: git rev-parse refs/remotes/origin/Command failed: git branch -r | grep 
+'grep' is not recognized as an internal or external command,
+operable program or batch file.
+
+[2026-03-20T20:38:04.138Z] Branch 'Command failed: git branch -r | grep ' not found on origin
+[2026-03-20T20:38:04.138Z] Syncing branch: 'grep' is not recognized as an internal or external command,
+[2026-03-20T20:38:04.194Z] Error executing: git rev-parse refs/remotes/origin/'grep' is not recognized as an internal or external command,
+[2026-03-20T20:38:04.195Z] Command failed: git rev-parse refs/remotes/origin/'grep' is not recognized as an internal or external command,
+fatal: ambiguous argument 'refs/remotes/origin/'grep'': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+
+[2026-03-20T20:38:04.195Z] Branch ''grep' is not recognized as an internal or external command,' not found on origin
+[2026-03-20T20:38:04.196Z] Syncing branch: operable program or batch file.
+[2026-03-20T20:38:04.250Z] Error executing: git rev-parse refs/remotes/origin/operable program or batch file.
+[2026-03-20T20:38:04.251Z] Command failed: git rev-parse refs/remotes/origin/operable program or batch file.
+fatal: ambiguous argument 'refs/remotes/origin/operable': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+
+[2026-03-20T20:38:04.252Z] Branch 'operable program or batch file.' not found on origin
+[2026-03-20T20:38:04.252Z] Synced 0/3 branches
+[2026-03-20T20:38:04.253Z] ============================================================
+[2026-03-20T20:38:04.253Z] ✗ Sync completed with errors
+[2026-03-20T20:38:04.253Z] Log saved to: C:\Users\basse\OneDrive\Desktop\VSTS\lebanese-red-cross\scripts\.sync-log.txt
+[2026-03-20T20:44:56.453Z] ============================================================
+[2026-03-20T20:44:56.459Z] Repository Sync Script Started
+[2026-03-20T20:44:56.460Z] ============================================================
+[2026-03-20T20:44:56.519Z] Checking remotes...
+[2026-03-20T20:44:56.574Z] Fetching from both remotes...
+[2026-03-20T20:44:56.575Z] $ git fetch origin
+[2026-03-20T20:44:57.185Z] $ git fetch belbizri
+[2026-03-20T20:45:04.128Z] Syncing all branches...
+[2026-03-20T20:45:04.186Z] Found 3 branches to sync
+[2026-03-20T20:45:04.187Z] Syncing branch: dev
+[2026-03-20T20:45:04.407Z] Syncing 'dev' from origin → belbizri...
+[2026-03-20T20:45:04.408Z] $ git push belbizri origin/dev:dev
+[2026-03-20T20:45:09.502Z] Error executing: git push belbizri origin/dev:dev
+[2026-03-20T20:45:09.502Z] Command failed: git push belbizri origin/dev:dev
+[2026-03-20T20:45:09.503Z] Failed to push 'dev' to belbizri
+[2026-03-20T20:45:09.503Z] Syncing branch: feature/hostinger-node-analytics
+[2026-03-20T20:45:09.615Z] Error executing: git rev-parse refs/remotes/belbizri/feature/hostinger-node-analytics
+[2026-03-20T20:45:09.616Z] Command failed: git rev-parse refs/remotes/belbizri/feature/hostinger-node-analytics
+fatal: ambiguous argument 'refs/remotes/belbizri/feature/hostinger-node-analytics': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+
+[2026-03-20T20:45:09.728Z] Error executing: git rev-parse belbizri/feature/hostinger-node-analytics
+[2026-03-20T20:45:09.729Z] Command failed: git rev-parse belbizri/feature/hostinger-node-analytics
+fatal: ambiguous argument 'belbizri/feature/hostinger-node-analytics': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+
+[2026-03-20T20:45:09.729Z] Syncing 'feature/hostinger-node-analytics' from origin → belbizri...
+[2026-03-20T20:45:09.730Z] $ git push belbizri origin/feature/hostinger-node-analytics:feature/hostinger-node-analytics

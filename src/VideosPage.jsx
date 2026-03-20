@@ -160,7 +160,11 @@ export default function VideosPage() {
           <div className="vid-header-filmstrip">
             <span /><span /><span /><span /><span /><span /><span /><span />
           </div>
-          <p className="vid-header-eyebrow">Habibi, Welcome</p>
+          <p className="vid-header-eyebrow" aria-label="Welcome Habibi">
+            <span className="vid-welcome-word">Welcome</span>
+            <span className="vid-welcome-sep"> </span>
+            <span className="vid-welcome-accent">Habibi</span>
+          </p>
           <h1 className="page-title vid-title-glow">Videos</h1>
           <p className="page-subtitle vid-subtitle-neon">
             SCROLL DOWN TO WATCH

@@ -365,10 +365,13 @@ export default function FromLebanonPage() {
           ))}
         </div>
         <div className="fl-header-cedar">
-          <svg viewBox="0 0 100 120" fill="none" className="fl-cedar-svg">
-            <path d="M50 5 L58 30 L70 25 L60 45 L75 40 L62 60 L80 55 L60 80 L65 80 L50 115 L35 80 L40 80 L20 55 L38 60 L25 40 L40 45 L30 25 L42 30 Z"
-              fill="currentColor" />
-          </svg>
+          <img
+            src="/images/svg/Cedar.svg"
+            alt="Lebanese cedar flag"
+            className="fl-cedar-svg"
+            loading="eager"
+            decoding="async"
+          />
         </div>
 
         {/* Waving Lebanese flag */}

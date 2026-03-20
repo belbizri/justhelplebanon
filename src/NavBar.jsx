@@ -47,7 +47,18 @@ export default function NavBar({ extra }) {
 
   return (
     <nav className="page-nav">
-      <Link to="/" className="nav-logo" onClick={close}>Just Help Lebanon</Link>
+      <Link to="/" className={`nav-logo ${open ? 'menu-open' : ''}`} onClick={close}>
+        <span className="nav-logo-flag-wrap" aria-hidden="true">
+          <img
+            src="/images/svg/Cedar.svg"
+            alt=""
+            className="nav-logo-flag"
+            loading="eager"
+            decoding="async"
+          />
+        </span>
+        <span className="nav-logo-text">Just Help Lebanon</span>
+      </Link>
 
       {/* Hamburger button — visible only on mobile via CSS */}
       <button
@@ -69,11 +80,13 @@ export default function NavBar({ extra }) {
       <div className={`nav-links ${open ? 'nav-links--open' : ''}`}>
         <div className="nav-mobile-header">
           <div className="nav-mobile-logo-mark">
-            <svg width="26" height="28" viewBox="0 0 26 28" fill="none">
-              {/* Cedar tree */}
-              <polygon points="13,1 9,8 11,8 7,14 9.5,14 5,20 10,20 10,25 16,25 16,20 21,20 16.5,14 19,14 15,8 17,8" fill="#2b7a3e"/>
-              <rect x="11.5" y="25" width="3" height="2.5" rx="0.5" fill="#6d4c2a"/>
-            </svg>
+            <img
+              src="/images/svg/Cedar.svg"
+              alt=""
+              className="nav-mobile-logo-flag"
+              loading="eager"
+              decoding="async"
+            />
           </div>
           <div className="nav-mobile-brand-group">
             <span className="nav-mobile-brand">Just Help Lebanon</span>
