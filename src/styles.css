@@ -1187,7 +1187,7 @@ h1 {
 .nav-logo {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
   font-weight: 900;
   font-size: 1.05rem;
   color: var(--text);
@@ -1232,21 +1232,21 @@ h1 {
 
 .nav-logo-flag-wrap {
   position: relative;
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  overflow: hidden;
-  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.12) 45%, rgba(204, 16, 32, 0.22));
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28), 0 0 20px rgba(204, 16, 32, 0.25);
+  width: 72px;
+  height: 46px;
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .nav-logo-flag-wrap::before {
   content: '';
   position: absolute;
-  inset: -8px;
+  inset: -20% -12%;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(204, 16, 32, 0.35), rgba(255, 255, 255, 0) 65%);
+  background: radial-gradient(circle, rgba(0, 166, 81, 0.36), rgba(255, 255, 255, 0) 65%);
   animation: navFlagHalo 4.4s ease-in-out infinite;
   z-index: -1;
   pointer-events: none;
@@ -1255,11 +1255,11 @@ h1 {
 .nav-logo-flag-wrap::after {
   content: '';
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 40%;
-  background: linear-gradient(110deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0));
-  filter: blur(0.2px);
+  top: 6%;
+  bottom: 6%;
+  width: 34%;
+  background: linear-gradient(110deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+  filter: blur(1px);
   animation: navFlagShine 3.6s ease-in-out infinite;
   pointer-events: none;
 }
@@ -1267,9 +1267,11 @@ h1 {
 .nav-logo-flag {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   animation: navFlagWave 5.2s ease-in-out infinite;
   transform-origin: 35% 50%;
+  mix-blend-mode: multiply;
+  filter: saturate(1.45) contrast(1.12) drop-shadow(0 8px 20px rgba(0, 166, 81, 0.45)) drop-shadow(0 10px 20px rgba(204, 16, 32, 0.25));
 }
 
 .nav-logo:hover .nav-logo-flag {
@@ -1277,7 +1279,7 @@ h1 {
 }
 
 .nav-logo.menu-open .nav-logo-flag-wrap {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32), 0 0 30px rgba(204, 16, 32, 0.45);
+  transform: scale(1.05);
 }
 
 .nav-logo.menu-open .nav-logo-flag {
@@ -1438,25 +1440,26 @@ h1 {
   }
 
   .nav-mobile-logo-mark {
-    width: 40px;
-    height: 40px;
+    width: 74px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
-    background: linear-gradient(160deg, rgba(255, 255, 255, 0.16), rgba(204, 16, 32, 0.16));
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25), 0 0 22px rgba(204, 16, 32, 0.2);
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
     flex-shrink: 0;
   }
 
   .nav-mobile-logo-flag {
-    width: 30px;
-    height: 30px;
-    object-fit: cover;
-    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     animation: navFlagWave 4.8s ease-in-out infinite;
     transform-origin: 32% 50%;
+    mix-blend-mode: multiply;
+    filter: saturate(1.4) contrast(1.15) drop-shadow(0 6px 14px rgba(0, 166, 81, 0.38));
   }
 
   .nav-links--open .nav-mobile-logo-flag {
@@ -4671,9 +4674,9 @@ h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(44vw, 340px);
-  height: 280px;
-  opacity: 0.12;
+  width: min(78vw, 760px);
+  height: min(68vh, 540px);
+  opacity: 0.34;
   pointer-events: none;
   z-index: 0;
   animation: flCedarFloat 7s ease-in-out infinite;
@@ -4684,8 +4687,8 @@ h1 {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 125%;
-  height: 125%;
+  width: 135%;
+  height: 135%;
   border-radius: 50%;
   background: conic-gradient(
     from 0deg,
@@ -4695,8 +4698,8 @@ h1 {
     rgba(255, 255, 255, 0.02),
     rgba(204, 16, 32, 0.12)
   );
-  filter: blur(18px);
-  opacity: 0.35;
+  filter: blur(20px);
+  opacity: 0.46;
   animation: flAuraSpin 36s linear infinite;
   z-index: -1;
 }
@@ -4705,9 +4708,10 @@ h1 {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  mix-blend-mode: screen;
-  opacity: 0.45;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
   animation: flCedarBloom 8s ease-in-out infinite;
+  filter: saturate(1.55) contrast(1.2) drop-shadow(0 0 40px rgba(0, 166, 81, 0.35)) drop-shadow(0 0 40px rgba(204, 16, 32, 0.2));
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -5882,9 +5886,9 @@ h1 {
   }
 
   .fl-header-cedar {
-    width: 200px;
-    height: 200px;
-    opacity: 0.16;
+    width: min(94vw, 520px);
+    height: min(58vh, 380px);
+    opacity: 0.42;
   }
 
   .fl-flag {
