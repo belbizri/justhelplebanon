@@ -23,7 +23,8 @@
     "location": "Montreal, QC",
     "desc": "Authentic Lebanese street food with a strong local following — casual, flavourful, and true to its roots.",
     "instagram": "falafelstjacques",
-    "maps": "https://maps.google.com/?q=Falafel+St-Jacques+Montreal"
+    "maps": "https://maps.google.com/?q=Falafel+St-Jacques+Montreal",
+    "hidden": true
   },
   {
     "name": "Garage Beirut",

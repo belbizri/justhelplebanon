@@ -317,7 +317,7 @@ export default function FromLebanonPage() {
   useEffect(() => {
     fetch('/data/businesses.json')
       .then(r => r.ok ? r.json() : [])
-      .then(data => setBusinesses(Array.isArray(data) ? data : []))
+      .then(data => setBusinesses(Array.isArray(data) ? data.filter(b => !b.hidden) : []))
       .catch(() => setBusinesses([]));
   }, []);
 
