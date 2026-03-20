@@ -1,5 +1,14 @@
 [
   {
+    "name": "Nascom Group",
+    "category": "Business & Services",
+    "location": "Lebanon",
+    "desc": "A leading Lebanese group driving innovation across industries — from tech to infrastructure, proudly built in Lebanon.",
+    "instagram": "nascomgroup",
+    "website": "https://www.nascomgroup.com",
+    "featured": true
+  },
+  {
     "name": "Lulu Épicerie",
     "category": "Food & Drink",
     "location": "Montreal, QC",
