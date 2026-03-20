@@ -131,10 +131,12 @@ function syncBranch(branch) {
 function syncAllBranches() {
   log('Syncing all branches...', 'yellow');
   
-  const result = run('git branch -r | grep origin/', true);
+  const result = run('git branch -r', true);
   const branches = result.output
     .split('\n')
-    .map(line => line.trim().replace(`${ORIGIN_REPO}/`, ''))
+    .map(line => line.trim())
+    .filter(line => line.startsWith(`${ORIGIN_REPO}/`))
+    .map(line => line.replace(`${ORIGIN_REPO}/`, ''))
     .filter(branch => branch && !branch.includes('HEAD'));
   
   if (branches.length === 0) {
