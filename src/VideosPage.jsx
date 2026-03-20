@@ -158,10 +158,24 @@ export default function VideosPage() {
       </nav>
 
       <header className="videos-header">
-        <h1 className="page-title">Videos</h1>
-        <p className="page-subtitle">
-         SCROLL DOWN TO WATCH
-        </p>
+        <div className="vid-header-bg" />
+        <div className="vid-header-scanlines" />
+        <div className="vid-header-particles">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <span key={i} className="vid-particle" />
+          ))}
+        </div>
+        <div className="vid-header-content">
+          <div className="vid-header-filmstrip">
+            <span /><span /><span /><span /><span /><span /><span /><span />
+          </div>
+          <p className="vid-header-eyebrow">Habibi, Welcome</p>
+          <h1 className="page-title vid-title-glow">Videos</h1>
+          <p className="page-subtitle vid-subtitle-neon">
+            SCROLL DOWN TO WATCH
+          </p>
+          <div className="vid-header-glow-line" />
+        </div>
       </header>
 
       <main className="videos-content">
