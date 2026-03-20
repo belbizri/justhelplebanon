@@ -169,7 +169,8 @@ function SpotlightCard({ biz }) {
   const accent = CAT_COLORS[biz.category] || '#e84393';
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef(null);
-  const isVideo = biz.mediaType === 'video';
+  const mediaSrc = biz.media || `/businesses/${biz.instagram}.jpg`;
+  const isVideo = (biz.mediaType === 'video') || mediaSrc.endsWith('.mp4');
 
   const togglePlay = () => {
     if (!videoRef.current) return;
@@ -186,7 +187,7 @@ function SpotlightCard({ biz }) {
           <>
             <video
               ref={videoRef}
-              src={biz.media}
+              src={mediaSrc}
               playsInline
               loop
               muted
@@ -202,7 +203,7 @@ function SpotlightCard({ biz }) {
             )}
           </>
         ) : (
-          <img src={biz.media} alt={biz.name} className="spot-media-asset" loading="lazy" />
+          <img src={mediaSrc} alt={biz.name} className="spot-media-asset" loading="lazy" />
         )}
         <span className="spot-cat-badge" style={{ background: accent }}>{biz.category}</span>
       </div>
