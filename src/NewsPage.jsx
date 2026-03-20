@@ -7,32 +7,42 @@ const RSS_FEEDS = [
     name: 'Lebanese Red Cross',
     url: 'https://www.redcross.org.lb',
     fallback: [
-      { title: 'Lebanese Red Cross continues emergency response in southern Lebanon', date: '2026-03-10', source: 'Lebanese Red Cross', url: 'https://www.redcross.org.lb' },
-      { title: 'Medical supplies delivered to 12 hospitals across Beirut', date: '2026-03-08', source: 'Lebanese Red Cross', url: 'https://www.redcross.org.lb' },
+      { title: 'Lebanese Red Cross deploys emergency teams following renewed displacement in southern Lebanon', date: '2026-03-18', source: 'Lebanese Red Cross', url: 'https://www.redcross.org.lb' },
+      { title: 'Red Cross volunteers provide first aid and shelter support to over 3,000 families this month', date: '2026-03-15', source: 'Lebanese Red Cross', url: 'https://www.redcross.org.lb' },
+      { title: 'Medical supplies delivered to 12 hospitals across Beirut and the South', date: '2026-03-08', source: 'Lebanese Red Cross', url: 'https://www.redcross.org.lb' },
     ],
   },
   {
     name: 'ICRC',
     url: 'https://www.icrc.org/en/where-we-work/middle-east/lebanon',
     fallback: [
-      { title: 'ICRC scales up humanitarian aid in Lebanon amid ongoing crisis', date: '2026-03-12', source: 'ICRC', url: 'https://www.icrc.org/en/where-we-work/middle-east/lebanon' },
-      { title: 'Water and sanitation projects reach 50,000 people in Bekaa Valley', date: '2026-03-05', source: 'ICRC', url: 'https://www.icrc.org/en/where-we-work/middle-east/lebanon' },
+      { title: 'ICRC ramps up food distribution across Mount Lebanon amid rising displacement', date: '2026-03-17', source: 'ICRC', url: 'https://www.icrc.org/en/where-we-work/middle-east/lebanon' },
+      { title: 'Emergency water and sanitation projects reach 50,000 people in Bekaa Valley', date: '2026-03-12', source: 'ICRC', url: 'https://www.icrc.org/en/where-we-work/middle-east/lebanon' },
     ],
   },
   {
     name: 'UNHCR Lebanon',
     url: 'https://www.unhcr.org/lb/',
     fallback: [
-      { title: 'UNHCR provides winterization support to displaced families in Lebanon', date: '2026-03-06', source: 'UNHCR', url: 'https://www.unhcr.org/lb/' },
-      { title: 'Education program expanded for refugee children across Lebanon', date: '2026-02-28', source: 'UNHCR', url: 'https://www.unhcr.org/lb/' },
+      { title: 'UNHCR warns of worsening conditions for displaced families across Lebanon', date: '2026-03-16', source: 'UNHCR', url: 'https://www.unhcr.org/lb/' },
+      { title: 'Shelter rehabilitation program expanded to support 10,000 additional families', date: '2026-03-13', source: 'UNHCR', url: 'https://www.unhcr.org/lb/' },
+      { title: 'Education program for refugee children reaches 25,000 students in Lebanon', date: '2026-03-06', source: 'UNHCR', url: 'https://www.unhcr.org/lb/' },
     ],
   },
   {
     name: 'Reuters',
     url: 'https://www.reuters.com/world/middle-east/',
     fallback: [
-      { title: 'Lebanon reconstruction efforts gain momentum with international support', date: '2026-03-11', source: 'Reuters', url: 'https://www.reuters.com/world/middle-east/' },
-      { title: 'Humanitarian corridor opens for aid delivery to northern Lebanon', date: '2026-03-04', source: 'Reuters', url: 'https://www.reuters.com/world/middle-east/' },
+      { title: 'International donors pledge new humanitarian funding for Lebanon recovery', date: '2026-03-19', source: 'Reuters', url: 'https://www.reuters.com/world/middle-east/' },
+      { title: 'Lebanon reconstruction efforts gain momentum with diaspora-led initiatives', date: '2026-03-14', source: 'Reuters', url: 'https://www.reuters.com/world/middle-east/' },
+      { title: 'Humanitarian corridor opens for aid delivery to northern Lebanon', date: '2026-03-09', source: 'Reuters', url: 'https://www.reuters.com/world/middle-east/' },
+    ],
+  },
+  {
+    name: 'Just Help Lebanon',
+    url: '/events',
+    fallback: [
+      { title: '🇱🇧 Fundraiser for Lebanon — snacks, stickers & solidarity for displaced families', date: '2026-03-18', source: 'Just Help Lebanon', url: '/events' },
     ],
   },
 ];
