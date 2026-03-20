@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import NavBar from './NavBar.jsx';
 
 /* ═══════════════════════════════════════
    SVG Icons — one per category
@@ -295,17 +296,7 @@ export default function DonationsPage() {
   return (
     <div className="page-root donations-page">
       {/* Nav */}
-      <nav className="page-nav">
-        <Link to="/" className="nav-logo">Just Help Lebanon</Link>
-        <div className="nav-links">
-          <Link to="/" className="nav-link">Home</Link>
-          <Link to="/donations" className="nav-link active">Donations</Link>
-          <Link to="/from-lebanon" className="nav-link">From Lebanon</Link>
-          <Link to="/news" className="nav-link">News</Link>
-          <Link to="/videos" className="nav-link">Videos</Link>
-          <Link to="/social" className="nav-link">Social</Link>
-        </div>
-      </nav>
+      <NavBar />
 
       {/* Hero Header — Cinematic with waving flag */}
       <header className="page-header donations-header">
