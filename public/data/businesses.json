@@ -33,5 +33,45 @@
     "desc": "Youthful Lebanese street food brand with strong visual identity — modern twists on classic Beirut flavours.",
     "instagram": "garagebeirut",
     "maps": "https://maps.google.com/?q=Garage+Beirut+Montreal"
+  },
+  {
+    "name": "Mezmiz",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Trendy Lebanese restaurant with strong Beirut-inspired branding and aesthetic — modern vibes meet authentic flavour.",
+    "instagram": "mezzmiz",
+    "maps": "https://maps.google.com/?q=1407+Crescent+St+Montreal"
+  },
+  {
+    "name": "Café Chez Téta",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Traditional Lebanese comfort food with a warm, family-driven identity — like eating at Téta's house.",
+    "instagram": "cafechezteta",
+    "maps": "https://maps.google.com/?q=Cafe+Chez+Teta+Montreal"
+  },
+  {
+    "name": "Layla Restaurant",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Upscale Lebanese dining with a premium feel and strong visual identity — elevated Beirut cuisine in Montreal.",
+    "instagram": "laylakrestaurants",
+    "maps": "https://maps.google.com/?q=Layla+Restaurant+Montreal"
+  },
+  {
+    "name": "Restaurant Mezza",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Lebanese-focused casual dining with a strong Instagram presence — approachable and flavour-forward.",
+    "instagram": "restaurant.mezza",
+    "maps": "https://maps.google.com/?q=Restaurant+Mezza+Montreal"
+  },
+  {
+    "name": "Restaurant Leymoun",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Small, homey Lebanese spot with strong community feel — cozy brunches and authentic dishes.",
+    "instagram": "restaurant.leymoun",
+    "maps": "https://maps.google.com/?q=Restaurant+Leymoun+Montreal"
   }
 ]
