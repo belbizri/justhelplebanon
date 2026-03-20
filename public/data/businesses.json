@@ -2,10 +2,26 @@
   {
     "name": "Lulu Épicerie",
     "category": "Food & Drink",
-    "location": "2507 Notre-Dame Ouest, Montreal, QC",
-    "desc": "A charming Lebanese-inspired épicerie in Montreal — bringing authentic flavours, fresh goods & community vibes to Notre-Dame West.",
+    "location": "Montreal, QC",
+    "desc": "Diaspora-driven Lebanese bakery with emotional storytelling and strong branding — bringing authentic flavours & community vibes to Montreal.",
     "instagram": "luluepicerie",
     "website": "https://www.luluepicerie.ca",
-    "maps": "https://maps.google.com/?q=2507+Notre-Dame+Ouest+Montreal+Quebec+H3J+1N6"
+    "maps": "https://maps.google.com/?q=Lulu+Epicerie+Montreal"
+  },
+  {
+    "name": "Falafel St-Jacques",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Authentic Lebanese street food with a strong local following — casual, flavourful, and true to its roots.",
+    "instagram": "falafelstjacques",
+    "maps": "https://maps.google.com/?q=Falafel+St-Jacques+Montreal"
+  },
+  {
+    "name": "Garage Beirut",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Youthful Lebanese street food brand with strong visual identity — modern twists on classic Beirut flavours.",
+    "instagram": "garagebeirut",
+    "maps": "https://maps.google.com/?q=Garage+Beirut+Montreal"
   }
 ]
