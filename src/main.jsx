@@ -8,6 +8,7 @@ import NewsPage from './NewsPage.jsx';
 import SocialPage from './SocialPage.jsx';
 import VideosPage from './VideosPage.jsx';
 import FromLebanonPage from './FromLebanonPage.jsx';
+import EventsPage from './EventsPage.jsx';
 import './styles.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/videos" element={<VideosPage />} />
         <Route path="/from-lebanon" element={<FromLebanonPage />} />
         <Route path="/social" element={<SocialPage />} />
+        <Route path="/events" element={<EventsPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

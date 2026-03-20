@@ -7,6 +7,7 @@ const NAV_ITEMS = [
   { to: '/from-lebanon', label: 'From Lebanon' },
   { to: '/news', label: 'News' },
   { to: '/videos', label: 'Videos' },
+  { to: '/events', label: 'Events' },
   { to: '/social', label: 'Social' },
 ];
 

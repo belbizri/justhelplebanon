@@ -1,0 +1,15 @@
+[
+  {
+    "id": "evt-2025-mar18-fundraiser",
+    "title": "Fundraiser for Lebanon",
+    "titleFr": "Collecte de fonds pour le Liban",
+    "date": "2025-03-18",
+    "startTime": "11:30 AM",
+    "endTime": "4:30 PM",
+    "location": "Ottawa, ON",
+    "mapQuery": "Ottawa+ON",
+    "description": "Join us on March 18th from 11:30 AM to 4:30 PM for a fundraiser dedicated to supporting displaced families in Lebanon.\n\nWe'll be selling snacks and stickers, and all proceeds will go toward helping purchase beds and food for families who have been displaced. Every purchase helps us provide essential support and show solidarity with Lebanon during this difficult time.\n\nCome by, support the cause, and bring a friend!",
+    "descriptionFr": "Joignez-vous à nous le 18 mars de 11 h 30 à 16 h 30 pour une collecte de fonds visant à soutenir les familles déplacées au Liban.\n\nNous vendrons des collations et des autocollants, et tous les profits serviront à acheter des lits et de la nourriture pour les familles déplacées. Chaque achat aide à offrir un soutien essentiel et à démontrer notre solidarité avec le Liban pendant cette période difficile.\n\nPassez nous voir, soutenez la cause et invitez un ami!",
+    "tags": ["fundraiser", "food", "stickers", "solidarity"]
+  }
+]
