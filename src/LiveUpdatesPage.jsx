@@ -343,6 +343,7 @@ export default function LiveUpdatesPage() {
         <div className="nav-links">
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/donations" className="nav-link">Donations</Link>
+          <Link to="/from-lebanon" className="nav-link">From Lebanon</Link>
           <Link to="/news" className="nav-link">News</Link>
           <Link to="/social" className="nav-link">Social</Link>
         </div>

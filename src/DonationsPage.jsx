@@ -118,12 +118,6 @@ const ORGANIZATIONS = [
     url: 'https://www.impactlebanon.com/', logo: 'https://www.google.com/s2/favicons?domain=impactlebanon.com&sz=128' },
 
   // ── More Places to Donate ──
-  { name: 'Canadian Red Cross', category: 'More Places to Donate', featured: true,
-    desc: 'Official Canadian Red Cross portal — accepts tax-deductible donations designated specifically for Lebanon relief.',
-    url: 'https://give.redcross.ca/page/LHNA', logo: 'https://www.google.com/s2/favicons?domain=redcross.ca&sz=128' },
-  { name: 'UNICEF for Lebanon', category: 'More Places to Donate', featured: true,
-    desc: 'Funds child protection programmes, clean water, vaccinations, and education for the most vulnerable children in Lebanon.',
-    url: 'https://www.unicef.org/lebanon/', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Logo_of_UNICEF.svg/200px-Logo_of_UNICEF.svg.png' },
   { name: 'Oxfam', category: 'More Places to Donate', featured: false,
     desc: 'Global humanitarian organisation providing clean water, food assistance, and livelihoods support in Lebanon.',
     url: 'https://www.oxfam.org/en/what-we-do/countries/lebanon', logo: 'https://www.google.com/s2/favicons?domain=oxfam.org&sz=128' },
@@ -297,6 +291,7 @@ export default function DonationsPage() {
         <div className="nav-links">
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/donations" className="nav-link active">Donations</Link>
+          <Link to="/from-lebanon" className="nav-link">From Lebanon</Link>
           <Link to="/news" className="nav-link">News</Link>
           <Link to="/videos" className="nav-link">Videos</Link>
           <Link to="/social" className="nav-link">Social</Link>
@@ -400,14 +395,14 @@ export default function DonationsPage() {
         <section className="donations-cta">
           <div className="donations-cta-inner">
             <h2>Every Dollar Counts</h2>
-            <p>Choose any organisation above, or donate directly through the Canadian Red Cross — a trusted humanitarian partner.</p>
+            <p>Choose any organisation above to make a difference — every contribution helps save lives in Lebanon.</p>
             <a
-              href="https://give.redcross.ca/page/LHNA"
+              href="https://supportlrc.app/donate"
               target="_blank"
               rel="noopener noreferrer"
               className="donations-btn"
             >
-              Donate via Red Cross
+              Donate Now
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="donations-btn-arrow">
                 <line x1="5" y1="12" x2="19" y2="12"/>
                 <polyline points="12 5 19 12 12 19"/>
