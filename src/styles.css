@@ -4708,8 +4708,9 @@ h1 {
 /* --- grid --- */
 .spot-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 380px));
   gap: 24px;
+  justify-content: center;
 }
 
 /* --- card --- */
@@ -4735,6 +4736,7 @@ h1 {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
+  max-height: 280px;
   overflow: hidden;
   cursor: pointer;
   background: #0a0a14;
