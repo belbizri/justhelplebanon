@@ -50,7 +50,7 @@ export default function NavBar({ extra }) {
       <Link to="/" className={`nav-logo ${open ? 'menu-open' : ''}`} onClick={close}>
         <span className="nav-logo-flag-wrap" aria-hidden="true">
           <img
-            src="/images/svg/Cedar_only.svg"
+            src="/images/svg/Cedar.svg"
             alt=""
             className="nav-logo-flag"
             loading="eager"
@@ -81,7 +81,7 @@ export default function NavBar({ extra }) {
         <div className="nav-mobile-header">
           <div className="nav-mobile-logo-mark">
             <img
-              src="/images/svg/Cedar_only.svg"
+              src="/images/svg/Cedar.svg"
               alt=""
               className="nav-mobile-logo-flag"
               loading="eager"

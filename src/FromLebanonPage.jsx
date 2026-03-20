@@ -366,7 +366,7 @@ export default function FromLebanonPage() {
         </div>
         <div className="fl-header-cedar">
           <img
-            src="/images/svg/Cedar_only.svg"
+            src="/images/svg/Cedar.svg"
             alt="Lebanese cedar flag"
             className="fl-cedar-svg"
             loading="eager"
