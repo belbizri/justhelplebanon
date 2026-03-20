@@ -1,0 +1,47 @@
+name: Sync to Mirror Repo
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+  workflow_dispatch:  # Allow manual triggers
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    name: Sync branches to belbizri/lebanese-red-cross
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history
+
+      - name: Add mirror remote
+        run: |
+          git remote add mirror https://${{ secrets.GH_PAT }}@github.com/belbizri/lebanese-red-cross.git || true
+          git remote set-url mirror https://${{ secrets.GH_PAT }}@github.com/belbizri/lebanese-red-cross.git
+
+      - name: Fetch from both remotes
+        run: |
+          git fetch origin
+          git fetch mirror
+
+      - name: Sync dev branch
+        run: |
+          git push mirror origin/dev:dev -f
+
+      - name: Sync main branch
+        run: |
+          git push mirror origin/main:main -f
+
+      - name: Remove credentials from config
+        if: always()
+        run: |
+          git remote set-url mirror https://github.com/belbizri/lebanese-red-cross.git
+
+      - name: Notify sync status
+        if: always()
+        run: |
+          echo "✓ Sync complete: Basselbi/justhelplebanon → belbizri/lebanese-red-cross"
