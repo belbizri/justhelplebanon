@@ -41,7 +41,7 @@ function EventCard({ event }) {
             alt={event.title}
             className="evt-card-img"
             loading="lazy"
-            onError={() => setImgError(true)}
+            onError={handleImgError}
           />
         ) : (
           <div className="evt-card-img-placeholder">
