@@ -4674,9 +4674,9 @@ h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(78vw, 760px);
-  height: min(68vh, 540px);
-  opacity: 0.34;
+  width: min(66vw, 620px);
+  height: min(58vh, 460px);
+  opacity: 0.3;
   pointer-events: none;
   z-index: 0;
   animation: flCedarFloat 7s ease-in-out infinite;
@@ -5886,9 +5886,9 @@ h1 {
   }
 
   .fl-header-cedar {
-    width: min(94vw, 520px);
-    height: min(58vh, 380px);
-    opacity: 0.42;
+    width: min(82vw, 440px);
+    height: min(50vh, 300px);
+    opacity: 0.36;
   }
 
   .fl-flag {
@@ -5928,6 +5928,12 @@ h1 {
 
   .fl-header-subtitle {
     font-size: 0.9rem;
+  }
+
+  .fl-header-cedar {
+    width: min(78vw, 360px);
+    height: min(42vh, 240px);
+    opacity: 0.32;
   }
 
   .fl-flag {
