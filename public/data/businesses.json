@@ -172,5 +172,15 @@
     "instagram": "libnanbakery",
     "maps": "https://maps.google.com/?q=Libnan+Bakery+Ottawa",
     "tags": ["lebanese", "bakery"]
+  },
+  {
+    "name": "Bayrut MTL",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Authentic Lebanese cuisine in the heart of Montreal — bold flavours, warm hospitality, and the true spirit of Beirut on your plate.",
+    "instagram": "bayrut.mtl",
+    "maps": "https://maps.google.com/?q=27+William+Street+Montreal",
+    "phone": "(514) 866-0151",
+    "tags": ["lebanese", "authentic", "montreal"]
   }
 ]
