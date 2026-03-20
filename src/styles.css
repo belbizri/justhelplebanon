@@ -2997,17 +2997,18 @@ h1 {
   font-weight: 900;
   letter-spacing: -0.02em;
   text-transform: uppercase;
+  padding: 0 4px;
   background: linear-gradient(
     90deg,
-    #ffffff 0%, #ffffff 35%,
-    #e63946 45%, #00a86b 55%,
-    #ffffff 65%, #ffffff 100%
+    #f0e8e8 0%, #f0e8e8 30%,
+    #e63946 42%, #ffffff 50%, #00a86b 58%,
+    #f0e8e8 70%, #f0e8e8 100%
   );
-  background-size: 200% auto;
+  background-size: 250% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: donTitleShimmer 5s linear infinite;
+  animation: donTitleShimmer 6s linear infinite;
   text-shadow: none;
 }
 
