@@ -2876,47 +2876,163 @@ h1 {
   position: relative;
   overflow: hidden;
   padding: 0;
-  min-height: 300px;
+  min-height: 380px;
   width: 100%;
+  background: linear-gradient(135deg, #0a0c1c 0%, #1a1028 30%, #12182e 60%, #0a0c1c 100%);
+  background-size: 300% 300%;
+  animation: donHeaderGrad 12s ease infinite;
 }
 
-/* ── Banner background image ── */
-.flag-banner {
+@keyframes donHeaderGrad {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* ── Background layer ── */
+.don-header-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url('/images/banner-donations.jpg') center center / cover no-repeat;
+  background: radial-gradient(ellipse at 30% 60%, rgba(200, 40, 60, 0.12) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 30%, rgba(0, 128, 80, 0.08) 0%, transparent 55%);
 }
 
-/* Dark overlay for text readability */
+/* ── Floating particles ── */
+.don-header-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.don-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  animation: donParticleFloat 8s ease-in-out infinite;
+}
+
+.don-particle:nth-child(1)  { left: 5%;  top: 20%; animation-delay: 0s;   animation-duration: 7s;  width: 3px; height: 3px; }
+.don-particle:nth-child(2)  { left: 15%; top: 60%; animation-delay: 1s;   animation-duration: 9s;  }
+.don-particle:nth-child(3)  { left: 25%; top: 35%; animation-delay: 2s;   animation-duration: 6s;  width: 5px; height: 5px; }
+.don-particle:nth-child(4)  { left: 35%; top: 75%; animation-delay: 0.5s; animation-duration: 8s;  }
+.don-particle:nth-child(5)  { left: 45%; top: 15%; animation-delay: 3s;   animation-duration: 10s; width: 3px; height: 3px; }
+.don-particle:nth-child(6)  { left: 55%; top: 50%; animation-delay: 1.5s; animation-duration: 7s;  }
+.don-particle:nth-child(7)  { left: 65%; top: 25%; animation-delay: 4s;   animation-duration: 9s;  width: 5px; height: 5px; }
+.don-particle:nth-child(8)  { left: 75%; top: 65%; animation-delay: 2.5s; animation-duration: 8s;  }
+.don-particle:nth-child(9)  { left: 85%; top: 40%; animation-delay: 0.8s; animation-duration: 6s;  }
+.don-particle:nth-child(10) { left: 92%; top: 70%; animation-delay: 3.5s; animation-duration: 10s; width: 3px; height: 3px; }
+.don-particle:nth-child(11) { left: 10%; top: 80%; animation-delay: 1.2s; animation-duration: 7s;  }
+.don-particle:nth-child(12) { left: 40%; top: 85%; animation-delay: 2.8s; animation-duration: 9s;  width: 3px; height: 3px; }
+.don-particle:nth-child(13) { left: 70%; top: 10%; animation-delay: 4.2s; animation-duration: 8s;  }
+.don-particle:nth-child(14) { left: 50%; top: 45%; animation-delay: 0.3s; animation-duration: 11s; width: 6px; height: 6px; background: rgba(200, 40, 60, 0.2); }
+
+@keyframes donParticleFloat {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1);   opacity: 0.2; }
+  25%      { transform: translateY(-18px) translateX(8px) scale(1.2);  opacity: 0.5; }
+  50%      { transform: translateY(-30px) translateX(-5px) scale(0.9); opacity: 0.3; }
+  75%      { transform: translateY(-12px) translateX(12px) scale(1.1); opacity: 0.45; }
+}
+
+/* ── Waving Lebanese Flag ── */
+@keyframes donFlagWave {
+  0%   { transform: rotate(-4deg) translateY(0)     scaleX(1);    }
+  20%  { transform: rotate(-2deg) translateY(-4px)   scaleX(0.96); }
+  40%  { transform: rotate(-6deg) translateY(-8px)   scaleX(1.03); }
+  60%  { transform: rotate(-3deg) translateY(-5px)   scaleX(0.97); }
+  80%  { transform: rotate(-5deg) translateY(-2px)   scaleX(1.01); }
+  100% { transform: rotate(-4deg) translateY(0)      scaleX(1);    }
+}
+
+.don-header-flag {
+  position: absolute;
+  right: -20px;
+  bottom: -15px;
+  width: 320px;
+  height: 210px;
+  background: url('/images/leb_main_flag.png') center / contain no-repeat;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 1;
+  filter: drop-shadow(0 0 30px rgba(204, 16, 32, 0.3));
+  animation: donFlagWave 5s ease-in-out infinite;
+  transform-origin: top right;
+}
+
+/* ── Overlay & content ── */
 .donations-header-overlay {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 100px 24px 48px;
-  min-height: 300px;
-  background: rgba(10, 12, 28, 0.62);
+  padding: 110px 24px 56px;
+  min-height: 380px;
 }
 
-.donations-header .page-title {
+/* Eyebrow */
+.don-header-eyebrow {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 12px;
+}
+
+/* Shimmer title */
+@keyframes donTitleShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center;  }
+}
+
+.don-title-shimmer {
   color: #fff;
-  font-size: 2.8rem;
+  font-size: 3rem;
   font-weight: 900;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  text-shadow: 0 2px 24px rgba(0,0,0,0.50), 0 0 60px rgba(200, 40, 60, 0.30);
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%, #ffffff 35%,
+    #e63946 45%, #00a86b 55%,
+    #ffffff 65%, #ffffff 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: donTitleShimmer 5s linear infinite;
+  text-shadow: none;
 }
 
 .donations-header .page-subtitle {
-  color: rgba(255,255,255,0.72);
+  color: rgba(255,255,255,0.65);
   font-size: 1rem;
   max-width: 640px;
-  margin-top: 12px;
+  margin-top: 14px;
   text-shadow: 0 1px 8px rgba(0,0,0,0.40);
+}
+
+/* Glow line under subtitle */
+.don-header-glow-line {
+  width: 80px;
+  height: 3px;
+  margin-top: 22px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #e63946, #00a86b);
+  box-shadow: 0 0 18px rgba(230, 57, 70, 0.4), 0 0 18px rgba(0, 168, 107, 0.3);
+  animation: donGlowPulse 3s ease-in-out infinite;
+}
+
+@keyframes donGlowPulse {
+  0%, 100% { opacity: 0.7; width: 80px;  }
+  50%      { opacity: 1;   width: 120px; }
 }
 
 .donations-content {
@@ -3415,16 +3531,32 @@ h1 {
   }
 
   .donations-header .page-title {
-    font-size: 1.9rem;
+    font-size: 2rem;
   }
 
   .donations-header {
-    min-height: 180px;
+    min-height: 260px;
   }
 
   .donations-header-overlay {
-    min-height: 180px;
-    padding: 48px 16px 36px;
+    min-height: 260px;
+    padding: 80px 16px 40px;
+  }
+
+  .don-header-flag {
+    width: 180px;
+    height: 120px;
+    right: -15px;
+    bottom: -10px;
+    opacity: 0.08;
+  }
+
+  .don-title-shimmer {
+    font-size: 2rem;
+  }
+
+  .don-header-eyebrow {
+    font-size: 0.7rem;
   }
 }
 

@@ -298,15 +298,23 @@ export default function DonationsPage() {
         </div>
       </nav>
 
-      {/* Hero Header — Lebanese Flag Banner */}
+      {/* Hero Header — Cinematic with waving flag */}
       <header className="page-header donations-header">
-        <div className="flag-banner"></div>
+        <div className="don-header-bg" />
+        <div className="don-header-particles">
+          {Array.from({ length: 14 }).map((_, i) => (
+            <span key={i} className="don-particle" />
+          ))}
+        </div>
+        <div className="don-header-flag" />
         <div className="donations-header-overlay">
-          <h1 className="page-title">Ways to Help Lebanon</h1>
+          <p className="don-header-eyebrow">Trusted &bull; Verified &bull; Lebanon</p>
+          <h1 className="page-title don-title-shimmer">Ways to Help Lebanon</h1>
           <p className="page-subtitle">
             Trusted organisations and verified donation destinations — grouped by cause.
             Every contribution reaches families, hospitals, and communities in need.
           </p>
+          <div className="don-header-glow-line" />
         </div>
       </header>
 
