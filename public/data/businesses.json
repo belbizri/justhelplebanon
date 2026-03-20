@@ -1,0 +1,176 @@
+[
+  {
+    "name": "Nascom Group",
+    "category": "Business & Services",
+    "location": "Lebanon",
+    "desc": "A leading Lebanese group driving innovation across industries — from tech to infrastructure, proudly built in Lebanon.",
+    "instagram": "nascomgroup",
+    "website": "https://www.nascomgroup.com",
+    "featured": true
+  },
+  {
+    "name": "Lulu Épicerie",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Diaspora-driven Lebanese bakery with emotional storytelling and strong branding — bringing authentic flavours & community vibes to Montreal.",
+    "instagram": "luluepicerie",
+    "website": "https://www.luluepicerie.ca",
+    "maps": "https://maps.google.com/?q=Lulu+Epicerie+Montreal"
+  },
+  {
+    "name": "Falafel St-Jacques",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Authentic Lebanese street food with a strong local following — casual, flavourful, and true to its roots.",
+    "instagram": "falafelstjacques",
+    "maps": "https://maps.google.com/?q=Falafel+St-Jacques+Montreal",
+    "hidden": true
+  },
+  {
+    "name": "Garage Beirut",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Youthful Lebanese street food brand with strong visual identity — modern twists on classic Beirut flavours.",
+    "instagram": "garagebeirut",
+    "maps": "https://maps.google.com/?q=Garage+Beirut+Montreal"
+  },
+  {
+    "name": "Mezmiz",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Trendy Lebanese restaurant with strong Beirut-inspired branding and aesthetic — modern vibes meet authentic flavour.",
+    "instagram": "mezzmiz",
+    "maps": "https://maps.google.com/?q=1407+Crescent+St+Montreal"
+  },
+  {
+    "name": "Café Chez Téta",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Traditional Lebanese comfort food with a warm, family-driven identity — like eating at Téta's house.",
+    "instagram": "cafechezteta",
+    "maps": "https://maps.google.com/?q=Cafe+Chez+Teta+Montreal"
+  },
+  {
+    "name": "Layla Restaurant",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Upscale Lebanese dining with a premium feel and strong visual identity — elevated Beirut cuisine in Montreal.",
+    "instagram": "laylakrestaurants",
+    "maps": "https://maps.google.com/?q=Layla+Restaurant+Montreal"
+  },
+  {
+    "name": "Restaurant Mezza",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Lebanese-focused casual dining with a strong Instagram presence — approachable and flavour-forward.",
+    "instagram": "restaurant.mezza",
+    "maps": "https://maps.google.com/?q=2829+Av.+des+Aristocrates,+Laval+QC"
+  },
+  {
+    "name": "Restaurant Leymoun",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Small, homey Lebanese spot with strong community feel — cozy brunches and authentic dishes.",
+    "instagram": "restaurant.leymoun",
+    "maps": "https://maps.google.com/?q=1575+Rue+Dudemaine,+Montréal,+QC+H3M+1R2"
+  },
+  {
+    "name": "Sumac",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Modern Lebanese brunch spot with bold flavours and a fresh, inviting atmosphere.",
+    "instagram": "sumacrestaurant",
+    "maps": "https://maps.google.com/?q=Sumac+Montreal",
+    "tags": ["lebanese", "modern", "brunch"]
+  },
+  {
+    "name": "KazaMaza",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Authentic Lebanese dining with traditional recipes and a warm, welcoming vibe.",
+    "instagram": "kazamazamtl",
+    "maps": "https://maps.google.com/?q=KazaMaza+Montreal",
+    "tags": ["lebanese", "authentic"]
+  },
+  {
+    "name": "Beirut Express",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Fast Lebanese street food — bold flavours, quick service, true to Beirut.",
+    "instagram": "beiruti.mtl",
+    "maps": "https://maps.google.com/?q=Beirut+Express+Montreal",
+    "tags": ["lebanese", "street food"]
+  },
+  {
+    "name": "OFour",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Modern Lebanese brunch and bakery — fresh manakish, casual vibes, quality ingredients.",
+    "instagram": "ofour.montreal",
+    "maps": "https://maps.google.com/?q=OFour+Montreal",
+    "tags": ["lebanese", "modern", "brunch"]
+  },
+  {
+    "name": "Beit Jeddi",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Traditional Lebanese home-style cooking — family recipes, generous portions, like eating at Jeddi's house.",
+    "instagram": "beitjeddi_mtl",
+    "maps": "https://maps.google.com/?q=Beit+Jeddi+Montreal",
+    "tags": ["lebanese", "authentic", "family"]
+  },
+  {
+    "name": "Le Professeur",
+    "category": "Food & Drink",
+    "location": "Montreal, QC",
+    "desc": "Lebanese breakfast & casual dining — hearty morning platters and classic comfort food.",
+    "instagram": "resto.leprofesseur",
+    "maps": "https://maps.google.com/?q=Le+Professeur+Restaurant+Montreal",
+    "tags": ["lebanese", "breakfast", "casual"]
+  },
+  {
+    "name": "Amal",
+    "category": "Food & Drink",
+    "location": "Toronto, ON",
+    "desc": "Luxury Lebanese fine dining — elevated cuisine, elegant ambiance, premium experience.",
+    "instagram": "amaltoronto",
+    "maps": "https://maps.google.com/?q=Amal+Restaurant+Toronto",
+    "tags": ["lebanese", "premium", "fine dining"]
+  },
+  {
+    "name": "Souk Tabule",
+    "category": "Food & Drink",
+    "location": "Toronto, ON",
+    "desc": "Modern Lebanese casual dining — fresh, vibrant dishes inspired by the souk experience.",
+    "instagram": "souk.tabule",
+    "maps": "https://maps.google.com/?q=Souk+Tabule+Toronto",
+    "tags": ["lebanese", "modern"]
+  },
+  {
+    "name": "Fairouz Cafe",
+    "category": "Food & Drink",
+    "location": "Ottawa, ON",
+    "desc": "Modern Lebanese fine dining in Ottawa — creative dishes honouring tradition with sophistication.",
+    "instagram": "fairouz.cafe",
+    "maps": "https://maps.google.com/?q=Fairouz+Cafe+Ottawa",
+    "tags": ["lebanese", "modern", "premium"]
+  },
+  {
+    "name": "Phynicia",
+    "category": "Food & Drink",
+    "location": "Ottawa, ON",
+    "desc": "Authentic Lebanese cuisine in Ottawa — generous plates, warm hospitality, true-to-roots flavours.",
+    "instagram": "phyniciarestaurant",
+    "maps": "https://maps.google.com/?q=Phynicia+Restaurant+Ottawa",
+    "tags": ["lebanese", "authentic"]
+  },
+  {
+    "name": "Libnan Bakery",
+    "category": "Food & Drink",
+    "location": "Ottawa, ON",
+    "desc": "Traditional Lebanese bakery — fresh bread, manakish, and pastries baked daily with love.",
+    "instagram": "libnanbakery",
+    "maps": "https://maps.google.com/?q=Libnan+Bakery+Ottawa",
+    "tags": ["lebanese", "bakery"]
+  }
+]
