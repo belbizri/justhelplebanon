@@ -1184,42 +1184,6 @@ h1 {
   position: sticky;
   top: 37px;
   z-index: 150;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.page-nav::before {
-  content: '';
-  position: absolute;
-  inset: -55% -8%;
-  background:
-    radial-gradient(circle at 12% 48%, rgba(204, 16, 32, 0.2), rgba(204, 16, 32, 0) 30%),
-    radial-gradient(circle at 84% 40%, rgba(0, 166, 81, 0.24), rgba(0, 166, 81, 0) 34%),
-    url('/images/svg/canada-flag.svg') center center / auto 220% no-repeat;
-  opacity: 0.2;
-  filter: saturate(1.2) contrast(1.1) drop-shadow(0 0 26px rgba(255, 255, 255, 0.08));
-  transform-origin: center;
-  animation: navMapleDrift 18s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.page-nav::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(5, 6, 10, 0.94), rgba(5, 6, 10, 0.32) 18%, rgba(5, 6, 10, 0.08) 50%, rgba(5, 6, 10, 0.34) 82%, rgba(5, 6, 10, 0.94)),
-    repeating-linear-gradient(-24deg, rgba(255, 255, 255, 0.024) 0, rgba(255, 255, 255, 0.024) 2px, transparent 2px, transparent 18px);
-  mix-blend-mode: screen;
-  opacity: 0.7;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.page-nav > * {
-  position: relative;
-  z-index: 1;
 }
 
 .nav-logo {
@@ -4727,9 +4691,9 @@ h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(66vw, 620px);
-  height: min(58vh, 460px);
-  opacity: 0.3;
+  width: min(54vw, 500px);
+  height: min(46vh, 360px);
+  opacity: 0.26;
   pointer-events: none;
   z-index: 0;
   animation: flCedarFloat 7s ease-in-out infinite;
@@ -4758,7 +4722,7 @@ h1 {
 }
 
 .fl-cedar-svg {
-  width: 100%;
+  width: 50%;
   height: 100%;
   object-fit: contain;
   mix-blend-mode: normal;
@@ -5939,9 +5903,9 @@ h1 {
   }
 
   .fl-header-cedar {
-    width: min(82vw, 440px);
-    height: min(50vh, 300px);
-    opacity: 0.36;
+    width: min(68vw, 360px);
+    height: min(40vh, 240px);
+    opacity: 0.3;
   }
 
   .fl-flag {
@@ -5984,9 +5948,9 @@ h1 {
   }
 
   .fl-header-cedar {
-    width: min(78vw, 360px);
-    height: min(42vh, 240px);
-    opacity: 0.32;
+    width: min(62vw, 280px);
+    height: min(32vh, 180px);
+    opacity: 0.26;
   }
 
   .fl-flag {
