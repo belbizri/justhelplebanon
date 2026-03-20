@@ -69,9 +69,10 @@ export default function NavBar({ extra }) {
       <div className={`nav-links ${open ? 'nav-links--open' : ''}`}>
         <div className="nav-mobile-header">
           <div className="nav-mobile-logo-mark">
-            <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
-              <path d="M20 4L24 14H36L26 21L30 32L20 25L10 32L14 21L4 14H16Z" fill="#cc1020" opacity=".9"/>
-              <path d="M20 10L22 16H28L23 20L25 26L20 22L15 26L17 20L12 16H18Z" fill="#fff" opacity=".5"/>
+            <svg width="26" height="28" viewBox="0 0 26 28" fill="none">
+              {/* Cedar tree */}
+              <polygon points="13,1 9,8 11,8 7,14 9.5,14 5,20 10,20 10,25 16,25 16,20 21,20 16.5,14 19,14 15,8 17,8" fill="#2b7a3e"/>
+              <rect x="11.5" y="25" width="3" height="2.5" rx="0.5" fill="#6d4c2a"/>
             </svg>
           </div>
           <div className="nav-mobile-brand-group">
