@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Example Business",
+    "category": "Food & Drink",
+    "location": "Beirut, Lebanon",
+    "desc": "A beloved local spot serving traditional Lebanese cuisine with a modern twist.",
+    "instagram": "examplebusiness",
+    "maps": "https://maps.google.com/?q=Beirut+Lebanon",
+    "media": "/businesses/example.jpg",
+    "mediaType": "image"
+  }
+]

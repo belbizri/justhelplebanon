@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 /* ═══════════════════════════════════════
@@ -149,6 +149,105 @@ const SearchIcon = () => (
   </svg>
 );
 
+const MapPinIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="15" height="15">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+    <circle cx="12" cy="10" r="3"/>
+  </svg>
+);
+
+const PlayIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+    <polygon points="5 3 19 12 5 21 5 3"/>
+  </svg>
+);
+
+/* ═══════════════════════════════════════
+   Business Spotlight Card (JSON-driven)
+   ═══════════════════════════════════════ */
+function SpotlightCard({ biz }) {
+  const accent = CAT_COLORS[biz.category] || '#e84393';
+  const [playing, setPlaying] = useState(false);
+  const videoRef = useRef(null);
+  const isVideo = biz.mediaType === 'video';
+
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    if (playing) { videoRef.current.pause(); }
+    else { videoRef.current.play(); }
+    setPlaying(!playing);
+  };
+
+  return (
+    <article className="spot-card" style={{ '--spot-accent': accent }}>
+      {/* Media area */}
+      <div className="spot-media" onClick={isVideo ? togglePlay : undefined}>
+        {isVideo ? (
+          <>
+            <video
+              ref={videoRef}
+              src={biz.media}
+              playsInline
+              loop
+              muted
+              preload="metadata"
+              className="spot-media-asset"
+              onPlay={() => setPlaying(true)}
+              onPause={() => setPlaying(false)}
+            />
+            {!playing && (
+              <div className="spot-play-overlay">
+                <PlayIcon />
+              </div>
+            )}
+          </>
+        ) : (
+          <img src={biz.media} alt={biz.name} className="spot-media-asset" loading="lazy" />
+        )}
+        <span className="spot-cat-badge" style={{ background: accent }}>{biz.category}</span>
+      </div>
+
+      {/* Info */}
+      <div className="spot-info">
+        <h3 className="spot-name">{biz.name}</h3>
+        {biz.location && (
+          <p className="spot-location">
+            <MapPinIcon />
+            {biz.location}
+          </p>
+        )}
+        <p className="spot-desc">{biz.desc}</p>
+
+        {/* Action buttons */}
+        <div className="spot-actions">
+          <a
+            href={`https://www.instagram.com/${biz.instagram}/`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="spot-btn spot-btn-ig"
+            aria-label={`${biz.name} on Instagram`}
+          >
+            <InstagramIcon />
+            @{biz.instagram}
+          </a>
+          {biz.maps && (
+            <a
+              href={biz.maps}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="spot-btn spot-btn-map"
+              aria-label={`${biz.name} on Google Maps`}
+            >
+              <MapPinIcon />
+              View on Map
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+}
+
 /* ═══════════════════════════════════════
    Brand Card
    ═══════════════════════════════════════ */
@@ -195,6 +294,15 @@ function BrandCard({ brand }) {
 export default function FromLebanonPage() {
   const [search, setSearch] = useState('');
   const [activeCat, setActiveCat] = useState('All');
+  const [businesses, setBusinesses] = useState([]);
+
+  /* Fetch businesses from JSON */
+  useEffect(() => {
+    fetch('/data/businesses.json')
+      .then(r => r.ok ? r.json() : [])
+      .then(data => setBusinesses(Array.isArray(data) ? data : []))
+      .catch(() => setBusinesses([]));
+  }, []);
 
   const filtered = useMemo(() => {
     let list = BRANDS;
@@ -258,6 +366,36 @@ export default function FromLebanonPage() {
       </header>
 
       <main className="fl-content">
+
+        {/* ── Business Spotlight ── */}
+        {businesses.length > 0 && (
+          <section className="spot-section">
+            <h2 className="spot-section-title">
+              <span className="spot-title-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+              </span>
+              Business Spotlight
+              <span className="spot-title-sub">Support small Lebanese businesses</span>
+            </h2>
+            <div className="spot-grid">
+              {businesses.map((biz, i) => (
+                <SpotlightCard key={biz.name + i} biz={biz} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* ── Divider ── */}
+        {businesses.length > 0 && (
+          <div className="fl-divider">
+            <span className="fl-divider-line" />
+            <span className="fl-divider-text">Lebanese Brands</span>
+            <span className="fl-divider-line" />
+          </div>
+        )}
+
         {/* Search & Filter */}
         <div className="fl-toolbar">
           <div className="fl-search">

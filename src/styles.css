@@ -4391,3 +4391,267 @@ h1 {
     font-size: 1.4rem;
   }
 }
+
+/* ═══════════════════════════════════════════════════
+   BUSINESS SPOTLIGHT — Magazine-style media cards
+   ═══════════════════════════════════════════════════ */
+
+/* --- section --- */
+.spot-section {
+  margin-bottom: 48px;
+}
+
+.spot-section-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 1.6rem;
+  color: #fff;
+  margin: 0 0 24px;
+}
+
+.spot-title-icon {
+  display: inline-flex;
+  color: #fdcb6e;
+  filter: drop-shadow(0 0 8px rgba(253, 203, 110, 0.4));
+}
+
+.spot-title-sub {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.45);
+  margin-left: auto;
+}
+
+/* --- grid --- */
+.spot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+/* --- card --- */
+.spot-card {
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(18, 14, 30, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+  animation: flCardEnter 0.5s ease-out both;
+}
+
+.spot-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--spot-accent, #e84393);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px color-mix(in srgb, var(--spot-accent, #e84393) 20%, transparent);
+}
+
+/* --- media area --- */
+.spot-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  cursor: pointer;
+  background: #0a0a14;
+}
+
+.spot-media-asset {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s;
+}
+
+.spot-card:hover .spot-media-asset {
+  transform: scale(1.05);
+}
+
+/* play overlay for video */
+.spot-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  transition: background 0.3s;
+}
+
+.spot-play-overlay svg {
+  color: #fff;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+  transition: transform 0.2s;
+}
+
+.spot-media:hover .spot-play-overlay {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.spot-media:hover .spot-play-overlay svg {
+  transform: scale(1.2);
+}
+
+/* category badge on media */
+.spot-cat-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+  z-index: 1;
+}
+
+/* --- info area --- */
+.spot-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.spot-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.spot-location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+.spot-location svg {
+  color: var(--spot-accent, #e84393);
+  flex-shrink: 0;
+}
+
+.spot-desc {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* --- action buttons --- */
+.spot-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.spot-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.spot-btn:hover {
+  transform: scale(1.05);
+}
+
+/* instagram button — gradient */
+.spot-btn-ig {
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+  color: #fff;
+}
+
+.spot-btn-ig:hover {
+  box-shadow: 0 4px 20px rgba(131, 58, 180, 0.4);
+}
+
+/* maps button */
+.spot-btn-map {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.spot-btn-map:hover {
+  background: rgba(66, 133, 244, 0.2);
+  border-color: rgba(66, 133, 244, 0.4);
+  box-shadow: 0 4px 16px rgba(66, 133, 244, 0.2);
+}
+
+.spot-btn svg {
+  flex-shrink: 0;
+}
+
+/* --- divider --- */
+.fl-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 48px 0;
+}
+
+.fl-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+}
+
+.fl-divider-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* --- responsive --- */
+@media (max-width: 768px) {
+  .spot-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .spot-section-title {
+    font-size: 1.3rem;
+  }
+
+  .spot-title-sub {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .spot-info {
+    padding: 16px;
+  }
+
+  .spot-name {
+    font-size: 1.1rem;
+  }
+
+  .spot-actions {
+    flex-direction: column;
+  }
+
+  .spot-btn {
+    justify-content: center;
+  }
+}
