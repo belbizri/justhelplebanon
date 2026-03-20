@@ -17,11 +17,19 @@ function isPast(iso) {
 
 function EventCard({ event }) {
   const past = isPast(event.date);
-  const imgSrc = `/images/events/${event.id}.jpg`;
+  const [imgSrc, setImgSrc] = useState(`/images/events/${event.id}.jpg`);
   const [imgError, setImgError] = useState(false);
   const mapUrl = event.mapQuery
     ? `https://maps.google.com/?q=${encodeURIComponent(event.mapQuery)}`
     : null;
+
+  const handleImgError = () => {
+    if (imgSrc.endsWith('.jpg')) {
+      setImgSrc(`/images/events/${event.id}.png`);
+    } else {
+      setImgError(true);
+    }
+  };
 
   return (
     <article className={`evt-card ${past ? 'evt-card--past' : ''}`}>
