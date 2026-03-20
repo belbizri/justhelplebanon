@@ -63,8 +63,8 @@
     "category": "Food & Drink",
     "location": "Montreal, QC",
     "desc": "Lebanese-focused casual dining with a strong Instagram presence — approachable and flavour-forward.",
-    "instagram": "restaurant.mezza",
-    "maps": "https://maps.google.com/?q=Restaurant+Mezza+Montreal"
+    "instagram": "restaurantmazze",
+    "maps": "https://maps.google.com/?q=2829+Av.+des+Aristocrates,+Laval+QC"
   },
   {
     "name": "Restaurant Leymoun",
@@ -72,6 +72,6 @@
     "location": "Montreal, QC",
     "desc": "Small, homey Lebanese spot with strong community feel — cozy brunches and authentic dishes.",
     "instagram": "restaurant.leymoun",
-    "maps": "https://maps.google.com/?q=Restaurant+Leymoun+Montreal"
+    "maps": "https://maps.google.com/?q=1575+Rue+Dudemaine,+Montréal,+QC+H3M+1R2"
   }
 ]
