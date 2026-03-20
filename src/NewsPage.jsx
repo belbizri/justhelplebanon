@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import NavBar from './NavBar.jsx';
 
 const RSS_FEEDS = [
   {
@@ -48,17 +49,7 @@ export default function NewsPage() {
 
   return (
     <div className="page-root news-page">
-      <nav className="page-nav">
-        <Link to="/" className="nav-logo">Just Help Lebanon</Link>
-        <div className="nav-links">
-          <Link to="/" className="nav-link">Home</Link>
-          <Link to="/donations" className="nav-link">Donations</Link>
-          <Link to="/from-lebanon" className="nav-link">From Lebanon</Link>
-          <Link to="/news" className="nav-link active">News</Link>
-          <Link to="/videos" className="nav-link">Videos</Link>
-          <Link to="/social" className="nav-link">Social</Link>
-        </div>
-      </nav>
+      <NavBar />
 
       <header className="page-header">
         <h1 className="page-title">Lebanon News</h1>

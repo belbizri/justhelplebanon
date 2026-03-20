@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import NavBar from './NavBar.jsx';
 
 const BATCH_SIZE = 4;
 
@@ -145,17 +146,7 @@ export default function VideosPage() {
   return (
     <div className="page-root videos-page">
       {modal && <VideoModal src={modal.src} title={modal.title} onClose={closeModal} />}
-      <nav className="page-nav">
-        <Link to="/" className="nav-logo">Just Help Lebanon</Link>
-        <div className="nav-links">
-          <Link to="/" className="nav-link">Home</Link>
-          <Link to="/donations" className="nav-link">Donations</Link>
-          <Link to="/from-lebanon" className="nav-link">From Lebanon</Link>
-          <Link to="/news" className="nav-link">News</Link>
-          <Link to="/videos" className="nav-link active">Videos</Link>
-          <Link to="/social" className="nav-link">Social</Link>
-        </div>
-      </nav>
+      <NavBar />
 
       <header className="videos-header">
         <div className="vid-header-bg" />
