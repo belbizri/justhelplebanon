@@ -1,5 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import NavBar from './NavBar.jsx';
+
+/* ── Image Lightbox Modal ── */
+function ImageModal({ src, alt, onClose }) {
+  useEffect(() => {
+    const handler = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handler);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', handler);
+      document.body.style.overflow = '';
+    };
+  }, [onClose]);
+
+  return (
+    <div className="evt-lightbox-backdrop" onClick={onClose}>
+      <div className="evt-lightbox" onClick={(e) => e.stopPropagation()}>
+        <button className="evt-lightbox-close" onClick={onClose} aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+            <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        <img src={src} alt={alt} className="evt-lightbox-img" />
+        {alt && <p className="evt-lightbox-caption">{alt}</p>}
+      </div>
+    </div>
+  );
+}
 
 function formatDate(iso) {
   const d = new Date(iso + 'T00:00:00');
@@ -15,7 +42,7 @@ function isPast(iso) {
   return new Date(iso + 'T23:59:59') < new Date();
 }
 
-function EventCard({ event }) {
+function EventCard({ event, onImageClick }) {
   const past = isPast(event.date);
   const [imgSrc, setImgSrc] = useState(`/images/events/${event.id}.jpg`);
   const [imgError, setImgError] = useState(false);
@@ -34,12 +61,12 @@ function EventCard({ event }) {
   return (
     <article className={`evt-card ${past ? 'evt-card--past' : ''}`}>
       {/* Image */}
-      <div className="evt-card-img-wrap">
+      <div className="evt-card-img-wrap" onClick={() => !imgError && onImageClick(imgSrc, event.title)}>
         {!imgError ? (
           <img
             src={imgSrc}
             alt={event.title}
-            className="evt-card-img"
+            className="evt-card-img evt-card-img--clickable"
             loading="lazy"
             onError={handleImgError}
           />
@@ -118,6 +145,10 @@ function EventCard({ event }) {
 
 export default function EventsPage() {
   const [events, setEvents] = useState([]);
+  const [lightbox, setLightbox] = useState(null);
+
+  const openLightbox = useCallback((src, alt) => setLightbox({ src, alt }), []);
+  const closeLightbox = useCallback(() => setLightbox(null), []);
 
   useEffect(() => {
     fetch('/data/events.json')
@@ -134,6 +165,7 @@ export default function EventsPage() {
 
   return (
     <div className="page-root events-page">
+      {lightbox && <ImageModal src={lightbox.src} alt={lightbox.alt} onClose={closeLightbox} />}
       <NavBar />
 
       {/* Hero Header */}
@@ -163,7 +195,7 @@ export default function EventsPage() {
             Upcoming Events
           </h2>
           <div className="evt-grid">
-            {upcoming.map((e) => <EventCard key={e.id} event={e} />)}
+            {upcoming.map((e) => <EventCard key={e.id} event={e} onImageClick={openLightbox} />)}
           </div>
         </section>
       )}
@@ -176,7 +208,7 @@ export default function EventsPage() {
             Past Events
           </h2>
           <div className="evt-grid">
-            {past.map((e) => <EventCard key={e.id} event={e} />)}
+            {past.map((e) => <EventCard key={e.id} event={e} onImageClick={openLightbox} />)}
           </div>
         </section>
       )}
