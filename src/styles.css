@@ -4277,6 +4277,136 @@ h1 {
   padding: 48px 24px 80px;
 }
 
+.vid-upload-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 24px;
+  margin-bottom: 36px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, rgba(230, 57, 70, 0.14), rgba(8, 18, 36, 0.92) 45%, rgba(0, 168, 107, 0.16)),
+    rgba(12, 16, 27, 0.9);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
+}
+
+.vid-upload-copy h2 {
+  margin: 8px 0 10px;
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  color: #fff7f3;
+}
+
+.vid-upload-copy p {
+  margin: 0;
+  color: rgba(255, 248, 241, 0.78);
+  line-height: 1.6;
+}
+
+.vid-upload-kicker {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffd166;
+}
+
+.vid-upload-form {
+  display: grid;
+  gap: 16px;
+}
+
+.vid-upload-field {
+  display: grid;
+  gap: 8px;
+}
+
+.vid-upload-field span {
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.vid-upload-field input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  background: rgba(7, 10, 17, 0.62);
+  color: #fff;
+  padding: 14px 16px;
+}
+
+.vid-upload-field input[type="file"] {
+  padding: 12px;
+}
+
+.vid-upload-field input::file-selector-button {
+  margin-right: 12px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 209, 102, 0.16);
+  color: #fff4d1;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.vid-upload-field input:focus {
+  outline: 2px solid rgba(255, 209, 102, 0.55);
+  outline-offset: 2px;
+}
+
+.vid-upload-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.vid-upload-button {
+  border: none;
+  border-radius: 999px;
+  padding: 14px 20px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #0d1321;
+  background: linear-gradient(135deg, #ffd166, #ff8c42);
+  cursor: pointer;
+  box-shadow: 0 14px 32px rgba(255, 140, 66, 0.22);
+}
+
+.vid-upload-button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.vid-upload-hint {
+  margin: 0;
+  text-align: right;
+  font-size: 0.9rem;
+  color: rgba(255, 248, 241, 0.68);
+}
+
+.vid-upload-message {
+  margin: 0;
+  border-radius: 16px;
+  padding: 12px 14px;
+  font-size: 0.92rem;
+}
+
+.vid-upload-message--error {
+  background: rgba(230, 57, 70, 0.16);
+  color: #ffd1d6;
+}
+
+.vid-upload-message--success {
+  background: rgba(0, 168, 107, 0.14);
+  color: #c8ffe8;
+}
+
 .vid-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -4537,6 +4667,20 @@ h1 {
 }
 
 @media (max-width: 768px) {
+  .vid-upload-panel {
+    grid-template-columns: 1fr;
+    padding: 22px;
+  }
+
+  .vid-upload-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .vid-upload-hint {
+    text-align: left;
+  }
+
   .vid-grid {
     grid-template-columns: 1fr;
   }
@@ -4579,6 +4723,15 @@ h1 {
 
 /* Small mobile */
 @media (max-width: 480px) {
+  .vid-upload-panel {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .vid-upload-button {
+    width: 100%;
+  }
+
   .videos-header {
     height: 240px;
     padding: 48px 12px 24px;

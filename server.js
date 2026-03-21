@@ -1,5 +1,7 @@
 import express from "express";
 import "dotenv/config";
+import { promises as fs } from "fs";
+import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -8,6 +10,77 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const PUBLIC_DIR = path.join(__dirname, "public");
+const PUBLIC_VIDEOS_DIR = path.join(PUBLIC_DIR, "videos");
+const PUBLIC_DATA_DIR = path.join(PUBLIC_DIR, "data");
+const VIDEOS_MANIFEST_PATH = path.join(PUBLIC_DATA_DIR, "videos.json");
+
+const ALLOWED_VIDEO_EXTENSIONS = new Set([".mp4", ".mov", ".webm", ".m4v"]);
+const ALLOWED_VIDEO_MIME_TYPES = new Set([
+  "video/mp4",
+  "video/quicktime",
+  "video/webm",
+  "video/x-m4v",
+]);
+
+const sanitizeVideoSlug = (value) => {
+  const normalized = String(value || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return normalized || "video";
+};
+
+const readVideosManifest = async () => {
+  try {
+    const raw = await fs.readFile(VIDEOS_MANIFEST_PATH, "utf8");
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      return [];
+    }
+    throw error;
+  }
+};
+
+const writeVideosManifest = async (videos) => {
+  await fs.mkdir(PUBLIC_DATA_DIR, { recursive: true });
+  await fs.writeFile(VIDEOS_MANIFEST_PATH, `${JSON.stringify(videos, null, 2)}\n`, "utf8");
+};
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: async (req, file, cb) => {
+      try {
+        await fs.mkdir(PUBLIC_VIDEOS_DIR, { recursive: true });
+        cb(null, PUBLIC_VIDEOS_DIR);
+      } catch (error) {
+        cb(error);
+      }
+    },
+    filename: (req, file, cb) => {
+      const ext = path.extname(file.originalname).toLowerCase();
+      const basename = path.basename(file.originalname, ext);
+      const slug = sanitizeVideoSlug(basename);
+      cb(null, `${slug}-${Date.now()}${ext}`);
+    },
+  }),
+  limits: {
+    fileSize: 250 * 1024 * 1024,
+  },
+  fileFilter: (req, file, cb) => {
+    const ext = path.extname(file.originalname).toLowerCase();
+    const isAllowedType = ALLOWED_VIDEO_EXTENSIONS.has(ext) || ALLOWED_VIDEO_MIME_TYPES.has(file.mimetype);
+
+    if (!isAllowedType) {
+      cb(new Error("Only MP4, MOV, WEBM, and M4V videos are supported."));
+      return;
+    }
+
+    cb(null, true);
+  },
+});
 
 // --- Donation stats (logic hidden server-side) ---
 const CAMPAIGN_START = new Date("2024-10-01T00:00:00Z");
@@ -108,6 +181,32 @@ app.get("/api/moph/attacks2024", async (req, res) => {
   }
 });
 
+app.post("/api/videos/upload", upload.single("video"), async (req, res, next) => {
+  if (!req.file) {
+    res.status(400).json({ error: "Select a video file to upload." });
+    return;
+  }
+
+  try {
+    const title = String(req.body?.title || "").trim();
+    const videoEntry = {
+      src: `/videos/${req.file.filename}`,
+      title,
+    };
+
+    const videos = await readVideosManifest();
+    videos.push(videoEntry);
+    await writeVideosManifest(videos);
+
+    res.status(201).json({ video: videoEntry, videos });
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.use("/videos", express.static(PUBLIC_VIDEOS_DIR));
+app.use("/data", express.static(PUBLIC_DATA_DIR));
+
 // Serve the built React app
 app.use(express.static(path.join(__dirname, "dist")));
 
@@ -121,6 +220,25 @@ app.get("/api", (req, res) => {
 // SPA fallback — serve index.html for all non-API routes
 app.get("/{*splat}", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
+
+app.use((error, req, res, next) => {
+  if (error instanceof multer.MulterError) {
+    if (error.code === "LIMIT_FILE_SIZE") {
+      res.status(413).json({ error: "Video exceeds the 250 MB upload limit." });
+      return;
+    }
+
+    res.status(400).json({ error: error.message });
+    return;
+  }
+
+  if (error) {
+    res.status(500).json({ error: error.message || "Unexpected server error." });
+    return;
+  }
+
+  next();
 });
 
 app.listen(PORT, () => {

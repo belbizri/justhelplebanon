@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { Link } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
 
 const BATCH_SIZE = 4;
@@ -98,11 +97,17 @@ export default function VideosPage() {
   const [visible, setVisible] = useState(BATCH_SIZE);
   const [error, setError] = useState(null);
   const [modal, setModal] = useState(null);          // { src, title }
+  const [uploadTitle, setUploadTitle] = useState('');
+  const [uploadFile, setUploadFile] = useState(null);
+  const [uploadError, setUploadError] = useState(null);
+  const [uploadSuccess, setUploadSuccess] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
   const sentinelRef = useRef(null);
+  const fileInputRef = useRef(null);
 
   /* Fetch the video manifest */
   useEffect(() => {
-    fetch('/data/videos.json')
+    fetch('/data/videos.json', { cache: 'no-store' })
       .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(data => {
         const list = Array.isArray(data)
@@ -143,6 +148,49 @@ export default function VideosPage() {
     document.body.style.overflow = '';
   }, []);
 
+  const handleUpload = useCallback(async (event) => {
+    event.preventDefault();
+
+    if (!uploadFile) {
+      setUploadError('Choose a video file before uploading.');
+      setUploadSuccess(null);
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('video', uploadFile);
+    formData.append('title', uploadTitle.trim());
+
+    setIsUploading(true);
+    setUploadError(null);
+    setUploadSuccess(null);
+
+    try {
+      const response = await fetch('/api/videos/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const payload = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(payload.error || 'Upload failed.');
+      }
+
+      setVideos(current => [...current, payload.video]);
+      setUploadSuccess('Video uploaded successfully.');
+      setUploadTitle('');
+      setUploadFile(null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    } catch (uploadFailure) {
+      setUploadError(uploadFailure.message || 'Upload failed.');
+    } finally {
+      setIsUploading(false);
+    }
+  }, [uploadFile, uploadTitle]);
+
   return (
     <div className="page-root videos-page">
       {modal && <VideoModal src={modal.src} title={modal.title} onClose={closeModal} />}
@@ -176,8 +224,53 @@ export default function VideosPage() {
       <main className="videos-content">
         {error && <p className="vid-error">{error}</p>}
 
+        <section className="vid-upload-panel" aria-labelledby="video-upload-title">
+          <div className="vid-upload-copy">
+            <p className="vid-upload-kicker">Admin upload</p>
+            <h2 id="video-upload-title">Add a video without editing JSON</h2>
+            <p>
+              Upload an MP4, MOV, WEBM, or M4V file and it will be added to the live videos manifest automatically.
+            </p>
+          </div>
+
+          <form className="vid-upload-form" onSubmit={handleUpload}>
+            <label className="vid-upload-field">
+              <span>Video title</span>
+              <input
+                type="text"
+                value={uploadTitle}
+                onChange={event => setUploadTitle(event.target.value)}
+                placeholder="Optional title"
+                maxLength={120}
+              />
+            </label>
+
+            <label className="vid-upload-field">
+              <span>Video file</span>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="video/mp4,video/quicktime,video/webm,video/x-m4v,.mp4,.mov,.webm,.m4v"
+                onChange={event => setUploadFile(event.target.files?.[0] || null)}
+              />
+            </label>
+
+            <div className="vid-upload-actions">
+              <button type="submit" className="vid-upload-button" disabled={isUploading}>
+                {isUploading ? 'Uploading...' : 'Upload video'}
+              </button>
+              <p className="vid-upload-hint">
+                {uploadFile ? `${uploadFile.name} selected` : 'Maximum size: 250 MB'}
+              </p>
+            </div>
+
+            {uploadError && <p className="vid-upload-message vid-upload-message--error">{uploadError}</p>}
+            {uploadSuccess && <p className="vid-upload-message vid-upload-message--success">{uploadSuccess}</p>}
+          </form>
+        </section>
+
         {videos.length === 0 && !error && (
-          <p className="vid-empty">No videos added yet. Drop <code>.mp4</code> files into <code>public/videos/</code> and list them in <code>public/data/videos.json</code>.</p>
+          <p className="vid-empty">No videos added yet. Use the upload form above to add the first video.</p>
         )}
 
         <div className="vid-grid">
