@@ -4176,15 +4176,16 @@ h1 {
 }
 
 .vid-welcome-accent {
-  color: transparent;
-  background: linear-gradient(100deg, #e63946, #fff, #00a86b, #fff, #e63946);
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  text-shadow: none;
+  color: #e63946;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95),
+    0 0 16px rgba(230, 57, 70, 0.45),
+    0 0 28px rgba(0, 168, 107, 0.24);
+  border-bottom: 2px solid rgba(0, 168, 107, 0.85);
+  padding-bottom: 0.04em;
   animation:
     vidWelcomeReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both,
-    vidWelcomeShimmer 6.8s linear infinite;
+    vidEyebrowPulse 4s ease-in-out infinite;
 }
 
 .vid-welcome-sep {
