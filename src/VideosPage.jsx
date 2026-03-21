@@ -6,6 +6,42 @@ const BATCH_SIZE = 4;
 /* ── Single video card (thumbnail in iPhone frame) ── */
 function VideoCard({ src, title, onOpen }) {
   const videoRef = useRef(null);
+  const [signedSrc, setSignedSrc] = useState('');
+  const [loadError, setLoadError] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    const key = String(src || '').replace(/^\/+/, '');
+
+    if (!key) {
+      setLoadError(true);
+      return () => {};
+    }
+
+    fetch(`/api/videos/signed-url?key=${encodeURIComponent(key)}`)
+      .then(r => {
+        if (!r.ok) throw new Error(String(r.status));
+        return r.json();
+      })
+      .then(data => {
+        if (!cancelled) {
+          setSignedSrc(data.url || '');
+          setLoadError(!data.url);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setLoadError(true);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [src]);
+
+  const handleOpen = () => {
+    if (!signedSrc) return;
+    onOpen(signedSrc, title);
+  };
 
   return (
     <div className="iphone-frame">
@@ -13,16 +49,17 @@ function VideoCard({ src, title, onOpen }) {
         <div className="iphone-speaker" />
         <div className="iphone-camera" />
       </div>
-      <div className="iphone-screen" onClick={() => onOpen(src, title)}>
+      <div className={`iphone-screen ${!signedSrc ? 'iphone-screen--disabled' : ''}`} onClick={handleOpen}>
         <video
           ref={videoRef}
           className="vid-native"
-          src={src}
+          src={signedSrc || undefined}
           playsInline
           loop
           muted
           preload="metadata"
         />
+        {loadError && <div className="vid-unavailable-message">Video unavailable</div>}
         <div className="vid-play-overlay">
           <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
             <path d="M8 5v14l11-7z" />

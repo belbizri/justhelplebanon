@@ -4,6 +4,7 @@ import { promises as fs } from "fs";
 import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
+import { getVideoUrl } from "./services/r2.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -210,6 +211,21 @@ app.use("/data", express.static(PUBLIC_DATA_DIR));
 // Serve the built React app
 app.use(express.static(path.join(__dirname, "dist")));
 
+app.get("/api/videos/signed-url", async (req, res) => {
+  const key = String(req.query.key || "").trim();
+
+  if (!key) {
+    res.status(400).json({ error: "Query parameter 'key' is required." });
+    return;
+  }
+
+  try {
+    const url = await getVideoUrl(key);
+    res.json({ key, url, expiresIn: 3600 });
+  } catch (error) {
+    res.status(500).json({ error: error.message || "Could not generate signed URL." });
+  }
+});
 app.get("/api", (req, res) => {
   res.json({
     message: "API working",

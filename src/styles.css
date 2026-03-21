@@ -4473,6 +4473,10 @@ h1 {
   cursor: pointer;
 }
 
+.iphone-screen--disabled {
+  cursor: not-allowed;
+}
+
 /* Native video element */
 .vid-native {
   width: 100%;
@@ -4498,6 +4502,23 @@ h1 {
   height: 56px;
   color: rgba(255, 255, 255, 0.9);
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+}
+
+.vid-unavailable-message {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  background: rgba(230, 57, 70, 0.72);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 8px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
 }
 
 /* Video title below frame */
