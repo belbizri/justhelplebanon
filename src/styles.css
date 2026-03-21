@@ -1184,42 +1184,6 @@ h1 {
   position: sticky;
   top: 37px;
   z-index: 150;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.page-nav::before {
-  content: '';
-  position: absolute;
-  inset: -55% -8%;
-  background:
-    radial-gradient(circle at 12% 48%, rgba(204, 16, 32, 0.2), rgba(204, 16, 32, 0) 30%),
-    radial-gradient(circle at 84% 40%, rgba(0, 166, 81, 0.24), rgba(0, 166, 81, 0) 34%),
-    url('/images/svg/Canada_mapple.svg') center center / auto 220% no-repeat;
-  opacity: 0.28;
-  filter: saturate(1.2) contrast(1.1) drop-shadow(0 0 26px rgba(255, 255, 255, 0.08));
-  transform-origin: center;
-  animation: navMapleDrift 18s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.page-nav::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(5, 6, 10, 0.94), rgba(5, 6, 10, 0.32) 18%, rgba(5, 6, 10, 0.08) 50%, rgba(5, 6, 10, 0.34) 82%, rgba(5, 6, 10, 0.94)),
-    repeating-linear-gradient(-24deg, rgba(255, 255, 255, 0.024) 0, rgba(255, 255, 255, 0.024) 2px, transparent 2px, transparent 18px);
-  mix-blend-mode: screen;
-  opacity: 0.7;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.page-nav > * {
-  position: relative;
-  z-index: 1;
 }
 
 .nav-logo {
