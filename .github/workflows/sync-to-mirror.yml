@@ -5,43 +5,41 @@ on:
     branches:
       - dev
       - main
-  workflow_dispatch:  # Allow manual triggers
+      - prod
+  workflow_dispatch:
 
 jobs:
   sync:
     runs-on: ubuntu-latest
-    name: Sync branches to belbizri/lebanese-red-cross
+    name: Mirror branch to Basselbi/justhelplebanon
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full history
+          fetch-depth: 0
 
       - name: Add mirror remote
         run: |
-          git remote add mirror https://${{ secrets.GH_PAT }}@github.com/belbizri/lebanese-red-cross.git || true
-          git remote set-url mirror https://${{ secrets.GH_PAT }}@github.com/belbizri/lebanese-red-cross.git
+          git remote add mirror https://${{ secrets.GH_PAT }}@github.com/Basselbi/justhelplebanon.git || true
+          git remote set-url mirror https://${{ secrets.GH_PAT }}@github.com/Basselbi/justhelplebanon.git
 
       - name: Fetch from both remotes
         run: |
           git fetch origin
           git fetch mirror
 
-      - name: Sync dev branch
+      - name: Mirror pushed branch
         run: |
-          git push mirror origin/dev:dev -f
-
-      - name: Sync main branch
-        run: |
-          git push mirror origin/main:main -f
+          BRANCH="${GITHUB_REF_NAME}"
+          git push mirror "origin/${BRANCH}:${BRANCH}" -f
 
       - name: Remove credentials from config
         if: always()
         run: |
-          git remote set-url mirror https://github.com/belbizri/lebanese-red-cross.git
+          git remote set-url mirror https://github.com/Basselbi/justhelplebanon.git
 
       - name: Notify sync status
         if: always()
         run: |
-          echo "✓ Sync complete: Basselbi/justhelplebanon → belbizri/lebanese-red-cross"
+          echo "Sync complete: ${GITHUB_REF_NAME} -> Basselbi/justhelplebanon:${GITHUB_REF_NAME}"

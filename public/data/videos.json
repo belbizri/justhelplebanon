@@ -1,6 +1,5 @@
 [
   { "src": "/videos/video0.mp4", "title": "" },
-  { "src": "/videos/video1.mp4", "title": "" },
   { "src": "/videos/video2.mp4", "title": "" },
   { "src": "/videos/video3.mp4", "title": "" },
   { "src": "/videos/video4.mp4", "title": "" },
@@ -9,9 +8,6 @@
   { "src": "/videos/video7.mp4", "title": "" },
   { "src": "/videos/video8.mp4", "title": "" },
   { "src": "/videos/video9.mp4", "title": "" },
-  { "src": "/videos/video10.mp4", "title": "" },
-  { "src": "/videos/video11.mp4", "title": "" },
-  { "src": "/videos/video14.mp4", "title": "" },
   { "src": "/videos/video15.mp4", "title": "" },
   { "src": "/videos/video16.mp4", "title": "" }
 ]
