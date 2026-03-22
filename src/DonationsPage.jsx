@@ -51,40 +51,40 @@ const CATEGORY_ACCENT = {
    ═══════════════════════════════════════ */
 const ORGANIZATIONS = [
   // ── Food & Medical Aid ──
-  { name: 'Lebanese Red Cross', slug: 'lebanese-red-cross', category: 'Food & Medical Aid', featured: true, online: true,
+  { name: 'Lebanese Red Cross', slug: 'lebanese-red-cross', category: 'Food & Medical Aid', featured: true, online: true, whatsapp: false,
     desc: 'The primary emergency-response organisation in Lebanon — providing ambulance services, disaster relief, and blood transfusion across the country.',
     url: 'https://www.redcross.org.lb/', logo: 'https://www.ifrc.org/sites/default/files/media/logo/2021-08/lebanon_red_cross_logo.png' },
-  { name: 'Blue Mission Organization', slug: 'blue-mission-organization', category: 'Food & Medical Aid', featured: true, online: true,
+  { name: 'Blue Mission Organization', slug: 'blue-mission-organization', category: 'Food & Medical Aid', featured: true, online: true, whatsapp: false,
     desc: 'Humanitarian organisation delivering relief, medical aid, and community support across Lebanon.',
     url: 'https://linktr.ee/bluemission', logo: 'https://ugc.production.linktr.ee/pljsNRNnTmmvEnicbNNA_Gh5FLrijZ4DHXYz8?io=true&size=avatar-v3_0' },
-  { name: 'Human of Tomorrow', slug: 'human-of-tomorrow', category: 'Food & Medical Aid', featured: true, online: true,
+  { name: 'Human of Tomorrow', slug: 'human-of-tomorrow', category: 'Food & Medical Aid', featured: true, online: true, whatsapp: true,
     desc: 'A Lebanese NGO empowering underserved communities through development and skill-building initiatives. 🇱🇧🤝🌱',
     url: 'https://www.instagram.com/humanoftomorrow/', logo: 'https://i.imgur.com/NnLmICn.png' },
-  { name: 'Mobile Clinique', slug: 'mobile-clinique', category: 'Food & Medical Aid', featured: true, online: true,
+  { name: 'Mobile Clinique', slug: 'mobile-clinique', category: 'Food & Medical Aid', featured: true, online: true, whatsapp: false,
     desc: 'Providing mobile healthcare services to underserved communities across Lebanon.',
     url: 'http://bluemission.org/index.php/donation-page/', logo: '/images/mobile_clinique.png' },
-  { name: 'Beit Al Baraka', slug: 'beit-al-baraka', category: 'Food & Medical Aid', featured: true, online: false,
+  { name: 'Beit Al Baraka', slug: 'beit-al-baraka', category: 'Food & Medical Aid', featured: true, online: false, whatsapp: false,
     desc: 'Social supermarket providing dignified access to free groceries for families in need across Beirut and beyond.',
     url: 'https://www.beitelbaraka.org/', logo: 'https://www.google.com/s2/favicons?domain=beitalbaraka.org&sz=128' },
-  { name: 'El-Bizri Foundation', slug: 'el-bizri-foundation', category: 'Food & Medical Aid', featured: true,
+  { name: 'El-Bizri Foundation', slug: 'el-bizri-foundation', category: 'Food & Medical Aid', featured: true, whatsapp: false,
     desc: 'Supporting communities in Lebanon through humanitarian and development projects.',
     url: 'https://nazihbizrifoundation.org/project-1-2-3-2-2-2-2-2-8/', logo: 'https://nazihbizrifoundation.org/wp-content/uploads/2023/10/Facebook-cover-1-1-1.png' },
-  { name: 'Dr. Nazih Bizri Health Center', slug: 'dr-nazih-bizri-health-center', category: 'Food & Medical Aid', featured: true,
+  { name: 'Dr. Nazih Bizri Health Center', slug: 'dr-nazih-bizri-health-center', category: 'Food & Medical Aid', featured: true, whatsapp: false,
     desc: 'Providing essential healthcare services and medical support to communities in need across Lebanon.',
     url: 'https://almoasat.org/departments/details/17', logo: 'https://www.almoasat.org/front/images/logo.png' },
-  { name: 'Morjan Group', slug: 'morjan-group', category: 'Food & Medical Aid', featured: true,
+  { name: 'Morjan Group', slug: 'morjan-group', category: 'Food & Medical Aid', featured: true, whatsapp: false,
     desc: 'Community-driven organisation supporting humanitarian relief efforts across Lebanon.',
     url: '', logo: '/images/morjan_group.png' },
-  { name: 'Empower Lebanon', slug: 'empower-lebanon', category: 'Food & Medical Aid', featured: false,
+  { name: 'Empower Lebanon', slug: 'empower-lebanon', category: 'Food & Medical Aid', featured: false, whatsapp: false,
     desc: 'Grassroots initiative delivering food parcels and hygiene kits to vulnerable families in underserved communities.',
     url: 'https://www.empowerlebanon.org/', logo: 'https://www.google.com/s2/favicons?domain=empowerlebanon.org&sz=128' },
-  { name: 'Lebanese Food Bank', slug: 'lebanese-food-bank', category: 'Food & Medical Aid', featured: false,
+  { name: 'Lebanese Food Bank', slug: 'lebanese-food-bank', category: 'Food & Medical Aid', featured: false, whatsapp: false,
     desc: 'Fights hunger and food waste by collecting surplus food from restaurants and distributing it to those in need.',
     url: 'https://www.lebanesefoodbank.org/', logo: 'https://www.google.com/s2/favicons?domain=lebanesefoodbank.org&sz=128' },
-  { name: 'Al-Kafaat Emergency Fund', slug: 'al-kafaat-emergency-fund', category: 'Food & Medical Aid', featured: false,
+  { name: 'Al-Kafaat Emergency Fund', slug: 'al-kafaat-emergency-fund', category: 'Food & Medical Aid', featured: false, whatsapp: false,
     desc: 'Provides emergency medical care, rehabilitation, and assistive devices for people with disabilities affected by the crisis.',
     url: 'https://www.al-kafaat.org/', logo: 'https://www.google.com/s2/favicons?domain=al-kafaat.org&sz=128' },
-  { name: 'Help Critically Ill Patients', slug: 'help-critically-ill-patients', category: 'Food & Medical Aid', featured: false,
+  { name: 'Help Critically Ill Patients', slug: 'help-critically-ill-patients', category: 'Food & Medical Aid', featured: false, whatsapp: false,
     desc: 'Funds life-saving treatments for critically ill patients who cannot afford hospital bills in Lebanon.',
     url: 'https://www.yallagivelebanon.com/', logo: 'https://www.google.com/s2/favicons?domain=yallagivelebanon.com&sz=128' },
 
@@ -421,16 +421,18 @@ function OrgCard({ org, onSelect }) {
             <span className="org-online-dot" />
             {org.online ? 'Online' : 'Offline'}
           </span>
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="org-whatsapp-icon"
-            aria-label={`Contact ${org.name} on WhatsApp`}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <WhatsappIcon />
-          </a>
+          {org.whatsapp && (
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="org-whatsapp-icon"
+              aria-label={`Contact ${org.name} on WhatsApp`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <WhatsappIcon />
+            </a>
+          )}
         </div>
       </div>
       <div className="org-card-body" onClick={() => onSelect(org)}>
