@@ -3697,12 +3697,14 @@ h1 {
 
 .org-card-logo {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 130px;
+  gap: 10px;
+  min-height: 148px;
   background: linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 100%);
   border-bottom: 1px solid rgba(255,255,255,0.06);
-  padding: 20px 28px;
+  padding: 16px 28px 14px;
 }
 
 .org-card-logo img {
@@ -3716,6 +3718,73 @@ h1 {
 
 .org-card:hover .org-card-logo img {
   transform: scale(1.06);
+}
+
+.org-card-logo-meta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.org-online-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.67rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 5px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.72);
+  background: rgba(255,255,255,0.05);
+}
+
+.org-online-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.45);
+}
+
+.org-online-pill.is-online {
+  color: #9af0b7;
+  border-color: rgba(64, 214, 123, 0.48);
+  background: rgba(36, 120, 70, 0.25);
+}
+
+.org-online-pill.is-online .org-online-dot {
+  background: #42db7e;
+  box-shadow: 0 0 0 4px rgba(66, 219, 126, 0.18);
+}
+
+.org-online-pill.is-offline {
+  color: rgba(255,255,255,0.66);
+  border-color: rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.06);
+}
+
+.org-whatsapp-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #53d87f;
+  background: rgba(37, 211, 102, 0.16);
+  border: 1px solid rgba(37, 211, 102, 0.45);
+  text-decoration: none;
+  transition: transform 0.2s ease, filter 0.2s ease, background 0.2s ease;
+}
+
+.org-whatsapp-icon:hover {
+  transform: translateY(-1px) scale(1.05);
+  filter: brightness(1.1);
+  background: rgba(37, 211, 102, 0.24);
 }
 
 .org-card-initials {

@@ -51,19 +51,19 @@ const CATEGORY_ACCENT = {
    ═══════════════════════════════════════ */
 const ORGANIZATIONS = [
   // ── Food & Medical Aid ──
-  { name: 'Lebanese Red Cross', slug: 'lebanese-red-cross', category: 'Food & Medical Aid', featured: true,
+  { name: 'Lebanese Red Cross', slug: 'lebanese-red-cross', category: 'Food & Medical Aid', featured: true, online: true,
     desc: 'The primary emergency-response organisation in Lebanon — providing ambulance services, disaster relief, and blood transfusion across the country.',
     url: 'https://www.redcross.org.lb/', logo: 'https://www.ifrc.org/sites/default/files/media/logo/2021-08/lebanon_red_cross_logo.png' },
-  { name: 'Blue Mission Organization', slug: 'blue-mission-organization', category: 'Food & Medical Aid', featured: true,
+  { name: 'Blue Mission Organization', slug: 'blue-mission-organization', category: 'Food & Medical Aid', featured: true, online: true,
     desc: 'Humanitarian organisation delivering relief, medical aid, and community support across Lebanon.',
     url: 'https://linktr.ee/bluemission', logo: 'https://ugc.production.linktr.ee/pljsNRNnTmmvEnicbNNA_Gh5FLrijZ4DHXYz8?io=true&size=avatar-v3_0' },
-  { name: 'Human of Tomorrow', slug: 'human-of-tomorrow', category: 'Food & Medical Aid', featured: true,
+  { name: 'Human of Tomorrow', slug: 'human-of-tomorrow', category: 'Food & Medical Aid', featured: true, online: true,
     desc: 'A Lebanese NGO empowering underserved communities through development and skill-building initiatives. 🇱🇧🤝🌱',
     url: 'https://www.instagram.com/humanoftomorrow/', logo: 'https://i.imgur.com/NnLmICn.png' },
-  { name: 'Mobile Clinique', slug: 'mobile-clinique', category: 'Food & Medical Aid', featured: true,
+  { name: 'Mobile Clinique', slug: 'mobile-clinique', category: 'Food & Medical Aid', featured: true, online: true,
     desc: 'Providing mobile healthcare services to underserved communities across Lebanon.',
     url: 'http://bluemission.org/index.php/donation-page/', logo: '/images/mobile_clinique.png' },
-  { name: 'Beit Al Baraka', slug: 'beit-al-baraka', category: 'Food & Medical Aid', featured: true,
+  { name: 'Beit Al Baraka', slug: 'beit-al-baraka', category: 'Food & Medical Aid', featured: true, online: true,
     desc: 'Social supermarket providing dignified access to free groceries for families in need across Beirut and beyond.',
     url: 'https://www.beitelbaraka.org/', logo: 'https://www.google.com/s2/favicons?domain=beitalbaraka.org&sz=128' },
   { name: 'El-Bizri Foundation', slug: 'el-bizri-foundation', category: 'Food & Medical Aid', featured: true,
@@ -171,6 +171,20 @@ const CATEGORIES = [
   'More Places to Donate',
 ];
 
+const sortByOnlineFirst = (list) => (
+  [...list].sort((a, b) => {
+    const onlineDiff = Number(Boolean(b.online)) - Number(Boolean(a.online));
+    if (onlineDiff !== 0) return onlineDiff;
+    return a.name.localeCompare(b.name);
+  })
+);
+
+const getOrgWhatsappUrl = (org) => {
+  if (org.whatsapp) return org.whatsapp;
+  const text = `I want to support ${org.name}${org.url ? ` ${org.url}` : ''}`;
+  return `https://wa.me/?text=${encodeURIComponent(text)}`;
+};
+
 /* ═══════════════════════════════════════
    Reusable Components
    ═══════════════════════════════════════ */
@@ -196,6 +210,11 @@ const ExternalIcon = () => (
 const SearchIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
     <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+  </svg>
+);
+const WhatsappIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true">
+    <path d="M20.52 3.48A11.83 11.83 0 0012.07 0C5.56 0 .27 5.3.27 11.8c0 2.08.54 4.11 1.56 5.9L0 24l6.5-1.71a11.78 11.78 0 005.56 1.42h.01c6.5 0 11.8-5.29 11.8-11.8 0-3.15-1.23-6.1-3.35-8.42zM12.07 21.7h-.01a9.8 9.8 0 01-4.98-1.37l-.36-.21-3.86 1.02 1.03-3.76-.24-.38a9.8 9.8 0 01-1.5-5.19c0-5.4 4.4-9.8 9.81-9.8 2.62 0 5.08 1.02 6.93 2.86a9.73 9.73 0 012.87 6.94c0 5.4-4.4 9.8-9.8 9.8zm5.37-7.36c-.3-.15-1.76-.87-2.03-.98-.27-.1-.47-.15-.67.16-.2.3-.77.98-.95 1.18-.17.2-.35.23-.64.08-.3-.15-1.24-.46-2.37-1.46-.88-.78-1.47-1.73-1.64-2.02-.17-.3-.02-.45.13-.6.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.08-.15-.67-1.62-.92-2.23-.24-.57-.48-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.07 4.48.7.3 1.25.49 1.67.62.7.22 1.34.19 1.84.11.56-.08 1.76-.72 2.01-1.43.25-.7.25-1.31.17-1.43-.07-.12-.27-.2-.57-.35z"/>
   </svg>
 );
 
@@ -390,12 +409,29 @@ function OrgProfileModal({ org, onClose }) {
 function OrgCard({ org, onSelect }) {
   const accent = CATEGORY_ACCENT[org.category] || '#888';
   const initials = org.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  const whatsappUrl = getOrgWhatsappUrl(org);
 
   return (
     <article className="org-card" style={{ '--card-accent': accent }}>
       <div className="org-card-logo" onClick={() => onSelect(org)}>
         <img src={org.logo} alt={`${org.name} logo`} loading="lazy" onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
         <span className="org-card-initials" style={{ display: 'none' }}>{initials}</span>
+        <div className="org-card-logo-meta">
+          <span className={`org-online-pill ${org.online ? 'is-online' : 'is-offline'}`}>
+            <span className="org-online-dot" />
+            {org.online ? 'Online' : 'Offline'}
+          </span>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="org-whatsapp-icon"
+            aria-label={`Contact ${org.name} on WhatsApp`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <WhatsappIcon />
+          </a>
+        </div>
       </div>
       <div className="org-card-body" onClick={() => onSelect(org)}>
         <span className="org-card-cat" style={{ color: accent }}>{org.category}</span>
@@ -466,7 +502,7 @@ export default function DonationsPage() {
   const [selectedOrg, setSelectedOrg] = useState(null);
 
   /* Featured orgs */
-  const featured = useMemo(() => ORGANIZATIONS.filter(o => o.featured), []);
+  const featured = useMemo(() => sortByOnlineFirst(ORGANIZATIONS.filter(o => o.featured)), []);
 
   /* Filtered results */
   const filtered = useMemo(() => {
@@ -476,7 +512,7 @@ export default function DonationsPage() {
       const q = search.toLowerCase();
       list = list.filter(o => o.name.toLowerCase().includes(q) || o.desc.toLowerCase().includes(q));
     }
-    return list;
+    return sortByOnlineFirst(list);
   }, [search, activeCategory]);
 
   /* Group by category */
