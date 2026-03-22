@@ -209,6 +209,37 @@ const FEATURED_VIDEO_CONCEPT = [
   // },
 ];
 
+const getYoutubeEmbedUrl = (url) => {
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.replace('www.', '');
+
+    // youtu.be/<id>
+    if (host === 'youtu.be') {
+      const id = parsed.pathname.split('/').filter(Boolean)[0];
+      return id ? `https://www.youtube.com/embed/${id}?playsinline=1&rel=0` : null;
+    }
+
+    if (host === 'youtube.com' || host === 'm.youtube.com') {
+      // youtube.com/shorts/<id>
+      if (parsed.pathname.startsWith('/shorts/')) {
+        const id = parsed.pathname.split('/')[2];
+        return id ? `https://www.youtube.com/embed/${id}?playsinline=1&rel=0` : null;
+      }
+
+      // youtube.com/watch?v=<id>
+      if (parsed.pathname === '/watch') {
+        const id = parsed.searchParams.get('v');
+        return id ? `https://www.youtube.com/embed/${id}?playsinline=1&rel=0` : null;
+      }
+    }
+  } catch {
+    // Invalid URL
+  }
+
+  return null;
+};
+
 /* ═══════════════════════════════════════
    Reusable Components
    ═══════════════════════════════════════ */
@@ -598,15 +629,27 @@ export default function DonationsPage() {
                 {FEATURED_VIDEO_CONCEPT.map((video) => (
                   <article key={video.id} className="don-video-card">
                     <div className="don-video-media">
-                      <video
-                        className="don-video-el"
-                        src={video.src}
-                        muted
-                        loop
-                        autoPlay
-                        playsInline
-                        preload="metadata"
-                      />
+                      {getYoutubeEmbedUrl(video.src) ? (
+                        <iframe
+                          className="don-video-el"
+                          src={getYoutubeEmbedUrl(video.src)}
+                          title={video.title}
+                          loading="lazy"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                          referrerPolicy="strict-origin-when-cross-origin"
+                        />
+                      ) : (
+                        <video
+                          className="don-video-el"
+                          src={video.src}
+                          muted
+                          loop
+                          autoPlay
+                          playsInline
+                          preload="metadata"
+                        />
+                      )}
                       <div className="don-video-shade" />
                       <span className="don-video-badge">Concept</span>
                     </div>
