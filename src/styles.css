@@ -1720,9 +1720,9 @@ h1 {
 /* Donations page mobile nav drawer override */
 @media (max-width: 768px) {
   .donations-page .nav-links {
-    background: linear-gradient(175deg, #FAFAF7 0%, #F4EFE8 100%);
-    border-left: 1px solid var(--border-subtle);
-    box-shadow: -16px 0 48px rgba(24, 18, 14, 0.12);
+    background: linear-gradient(175deg, #1D1830 0%, #160F24 100%);
+    border-left: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: -16px 0 48px rgba(0, 0, 0, 0.4);
   }
   .donations-page .nav-links::before {
     background: none;
