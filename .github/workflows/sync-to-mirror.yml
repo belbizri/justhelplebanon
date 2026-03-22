@@ -62,7 +62,11 @@ jobs:
       - name: Remove credentials from config
         if: always()
         run: |
-          git remote set-url mirror https://github.com/${TARGET_REPO}.git
+          if git remote get-url mirror >/dev/null 2>&1; then
+            git remote set-url mirror https://github.com/${TARGET_REPO}.git
+          else
+            echo "Skip cleanup: mirror remote was never created."
+          fi
 
       - name: Notify sync status
         if: always()
