@@ -3402,10 +3402,24 @@ h1 {
    ═══════════════════════════════════════ */
 
 .donations-page {
-  background: var(--bg-light);
-  color: var(--tk);
-  --c-nav-bg: rgba(255, 255, 255, 0.94);
-  --c-nav-border: rgba(24, 18, 14, 0.06);
+  background: #140F1F;
+  color: #EDE8F5;
+
+  /* Scope CSS tokens to warm dark equivalents */
+  --bg-light:      #140F1F;
+  --surface:       #1D1830;
+  --surface-2:     #261E3C;
+  --surface-3:     #2F2548;
+  --tk:            #EDE8F5;
+  --tk-muted:      rgba(237, 232, 245, 0.55);
+  --tk-soft:       rgba(237, 232, 245, 0.32);
+  --border-light:  rgba(255, 255, 255, 0.1);
+  --border-subtle: rgba(255, 255, 255, 0.065);
+  --red-light:     rgba(214, 43, 55, 0.15);
+
+  /* Nav stays dark */
+  --c-nav-bg:     rgba(14, 11, 22, 0.9);
+  --c-nav-border: rgba(255, 255, 255, 0.07);
 }
 
 /* Override nav for light bg page */
@@ -3756,7 +3770,7 @@ h1 {
   height: 20px;
   padding: 0 6px;
   border-radius: 10px;
-  background: rgba(24, 18, 14, 0.08);
+  background: rgba(255, 255, 255, 0.1);
   color: var(--tk-muted);
   font-size: 0.66rem;
   font-weight: 700;
