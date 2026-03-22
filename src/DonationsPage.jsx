@@ -185,6 +185,30 @@ const getOrgWhatsappUrl = (org) => {
   return `https://wa.me/?text=${encodeURIComponent(text)}`;
 };
 
+const FEATURED_VIDEO_CONCEPT = [
+  {
+    id: 'mobile-clinic',
+    title: 'Mobile Clinic Day',
+    subtitle: 'Healthcare support in underserved areas',
+    org: 'Mobile Clinique',
+    src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+  },
+  {
+    id: 'food-relief',
+    title: 'Emergency Food Relief',
+    subtitle: 'Packing and delivery for families in need',
+    org: 'Lebanese Food Bank',
+    src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm',
+  },
+  {
+    id: 'community-rebuild',
+    title: 'Community Rebuild',
+    subtitle: 'Restoring homes and local spaces',
+    org: 'Rebuild Beirut',
+    src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+  },
+];
+
 /* ═══════════════════════════════════════
    Reusable Components
    ═══════════════════════════════════════ */
@@ -568,6 +592,34 @@ export default function DonationsPage() {
               Featured Organisations
               <span className="don-heading-line" />
             </h2>
+
+            <div className="don-video-concept" aria-label="Featured impact videos concept">
+              <div className="don-video-track">
+                {FEATURED_VIDEO_CONCEPT.map((video) => (
+                  <article key={video.id} className="don-video-card">
+                    <div className="don-video-media">
+                      <video
+                        className="don-video-el"
+                        src={video.src}
+                        muted
+                        loop
+                        autoPlay
+                        playsInline
+                        preload="metadata"
+                      />
+                      <div className="don-video-shade" />
+                      <span className="don-video-badge">Concept</span>
+                    </div>
+                    <div className="don-video-body">
+                      <h3 className="don-video-title">{video.title}</h3>
+                      <p className="don-video-sub">{video.subtitle}</p>
+                      <p className="don-video-org">Inspired by {video.org}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+
             <CategoryCarousel>
               {featured.map(o => <OrgCard key={o.name} org={o} onSelect={setSelectedOrg} />)}
             </CategoryCarousel>
