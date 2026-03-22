@@ -199,14 +199,14 @@ const FEATURED_VIDEO_CONCEPT = [
     subtitle: 'Packing and delivery for families in need',
     org: 'HumansOfTomorrow',
     src: 'https://youtube.com/shorts/7HCLPcjRSCQ?feature=share',
-  },
-  {
-    id: 'community-rebuild',
-    title: 'Community Rebuild',
-    subtitle: 'Restoring homes and local spaces',
-    org: 'Rebuild Beirut',
-    src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-  },
+  }
+  // {
+  //   id: 'community-rebuild',
+  //   title: 'Community Rebuild',
+  //   subtitle: 'Restoring homes and local spaces',
+  //   org: 'Rebuild Beirut',
+  //   src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+  // },
 ];
 
 /* ═══════════════════════════════════════
