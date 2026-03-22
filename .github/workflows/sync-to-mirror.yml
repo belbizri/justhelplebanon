@@ -21,6 +21,17 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Validate mirror token is configured
+        run: |
+          if [ -z "${{ secrets.GH_PAT }}" ]; then
+            echo "ERROR: GH_PAT secret is missing or empty in this repository." >&2
+            exit 1
+          fi
+
+      - name: Validate access to private target repo
+        run: |
+          git ls-remote "https://x-access-token:${{ secrets.GH_PAT }}@github.com/${TARGET_REPO}.git" HEAD >/dev/null
+
       - name: Add mirror remote
         run: |
           git remote add mirror https://x-access-token:${{ secrets.GH_PAT }}@github.com/${TARGET_REPO}.git || true
