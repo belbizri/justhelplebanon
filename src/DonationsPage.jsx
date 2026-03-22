@@ -624,7 +624,7 @@ export default function DonationsPage() {
               <span className="don-heading-line" />
             </h2>
 
-            <div className="don-video-concept" aria-label="Featured impact videos concept">
+            <div className="don-video-concept" aria-label="Featured impact videos">
               <div className="don-video-track">
                 {FEATURED_VIDEO_CONCEPT.map((video) => (
                   <article key={video.id} className="don-video-card">
@@ -651,7 +651,6 @@ export default function DonationsPage() {
                         />
                       )}
                       <div className="don-video-shade" />
-                      <span className="don-video-badge">Concept</span>
                     </div>
                     <div className="don-video-body">
                       <h3 className="don-video-title">{video.title}</h3>
