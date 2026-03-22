@@ -12,6 +12,8 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     name: Mirror branch to Basselbi/justhelplebanon
+    env:
+      TARGET_REPO: Basselbi/justhelplebanon
 
     steps:
       - name: Checkout repository
@@ -21,8 +23,20 @@ jobs:
 
       - name: Add mirror remote
         run: |
-          git remote add mirror https://${{ secrets.GH_PAT }}@github.com/Basselbi/justhelplebanon.git || true
-          git remote set-url mirror https://${{ secrets.GH_PAT }}@github.com/Basselbi/justhelplebanon.git
+          git remote add mirror https://x-access-token:${{ secrets.GH_PAT }}@github.com/${TARGET_REPO}.git || true
+          git remote set-url mirror https://x-access-token:${{ secrets.GH_PAT }}@github.com/${TARGET_REPO}.git
+
+      - name: Verify mirror remote target
+        run: |
+          URL="$(git remote get-url mirror)"
+          echo "Mirror remote: ${URL}"
+          case "${URL}" in
+            *"github.com/${TARGET_REPO}.git"*) ;;
+            *)
+              echo "ERROR: Mirror target is not ${TARGET_REPO}" >&2
+              exit 1
+              ;;
+          esac
 
       - name: Fetch from both remotes
         run: |
@@ -37,9 +51,9 @@ jobs:
       - name: Remove credentials from config
         if: always()
         run: |
-          git remote set-url mirror https://github.com/Basselbi/justhelplebanon.git
+          git remote set-url mirror https://github.com/${TARGET_REPO}.git
 
       - name: Notify sync status
         if: always()
         run: |
-          echo "Sync complete: ${GITHUB_REF_NAME} -> Basselbi/justhelplebanon:${GITHUB_REF_NAME}"
+          echo "Sync complete: ${GITHUB_REF_NAME} -> ${TARGET_REPO}:${GITHUB_REF_NAME}"
