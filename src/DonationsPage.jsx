@@ -191,54 +191,23 @@ const FEATURED_VIDEO_CONCEPT = [
     title: 'Mobile Clinic Day',
     subtitle: 'Healthcare support in underserved areas',
     org: 'Mobile Clinique',
-    src: 'https://youtube.com/shorts/yomLwm7ojGA',
+    src: '/videos/featured/mobile-clinic.mp4',
   },
   {
     id: 'food-relief',
     title: 'Emergency Food Relief',
     subtitle: 'Packing and delivery for families in need',
-    org: 'HumansOfTomorrow',
-    src: 'https://youtube.com/shorts/7HCLPcjRSCQ?feature=share',
-  }
-  // {
-  //   id: 'community-rebuild',
-  //   title: 'Community Rebuild',
-  //   subtitle: 'Restoring homes and local spaces',
-  //   org: 'Rebuild Beirut',
-  //   src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-  // },
+    org: 'Human of Tomorrow',
+    src: '/videos/featured/food-relief.mp4',
+  },
+  {
+    id: 'community-rebuild',
+    title: 'Community Rebuild',
+    subtitle: 'Restoring homes and local spaces',
+    org: 'Rebuild Beirut',
+    src: '/videos/featured/community-rebuild.mp4',
+  },
 ];
-
-const getYoutubeEmbedUrl = (url) => {
-  try {
-    const parsed = new URL(url);
-    const host = parsed.hostname.replace('www.', '');
-
-    // youtu.be/<id>
-    if (host === 'youtu.be') {
-      const id = parsed.pathname.split('/').filter(Boolean)[0];
-      return id ? `https://www.youtube.com/embed/${id}?playsinline=1&rel=0` : null;
-    }
-
-    if (host === 'youtube.com' || host === 'm.youtube.com') {
-      // youtube.com/shorts/<id>
-      if (parsed.pathname.startsWith('/shorts/')) {
-        const id = parsed.pathname.split('/')[2];
-        return id ? `https://www.youtube.com/embed/${id}?playsinline=1&rel=0` : null;
-      }
-
-      // youtube.com/watch?v=<id>
-      if (parsed.pathname === '/watch') {
-        const id = parsed.searchParams.get('v');
-        return id ? `https://www.youtube.com/embed/${id}?playsinline=1&rel=0` : null;
-      }
-    }
-  } catch {
-    // Invalid URL
-  }
-
-  return null;
-};
 
 /* ═══════════════════════════════════════
    Reusable Components
@@ -629,27 +598,15 @@ export default function DonationsPage() {
                 {FEATURED_VIDEO_CONCEPT.map((video) => (
                   <article key={video.id} className="don-video-card">
                     <div className="don-video-media">
-                      {getYoutubeEmbedUrl(video.src) ? (
-                        <iframe
-                          className="don-video-el"
-                          src={getYoutubeEmbedUrl(video.src)}
-                          title={video.title}
-                          loading="lazy"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          allowFullScreen
-                          referrerPolicy="strict-origin-when-cross-origin"
-                        />
-                      ) : (
-                        <video
-                          className="don-video-el"
-                          src={video.src}
-                          muted
-                          loop
-                          autoPlay
-                          playsInline
-                          preload="metadata"
-                        />
-                      )}
+                      <video
+                        className="don-video-el"
+                        src={video.src}
+                        muted
+                        loop
+                        autoPlay
+                        playsInline
+                        preload="metadata"
+                      />
                       <div className="don-video-shade" />
                     </div>
                     <div className="don-video-body">
