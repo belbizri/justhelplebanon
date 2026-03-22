@@ -86,7 +86,8 @@ jobs:
 
       - name: Validate access to private target repo
         run: |
-          if ! OUTPUT="$(git ls-remote "https://${AUTH_USER}:${{ secrets.GH_PAT }}@github.com/${TARGET_REPO}.git" HEAD 2>&1)"; then
+          BASIC_AUTH="$(printf "x-access-token:${{ secrets.GH_PAT }}" | base64 | tr -d '\n')"
+          if ! OUTPUT="$(git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${BASIC_AUTH}" ls-remote "https://github.com/${TARGET_REPO}.git" HEAD 2>&1)"; then
             echo "ERROR: git ls-remote failed for ${TARGET_REPO}" >&2
             echo "${OUTPUT}" >&2
             exit 1
@@ -94,8 +95,8 @@ jobs:
 
       - name: Add mirror remote
         run: |
-          git remote add mirror https://${AUTH_USER}:${{ secrets.GH_PAT }}@github.com/${TARGET_REPO}.git || true
-          git remote set-url mirror https://${AUTH_USER}:${{ secrets.GH_PAT }}@github.com/${TARGET_REPO}.git
+          git remote add mirror https://github.com/${TARGET_REPO}.git || true
+          git remote set-url mirror https://github.com/${TARGET_REPO}.git
 
       - name: Verify mirror remote target
         run: |
@@ -111,13 +112,15 @@ jobs:
 
       - name: Fetch from both remotes
         run: |
+          BASIC_AUTH="$(printf "x-access-token:${{ secrets.GH_PAT }}" | base64 | tr -d '\n')"
           git fetch origin
-          git fetch mirror
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${BASIC_AUTH}" fetch mirror
 
       - name: Mirror pushed branch
         run: |
+          BASIC_AUTH="$(printf "x-access-token:${{ secrets.GH_PAT }}" | base64 | tr -d '\n')"
           BRANCH="${GITHUB_REF_NAME}"
-          git push mirror "origin/${BRANCH}:${BRANCH}" -f
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${BASIC_AUTH}" push mirror "origin/${BRANCH}:${BRANCH}" -f
 
       - name: Remove credentials from config
         if: always()
