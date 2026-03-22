@@ -3668,6 +3668,117 @@ h1 {
   background: var(--border-light);
 }
 
+.don-video-concept {
+  margin: 0 0 24px;
+}
+
+.don-video-track {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 4px 2px 10px;
+  scrollbar-width: none;
+}
+
+.don-video-track::-webkit-scrollbar {
+  display: none;
+}
+
+.don-video-card {
+  min-width: 280px;
+  max-width: 320px;
+  flex: 1;
+  background: var(--surface);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.don-video-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(140deg, #1f1633 0%, #20163d 45%, #10263f 100%);
+  cursor: pointer;
+}
+
+.don-video-el {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.don-video-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 8, 12, 0) 0%, rgba(8, 8, 12, 0.38) 100%);
+  pointer-events: none;
+}
+
+.don-video-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.don-video-media:hover .don-video-play {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.don-video-media:hover .don-video-play svg {
+  transform: scale(1.08);
+}
+
+.don-video-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(214, 43, 55, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: var(--radius-full);
+  padding: 4px 9px;
+}
+
+.don-video-body {
+  padding: 12px 14px 14px;
+}
+
+.don-video-title {
+  margin: 0 0 4px;
+  font-family: "Manrope", var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: -0.01em;
+}
+
+.don-video-sub {
+  margin: 0;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.76);
+  line-height: 1.5;
+}
+
+.don-video-org {
+  margin: 7px 0 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.52);
+  letter-spacing: 0.03em;
+}
+
 /* ── Search & Filter Toolbar ── */
 .don-toolbar {
   margin-bottom: 44px;
@@ -4247,6 +4358,19 @@ h1 {
 @media (max-width: 768px) {
   .donations-content {
     padding: 32px 16px 60px;
+  }
+
+  .don-video-concept {
+    margin-bottom: 18px;
+  }
+
+  .don-video-card {
+    min-width: 248px;
+    max-width: 280px;
+  }
+
+  .don-video-title {
+    font-size: 0.9rem;
   }
 
   .don-grid-desktop {

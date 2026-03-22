@@ -1,0 +1,26 @@
+{
+  "folder": "/videos/featured",
+  "videos": [
+    {
+      "id": "mobile-clinic",
+      "org": "Mobile Clinique",
+      "title": "Mobile Clinic Day",
+      "fileName": "mobile-clinic.mp4",
+      "publicPath": "/videos/featured/mobile-clinic.mp4"
+    },
+    {
+      "id": "food-relief",
+      "org": "Human of Tomorrow",
+      "title": "Emergency Food Relief",
+      "fileName": "food-relief.mp4",
+      "publicPath": "/videos/featured/food-relief.mp4"
+    },
+    {
+      "id": "community-rebuild",
+      "org": "Rebuild Beirut",
+      "title": "Community Rebuild",
+      "fileName": "community-rebuild.mp4",
+      "publicPath": "/videos/featured/community-rebuild.mp4"
+    }
+  ]
+}
