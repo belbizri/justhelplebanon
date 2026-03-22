@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
 
@@ -51,114 +51,114 @@ const CATEGORY_ACCENT = {
    ═══════════════════════════════════════ */
 const ORGANIZATIONS = [
   // ── Food & Medical Aid ──
-  { name: 'Lebanese Red Cross', category: 'Food & Medical Aid', featured: true,
+  { name: 'Lebanese Red Cross', slug: 'lebanese-red-cross', category: 'Food & Medical Aid', featured: true, online: true,
     desc: 'The primary emergency-response organisation in Lebanon — providing ambulance services, disaster relief, and blood transfusion across the country.',
     url: 'https://www.redcross.org.lb/', logo: 'https://www.ifrc.org/sites/default/files/media/logo/2021-08/lebanon_red_cross_logo.png' },
-  { name: 'El-Bizri Foundation', category: 'Food & Medical Aid', featured: true,
-    desc: 'Supporting communities in Lebanon through humanitarian and development projects.',
-    url: 'https://nazihbizrifoundation.org/project-1-2-3-2-2-2-2-2-8/', logo: 'https://nazihbizrifoundation.org/wp-content/uploads/2023/10/Facebook-cover-1-1-1.png' },
-  { name: 'Dr. Nazih Bizri Health Center', category: 'Food & Medical Aid', featured: true,
-    desc: 'Providing essential healthcare services and medical support to communities in need across Lebanon.',
-    url: 'https://almoasat.org/departments/details/17', logo: 'https://www.almoasat.org/front/images/logo.png' },
-  { name: 'Blue Mission Organization', category: 'Food & Medical Aid', featured: true,
+  { name: 'Blue Mission Organization', slug: 'blue-mission-organization', category: 'Food & Medical Aid', featured: true, online: true,
     desc: 'Humanitarian organisation delivering relief, medical aid, and community support across Lebanon.',
     url: 'https://linktr.ee/bluemission', logo: 'https://ugc.production.linktr.ee/pljsNRNnTmmvEnicbNNA_Gh5FLrijZ4DHXYz8?io=true&size=avatar-v3_0' },
-  { name: 'Human of Tomorrow', category: 'Food & Medical Aid', featured: true,
-    desc: 'Community initiative supporting humanitarian causes and relief efforts for families in Lebanon.',
-    url: 'https://www.instagram.com/humanoftomorrow/', logo: 'https://scontent-yyz1-1.cdninstagram.com/v/t51.82787-19/571508307_17844103422609793_5344415673328353738_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-yyz1-1.cdninstagram.com&_nc_cat=101&_nc_oc=Q6cZ2gG9BjYxKDoAkESXhNLT0RlE1jJ0yTimL1p7NpsmqaYug6-PtPwlmDsj1mxyYvzaP1I&_nc_ohc=IDOhLmUaLw8Q7kNvwHXcJdT&_nc_gid=uYmuMwC63OZBVzQ35OJkfw&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_AfxizRmZQoJ5Nu3Rbv-WWTjCe_S722S2S5bsbGn7EXds5g&oe=69C3F556&_nc_sid=7a9f4b' },
-  { name: 'Morjan Group', category: 'Food & Medical Aid', featured: true,
-    desc: 'Community-driven organisation supporting humanitarian relief efforts across Lebanon.',
-    url: '', logo: '/images/morjan_group.png' },
-  { name: 'Mobile Clinique', category: 'Food & Medical Aid', featured: true,
+  { name: 'Human of Tomorrow', slug: 'human-of-tomorrow', category: 'Food & Medical Aid', featured: true, online: true,
+    desc: 'A Lebanese NGO empowering underserved communities through development and skill-building initiatives. 🇱🇧🤝🌱',
+    url: 'https://www.instagram.com/humanoftomorrow/', logo: 'https://i.imgur.com/NnLmICn.png' },
+  { name: 'Mobile Clinique', slug: 'mobile-clinique', category: 'Food & Medical Aid', featured: true, online: true,
     desc: 'Providing mobile healthcare services to underserved communities across Lebanon.',
     url: 'http://bluemission.org/index.php/donation-page/', logo: '/images/mobile_clinique.png' },
-  { name: 'Empower Lebanon', category: 'Food & Medical Aid', featured: false,
-    desc: 'Grassroots initiative delivering food parcels and hygiene kits to vulnerable families in underserved communities.',
-    url: 'https://www.empowerlebanon.org/', logo: 'https://www.google.com/s2/favicons?domain=empowerlebanon.org&sz=128' },
-  { name: 'Beit Al Baraka', category: 'Food & Medical Aid', featured: true,
+  { name: 'Beit Al Baraka', slug: 'beit-al-baraka', category: 'Food & Medical Aid', featured: true, online: true,
     desc: 'Social supermarket providing dignified access to free groceries for families in need across Beirut and beyond.',
     url: 'https://www.beitelbaraka.org/', logo: 'https://www.google.com/s2/favicons?domain=beitalbaraka.org&sz=128' },
-  { name: 'Lebanese Food Bank', category: 'Food & Medical Aid', featured: false,
+  { name: 'El-Bizri Foundation', slug: 'el-bizri-foundation', category: 'Food & Medical Aid', featured: true,
+    desc: 'Supporting communities in Lebanon through humanitarian and development projects.',
+    url: 'https://nazihbizrifoundation.org/project-1-2-3-2-2-2-2-2-8/', logo: 'https://nazihbizrifoundation.org/wp-content/uploads/2023/10/Facebook-cover-1-1-1.png' },
+  { name: 'Dr. Nazih Bizri Health Center', slug: 'dr-nazih-bizri-health-center', category: 'Food & Medical Aid', featured: true,
+    desc: 'Providing essential healthcare services and medical support to communities in need across Lebanon.',
+    url: 'https://almoasat.org/departments/details/17', logo: 'https://www.almoasat.org/front/images/logo.png' },
+  { name: 'Morjan Group', slug: 'morjan-group', category: 'Food & Medical Aid', featured: true,
+    desc: 'Community-driven organisation supporting humanitarian relief efforts across Lebanon.',
+    url: '', logo: '/images/morjan_group.png' },
+  { name: 'Empower Lebanon', slug: 'empower-lebanon', category: 'Food & Medical Aid', featured: false,
+    desc: 'Grassroots initiative delivering food parcels and hygiene kits to vulnerable families in underserved communities.',
+    url: 'https://www.empowerlebanon.org/', logo: 'https://www.google.com/s2/favicons?domain=empowerlebanon.org&sz=128' },
+  { name: 'Lebanese Food Bank', slug: 'lebanese-food-bank', category: 'Food & Medical Aid', featured: false,
     desc: 'Fights hunger and food waste by collecting surplus food from restaurants and distributing it to those in need.',
     url: 'https://www.lebanesefoodbank.org/', logo: 'https://www.google.com/s2/favicons?domain=lebanesefoodbank.org&sz=128' },
-  { name: 'Al-Kafaat Emergency Fund', category: 'Food & Medical Aid', featured: false,
+  { name: 'Al-Kafaat Emergency Fund', slug: 'al-kafaat-emergency-fund', category: 'Food & Medical Aid', featured: false,
     desc: 'Provides emergency medical care, rehabilitation, and assistive devices for people with disabilities affected by the crisis.',
     url: 'https://www.al-kafaat.org/', logo: 'https://www.google.com/s2/favicons?domain=al-kafaat.org&sz=128' },
-  { name: 'Help Critically Ill Patients', category: 'Food & Medical Aid', featured: false,
+  { name: 'Help Critically Ill Patients', slug: 'help-critically-ill-patients', category: 'Food & Medical Aid', featured: false,
     desc: 'Funds life-saving treatments for critically ill patients who cannot afford hospital bills in Lebanon.',
     url: 'https://www.yallagivelebanon.com/', logo: 'https://www.google.com/s2/favicons?domain=yallagivelebanon.com&sz=128' },
 
   // ── Shelter & Reconstruction ──
-  { name: 'Baytna Baytak', category: 'Shelter & Reconstruction', featured: true,
+  { name: 'Baytna Baytak', slug: 'baytna-baytak', category: 'Shelter & Reconstruction', featured: true,
     desc: 'Opens its doors as a community shelter providing free housing, meals, and psychological support to displaced families.',
     url: 'https://www.baytnabaytak.org/', logo: 'https://www.google.com/s2/favicons?domain=baytnabaytak.org&sz=128' },
-  { name: 'Rebuild Beirut', category: 'Shelter & Reconstruction', featured: false,
+  { name: 'Rebuild Beirut', slug: 'rebuild-beirut', category: 'Shelter & Reconstruction', featured: false,
     desc: 'Grassroots movement restoring homes damaged by the Beirut explosion—window by window, wall by wall.',
     url: 'https://www.rebuildbeirut.com/', logo: 'https://www.google.com/s2/favicons?domain=rebuildbeirut.com&sz=128' },
-  { name: 'Beib w Shebbek', category: 'Shelter & Reconstruction', featured: false,
+  { name: 'Beib w Shebbek', slug: 'beib-w-shebbek', category: 'Shelter & Reconstruction', featured: false,
     desc: 'Replaces doors and windows for homes destroyed in the Beirut blast, restoring safety and dignity for families.',
     url: 'https://www.instagram.com/beibwshebbek/', logo: 'https://www.google.com/s2/favicons?domain=instagram.com&sz=128' },
-  { name: 'Windows for Beirut', category: 'Shelter & Reconstruction', featured: false,
+  { name: 'Windows for Beirut', slug: 'windows-for-beirut', category: 'Shelter & Reconstruction', featured: false,
     desc: 'Crowd-funded initiative repairing broken windows in hundreds of blast-damaged apartments across Beirut.',
     url: 'https://www.windowsforbeirut.com/', logo: 'https://www.google.com/s2/favicons?domain=windowsforbeirut.com&sz=128' },
 
   // ── Education, Environment & Support ──
-  { name: 'Teach for Lebanon', category: 'Education, Environment & Support', featured: true,
+  { name: 'Teach for Lebanon', slug: 'teach-for-lebanon', category: 'Education, Environment & Support', featured: true,
     desc: 'Places qualified teachers in under-resourced schools to ensure every child in Lebanon has access to quality education.',
     url: 'https://www.teachforlebanon.org/', logo: 'https://www.google.com/s2/favicons?domain=teachforlebanon.org&sz=128' },
-  { name: 'KAFA', category: 'Education, Environment & Support', featured: false,
+  { name: 'KAFA', slug: 'kafa', category: 'Education, Environment & Support', featured: false,
     desc: 'Advocates for an end to gender-based violence and supports survivors with legal aid, counselling, and shelter.',
     url: 'https://www.kafa.org.lb/', logo: 'https://www.google.com/s2/favicons?domain=kafa.org.lb&sz=128' },
-  { name: 'Solar Panel Campaign', category: 'Education, Environment & Support', featured: false,
+  { name: 'Solar Panel Campaign', slug: 'solar-panel-campaign', category: 'Education, Environment & Support', featured: false,
     desc: 'Installs solar panels in hospitals, schools, and homes to combat crippling power outages across Lebanon.',
     url: 'https://www.instagram.com/solarpanelcampaign/', logo: 'https://www.google.com/s2/favicons?domain=instagram.com&sz=128' },
-  { name: 'Kafala Victims', category: 'Education, Environment & Support', featured: false,
+  { name: 'Kafala Victims', slug: 'kafala-victims', category: 'Education, Environment & Support', featured: false,
     desc: 'Supports migrant domestic workers trapped in the kafala system with legal assistance, shelter, and repatriation.',
     url: 'https://www.antislavery.org/', logo: 'https://www.google.com/s2/favicons?domain=antislavery.org&sz=128' },
-  { name: 'Animals Lebanon', category: 'Education, Environment & Support', featured: false,
+  { name: 'Animals Lebanon', slug: 'animals-lebanon', category: 'Education, Environment & Support', featured: false,
     desc: 'Rescues and rehabilitates animals in crisis, advocates for animal welfare legislation, and runs the only shelter of its kind.',
     url: 'https://www.animalslebanon.org/', logo: 'https://www.google.com/s2/favicons?domain=animalslebanon.org&sz=128' },
-  { name: 'Recycle Lebanon', category: 'Education, Environment & Support', featured: false,
+  { name: 'Recycle Lebanon', slug: 'recycle-lebanon', category: 'Education, Environment & Support', featured: false,
     desc: 'Promotes sustainable waste management through community recycling programs and environmental education initiatives.',
     url: 'https://www.recyclelebanon.org/', logo: 'https://www.google.com/s2/favicons?domain=recyclelebanon.org&sz=128' },
 
   // ── Other Fundraisers ──
-  { name: 'LIFE Lebanon', category: 'Other Fundraisers', featured: false,
+  { name: 'LIFE Lebanon', slug: 'life-lebanon', category: 'Other Fundraisers', featured: false,
     desc: 'International humanitarian campaign supporting multisector relief projects in Lebanon — from food to mental health.',
     url: 'https://www.lifelebanon.com/', logo: 'https://www.google.com/s2/favicons?domain=lifelebanon.com&sz=128' },
-  { name: 'Impact Lebanon', category: 'Other Fundraisers', featured: true,
+  { name: 'Impact Lebanon', slug: 'impact-lebanon', category: 'Other Fundraisers', featured: true,
     desc: 'Diaspora-led platform funding high-impact community projects voted on by the Lebanese public.',
     url: 'https://www.impactlebanon.com/', logo: 'https://www.google.com/s2/favicons?domain=impactlebanon.com&sz=128' },
 
   // ── More Places to Donate ──
-  { name: 'Oxfam', category: 'More Places to Donate', featured: false,
+  { name: 'Oxfam', slug: 'oxfam', category: 'More Places to Donate', featured: false,
     desc: 'Global humanitarian organisation providing clean water, food assistance, and livelihoods support in Lebanon.',
     url: 'https://www.oxfam.org/en/what-we-do/countries/lebanon', logo: 'https://www.google.com/s2/favicons?domain=oxfam.org&sz=128' },
-  { name: 'Ajialouna', category: 'More Places to Donate', featured: false,
+  { name: 'Ajialouna', slug: 'ajialouna', category: 'More Places to Donate', featured: false,
     desc: 'Provides free education, healthcare, and community development for disadvantaged children and youth in Lebanon.',
     url: 'https://www.ajialouna.org/', logo: 'https://www.google.com/s2/favicons?domain=ajialouna.org&sz=128' },
-  { name: 'Bassma', category: 'More Places to Donate', featured: false,
+  { name: 'Bassma', slug: 'bassma', category: 'More Places to Donate', featured: false,
     desc: 'Empowers marginalised families with education sponsorships, healthcare, and micro-enterprise funding.',
     url: 'https://www.bassma.org/', logo: 'https://www.google.com/s2/favicons?domain=bassma.org&sz=128' },
-  { name: 'Caritas Lebanon', category: 'More Places to Donate', featured: false,
+  { name: 'Caritas Lebanon', slug: 'caritas-lebanon', category: 'More Places to Donate', featured: false,
     desc: 'Catholic relief agency delivering food, shelter, healthcare, and psychosocial support to communities in crisis.',
     url: 'https://www.caritas.org.lb/', logo: 'https://www.google.com/s2/favicons?domain=caritas.org.lb&sz=128' },
-  { name: 'Food Blessed', category: 'More Places to Donate', featured: false,
+  { name: 'Food Blessed', slug: 'food-blessed', category: 'More Places to Donate', featured: false,
     desc: 'Rescues surplus food from hotels and restaurants and redistributes it to families and shelters in need.',
     url: 'https://www.foodblessed.com/', logo: 'https://www.google.com/s2/favicons?domain=foodblessed.com&sz=128' },
-  { name: 'Lebanon Needs', category: 'More Places to Donate', featured: false,
+  { name: 'Lebanon Needs', slug: 'lebanon-needs', category: 'More Places to Donate', featured: false,
     desc: 'Matches donors with verified urgent needs — from medication to school fees — through a transparent request platform.',
     url: 'https://www.lebanonneeds.com/', logo: 'https://www.google.com/s2/favicons?domain=lebanonneeds.com&sz=128' },
-  { name: 'Saint George Hospital', category: 'More Places to Donate', featured: false,
+  { name: 'Saint George Hospital', slug: 'saint-george-hospital', category: 'More Places to Donate', featured: false,
     desc: 'Historic Beirut hospital severely damaged in the blast — donations fund reconstruction and patient care.',
     url: 'https://www.stgeorgehospital.org/', logo: 'https://www.google.com/s2/favicons?domain=stgeorgehospital.org&sz=128' },
-  { name: 'Arcenciel', category: 'More Places to Donate', featured: false,
+  { name: 'Arcenciel', slug: 'arcenciel', category: 'More Places to Donate', featured: false,
     desc: 'Social enterprise providing health, environment, and inclusion services — from waste management to disability care.',
     url: 'https://www.arcenciel.org/', logo: 'https://www.google.com/s2/favicons?domain=arcenciel.org&sz=128' },
-  { name: "Children's Cancer Center", category: 'More Places to Donate', featured: false,
+  { name: "Children's Cancer Center", slug: 'childrens-cancer-center', category: 'More Places to Donate', featured: false,
     desc: 'The only specialised paediatric cancer treatment facility in Lebanon — treating children regardless of ability to pay.',
     url: 'https://www.cccl.org.lb/', logo: 'https://www.google.com/s2/favicons?domain=cccl.org.lb&sz=128' },
-  { name: 'Nusaned', category: 'More Places to Donate', featured: false,
+  { name: 'Nusaned', slug: 'nusaned', category: 'More Places to Donate', featured: false,
     desc: 'Digital platform connecting Lebanese citizens to offer and receive help — from housing to job opportunities.',
     url: 'https://nusaned.org/', logo: 'https://www.google.com/s2/favicons?domain=nusaned.org&sz=128' },
 ];
@@ -170,6 +170,20 @@ const CATEGORIES = [
   'Other Fundraisers',
   'More Places to Donate',
 ];
+
+const sortByOnlineFirst = (list) => (
+  [...list].sort((a, b) => {
+    const onlineDiff = Number(Boolean(b.online)) - Number(Boolean(a.online));
+    if (onlineDiff !== 0) return onlineDiff;
+    return a.name.localeCompare(b.name);
+  })
+);
+
+const getOrgWhatsappUrl = (org) => {
+  if (org.whatsapp) return org.whatsapp;
+  const text = `I want to support ${org.name}${org.url ? ` ${org.url}` : ''}`;
+  return `https://wa.me/?text=${encodeURIComponent(text)}`;
+};
 
 /* ═══════════════════════════════════════
    Reusable Components
@@ -198,30 +212,247 @@ const SearchIcon = () => (
     <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
   </svg>
 );
+const WhatsappIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true">
+    <path d="M20.52 3.48A11.83 11.83 0 0012.07 0C5.56 0 .27 5.3.27 11.8c0 2.08.54 4.11 1.56 5.9L0 24l6.5-1.71a11.78 11.78 0 005.56 1.42h.01c6.5 0 11.8-5.29 11.8-11.8 0-3.15-1.23-6.1-3.35-8.42zM12.07 21.7h-.01a9.8 9.8 0 01-4.98-1.37l-.36-.21-3.86 1.02 1.03-3.76-.24-.38a9.8 9.8 0 01-1.5-5.19c0-5.4 4.4-9.8 9.81-9.8 2.62 0 5.08 1.02 6.93 2.86a9.73 9.73 0 012.87 6.94c0 5.4-4.4 9.8-9.8 9.8zm5.37-7.36c-.3-.15-1.76-.87-2.03-.98-.27-.1-.47-.15-.67.16-.2.3-.77.98-.95 1.18-.17.2-.35.23-.64.08-.3-.15-1.24-.46-2.37-1.46-.88-.78-1.47-1.73-1.64-2.02-.17-.3-.02-.45.13-.6.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.08-.15-.67-1.62-.92-2.23-.24-.57-.48-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.07 4.48.7.3 1.25.49 1.67.62.7.22 1.34.19 1.84.11.56-.08 1.76-.72 2.01-1.43.25-.7.25-1.31.17-1.43-.07-.12-.27-.2-.57-.35z"/>
+  </svg>
+);
+
+/* ── Media Lightbox (video / image expand) ── */
+function MediaLightbox({ media, onClose }) {
+  const videoRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    if (media.type === 'video' && videoRef.current) videoRef.current.play().catch(() => {});
+  }, [media]);
+
+  useEffect(() => {
+    const handler = e => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [onClose]);
+
+  const toggle = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) v.play(); else v.pause();
+  };
+
+  return (
+    <div className="orgp-lightbox-backdrop" onClick={onClose}>
+      <div className="orgp-lightbox" onClick={e => e.stopPropagation()}>
+        <button className="orgp-lightbox-close" onClick={onClose} aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" width="22" height="22">
+            <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        {media.type === 'video' ? (
+          <div className="orgp-lightbox-video-wrap" onClick={toggle}>
+            <video
+              ref={videoRef}
+              className="orgp-lightbox-video"
+              src={media.src}
+              playsInline
+              loop
+              onPlay={() => setPlaying(true)}
+              onPause={() => setPlaying(false)}
+            />
+            {!playing && (
+              <div className="orgp-lightbox-play">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="64" height="64"><path d="M8 5v14l11-7z" /></svg>
+              </div>
+            )}
+          </div>
+        ) : (
+          <img className="orgp-lightbox-img" src={media.src} alt="" />
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ── Org Profile Modal ── */
+function OrgProfileModal({ org, onClose }) {
+  const [profile, setProfile] = useState(null);
+  const [activeTab, setActiveTab] = useState('updates');
+  const [expandedMedia, setExpandedMedia] = useState(null);
+  const accent = CATEGORY_ACCENT[org.category] || '#888';
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    fetch('/data/org-profiles.json', { cache: 'no-store' })
+      .then(r => r.json())
+      .then(data => setProfile(data[org.slug] || { videos: [], images: [], updates: [] }))
+      .catch(() => setProfile({ videos: [], images: [], updates: [] }));
+    return () => { document.body.style.overflow = ''; };
+  }, [org.slug]);
+
+  useEffect(() => {
+    const handler = e => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [onClose]);
+
+  const hasContent = profile && (profile.videos.length > 0 || profile.images.length > 0 || profile.updates.length > 0);
+
+  return (
+    <div className="orgp-backdrop" onClick={onClose}>
+      <div className="orgp-modal" onClick={e => e.stopPropagation()} style={{ '--orgp-accent': accent }}>
+        <button className="orgp-close" onClick={onClose} aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" width="20" height="20">
+            <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+
+        <div className="orgp-header">
+          <div className="orgp-logo">
+            <img src={org.logo} alt={org.name} onError={e => { e.target.style.display = 'none'; }} />
+          </div>
+          <div className="orgp-info">
+            <span className="orgp-cat" style={{ color: accent }}>{org.category}</span>
+            <h2 className="orgp-name">{org.name}</h2>
+            <p className="orgp-desc">{org.desc}</p>
+          </div>
+        </div>
+
+        {/* Tabs */}
+        <div className="orgp-tabs">
+          <button className={`orgp-tab ${activeTab === 'updates' ? 'active' : ''}`} onClick={() => setActiveTab('updates')}>
+            Updates
+          </button>
+          <button className={`orgp-tab ${activeTab === 'media' ? 'active' : ''}`} onClick={() => setActiveTab('media')}>
+            Photos &amp; Videos
+          </button>
+        </div>
+
+        <div className="orgp-body">
+          {!profile && <p className="orgp-loading">Loading...</p>}
+
+          {profile && activeTab === 'updates' && (
+            <div className="orgp-updates">
+              {profile.updates.length === 0 ? (
+                <p className="orgp-empty">No updates yet — check back soon.</p>
+              ) : (
+                profile.updates.map((u, i) => (
+                  <div key={i} className="orgp-update">
+                    <span className="orgp-update-date">{u.date}</span>
+                    <p className="orgp-update-text">{u.text}</p>
+                  </div>
+                ))
+              )}
+            </div>
+          )}
+
+          {profile && activeTab === 'media' && (
+            <div className="orgp-media">
+              {profile.videos.length === 0 && profile.images.length === 0 ? (
+                <p className="orgp-empty">No media yet — check back soon.</p>
+              ) : (
+                <>
+                  {profile.videos.length > 0 && (
+                    <div className="orgp-media-section">
+                      <h4 className="orgp-media-label">Videos</h4>
+                      <div className="orgp-media-grid">
+                        {profile.videos.map((src, i) => (
+                          <div key={i} className="orgp-thumb" onClick={() => setExpandedMedia({ type: 'video', src })}>
+                            <video className="orgp-video" src={src} playsInline muted preload="metadata" />
+                            <div className="orgp-thumb-play">
+                              <svg viewBox="0 0 24 24" fill="currentColor" width="40" height="40"><path d="M8 5v14l11-7z" /></svg>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {profile.images.length > 0 && (
+                    <div className="orgp-media-section">
+                      <h4 className="orgp-media-label">Photos</h4>
+                      <div className="orgp-media-grid">
+                        {profile.images.map((src, i) => (
+                          <div key={i} className="orgp-thumb" onClick={() => setExpandedMedia({ type: 'image', src })}>
+                            <img src={src} alt="" className="orgp-image" loading="lazy" />
+                            <div className="orgp-thumb-zoom">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" width="22" height="22">
+                                <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                                <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+                              </svg>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          )}
+        </div>
+
+        {expandedMedia && <MediaLightbox media={expandedMedia} onClose={() => setExpandedMedia(null)} />}
+
+        <div className="orgp-footer">
+          {org.url ? (
+            <a href={org.url} target="_blank" rel="noopener noreferrer" className="orgp-donate-btn">
+              Donate to {org.name} <ExternalIcon />
+            </a>
+          ) : (
+            <span className="orgp-donate-btn orgp-donate-btn--disabled">Coming Soon</span>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 /* Organisation Card */
-function OrgCard({ org }) {
+function OrgCard({ org, onSelect }) {
   const accent = CATEGORY_ACCENT[org.category] || '#888';
   const initials = org.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  const whatsappUrl = getOrgWhatsappUrl(org);
 
   return (
     <article className="org-card" style={{ '--card-accent': accent }}>
-      <div className="org-card-logo">
+      <div className="org-card-logo" onClick={() => onSelect(org)}>
         <img src={org.logo} alt={`${org.name} logo`} loading="lazy" onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
         <span className="org-card-initials" style={{ display: 'none' }}>{initials}</span>
+        <div className="org-card-logo-meta">
+          <span className={`org-online-pill ${org.online ? 'is-online' : 'is-offline'}`}>
+            <span className="org-online-dot" />
+            {org.online ? 'Online' : 'Offline'}
+          </span>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="org-whatsapp-icon"
+            aria-label={`Contact ${org.name} on WhatsApp`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <WhatsappIcon />
+          </a>
+        </div>
       </div>
-      <div className="org-card-body">
+      <div className="org-card-body" onClick={() => onSelect(org)}>
         <span className="org-card-cat" style={{ color: accent }}>{org.category}</span>
         <h3 className="org-card-name">{org.name}</h3>
         <p className="org-card-desc">{org.desc}</p>
       </div>
-      {org.url ? (
-        <a href={org.url} target="_blank" rel="noopener noreferrer" className="org-card-cta" aria-label={`Donate to ${org.name}`}>
-          View / Donate <ExternalIcon />
-        </a>
-      ) : (
-        <span className="org-card-cta" style={{ opacity: 0.4, cursor: 'default' }}>Coming Soon</span>
-      )}
+      <div className="org-card-actions">
+        <button className="org-card-profile-btn" onClick={() => onSelect(org)} aria-label={`View ${org.name} profile`}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          Profile
+        </button>
+        {org.url ? (
+          <a href={org.url} target="_blank" rel="noopener noreferrer" className="org-card-cta" aria-label={`Donate to ${org.name}`}>
+            View / Donate <ExternalIcon />
+          </a>
+        ) : (
+          <span className="org-card-cta" style={{ opacity: 0.4, cursor: 'default' }}>Coming Soon</span>
+        )}
+      </div>
     </article>
   );
 }
@@ -268,9 +499,10 @@ function CategoryCarousel({ children }) {
 export default function DonationsPage() {
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
+  const [selectedOrg, setSelectedOrg] = useState(null);
 
   /* Featured orgs */
-  const featured = useMemo(() => ORGANIZATIONS.filter(o => o.featured), []);
+  const featured = useMemo(() => sortByOnlineFirst(ORGANIZATIONS.filter(o => o.featured)), []);
 
   /* Filtered results */
   const filtered = useMemo(() => {
@@ -280,7 +512,7 @@ export default function DonationsPage() {
       const q = search.toLowerCase();
       list = list.filter(o => o.name.toLowerCase().includes(q) || o.desc.toLowerCase().includes(q));
     }
-    return list;
+    return sortByOnlineFirst(list);
   }, [search, activeCategory]);
 
   /* Group by category */
@@ -298,6 +530,9 @@ export default function DonationsPage() {
 
   return (
     <div className="page-root donations-page">
+      {/* Org Profile Modal */}
+      {selectedOrg && <OrgProfileModal org={selectedOrg} onClose={() => setSelectedOrg(null)} />}
+
       {/* Nav */}
       <NavBar />
 
@@ -332,7 +567,7 @@ export default function DonationsPage() {
               <span className="don-heading-line" />
             </h2>
             <CategoryCarousel>
-              {featured.map(o => <OrgCard key={o.name} org={o} />)}
+              {featured.map(o => <OrgCard key={o.name} org={o} onSelect={setSelectedOrg} />)}
             </CategoryCarousel>
           </section>
         )}
@@ -392,11 +627,11 @@ export default function DonationsPage() {
             </h2>
             {/* Desktop grid, mobile carousel */}
             <div className="don-grid-desktop">
-              {grouped[category].map(o => <OrgCard key={o.name} org={o} />)}
+              {grouped[category].map(o => <OrgCard key={o.name} org={o} onSelect={setSelectedOrg} />)}
             </div>
             <div className="don-carousel-mobile">
               <CategoryCarousel>
-                {grouped[category].map(o => <OrgCard key={o.name} org={o} />)}
+                {grouped[category].map(o => <OrgCard key={o.name} org={o} onSelect={setSelectedOrg} />)}
               </CategoryCarousel>
             </div>
           </section>
