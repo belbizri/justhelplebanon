@@ -191,14 +191,14 @@ const FEATURED_VIDEO_CONCEPT = [
     title: 'Mobile Clinic Day',
     subtitle: 'Healthcare support in underserved areas',
     org: 'Mobile Clinique',
-    src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+    src: 'https://youtube.com/shorts/yomLwm7ojGA',
   },
   {
     id: 'food-relief',
     title: 'Emergency Food Relief',
     subtitle: 'Packing and delivery for families in need',
-    org: 'Lebanese Food Bank',
-    src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm',
+    org: 'HumansOfTomorrow',
+    src: 'https://youtube.com/shorts/7HCLPcjRSCQ?feature=share',
   },
   {
     id: 'community-rebuild',
