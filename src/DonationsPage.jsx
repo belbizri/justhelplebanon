@@ -636,7 +636,7 @@ export default function DonationsPage() {
                     <div className="don-video-body">
                       <h3 className="don-video-title">{video.title}</h3>
                       <p className="don-video-sub">{video.subtitle}</p>
-                      <p className="don-video-org">Inspired by {video.org}</p>
+                      <p className="don-video-org">{video.org}</p>
                     </div>
                   </article>
                 ))}
