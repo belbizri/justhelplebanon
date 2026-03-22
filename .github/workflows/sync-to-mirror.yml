@@ -58,6 +58,8 @@ jobs:
             exit 1
           fi
 
+          echo "AUTH_USER=${AUTH_USER}" >> "${GITHUB_ENV}"
+
           echo "Token authenticated as: ${AUTH_USER} (id=${AUTH_ID:-unknown})"
 
           REPO_STATUS="$(curl -sS -o /tmp/target-repo-check.json -w "%{http_code}" \
@@ -84,7 +86,7 @@ jobs:
 
       - name: Validate access to private target repo
         run: |
-          if ! OUTPUT="$(git ls-remote "https://x-access-token:${{ secrets.GH_PAT }}@github.com/${TARGET_REPO}.git" HEAD 2>&1)"; then
+          if ! OUTPUT="$(git ls-remote "https://${AUTH_USER}:${{ secrets.GH_PAT }}@github.com/${TARGET_REPO}.git" HEAD 2>&1)"; then
             echo "ERROR: git ls-remote failed for ${TARGET_REPO}" >&2
             echo "${OUTPUT}" >&2
             exit 1
@@ -92,8 +94,8 @@ jobs:
 
       - name: Add mirror remote
         run: |
-          git remote add mirror https://x-access-token:${{ secrets.GH_PAT }}@github.com/${TARGET_REPO}.git || true
-          git remote set-url mirror https://x-access-token:${{ secrets.GH_PAT }}@github.com/${TARGET_REPO}.git
+          git remote add mirror https://${AUTH_USER}:${{ secrets.GH_PAT }}@github.com/${TARGET_REPO}.git || true
+          git remote set-url mirror https://${AUTH_USER}:${{ secrets.GH_PAT }}@github.com/${TARGET_REPO}.git
 
       - name: Verify mirror remote target
         run: |
