@@ -63,7 +63,7 @@ const ORGANIZATIONS = [
   { name: 'Mobile Clinique', slug: 'mobile-clinique', category: 'Food & Medical Aid', featured: true, online: true,
     desc: 'Providing mobile healthcare services to underserved communities across Lebanon.',
     url: 'http://bluemission.org/index.php/donation-page/', logo: '/images/mobile_clinique.png' },
-  { name: 'Beit Al Baraka', slug: 'beit-al-baraka', category: 'Food & Medical Aid', featured: true, online: true,
+  { name: 'Beit Al Baraka', slug: 'beit-al-baraka', category: 'Food & Medical Aid', featured: true, online: false,
     desc: 'Social supermarket providing dignified access to free groceries for families in need across Beirut and beyond.',
     url: 'https://www.beitelbaraka.org/', logo: 'https://www.google.com/s2/favicons?domain=beitalbaraka.org&sz=128' },
   { name: 'El-Bizri Foundation', slug: 'el-bizri-foundation', category: 'Food & Medical Aid', featured: true,
