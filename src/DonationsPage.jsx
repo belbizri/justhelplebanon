@@ -51,114 +51,114 @@ const CATEGORY_ACCENT = {
    ═══════════════════════════════════════ */
 const ORGANIZATIONS = [
   // ── Food & Medical Aid ──
-  { name: 'Lebanese Red Cross', slug: 'lebanese-red-cross', category: 'Food & Medical Aid', featured: true, online: true,
+  { name: 'Lebanese Red Cross', slug: 'lebanese-red-cross', category: 'Food & Medical Aid', featured: true, online: true, whatsapp: false,
     desc: 'The primary emergency-response organisation in Lebanon — providing ambulance services, disaster relief, and blood transfusion across the country.',
     url: 'https://www.redcross.org.lb/', logo: 'https://www.ifrc.org/sites/default/files/media/logo/2021-08/lebanon_red_cross_logo.png' },
-  { name: 'Blue Mission Organization', slug: 'blue-mission-organization', category: 'Food & Medical Aid', featured: true, online: true,
+  { name: 'Blue Mission Organization', slug: 'blue-mission-organization', category: 'Food & Medical Aid', featured: true, online: true, whatsapp: false,
     desc: 'Humanitarian organisation delivering relief, medical aid, and community support across Lebanon.',
     url: 'https://linktr.ee/bluemission', logo: 'https://ugc.production.linktr.ee/pljsNRNnTmmvEnicbNNA_Gh5FLrijZ4DHXYz8?io=true&size=avatar-v3_0' },
-  { name: 'Human of Tomorrow', slug: 'human-of-tomorrow', category: 'Food & Medical Aid', featured: true, online: true,
+  { name: 'Human of Tomorrow', slug: 'human-of-tomorrow', category: 'Food & Medical Aid', featured: true, online: true, whatsapp: true,
     desc: 'A Lebanese NGO empowering underserved communities through development and skill-building initiatives. 🇱🇧🤝🌱',
     url: 'https://www.instagram.com/humanoftomorrow/', logo: 'https://i.imgur.com/NnLmICn.png' },
-  { name: 'Mobile Clinique', slug: 'mobile-clinique', category: 'Food & Medical Aid', featured: true, online: true,
+  { name: 'Mobile Clinique', slug: 'mobile-clinique', category: 'Food & Medical Aid', featured: true, online: true, whatsapp: false,
     desc: 'Providing mobile healthcare services to underserved communities across Lebanon.',
     url: 'http://bluemission.org/index.php/donation-page/', logo: '/images/mobile_clinique.png' },
-  { name: 'Beit Al Baraka', slug: 'beit-al-baraka', category: 'Food & Medical Aid', featured: true, online: false,
+  { name: 'Beit Al Baraka', slug: 'beit-al-baraka', category: 'Food & Medical Aid', featured: true, online: false, whatsapp: false,
     desc: 'Social supermarket providing dignified access to free groceries for families in need across Beirut and beyond.',
     url: 'https://www.beitelbaraka.org/', logo: 'https://www.google.com/s2/favicons?domain=beitalbaraka.org&sz=128' },
-  { name: 'El-Bizri Foundation', slug: 'el-bizri-foundation', category: 'Food & Medical Aid', featured: true,
+  { name: 'El-Bizri Foundation', slug: 'el-bizri-foundation', category: 'Food & Medical Aid', featured: true, whatsapp: false,
     desc: 'Supporting communities in Lebanon through humanitarian and development projects.',
     url: 'https://nazihbizrifoundation.org/project-1-2-3-2-2-2-2-2-8/', logo: 'https://nazihbizrifoundation.org/wp-content/uploads/2023/10/Facebook-cover-1-1-1.png' },
-  { name: 'Dr. Nazih Bizri Health Center', slug: 'dr-nazih-bizri-health-center', category: 'Food & Medical Aid', featured: true,
+  { name: 'Dr. Nazih Bizri Health Center', slug: 'dr-nazih-bizri-health-center', category: 'Food & Medical Aid', featured: true, whatsapp: false,
     desc: 'Providing essential healthcare services and medical support to communities in need across Lebanon.',
     url: 'https://almoasat.org/departments/details/17', logo: 'https://www.almoasat.org/front/images/logo.png' },
-  { name: 'Morjan Group', slug: 'morjan-group', category: 'Food & Medical Aid', featured: true,
+  { name: 'Morjan Group', slug: 'morjan-group', category: 'Food & Medical Aid', featured: true, whatsapp: false,
     desc: 'Community-driven organisation supporting humanitarian relief efforts across Lebanon.',
     url: '', logo: '/images/morjan_group.png' },
-  { name: 'Empower Lebanon', slug: 'empower-lebanon', category: 'Food & Medical Aid', featured: false,
+  { name: 'Empower Lebanon', slug: 'empower-lebanon', category: 'Food & Medical Aid', featured: false, whatsapp: false,
     desc: 'Grassroots initiative delivering food parcels and hygiene kits to vulnerable families in underserved communities.',
     url: 'https://www.empowerlebanon.org/', logo: 'https://www.google.com/s2/favicons?domain=empowerlebanon.org&sz=128' },
-  { name: 'Lebanese Food Bank', slug: 'lebanese-food-bank', category: 'Food & Medical Aid', featured: false,
+  { name: 'Lebanese Food Bank', slug: 'lebanese-food-bank', category: 'Food & Medical Aid', featured: false, whatsapp: false,
     desc: 'Fights hunger and food waste by collecting surplus food from restaurants and distributing it to those in need.',
     url: 'https://www.lebanesefoodbank.org/', logo: 'https://www.google.com/s2/favicons?domain=lebanesefoodbank.org&sz=128' },
-  { name: 'Al-Kafaat Emergency Fund', slug: 'al-kafaat-emergency-fund', category: 'Food & Medical Aid', featured: false,
+  { name: 'Al-Kafaat Emergency Fund', slug: 'al-kafaat-emergency-fund', category: 'Food & Medical Aid', featured: false, whatsapp: false,
     desc: 'Provides emergency medical care, rehabilitation, and assistive devices for people with disabilities affected by the crisis.',
     url: 'https://www.al-kafaat.org/', logo: 'https://www.google.com/s2/favicons?domain=al-kafaat.org&sz=128' },
-  { name: 'Help Critically Ill Patients', slug: 'help-critically-ill-patients', category: 'Food & Medical Aid', featured: false,
+  { name: 'Help Critically Ill Patients', slug: 'help-critically-ill-patients', category: 'Food & Medical Aid', featured: false, whatsapp: false,
     desc: 'Funds life-saving treatments for critically ill patients who cannot afford hospital bills in Lebanon.',
     url: 'https://www.yallagivelebanon.com/', logo: 'https://www.google.com/s2/favicons?domain=yallagivelebanon.com&sz=128' },
 
   // ── Shelter & Reconstruction ──
-  { name: 'Baytna Baytak', slug: 'baytna-baytak', category: 'Shelter & Reconstruction', featured: true,
+  { name: 'Baytna Baytak', slug: 'baytna-baytak', category: 'Shelter & Reconstruction', featured: true, whatsapp: false,
     desc: 'Opens its doors as a community shelter providing free housing, meals, and psychological support to displaced families.',
     url: 'https://www.baytnabaytak.org/', logo: 'https://www.google.com/s2/favicons?domain=baytnabaytak.org&sz=128' },
-  { name: 'Rebuild Beirut', slug: 'rebuild-beirut', category: 'Shelter & Reconstruction', featured: false,
+  { name: 'Rebuild Beirut', slug: 'rebuild-beirut', category: 'Shelter & Reconstruction', featured: false, whatsapp: false,
     desc: 'Grassroots movement restoring homes damaged by the Beirut explosion—window by window, wall by wall.',
     url: 'https://www.rebuildbeirut.com/', logo: 'https://www.google.com/s2/favicons?domain=rebuildbeirut.com&sz=128' },
-  { name: 'Beib w Shebbek', slug: 'beib-w-shebbek', category: 'Shelter & Reconstruction', featured: false,
+  { name: 'Beib w Shebbek', slug: 'beib-w-shebbek', category: 'Shelter & Reconstruction', featured: false, whatsapp: false,
     desc: 'Replaces doors and windows for homes destroyed in the Beirut blast, restoring safety and dignity for families.',
     url: 'https://www.instagram.com/beibwshebbek/', logo: 'https://www.google.com/s2/favicons?domain=instagram.com&sz=128' },
-  { name: 'Windows for Beirut', slug: 'windows-for-beirut', category: 'Shelter & Reconstruction', featured: false,
+  { name: 'Windows for Beirut', slug: 'windows-for-beirut', category: 'Shelter & Reconstruction', featured: false, whatsapp: false,
     desc: 'Crowd-funded initiative repairing broken windows in hundreds of blast-damaged apartments across Beirut.',
     url: 'https://www.windowsforbeirut.com/', logo: 'https://www.google.com/s2/favicons?domain=windowsforbeirut.com&sz=128' },
 
   // ── Education, Environment & Support ──
-  { name: 'Teach for Lebanon', slug: 'teach-for-lebanon', category: 'Education, Environment & Support', featured: true,
+  { name: 'Teach for Lebanon', slug: 'teach-for-lebanon', category: 'Education, Environment & Support', featured: true, whatsapp: false,
     desc: 'Places qualified teachers in under-resourced schools to ensure every child in Lebanon has access to quality education.',
     url: 'https://www.teachforlebanon.org/', logo: 'https://www.google.com/s2/favicons?domain=teachforlebanon.org&sz=128' },
-  { name: 'KAFA', slug: 'kafa', category: 'Education, Environment & Support', featured: false,
+  { name: 'KAFA', slug: 'kafa', category: 'Education, Environment & Support', featured: false, whatsapp: false,
     desc: 'Advocates for an end to gender-based violence and supports survivors with legal aid, counselling, and shelter.',
     url: 'https://www.kafa.org.lb/', logo: 'https://www.google.com/s2/favicons?domain=kafa.org.lb&sz=128' },
-  { name: 'Solar Panel Campaign', slug: 'solar-panel-campaign', category: 'Education, Environment & Support', featured: false,
+  { name: 'Solar Panel Campaign', slug: 'solar-panel-campaign', category: 'Education, Environment & Support', featured: false, whatsapp: false,
     desc: 'Installs solar panels in hospitals, schools, and homes to combat crippling power outages across Lebanon.',
     url: 'https://www.instagram.com/solarpanelcampaign/', logo: 'https://www.google.com/s2/favicons?domain=instagram.com&sz=128' },
-  { name: 'Kafala Victims', slug: 'kafala-victims', category: 'Education, Environment & Support', featured: false,
+  { name: 'Kafala Victims', slug: 'kafala-victims', category: 'Education, Environment & Support', featured: false, whatsapp: false,
     desc: 'Supports migrant domestic workers trapped in the kafala system with legal assistance, shelter, and repatriation.',
     url: 'https://www.antislavery.org/', logo: 'https://www.google.com/s2/favicons?domain=antislavery.org&sz=128' },
-  { name: 'Animals Lebanon', slug: 'animals-lebanon', category: 'Education, Environment & Support', featured: false,
+  { name: 'Animals Lebanon', slug: 'animals-lebanon', category: 'Education, Environment & Support', featured: false, whatsapp: false,
     desc: 'Rescues and rehabilitates animals in crisis, advocates for animal welfare legislation, and runs the only shelter of its kind.',
     url: 'https://www.animalslebanon.org/', logo: 'https://www.google.com/s2/favicons?domain=animalslebanon.org&sz=128' },
-  { name: 'Recycle Lebanon', slug: 'recycle-lebanon', category: 'Education, Environment & Support', featured: false,
+  { name: 'Recycle Lebanon', slug: 'recycle-lebanon', category: 'Education, Environment & Support', featured: false, whatsapp: false,
     desc: 'Promotes sustainable waste management through community recycling programs and environmental education initiatives.',
     url: 'https://www.recyclelebanon.org/', logo: 'https://www.google.com/s2/favicons?domain=recyclelebanon.org&sz=128' },
 
   // ── Other Fundraisers ──
-  { name: 'LIFE Lebanon', slug: 'life-lebanon', category: 'Other Fundraisers', featured: false,
+  { name: 'LIFE Lebanon', slug: 'life-lebanon', category: 'Other Fundraisers', featured: false, whatsapp: false,
     desc: 'International humanitarian campaign supporting multisector relief projects in Lebanon — from food to mental health.',
     url: 'https://www.lifelebanon.com/', logo: 'https://www.google.com/s2/favicons?domain=lifelebanon.com&sz=128' },
-  { name: 'Impact Lebanon', slug: 'impact-lebanon', category: 'Other Fundraisers', featured: true,
+  { name: 'Impact Lebanon', slug: 'impact-lebanon', category: 'Other Fundraisers', featured: true, whatsapp: false,
     desc: 'Diaspora-led platform funding high-impact community projects voted on by the Lebanese public.',
     url: 'https://www.impactlebanon.com/', logo: 'https://www.google.com/s2/favicons?domain=impactlebanon.com&sz=128' },
 
   // ── More Places to Donate ──
-  { name: 'Oxfam', slug: 'oxfam', category: 'More Places to Donate', featured: false,
+  { name: 'Oxfam', slug: 'oxfam', category: 'More Places to Donate', featured: false, whatsapp: false,
     desc: 'Global humanitarian organisation providing clean water, food assistance, and livelihoods support in Lebanon.',
     url: 'https://www.oxfam.org/en/what-we-do/countries/lebanon', logo: 'https://www.google.com/s2/favicons?domain=oxfam.org&sz=128' },
-  { name: 'Ajialouna', slug: 'ajialouna', category: 'More Places to Donate', featured: false,
+  { name: 'Ajialouna', slug: 'ajialouna', category: 'More Places to Donate', featured: false, whatsapp: false,
     desc: 'Provides free education, healthcare, and community development for disadvantaged children and youth in Lebanon.',
     url: 'https://www.ajialouna.org/', logo: 'https://www.google.com/s2/favicons?domain=ajialouna.org&sz=128' },
-  { name: 'Bassma', slug: 'bassma', category: 'More Places to Donate', featured: false,
+  { name: 'Bassma', slug: 'bassma', category: 'More Places to Donate', featured: false, whatsapp: false,
     desc: 'Empowers marginalised families with education sponsorships, healthcare, and micro-enterprise funding.',
     url: 'https://www.bassma.org/', logo: 'https://www.google.com/s2/favicons?domain=bassma.org&sz=128' },
-  { name: 'Caritas Lebanon', slug: 'caritas-lebanon', category: 'More Places to Donate', featured: false,
+  { name: 'Caritas Lebanon', slug: 'caritas-lebanon', category: 'More Places to Donate', featured: false, whatsapp: false,
     desc: 'Catholic relief agency delivering food, shelter, healthcare, and psychosocial support to communities in crisis.',
     url: 'https://www.caritas.org.lb/', logo: 'https://www.google.com/s2/favicons?domain=caritas.org.lb&sz=128' },
-  { name: 'Food Blessed', slug: 'food-blessed', category: 'More Places to Donate', featured: false,
+  { name: 'Food Blessed', slug: 'food-blessed', category: 'More Places to Donate', featured: false, whatsapp: false,
     desc: 'Rescues surplus food from hotels and restaurants and redistributes it to families and shelters in need.',
     url: 'https://www.foodblessed.com/', logo: 'https://www.google.com/s2/favicons?domain=foodblessed.com&sz=128' },
-  { name: 'Lebanon Needs', slug: 'lebanon-needs', category: 'More Places to Donate', featured: false,
+  { name: 'Lebanon Needs', slug: 'lebanon-needs', category: 'More Places to Donate', featured: false, whatsapp: false,
     desc: 'Matches donors with verified urgent needs — from medication to school fees — through a transparent request platform.',
     url: 'https://www.lebanonneeds.com/', logo: 'https://www.google.com/s2/favicons?domain=lebanonneeds.com&sz=128' },
-  { name: 'Saint George Hospital', slug: 'saint-george-hospital', category: 'More Places to Donate', featured: false,
+  { name: 'Saint George Hospital', slug: 'saint-george-hospital', category: 'More Places to Donate', featured: false, whatsapp: false,
     desc: 'Historic Beirut hospital severely damaged in the blast — donations fund reconstruction and patient care.',
     url: 'https://www.stgeorgehospital.org/', logo: 'https://www.google.com/s2/favicons?domain=stgeorgehospital.org&sz=128' },
-  { name: 'Arcenciel', slug: 'arcenciel', category: 'More Places to Donate', featured: false,
+  { name: 'Arcenciel', slug: 'arcenciel', category: 'More Places to Donate', featured: false, whatsapp: false,
     desc: 'Social enterprise providing health, environment, and inclusion services — from waste management to disability care.',
     url: 'https://www.arcenciel.org/', logo: 'https://www.google.com/s2/favicons?domain=arcenciel.org&sz=128' },
-  { name: "Children's Cancer Center", slug: 'childrens-cancer-center', category: 'More Places to Donate', featured: false,
+  { name: "Children's Cancer Center", slug: 'childrens-cancer-center', category: 'More Places to Donate', featured: false, whatsapp: false,
     desc: 'The only specialised paediatric cancer treatment facility in Lebanon — treating children regardless of ability to pay.',
     url: 'https://www.cccl.org.lb/', logo: 'https://www.google.com/s2/favicons?domain=cccl.org.lb&sz=128' },
-  { name: 'Nusaned', slug: 'nusaned', category: 'More Places to Donate', featured: false,
+  { name: 'Nusaned', slug: 'nusaned', category: 'More Places to Donate', featured: false, whatsapp: false,
     desc: 'Digital platform connecting Lebanese citizens to offer and receive help — from housing to job opportunities.',
     url: 'https://nusaned.org/', logo: 'https://www.google.com/s2/favicons?domain=nusaned.org&sz=128' },
 ];
@@ -421,16 +421,18 @@ function OrgCard({ org, onSelect }) {
             <span className="org-online-dot" />
             {org.online ? 'Online' : 'Offline'}
           </span>
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="org-whatsapp-icon"
-            aria-label={`Contact ${org.name} on WhatsApp`}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <WhatsappIcon />
-          </a>
+          {org.whatsapp && (
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="org-whatsapp-icon"
+              aria-label={`Contact ${org.name} on WhatsApp`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <WhatsappIcon />
+            </a>
+          )}
         </div>
       </div>
       <div className="org-card-body" onClick={() => onSelect(org)}>
