@@ -204,7 +204,7 @@ const FEATURED_VIDEO_CONCEPT = [
     id: 'community-rebuild',
     title: 'Community Rebuild',
     subtitle: 'Restoring homes and local spaces',
-    org: 'Rebuild Beirut',
+    org: 'Ahlona Foundation',
     src: '/videos/featured/community-rebuild.mp4',
   },
 ];
