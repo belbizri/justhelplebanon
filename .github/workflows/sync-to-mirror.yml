@@ -30,35 +30,65 @@ jobs:
 
       - name: Validate token identity and repo visibility
         run: |
-          USER_JSON="$(curl -fsSL \
+          set -euo pipefail
+
+          echo "::group::Mirror debug context"
+          echo "Repository: ${GITHUB_REPOSITORY}"
+          echo "Branch: ${GITHUB_REF_NAME}"
+          echo "Target repo: ${TARGET_REPO}"
+          echo "::endgroup::"
+
+          USER_STATUS="$(curl -sS -o /tmp/user-check.json -w "%{http_code}" \
             -H "Authorization: Bearer ${{ secrets.GH_PAT }}" \
             -H "Accept: application/vnd.github+json" \
             https://api.github.com/user)"
 
-          AUTH_USER="$(echo "${USER_JSON}" | sed -n 's/.*"login"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p')"
-
-          if [ -z "${AUTH_USER}" ]; then
-            echo "ERROR: Could not read token identity from GitHub API." >&2
+          if [ "${USER_STATUS}" != "200" ]; then
+            echo "ERROR: Token identity check failed (HTTP ${USER_STATUS})." >&2
+            cat /tmp/user-check.json
             exit 1
           fi
 
-          echo "Token authenticated as: ${AUTH_USER}"
+          AUTH_USER="$(sed -n 's/.*"login"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' /tmp/user-check.json | head -n 1)"
+          AUTH_ID="$(sed -n 's/.*"id"[[:space:]]*:[[:space:]]*\([0-9][0-9]*\).*/\1/p' /tmp/user-check.json | head -n 1)"
 
-          STATUS="$(curl -s -o /tmp/target-repo-check.json -w "%{http_code}" \
+          if [ -z "${AUTH_USER}" ]; then
+            echo "ERROR: Could not parse token login from GitHub API /user response." >&2
+            cat /tmp/user-check.json
+            exit 1
+          fi
+
+          echo "Token authenticated as: ${AUTH_USER} (id=${AUTH_ID:-unknown})"
+
+          REPO_STATUS="$(curl -sS -o /tmp/target-repo-check.json -w "%{http_code}" \
             -H "Authorization: Bearer ${{ secrets.GH_PAT }}" \
             -H "Accept: application/vnd.github+json" \
             https://api.github.com/repos/${TARGET_REPO})"
 
-          if [ "${STATUS}" != "200" ]; then
-            echo "ERROR: Token cannot access ${TARGET_REPO} (HTTP ${STATUS})." >&2
-            echo "Ensure token owner has collaborator or owner write access and token repository selection includes ${TARGET_REPO}." >&2
+          echo "Repo visibility check HTTP status: ${REPO_STATUS}"
+
+          if [ "${REPO_STATUS}" != "200" ]; then
+            echo "ERROR: Token cannot access ${TARGET_REPO}." >&2
+            echo "This usually means wrong token owner, missing repo selection on fine-grained token, or missing collaborator access." >&2
             cat /tmp/target-repo-check.json
             exit 1
           fi
 
+          REPO_FULL_NAME="$(sed -n 's/.*"full_name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' /tmp/target-repo-check.json | head -n 1)"
+          REPO_PRIVATE="$(sed -n 's/.*"private"[[:space:]]*:[[:space:]]*\(true\|false\).*/\1/p' /tmp/target-repo-check.json | head -n 1)"
+          CAN_PUSH="$(sed -n 's/.*"push"[[:space:]]*:[[:space:]]*\(true\|false\).*/\1/p' /tmp/target-repo-check.json | head -n 1)"
+
+          echo "Resolved repo: ${REPO_FULL_NAME:-unknown}"
+          echo "Repo private: ${REPO_PRIVATE:-unknown}"
+          echo "Token push permission (if present): ${CAN_PUSH:-unknown}"
+
       - name: Validate access to private target repo
         run: |
-          git ls-remote "https://x-access-token:${{ secrets.GH_PAT }}@github.com/${TARGET_REPO}.git" HEAD >/dev/null
+          if ! OUTPUT="$(git ls-remote "https://x-access-token:${{ secrets.GH_PAT }}@github.com/${TARGET_REPO}.git" HEAD 2>&1)"; then
+            echo "ERROR: git ls-remote failed for ${TARGET_REPO}" >&2
+            echo "${OUTPUT}" >&2
+            exit 1
+          fi
 
       - name: Add mirror remote
         run: |
