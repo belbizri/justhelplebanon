@@ -3987,20 +3987,21 @@ h1 {
 }
 
 .org-card-name {
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--tk);
+  font-family: "Manrope", var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.95);
   margin-bottom: 8px;
   line-height: 1.35;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
 .org-card-desc {
-  font-size: 0.84rem;
-  color: var(--tk-muted);
-  line-height: 1.72;
-  font-weight: 400;
+  font-family: "Manrope", var(--font-body);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.76;
+  font-weight: 500;
 }
 
 .org-card-actions {
@@ -4017,19 +4018,19 @@ h1 {
   background: none;
   border: none;
   border-right: 1.5px solid var(--border-subtle);
-  color: var(--tk-muted);
+  color: rgba(255, 255, 255, 0.82);
   font-size: 0.8rem;
-  font-weight: 600;
-  font-family: var(--font-body);
+  font-weight: 700;
+  font-family: "Manrope", var(--font-body);
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.005em;
 }
 
 .org-card-profile-btn:hover {
-  background: var(--surface-2);
-  color: var(--tk);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
 }
 
 .org-card-cta {
@@ -6749,6 +6750,162 @@ h1 {
 
   .spot-btn {
     justify-content: center;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   Shared Warm Dark Theme (From Lebanon + Events)
+   ═══════════════════════════════════════════════════ */
+.fl-page,
+.events-page {
+  background: #140F1F;
+  color: #EDE8F5;
+  --fd-surface: #1D1830;
+  --fd-surface-2: #261E3C;
+  --fd-surface-3: #2F2548;
+  --fd-text: #EDE8F5;
+  --fd-muted: rgba(237, 232, 245, 0.68);
+  --fd-soft: rgba(237, 232, 245, 0.5);
+  --fd-border: rgba(255, 255, 255, 0.1);
+  --fd-border-subtle: rgba(255, 255, 255, 0.065);
+  --fd-nav-bg: rgba(14, 11, 22, 0.9);
+  --fd-nav-border: rgba(255, 255, 255, 0.07);
+}
+
+.fl-page .page-nav,
+.events-page .page-nav {
+  background: var(--fd-nav-bg);
+  border-bottom: 1px solid var(--fd-nav-border);
+  box-shadow: 0 1px 16px rgba(0, 0, 0, 0.18);
+}
+
+.fl-page .nav-logo,
+.events-page .nav-logo {
+  color: var(--fd-text);
+}
+
+.fl-page .nav-link,
+.events-page .nav-link {
+  color: var(--fd-soft);
+}
+
+.fl-page .nav-link:hover,
+.events-page .nav-link:hover {
+  color: var(--fd-text);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--fd-border-subtle);
+}
+
+.fl-page .nav-link.active,
+.events-page .nav-link.active {
+  color: #fff;
+  background: rgba(214, 43, 55, 0.22);
+  border-color: rgba(214, 43, 55, 0.35);
+}
+
+.fl-page .fl-content,
+.events-page .evt-section {
+  color: var(--fd-text);
+}
+
+.fl-page .fl-search,
+.fl-page .fl-filter-btn,
+.fl-page .fl-card-inner,
+.fl-page .fl-cta-inner,
+.fl-page .spot-card,
+.fl-page .spot-btn-map,
+.fl-page .spot-btn-web,
+.events-page .evt-card,
+.events-page .evt-meta,
+.events-page .evt-fr-toggle,
+.events-page .evt-fr-summary,
+.events-page .evt-map-btn,
+.events-page .evt-footer {
+  background: var(--fd-surface);
+  border-color: var(--fd-border);
+}
+
+.fl-page .fl-card-inner,
+.fl-page .spot-card,
+.events-page .evt-card {
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.2);
+}
+
+.fl-page .fl-search input,
+.fl-page .fl-card-name,
+.fl-page .spot-name,
+.fl-page .fl-cat-title,
+.fl-page .spot-section-title,
+.fl-page .fl-cta-inner h2,
+.events-page .evt-section-title,
+.events-page .evt-card-title,
+.events-page .evt-fr-title,
+.events-page .evt-empty,
+.events-page .evt-footer,
+.events-page .evt-title-glow {
+  color: var(--fd-text);
+}
+
+.fl-page .fl-search svg,
+.fl-page .fl-card-desc,
+.fl-page .fl-cat-count,
+.fl-page .spot-location,
+.fl-page .spot-desc,
+.fl-page .spot-title-sub,
+.fl-page .fl-cta-inner p,
+.events-page .evt-subtitle,
+.events-page .evt-card-desc,
+.events-page .evt-meta-item,
+.events-page .evt-fr-summary,
+.events-page .evt-footer a,
+.events-page .evt-badge--past {
+  color: var(--fd-muted);
+}
+
+.fl-page .fl-filter-btn:hover,
+.events-page .evt-map-btn:hover,
+.events-page .evt-fr-summary:hover {
+  background: var(--fd-surface-2);
+}
+
+.fl-page .spot-media {
+  background: #181127;
+}
+
+.events-page .evt-card-img-wrap {
+  background: #181127;
+}
+
+.events-page .evt-card--past {
+  opacity: 0.82;
+}
+
+.events-page .evt-map-link,
+.events-page .evt-footer a {
+  color: #EAC98E;
+}
+
+.events-page .evt-map-link:hover,
+.events-page .evt-footer a:hover {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .fl-page .nav-links,
+  .events-page .nav-links {
+    background: linear-gradient(175deg, #1D1830 0%, #160F24 100%);
+    border-left: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: -16px 0 48px rgba(0, 0, 0, 0.4);
+  }
+
+  .fl-page .nav-link,
+  .events-page .nav-link {
+    color: var(--fd-soft);
+  }
+
+  .fl-page .nav-link:hover,
+  .events-page .nav-link:hover {
+    color: var(--fd-text);
   }
 }
 
