@@ -4,10 +4,17 @@ import { promises as fs } from "fs";
 import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
-import { getVideoUrl } from "./services/r2.js";
+import { getVideoUrl, getOrgVideoUrl } from "./services/r2.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+/* ── Org-media key map (friendly key → real R2 key) ── */
+let orgMediaMap = {};
+const mapPath = path.join(__dirname, "data", "orgmedia-map.json");
+try {
+  orgMediaMap = JSON.parse(await fs.readFile(mapPath, "utf-8"));
+} catch { /* file missing or invalid — start empty */ }
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -226,6 +233,29 @@ app.get("/api/videos/signed-url", async (req, res) => {
     res.status(500).json({ error: error.message || "Could not generate signed URL." });
   }
 });
+
+app.get("/api/orgvideos/signed-url", async (req, res) => {
+  const alias = String(req.query.key || "").trim();
+
+  if (!alias) {
+    res.status(400).json({ error: "Query parameter 'key' is required." });
+    return;
+  }
+
+  const realKey = orgMediaMap[alias];
+  if (!realKey) {
+    res.status(404).json({ error: "Unknown media key." });
+    return;
+  }
+
+  try {
+    const url = await getOrgVideoUrl(realKey);
+    res.json({ key: alias, url, expiresIn: 3600 });
+  } catch (error) {
+    res.status(500).json({ error: error.message || "Could not generate signed URL." });
+  }
+});
+
 app.get("/api", (req, res) => {
   res.json({
     message: "API working",

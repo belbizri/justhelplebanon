@@ -25,6 +25,7 @@ const s3 = new S3Client({
 });
 
 const BUCKET = process.env.R2_BUCKET;
+const ORG_BUCKET = process.env.R2_ORG_BUCKET || "orgvideos";
 
 export async function getVideoUrl(key, ttl = 3600) {
   if (!key || typeof key !== "string") {
@@ -35,6 +36,21 @@ export async function getVideoUrl(key, ttl = 3600) {
 
   const command = new GetObjectCommand({
     Bucket: BUCKET,
+    Key: safeKey,
+  });
+
+  return getSignedUrl(s3, command, { expiresIn: ttl });
+}
+
+export async function getOrgVideoUrl(key, ttl = 3600) {
+  if (!key || typeof key !== "string") {
+    throw new TypeError("key must be a non-empty string.");
+  }
+
+  const safeKey = key.replace(/^\/+/, "");
+
+  const command = new GetObjectCommand({
+    Bucket: ORG_BUCKET,
     Key: safeKey,
   });
 

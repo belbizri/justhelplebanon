@@ -71,7 +71,7 @@ function checkRemotes() {
   if (!result.output.includes(MIRROR_REMOTE)) {
     log(`Mirror remote '${MIRROR_REMOTE}' not found!`, 'red');
     log(`Adding mirror remote: ${MIRROR_REMOTE}...`, 'yellow');
-    run(`git remote add ${MIRROR_REMOTE} https://github.com/belbizri/lebanese-red-cross.git`);
+    run(`git remote add ${MIRROR_REMOTE} https://github.com/belbizri/justhelplebanon.git`);
   }
   
   return true;
