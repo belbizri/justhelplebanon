@@ -526,6 +526,7 @@ export default function DonationsPage() {
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedOrg, setSelectedOrg] = useState(null);
+  const [selectedFeaturedVideo, setSelectedFeaturedVideo] = useState(null);
 
   /* Featured orgs */
   const featured = useMemo(() => sortByOnlineFirst(ORGANIZATIONS.filter(o => o.featured)), []);
@@ -558,6 +559,12 @@ export default function DonationsPage() {
     <div className="page-root donations-page">
       {/* Org Profile Modal */}
       {selectedOrg && <OrgProfileModal org={selectedOrg} onClose={() => setSelectedOrg(null)} />}
+      {selectedFeaturedVideo && (
+        <MediaLightbox
+          media={selectedFeaturedVideo}
+          onClose={() => setSelectedFeaturedVideo(null)}
+        />
+      )}
 
       {/* Nav */}
       <NavBar />
@@ -597,7 +604,19 @@ export default function DonationsPage() {
               <div className="don-video-track">
                 {FEATURED_VIDEO_CONCEPT.map((video) => (
                   <article key={video.id} className="don-video-card">
-                    <div className="don-video-media">
+                    <div
+                      className="don-video-media"
+                      onClick={() => setSelectedFeaturedVideo({ type: 'video', src: video.src })}
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`Play ${video.title}`}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setSelectedFeaturedVideo({ type: 'video', src: video.src });
+                        }
+                      }}
+                    >
                       <video
                         className="don-video-el"
                         src={video.src}
@@ -608,6 +627,11 @@ export default function DonationsPage() {
                         preload="metadata"
                       />
                       <div className="don-video-shade" />
+                      <div className="don-video-play" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
                     </div>
                     <div className="don-video-body">
                       <h3 className="don-video-title">{video.title}</h3>

@@ -3699,6 +3699,7 @@ h1 {
   position: relative;
   aspect-ratio: 16 / 9;
   background: linear-gradient(140deg, #1f1633 0%, #20163d 45%, #10263f 100%);
+  cursor: pointer;
 }
 
 .don-video-el {
@@ -3713,6 +3714,26 @@ h1 {
   inset: 0;
   background: linear-gradient(180deg, rgba(8, 8, 12, 0) 0%, rgba(8, 8, 12, 0.38) 100%);
   pointer-events: none;
+}
+
+.don-video-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.don-video-media:hover .don-video-play {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.don-video-media:hover .don-video-play svg {
+  transform: scale(1.08);
 }
 
 .don-video-badge {
