@@ -1934,19 +1934,22 @@ h1 {
 
 .social-hero-title {
   font-size: 2.8rem;
-  font-weight: 900;
+  font-weight: 800;
+  font-family: var(--font-body);
   color: var(--text);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
   margin: 0 0 12px;
   position: relative;
 }
 
 .social-hero-subtitle {
-  font-size: 1.1rem;
-  color: var(--soft);
+  font-size: 1rem;
+  font-family: var(--font-body);
+  color: rgba(255, 255, 255, 0.5);
   max-width: 480px;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.65;
+  font-weight: 400;
   position: relative;
 }
 
