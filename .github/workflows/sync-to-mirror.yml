@@ -20,6 +20,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Validate mirror token is configured
         run: |
@@ -57,8 +58,6 @@ jobs:
             cat /tmp/user-check.json
             exit 1
           fi
-
-          echo "AUTH_USER=${AUTH_USER}" >> "${GITHUB_ENV}"
 
           echo "Token authenticated as: ${AUTH_USER} (id=${AUTH_ID:-unknown})"
 
@@ -110,17 +109,11 @@ jobs:
               ;;
           esac
 
-      - name: Fetch from both remotes
-        run: |
-          BASIC_AUTH="$(printf "x-access-token:${{ secrets.GH_PAT }}" | base64 | tr -d '\n')"
-          git fetch origin
-          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${BASIC_AUTH}" fetch mirror
-
       - name: Mirror pushed branch
         run: |
           BASIC_AUTH="$(printf "x-access-token:${{ secrets.GH_PAT }}" | base64 | tr -d '\n')"
           BRANCH="${GITHUB_REF_NAME}"
-          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${BASIC_AUTH}" push mirror "origin/${BRANCH}:${BRANCH}" -f
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${BASIC_AUTH}" push mirror "HEAD:${BRANCH}" -f
 
       - name: Remove credentials from config
         if: always()
