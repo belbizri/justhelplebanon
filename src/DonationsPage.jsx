@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
+import { fetchCatalogProducts } from './services/catalogApi.js';
 
 /* ═══════════════════════════════════════
    SVG Icons — one per category
@@ -208,6 +209,12 @@ const FEATURED_VIDEO_CONCEPT = [
     src: '/videos/featured/community-rebuild.mp4',
   },
 ];
+
+const formatUsd = (value) => new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2,
+}).format(value || 0);
 
 /* ═══════════════════════════════════════
    Reusable Components
@@ -519,6 +526,63 @@ function CategoryCarousel({ children }) {
   );
 }
 
+function EssentialKitsPreview() {
+  const [kits, setKits] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    fetchCatalogProducts({ status: 'active', limit: 3 }, controller.signal)
+      .then((data) => setKits(Array.isArray(data) ? data : []))
+      .catch((fetchError) => {
+        if (fetchError.name !== 'AbortError') {
+          setError('Aid kits are temporarily unavailable.');
+        }
+      })
+      .finally(() => setLoading(false));
+
+    return () => controller.abort();
+  }, []);
+
+  return (
+    <section className="don-kits-preview" aria-label="Essential aid kits">
+      <div className="don-kits-copy">
+        <span className="don-kits-kicker">New direct-giving format</span>
+        <h2 className="don-kits-title">Donate kits, not just dollars.</h2>
+        <p className="don-kits-subtitle">
+          Sponsor concrete bundles with visible contents and live pricing for Lebanon.
+          This makes the decision faster and the impact easier to understand.
+        </p>
+        <div className="don-kits-actions">
+          <Link to="/aid-kits" className="don-kits-primary">Browse Aid Kits</Link>
+          <span className="don-kits-note">Food, hygiene, and baby care bundles</span>
+        </div>
+      </div>
+
+      <div className="don-kits-grid">
+        {loading && <div className="don-kit-state">Loading kits...</div>}
+        {!loading && error && <div className="don-kit-state is-error">{error}</div>}
+        {!loading && !error && kits.map((kit) => (
+          <article key={kit.id} className="don-kit-card">
+            <div className="don-kit-card-top">
+              <span className="don-kit-category">{kit.category?.name}</span>
+              <strong className="don-kit-price">{formatUsd(kit.pricing?.base_amount)}</strong>
+            </div>
+            <h3 className="don-kit-name">{kit.title}</h3>
+            <p className="don-kit-desc">{kit.short_description || kit.description}</p>
+            <div className="don-kit-meta">
+              <span>{kit.components?.length || 0} items</span>
+              <span>{kit.donation?.impact_unit || 'kit'} impact</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 /* ═══════════════════════════════════════
    Main Page
    ═══════════════════════════════════════ */
@@ -650,6 +714,8 @@ export default function DonationsPage() {
             </CategoryCarousel>
           </section>
         )}
+
+        {showFeatured && <EssentialKitsPreview />}
 
         {/* ── Search & Filter Bar ── */}
         <div className="don-toolbar">
