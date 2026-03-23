@@ -519,6 +519,53 @@ function CategoryCarousel({ children }) {
   );
 }
 
+function VideoShowcase({ videos, onOpen }) {
+  return (
+    <div className="don-video-concept" aria-label="Featured impact videos">
+      <div className="don-video-track">
+        {videos.map((video) => (
+          <article key={video.id} className="don-video-card">
+            <div
+              className="don-video-media"
+              onClick={() => onOpen({ type: 'video', src: video.src })}
+              role="button"
+              tabIndex={0}
+              aria-label={`Play ${video.title}`}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onOpen({ type: 'video', src: video.src });
+                }
+              }}
+            >
+              <video
+                className="don-video-el"
+                src={video.src}
+                muted
+                loop
+                autoPlay
+                playsInline
+                preload="metadata"
+              />
+              <div className="don-video-shade" />
+              <div className="don-video-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+            </div>
+            <div className="don-video-body">
+              <h3 className="don-video-title">{video.title}</h3>
+              <p className="don-video-sub">{video.subtitle}</p>
+              <p className="don-video-org">{video.org}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ═══════════════════════════════════════
    Main Page
    ═══════════════════════════════════════ */
@@ -600,48 +647,7 @@ export default function DonationsPage() {
               <span className="don-heading-line" />
             </h2>
 
-            <div className="don-video-concept" aria-label="Featured impact videos">
-              <div className="don-video-track">
-                {FEATURED_VIDEO_CONCEPT.map((video) => (
-                  <article key={video.id} className="don-video-card">
-                    <div
-                      className="don-video-media"
-                      onClick={() => setSelectedFeaturedVideo({ type: 'video', src: video.src })}
-                      role="button"
-                      tabIndex={0}
-                      aria-label={`Play ${video.title}`}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault();
-                          setSelectedFeaturedVideo({ type: 'video', src: video.src });
-                        }
-                      }}
-                    >
-                      <video
-                        className="don-video-el"
-                        src={video.src}
-                        muted
-                        loop
-                        autoPlay
-                        playsInline
-                        preload="metadata"
-                      />
-                      <div className="don-video-shade" />
-                      <div className="don-video-play" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="don-video-body">
-                      <h3 className="don-video-title">{video.title}</h3>
-                      <p className="don-video-sub">{video.subtitle}</p>
-                      <p className="don-video-org">{video.org}</p>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
+            <VideoShowcase videos={FEATURED_VIDEO_CONCEPT} onOpen={setSelectedFeaturedVideo} />
 
             <CategoryCarousel>
               {featured.map(o => <OrgCard key={o.name} org={o} onSelect={setSelectedOrg} />)}
@@ -702,6 +708,9 @@ export default function DonationsPage() {
               {category}
               <span className="don-cat-count">{grouped[category].length}</span>
             </h2>
+
+            <VideoShowcase videos={FEATURED_VIDEO_CONCEPT} onOpen={setSelectedFeaturedVideo} />
+
             {/* Desktop grid, mobile carousel */}
             <div className="don-grid-desktop">
               {grouped[category].map(o => <OrgCard key={o.name} org={o} onSelect={setSelectedOrg} />)}
