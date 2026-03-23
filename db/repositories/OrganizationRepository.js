@@ -77,7 +77,7 @@ class OrganizationRepository extends BaseRepository {
           'stats.donorCount': donorCount,
         },
       },
-      { new: true }
+      { returnDocument: 'after' }
     );
   }
 
@@ -93,7 +93,7 @@ class OrganizationRepository extends BaseRepository {
           'stats.totalAmount': amount,
         },
       },
-      { new: true }
+      { returnDocument: 'after' }
     );
   }
 

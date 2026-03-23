@@ -134,7 +134,6 @@ const catalogSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-catalogSchema.index({ key: 1 }, { unique: true });
 catalogSchema.index({ 'products.slug': 1 });
 catalogSchema.index({ 'products.id': 1 });
 catalogSchema.index({ 'products.sku': 1 });

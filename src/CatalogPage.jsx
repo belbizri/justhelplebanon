@@ -222,14 +222,9 @@ export default function CatalogPage() {
               as to where their contributions may go.
             </p>
             <p>
-              No profit is generated from this page, not even $1, in fact, the project currently operates at
-              a loss, as all expenses, including database and infrastructure costs, are personally covered.
+              No profit is generated from this page at any time. 
             </p>
-            <p>
-              In practical terms, RIP my wallet, however, should any finance minister, sovereign entity,
-              or otherwise benevolent party wish to sponsor the database cluster, such generosity would not
-              be opposed, excluding the inflation minister, with whom I am no longer on speaking terms.
-            </p>
+           
             <p>
               All content is provided for informational purposes only, donations are made independently,
               and are not processed through this page, at any time.

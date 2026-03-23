@@ -1,5 +1,3 @@
-import catalogData from '../../db/seed-data/catalogData.js';
-
 const handleResponse = async (response) => {
   if (!response.ok) {
     throw new Error(`Request failed with status ${response.status}`);
@@ -13,33 +11,6 @@ const handleResponse = async (response) => {
   return payload.data;
 };
 
-const getFallbackCatalog = () => catalogData?.catalog || { products: [] };
-
-const filterFallbackProducts = (params = {}) => {
-  const { status, categoryId, marketCode, limit, skip } = params;
-  let products = Array.isArray(getFallbackCatalog().products)
-    ? [...getFallbackCatalog().products]
-    : [];
-
-  if (status) {
-    products = products.filter((product) => product.status === status);
-  }
-
-  if (categoryId) {
-    products = products.filter((product) => product.category?.id === categoryId);
-  }
-
-  if (marketCode) {
-    products = products.filter((product) =>
-      product.availability?.regions?.includes(marketCode)
-    );
-  }
-
-  const offset = Number.isFinite(skip) ? skip : 0;
-  const cappedLimit = Number.isFinite(limit) ? limit : products.length;
-  return products.slice(offset, offset + cappedLimit);
-};
-
 export const fetchCatalogProducts = async (params = {}, signal) => {
   const searchParams = new URLSearchParams();
 
@@ -50,49 +21,16 @@ export const fetchCatalogProducts = async (params = {}, signal) => {
   });
 
   const query = searchParams.toString();
-
-  try {
-    const response = await fetch(`/api/catalog/products${query ? `?${query}` : ''}`, { signal });
-    return await handleResponse(response);
-  } catch (error) {
-    if (error?.name === 'AbortError') {
-      throw error;
-    }
-
-    return filterFallbackProducts(params);
-  }
+  const response = await fetch(`/api/catalog/products${query ? `?${query}` : ''}`, { signal });
+  return handleResponse(response);
 };
 
 export const fetchCatalog = async (signal) => {
-  try {
-    const response = await fetch('/api/catalog', { signal });
-    return await handleResponse(response);
-  } catch (error) {
-    if (error?.name === 'AbortError') {
-      throw error;
-    }
-
-    return getFallbackCatalog();
-  }
+  const response = await fetch('/api/catalog', { signal });
+  return handleResponse(response);
 };
 
 export const fetchCatalogProductBySlug = async (slug, signal) => {
-  try {
-    const response = await fetch(`/api/catalog/products/${encodeURIComponent(slug)}`, { signal });
-    return await handleResponse(response);
-  } catch (error) {
-    if (error?.name === 'AbortError') {
-      throw error;
-    }
-
-    const fallbackProduct = filterFallbackProducts().find(
-      (product) => product.slug === slug
-    );
-
-    if (!fallbackProduct) {
-      throw error;
-    }
-
-    return fallbackProduct;
-  }
+  const response = await fetch(`/api/catalog/products/${encodeURIComponent(slug)}`, { signal });
+  return handleResponse(response);
 };
