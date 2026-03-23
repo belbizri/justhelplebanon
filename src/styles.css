@@ -4790,16 +4790,16 @@ h1 {
 
 .catalog-page-root .catalog-hero {
   position: relative;
-  overflow: hidden;
-  min-height: 400px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #ffe5ef;
   background: linear-gradient(135deg, #1A1030 0%, #2D1840 25%, #1E1240 50%, #2A1838 75%, #12101E 100%);
   background-size: 300% 300%;
-  animation: donHeaderGrad 14s ease infinite;
+  background: linear-gradient(135deg, rgba(214, 43, 55, 0.16), rgba(168, 85, 247, 0.12));
 }
 
 .catalog-page-root .catalog-hero-backdrop {
-  position: absolute;
-  inset: 0;
+  border-color: rgba(255, 184, 196, 0.3);
+  color: #fff6fa;
   background:
     radial-gradient(ellipse at 20% 50%, rgba(214, 43, 55, 0.22) 0%, transparent 55%),
     radial-gradient(ellipse at 80% 20%, rgba(10, 143, 94, 0.14) 0%, transparent 50%),
