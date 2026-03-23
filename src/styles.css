@@ -5056,20 +5056,20 @@ h1 {
 }
 
 .catalog-page-root .catalog-card-category {
-  background: rgba(10, 143, 94, 0.1);
-  color: #89ffd0;
+  background: rgba(10, 143, 94, 0.14);
+  color: #a8ffe0;
   border: 1px solid rgba(10, 143, 94, 0.35);
 }
 
 .catalog-page-root .catalog-card-status {
   background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 245, 248, 0.88);
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .catalog-page-root .catalog-card-status.is-active {
   background: rgba(214, 43, 55, 0.12);
-  color: #ff8f99;
+  color: #ffadb5;
   border-color: rgba(214, 43, 55, 0.35);
 }
 
@@ -5082,12 +5082,12 @@ h1 {
 .catalog-page-root .catalog-card-title {
   margin: 0;
   font-size: 1.15rem;
-  color: rgba(255, 255, 255, 0.95);
+  color: #fff9fb;
 }
 
 .catalog-page-root .catalog-card-subtitle,
 .catalog-page-root .catalog-card-description {
-  color: rgba(255, 255, 255, 0.68);
+  color: rgba(251, 244, 248, 0.86);
   margin: 6px 0 0;
   line-height: 1.6;
   font-size: 0.9rem;
@@ -5101,13 +5101,13 @@ h1 {
 .catalog-page-root .catalog-price-label {
   display: block;
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.54);
+  color: rgba(255, 229, 236, 0.82);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
 .catalog-page-root .catalog-price-value {
-  color: #fff;
+  color: #fff6d8;
   font-size: 1.15rem;
 }
 
@@ -5128,13 +5128,13 @@ h1 {
 
 .catalog-page-root .catalog-impact-pill-label {
   font-size: 0.68rem;
-  color: var(--tk-soft);
+  color: rgba(237, 219, 230, 0.72);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
 .catalog-page-root .catalog-impact-pill strong {
-  color: rgba(255, 255, 255, 0.94);
+  color: #fff8fb;
   font-size: 0.84rem;
 }
 
@@ -5155,12 +5155,12 @@ h1 {
 .catalog-page-root .catalog-component-head h3 {
   margin: 0;
   font-size: 0.86rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: #fff8fb;
 }
 
 .catalog-page-root .catalog-component-head span {
   font-size: 0.76rem;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(243, 225, 235, 0.8);
 }
 
 .catalog-page-root .catalog-component-list {
@@ -5175,8 +5175,12 @@ h1 {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  color: rgba(255, 255, 255, 0.74);
+  color: rgba(250, 242, 247, 0.9);
   font-size: 0.84rem;
+}
+
+.catalog-page-root .catalog-component-item strong {
+  color: #ffe8b3;
 }
 
 .catalog-page-root .catalog-card-footer {
@@ -5201,10 +5205,10 @@ h1 {
 .catalog-page-root .catalog-chip {
   border-radius: var(--radius-full);
   border: 1px solid var(--border-light);
-  color: var(--tk-muted);
+  color: rgba(249, 241, 247, 0.92);
   font-size: 0.72rem;
   padding: 5px 10px;
-  background: var(--surface-2);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .catalog-page-root .catalog-card-cta {

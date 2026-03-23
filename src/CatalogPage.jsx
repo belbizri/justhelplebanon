@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
 import { fetchCatalogProducts } from './services/catalogApi.js';
 
+const AID_KITS_DONATION_URL = 'https://www.omprakash.org/global/blue-mission-organization/crowdfund/karama-project---blue-mission-organization';
+
 const formatUsd = (value) => new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
@@ -72,7 +74,7 @@ function CatalogProductCard({ product }) {
         </div>
         <a
           className="org-card-cta catalog-card-cta"
-          href="https://supportlrc.app/donate"
+          href={AID_KITS_DONATION_URL}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -145,7 +147,7 @@ export default function CatalogPage() {
             <div className="catalog-hero-actions">
               <a
                 className="catalog-primary-btn"
-                href="https://supportlrc.app/donate"
+                href={AID_KITS_DONATION_URL}
                 target="_blank"
                 rel="noopener noreferrer"
               >
