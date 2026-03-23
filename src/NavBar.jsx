@@ -1,6 +1,59 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+const TIMER_START_DATE = new Date(2006, 7, 16, 0, 0, 0, 0);
+
+function getElapsedFromStart(now, start) {
+  let years = now.getFullYear() - start.getFullYear();
+  const anniversary = new Date(start);
+  anniversary.setFullYear(start.getFullYear() + years);
+
+  if (anniversary > now) {
+    years -= 1;
+    anniversary.setFullYear(start.getFullYear() + years);
+  }
+
+  const remainderMs = now - anniversary;
+  const totalMinutes = Math.max(0, Math.floor(remainderMs / 60000));
+  const days = Math.floor(totalMinutes / (60 * 24));
+  const hours = Math.floor((totalMinutes % (60 * 24)) / 60);
+  const minutes = totalMinutes % 60;
+
+  return { years, days, hours, minutes };
+}
+
+function MemoryTimerBar() {
+  const [elapsed, setElapsed] = useState(() => getElapsedFromStart(new Date(), TIMER_START_DATE));
+
+  useEffect(() => {
+    const update = () => setElapsed(getElapsedFromStart(new Date(), TIMER_START_DATE));
+    update();
+    const id = setInterval(update, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const units = [
+    { label: 'سنة', value: elapsed.years },
+    { label: 'يوم', value: elapsed.days },
+    { label: 'ساعة', value: String(elapsed.hours).padStart(2, '0') },
+    { label: 'دقيقة', value: String(elapsed.minutes).padStart(2, '0') },
+  ];
+
+  return (
+    <section className="memory-timer" aria-label="Time elapsed since August 16 2006">
+      <h2 className="memory-timer-title">لن ننساك يا وطني</h2>
+      <div className="memory-timer-grid">
+        {units.map((u) => (
+          <div key={u.label} className="memory-timer-unit">
+            <strong className="memory-timer-value">{u.value}</strong>
+            <span className="memory-timer-label">{u.label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 /* ── Minimal SVG icons (20×20, stroke-based, elegant) ── */
 const I = ({ d, ...p }) => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -46,74 +99,77 @@ export default function NavBar({ extra }) {
   }, [open]);
 
   return (
-    <nav className="page-nav">
-      <Link to="/" className={`nav-logo ${open ? 'menu-open' : ''}`} onClick={close}>
-        <span className="nav-logo-flag-wrap" aria-hidden="true">
-          <img
-            src="/images/svg/Cedar.svg"
-            alt=""
-            className="nav-logo-flag"
-            loading="eager"
-            decoding="async"
-          />
-        </span>
-        <span className="nav-logo-text">Just Help Lebanon</span>
-      </Link>
-
-      {/* Hamburger button — visible only on mobile via CSS */}
-      <button
-        className={`nav-hamburger ${open ? 'open' : ''}`}
-        onClick={toggle}
-        aria-label={open ? 'Close menu' : 'Open menu'}
-        aria-expanded={open}
-        type="button"
-      >
-        <span className="hamburger-line" />
-        <span className="hamburger-line" />
-        <span className="hamburger-line" />
-      </button>
-
-      {/* Overlay backdrop */}
-      {open && <div className="nav-overlay" onClick={close} />}
-
-      {/* Links */}
-      <div className={`nav-links ${open ? 'nav-links--open' : ''}`}>
-        <div className="nav-mobile-header">
-          <div className="nav-mobile-logo-mark">
+    <>
+      <MemoryTimerBar />
+      <nav className="page-nav">
+        <Link to="/" className={`nav-logo ${open ? 'menu-open' : ''}`} onClick={close}>
+          <span className="nav-logo-flag-wrap" aria-hidden="true">
             <img
               src="/images/svg/Cedar.svg"
               alt=""
-              className="nav-mobile-logo-flag"
+              className="nav-logo-flag"
               loading="eager"
               decoding="async"
             />
+          </span>
+          <span className="nav-logo-text">Just Help Lebanon</span>
+        </Link>
+
+        {/* Hamburger button — visible only on mobile via CSS */}
+        <button
+          className={`nav-hamburger ${open ? 'open' : ''}`}
+          onClick={toggle}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          type="button"
+        >
+          <span className="hamburger-line" />
+          <span className="hamburger-line" />
+          <span className="hamburger-line" />
+        </button>
+
+        {/* Overlay backdrop */}
+        {open && <div className="nav-overlay" onClick={close} />}
+
+        {/* Links */}
+        <div className={`nav-links ${open ? 'nav-links--open' : ''}`}>
+          <div className="nav-mobile-header">
+            <div className="nav-mobile-logo-mark">
+              <img
+                src="/images/svg/Cedar.svg"
+                alt=""
+                className="nav-mobile-logo-flag"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+            <div className="nav-mobile-brand-group">
+              <span className="nav-mobile-brand">Just Help Lebanon</span>
+              <span className="nav-mobile-tagline">Together we rebuild</span>
+            </div>
           </div>
-          <div className="nav-mobile-brand-group">
-            <span className="nav-mobile-brand">Just Help Lebanon</span>
-            <span className="nav-mobile-tagline">Together we rebuild</span>
+
+          <div className="nav-mobile-divider" />
+
+          {NAV_ITEMS.map(({ to, label, icon }) => (
+            <Link
+              key={to}
+              to={to}
+              className={`nav-link ${location.pathname === to ? 'active' : ''}`}
+              onClick={close}
+            >
+              <span className="nav-link-icon">{icon}</span>
+              {label}
+            </Link>
+          ))}
+          {extra}
+
+          <div className="nav-mobile-footer">
+            <div className="nav-mobile-footer-line" />
+            <span className="nav-mobile-footer-text">Stand with Lebanon</span>
           </div>
         </div>
-
-        <div className="nav-mobile-divider" />
-
-        {NAV_ITEMS.map(({ to, label, icon }) => (
-          <Link
-            key={to}
-            to={to}
-            className={`nav-link ${location.pathname === to ? 'active' : ''}`}
-            onClick={close}
-          >
-            <span className="nav-link-icon">{icon}</span>
-            {label}
-          </Link>
-        ))}
-        {extra}
-
-        <div className="nav-mobile-footer">
-          <div className="nav-mobile-footer-line" />
-          <span className="nav-mobile-footer-text">Stand with Lebanon</span>
-        </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }

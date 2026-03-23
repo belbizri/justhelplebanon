@@ -1,4 +1,6 @@
 :root {
+  --memory-timer-height: 44px;
+
   /* ── Brand Colors ── */
   --red: #D62B37;
   --red-2: #EF4444;
@@ -1219,6 +1221,72 @@ h1 {
   margin: 0;
 }
 
+/* ── Shared Memory Timer ── */
+.memory-timer {
+  position: sticky;
+  top: 0;
+  z-index: 170;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  min-height: var(--memory-timer-height);
+  padding: 8px 18px;
+  direction: rtl;
+  background:
+    linear-gradient(100deg, rgba(135, 10, 23, 0.42) 0%, rgba(12, 10, 16, 0.95) 28%, rgba(12, 10, 16, 0.95) 72%, rgba(10, 96, 55, 0.32) 100%),
+    rgba(12, 10, 14, 0.94);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.08), 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.memory-timer-title {
+  margin: 0;
+  font-family: "Noto Kufi Arabic", "Segoe UI", sans-serif;
+  font-size: clamp(0.9rem, 1.5vw, 1.08rem);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.94);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.16);
+}
+
+.memory-timer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(70px, auto));
+  gap: 8px;
+}
+
+.memory-timer-unit {
+  min-width: 76px;
+  padding: 4px 10px 5px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.memory-timer-value {
+  display: block;
+  font-family: "Segoe UI", "SF Pro Display", system-ui, sans-serif;
+  font-size: clamp(0.9rem, 1.2vw, 1.06rem);
+  line-height: 1.05;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.11em;
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.memory-timer-label {
+  display: block;
+  margin-top: 4px;
+  font-family: "Noto Kufi Arabic", "Segoe UI", sans-serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.76);
+}
+
 /* ══════════════════════════════════════════
    Navigation Bar (shared across pages)
    ══════════════════════════════════════════ */
@@ -1232,7 +1300,7 @@ h1 {
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   position: sticky;
-  top: 37px;
+  top: var(--memory-timer-height);
   z-index: 150;
   box-shadow: 0 1px 24px rgba(0, 0, 0, 0.25);
   transition: background 0.3s ease, box-shadow 0.3s ease;
@@ -1416,6 +1484,41 @@ h1 {
 
 /* ── Mobile nav ── */
 @media (max-width: 768px) {
+  :root {
+    --memory-timer-height: 38px;
+  }
+
+  .memory-timer {
+    gap: 10px;
+    padding: 6px 10px;
+  }
+
+  .memory-timer-title {
+    font-size: 0.76rem;
+    white-space: nowrap;
+  }
+
+  .memory-timer-grid {
+    grid-template-columns: repeat(4, minmax(52px, auto));
+    gap: 4px;
+  }
+
+  .memory-timer-unit {
+    min-width: 52px;
+    padding: 3px 6px 4px;
+    border-radius: 9px;
+  }
+
+  .memory-timer-value {
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+  }
+
+  .memory-timer-label {
+    font-size: 0.56rem;
+    margin-top: 2px;
+  }
+
   .nav-hamburger {
     display: block;
   }
