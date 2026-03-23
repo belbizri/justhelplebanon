@@ -709,8 +709,6 @@ export default function DonationsPage() {
               <span className="don-cat-count">{grouped[category].length}</span>
             </h2>
 
-            <VideoShowcase videos={FEATURED_VIDEO_CONCEPT} onOpen={setSelectedFeaturedVideo} />
-
             {/* Desktop grid, mobile carousel */}
             <div className="don-grid-desktop">
               {grouped[category].map(o => <OrgCard key={o.name} org={o} onSelect={setSelectedOrg} />)}
