@@ -5000,6 +5000,16 @@ h1 {
   padding: 18px;
 }
 
+.catalog-page-root .catalog-org-card {
+  min-width: 0;
+}
+
+.catalog-page-root .catalog-card-body {
+  display: grid;
+  gap: 14px;
+  padding: 18px 18px 14px;
+}
+
 .catalog-page-root .catalog-card-topline {
   display: flex;
   align-items: center;
@@ -5146,6 +5156,14 @@ h1 {
   gap: 10px;
 }
 
+.catalog-page-root .catalog-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+}
+
 .catalog-page-root .catalog-tag-row {
   display: flex;
   flex-wrap: wrap;
@@ -5171,6 +5189,8 @@ h1 {
   color: #fff;
   font-weight: 700;
   background: linear-gradient(135deg, #E0313F 0%, #C2202D 100%);
+  border-left: 0;
+  flex: 0 0 auto;
 }
 
 .catalog-page-root .catalog-state-card,
@@ -5231,6 +5251,11 @@ h1 {
 
   .catalog-page-root .catalog-impact-row {
     grid-template-columns: 1fr;
+  }
+
+  .catalog-page-root .catalog-card-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 

@@ -14,54 +14,56 @@ function CatalogProductCard({ product }) {
   const previewComponents = product.components?.slice(0, 3) || [];
 
   return (
-    <article className="catalog-card">
-      <div className="catalog-card-topline">
+    <article className="org-card catalog-org-card">
+      <div className="org-card-body catalog-card-body">
+        <div className="catalog-card-topline">
         <span className="catalog-card-category">{product.category?.name || 'Aid Kit'}</span>
         <span className={`catalog-card-status ${product.status === 'active' ? 'is-active' : ''}`}>
           {product.status}
         </span>
+        </div>
+
+        <div className="catalog-card-hero">
+          <div>
+            <h2 className="org-card-name catalog-card-title">{product.title}</h2>
+            <p className="org-card-desc catalog-card-subtitle">{product.subtitle}</p>
+          </div>
+          <div className="catalog-price-block">
+            <span className="catalog-price-label">Per kit</span>
+            <strong className="catalog-price-value">{formatUsd(product.pricing?.base_amount)}</strong>
+          </div>
+        </div>
+
+        <p className="org-card-desc catalog-card-description">{product.description}</p>
+
+        <div className="catalog-impact-row">
+          <div className="catalog-impact-pill">
+            <span className="catalog-impact-pill-label">Impact</span>
+            <strong>{product.donation?.impact_description}</strong>
+          </div>
+          <div className="catalog-impact-pill">
+            <span className="catalog-impact-pill-label">Logistics</span>
+            <strong>{formatUsd(product.pricing?.cost?.logistics_total)}</strong>
+          </div>
+        </div>
+
+        <div className="catalog-component-panel">
+          <div className="catalog-component-head">
+            <h3>Inside the kit</h3>
+            <span>{product.components?.length || 0} items</span>
+          </div>
+          <ul className="catalog-component-list">
+            {previewComponents.map((component) => (
+              <li key={component.id} className="catalog-component-item">
+                <span>{component.name}</span>
+                <strong>{component.quantity}x</strong>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
-      <div className="catalog-card-hero">
-        <div>
-          <h2 className="catalog-card-title">{product.title}</h2>
-          <p className="catalog-card-subtitle">{product.subtitle}</p>
-        </div>
-        <div className="catalog-price-block">
-          <span className="catalog-price-label">Per kit</span>
-          <strong className="catalog-price-value">{formatUsd(product.pricing?.base_amount)}</strong>
-        </div>
-      </div>
-
-      <p className="catalog-card-description">{product.description}</p>
-
-      <div className="catalog-impact-row">
-        <div className="catalog-impact-pill">
-          <span className="catalog-impact-pill-label">Impact</span>
-          <strong>{product.donation?.impact_description}</strong>
-        </div>
-        <div className="catalog-impact-pill">
-          <span className="catalog-impact-pill-label">Logistics</span>
-          <strong>{formatUsd(product.pricing?.cost?.logistics_total)}</strong>
-        </div>
-      </div>
-
-      <div className="catalog-component-panel">
-        <div className="catalog-component-head">
-          <h3>Inside the kit</h3>
-          <span>{product.components?.length || 0} items</span>
-        </div>
-        <ul className="catalog-component-list">
-          {previewComponents.map((component) => (
-            <li key={component.id} className="catalog-component-item">
-              <span>{component.name}</span>
-              <strong>{component.quantity}x</strong>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="catalog-card-footer">
+      <div className="org-card-actions catalog-card-actions">
         <div className="catalog-tag-row">
           {targets.map((target) => (
             <span key={target} className="catalog-chip">{target}</span>
@@ -69,7 +71,7 @@ function CatalogProductCard({ product }) {
           {product.donation?.recurring_supported && <span className="catalog-chip">Recurring</span>}
         </div>
         <a
-          className="catalog-card-cta"
+          className="org-card-cta catalog-card-cta"
           href="https://supportlrc.app/donate"
           target="_blank"
           rel="noopener noreferrer"
