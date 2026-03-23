@@ -5,6 +5,8 @@ import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
 import { getVideoUrl, getOrgVideoUrl } from "./services/r2.js";
+import dbConnection from "./db/database.js";
+import apiRoutes from "./db/routes/api.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,6 +24,9 @@ const PUBLIC_DIR = path.join(__dirname, "public");
 const PUBLIC_VIDEOS_DIR = path.join(PUBLIC_DIR, "videos");
 const PUBLIC_DATA_DIR = path.join(PUBLIC_DIR, "data");
 const VIDEOS_MANIFEST_PATH = path.join(PUBLIC_DATA_DIR, "videos.json");
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const ALLOWED_VIDEO_EXTENSIONS = new Set([".mp4", ".mov", ".webm", ".m4v"]);
 const ALLOWED_VIDEO_MIME_TYPES = new Set([
@@ -287,6 +292,40 @@ app.use((error, req, res, next) => {
   next();
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+/* ── MongoDB API Routes ── */
+app.use('/api', apiRoutes);
+
+/* ── Start Server ── */
+const startServer = async () => {
+  try {
+    /* Initialize MongoDB connection */
+    await dbConnection.connect();
+    
+    /* Check database health */
+    const health = await dbConnection.healthCheck();
+    if (health.healthy) {
+      console.log('✓ Database connectivity verified');
+    } else {
+      console.warn('⚠️ Database health check:', health.message);
+    }
+
+    /* Start Express server */
+    app.listen(PORT, () => {
+      console.log(`\n🚀 Server running on http://localhost:${PORT}`);
+      console.log(`📊 Status: ${dbConnection.getStatus().isConnected ? 'Connected to MongoDB' : 'Not connected to MongoDB'}\n`);
+    });
+
+    /* Graceful shutdown */
+    process.on('SIGINT', async () => {
+      console.log('\n🛑 Shutting down server...');
+      await dbConnection.disconnect();
+      process.exit(0);
+    });
+
+  } catch (error) {
+    console.error('❌ Failed to start server:', error.message);
+    process.exit(1);
+  }
+};
+
+startServer();

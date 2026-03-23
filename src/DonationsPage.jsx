@@ -538,20 +538,22 @@ function VideoShowcase({ videos, onOpen }) {
                 }
               }}
             >
-              <video
-                className="don-video-el"
-                src={video.src}
-                muted
-                loop
-                autoPlay
-                playsInline
-                preload="metadata"
-              />
-              <div className="don-video-shade" />
-              <div className="don-video-play" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
+              <div className="don-video-screen">
+                <video
+                  className="don-video-el"
+                  src={video.src}
+                  muted
+                  loop
+                  autoPlay
+                  playsInline
+                  preload="metadata"
+                />
+                <div className="don-video-shade" />
+                <div className="don-video-play" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
               </div>
             </div>
             <div className="don-video-body">
@@ -646,7 +648,6 @@ export default function DonationsPage() {
               Featured Organisations
               <span className="don-heading-line" />
             </h2>
-
             <VideoShowcase videos={FEATURED_VIDEO_CONCEPT} onOpen={setSelectedFeaturedVideo} />
 
             <CategoryCarousel>
