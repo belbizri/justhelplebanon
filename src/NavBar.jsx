@@ -82,6 +82,8 @@ const NAV_ITEMS = [
   { to: '/social', label: 'Social', icon: Icons.megaphone },
 ];
 
+const SHOW_MEMORY_TIMER = false;
+
 export default function NavBar({ extra }) {
   const [open, setOpen] = useState(false);
   const location = useLocation();
@@ -169,7 +171,7 @@ export default function NavBar({ extra }) {
           </div>
         </div>
       </nav>
-      <MemoryTimerBar />
+      {SHOW_MEMORY_TIMER && <MemoryTimerBar />}
     </>
   );
 }
