@@ -3,6 +3,7 @@
 :root {
   --memory-timer-height: 44px;
   --urgency-banner-height: 38px;
+  --page-nav-height: 68px;
 
   /* ── Brand Colors ── */
   --red: #D62B37;
@@ -1229,7 +1230,7 @@ h1 {
 /* ── Shared Memory Timer ── */
 .memory-timer {
   position: sticky;
-  top: 0;
+  top: calc(var(--page-nav-height) + 6px);
   z-index: 170;
   display: flex;
   align-items: center;
@@ -1344,7 +1345,7 @@ h1 {
 }
 
 .app-root .memory-timer {
-  top: calc(var(--urgency-banner-height) + 6px);
+  top: calc(var(--urgency-banner-height) + var(--page-nav-height) + 6px);
   z-index: 175;
   width: min(980px, calc(100% - 28px));
   margin: 0 auto 8px;
@@ -1382,7 +1383,7 @@ h1 {
 }
 
 .app-root .page-nav {
-  top: calc(var(--urgency-banner-height) + var(--memory-timer-height) + 14px);
+  top: var(--urgency-banner-height);
 }
 
 /* ══════════════════════════════════════════
@@ -1398,7 +1399,7 @@ h1 {
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   position: sticky;
-  top: var(--memory-timer-height);
+  top: 0;
   z-index: 150;
   box-shadow: 0 1px 24px rgba(0, 0, 0, 0.25);
   transition: background 0.3s ease, box-shadow 0.3s ease;
@@ -1588,17 +1589,22 @@ h1 {
 
   :root {
     --memory-timer-height: 38px;
+    --page-nav-height: 60px;
   }
 
   .memory-timer {
     gap: 8px;
     padding: 6px 10px;
     border-radius: 10px;
+    flex-wrap: wrap;
+    row-gap: 4px;
   }
 
   .memory-timer-title {
     font-size: 0.88rem;
     white-space: nowrap;
+    width: 100%;
+    text-align: center;
   }
 
   .memory-timer-grid {
@@ -1624,7 +1630,7 @@ h1 {
 
   .app-root .memory-timer {
     --memory-timer-height: 42px;
-    top: calc(var(--urgency-banner-height) + 4px);
+    top: calc(var(--urgency-banner-height) + var(--page-nav-height) + 4px);
     width: calc(100% - 12px);
     margin: 0 auto 6px;
     padding: 6px 8px;
@@ -1644,10 +1650,11 @@ h1 {
 
   .app-root .memory-timer-title {
     font-size: 0.86rem;
+    display: block;
   }
 
   .app-root .page-nav {
-    top: calc(var(--urgency-banner-height) + var(--memory-timer-height) + 10px);
+    top: var(--urgency-banner-height);
   }
 
   .nav-hamburger {
