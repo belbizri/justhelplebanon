@@ -9,6 +9,8 @@
 import 'dotenv/config';
 import dbConnection from './database.js';
 import organizationRepository from './repositories/OrganizationRepository.js';
+import catalogRepository from './repositories/CatalogRepository.js';
+import catalogData from './seed-data/catalogData.js';
 
 const sampleOrganizations = [
   {
@@ -81,16 +83,22 @@ const seed = async () => {
     // Connect to database
     await dbConnection.connect();
 
-    // Clear existing organizations (optional - comment out to preserve data)
-    console.log('📝 Clearing existing organizations...');
-    await organizationRepository.deleteMany({});
-
     // Seed organizations
-    console.log('📝 Seeding organizations...');
+    console.log('📝 Syncing organizations...');
     for (const org of sampleOrganizations) {
-      const created = await organizationRepository.create(org);
-      console.log(`  ✓ Created: ${created.name} (${created.slug})`);
+      const existing = await organizationRepository.findBySlug(org.slug);
+      if (existing) {
+        await organizationRepository.updateById(existing.id, org);
+        console.log(`  ↺ Updated: ${org.name} (${org.slug})`);
+      } else {
+        const created = await organizationRepository.create(org);
+        console.log(`  ✓ Created: ${created.name} (${created.slug})`);
+      }
     }
+
+    console.log('🧺 Syncing catalog...');
+    const catalog = await catalogRepository.upsertDefaultCatalog(catalogData.catalog);
+    console.log(`  ✓ Catalog synced with ${catalog.products.length} products`);
 
     console.log('\n✓ Database seed completed successfully!');
     console.log(`  Total organizations: ${sampleOrganizations.length}`);

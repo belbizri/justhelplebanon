@@ -61,6 +61,23 @@ export class BaseRepository {
   }
 
   /**
+   * Upsert a single document
+   */
+  async upsertOne(query, data, options = {}) {
+    try {
+      return await this.model.findOneAndUpdate(query, data, {
+        new: true,
+        upsert: true,
+        runValidators: true,
+        setDefaultsOnInsert: true,
+        ...options,
+      });
+    } catch (error) {
+      throw new Error(`UpsertOne operation failed: ${error.message}`);
+    }
+  }
+
+  /**
    * Update document by ID
    */
   async updateById(id, data) {

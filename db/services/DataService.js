@@ -1,6 +1,7 @@
 import userRepository from '../repositories/UserRepository.js';
 import donationRepository from '../repositories/DonationRepository.js';
 import organizationRepository from '../repositories/OrganizationRepository.js';
+import catalogRepository from '../repositories/CatalogRepository.js';
 
 /**
  * Data Service Layer
@@ -208,8 +209,35 @@ export const organizationService = {
   },
 };
 
+export const catalogService = {
+  async syncCatalog(catalogData) {
+    return catalogRepository.upsertDefaultCatalog(catalogData);
+  },
+
+  async getCatalog() {
+    const catalog = await catalogRepository.getDefaultCatalog();
+    if (!catalog) {
+      throw new Error('Catalog not found');
+    }
+    return catalog;
+  },
+
+  async getProducts(filters) {
+    return catalogRepository.listProducts(filters);
+  },
+
+  async getProductBySlug(slug) {
+    const product = await catalogRepository.getProductBySlug(slug);
+    if (!product) {
+      throw new Error('Product not found');
+    }
+    return product;
+  },
+};
+
 export default {
   userService,
   donationService,
   organizationService,
+  catalogService,
 };

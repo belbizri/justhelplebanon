@@ -25,6 +25,9 @@ const PUBLIC_VIDEOS_DIR = path.join(PUBLIC_DIR, "videos");
 const PUBLIC_DATA_DIR = path.join(PUBLIC_DIR, "data");
 const VIDEOS_MANIFEST_PATH = path.join(PUBLIC_DATA_DIR, "videos.json");
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 const ALLOWED_VIDEO_EXTENSIONS = new Set([".mp4", ".mov", ".webm", ".m4v"]);
 const ALLOWED_VIDEO_MIME_TYPES = new Set([
   "video/mp4",

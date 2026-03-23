@@ -1,5 +1,10 @@
 import express from 'express';
-import { organizationService, donationService, userService } from '../services/DataService.js';
+import {
+  organizationService,
+  donationService,
+  userService,
+  catalogService,
+} from '../services/DataService.js';
 import dbConnection from '../database.js';
 
 const router = express.Router();
@@ -196,6 +201,44 @@ router.get('/donations/top-donors', async (req, res) => {
     res.json({ success: true, data: topDonors });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+/* ═══════════════════════════════════════
+   Catalog Routes
+   ═══════════════════════════════════════ */
+
+router.get('/catalog', async (req, res) => {
+  try {
+    const catalog = await catalogService.getCatalog();
+    res.json({ success: true, data: catalog });
+  } catch (error) {
+    res.status(404).json({ success: false, error: error.message });
+  }
+});
+
+router.get('/catalog/products', async (req, res) => {
+  try {
+    const { status, categoryId, marketCode, limit, skip } = req.query;
+    const products = await catalogService.getProducts({
+      status,
+      categoryId,
+      marketCode,
+      limit: limit ? Number.parseInt(limit, 10) : undefined,
+      skip: skip ? Number.parseInt(skip, 10) : undefined,
+    });
+    res.json({ success: true, data: products, count: products.length });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+router.get('/catalog/products/:slug', async (req, res) => {
+  try {
+    const product = await catalogService.getProductBySlug(req.params.slug);
+    res.json({ success: true, data: product });
+  } catch (error) {
+    res.status(404).json({ success: false, error: error.message });
   }
 });
 
