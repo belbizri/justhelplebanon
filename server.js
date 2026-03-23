@@ -268,6 +268,9 @@ app.get("/api", (req, res) => {
   });
 });
 
+/* ── MongoDB API Routes ── */
+app.use('/api', apiRoutes);
+
 // SPA fallback — serve index.html for all non-API routes
 app.get("/{*splat}", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
@@ -291,9 +294,6 @@ app.use((error, req, res, next) => {
 
   next();
 });
-
-/* ── MongoDB API Routes ── */
-app.use('/api', apiRoutes);
 
 /* ── Start Server ── */
 const startServer = async () => {

@@ -5127,6 +5127,214 @@ h1 {
   .carousel-arrow-right { right: -8px; }
 }
 
+/* ── Catalog Visual Alignment (match Donations Page) ── */
+.catalog-page-root {
+  background: var(--bg-light);
+  color: var(--tk);
+}
+
+.catalog-hero {
+  padding: 92px 24px 54px;
+  border-bottom: 1.5px solid var(--border-subtle);
+  background:
+    linear-gradient(145deg, rgba(247, 244, 239, 0.98), rgba(242, 237, 230, 0.97));
+}
+
+.catalog-hero-backdrop {
+  background:
+    radial-gradient(48% 62% at 14% 18%, rgba(214, 43, 55, 0.14), transparent 70%),
+    radial-gradient(42% 54% at 86% 12%, rgba(10, 143, 94, 0.12), transparent 72%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0));
+}
+
+.catalog-hero-grid {
+  background-image:
+    linear-gradient(rgba(24, 18, 14, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 18, 14, 0.05) 1px, transparent 1px);
+}
+
+.catalog-eyebrow {
+  color: var(--tk-muted);
+}
+
+.catalog-title {
+  color: var(--tk);
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4vw, 4.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.catalog-subtitle {
+  color: var(--tk-muted);
+  max-width: 760px;
+}
+
+.catalog-primary-btn {
+  color: #fff;
+  background: linear-gradient(135deg, var(--red), #be2430);
+  box-shadow: 0 10px 24px rgba(214, 43, 55, 0.24);
+}
+
+.catalog-secondary-btn {
+  color: var(--tk);
+  background: var(--surface);
+  border: 1.5px solid var(--border-light);
+}
+
+.catalog-highlight-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border-subtle);
+  box-shadow: var(--shadow-md);
+}
+
+.catalog-highlight-kicker {
+  color: var(--tk-soft);
+}
+
+.catalog-highlight-list strong {
+  color: var(--tk);
+}
+
+.catalog-highlight-list span {
+  color: var(--tk-muted);
+}
+
+.catalog-toolbar-copy h2 {
+  color: var(--tk);
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.catalog-toolbar-copy p {
+  color: var(--tk-muted);
+}
+
+.catalog-filter-btn {
+  border: 1.5px solid var(--border-light);
+  background: var(--surface);
+  color: var(--tk-muted);
+}
+
+.catalog-filter-btn.active {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+}
+
+.catalog-state-card {
+  color: var(--tk-muted);
+  background: var(--surface);
+  border: 1.5px solid var(--border-subtle);
+}
+
+.catalog-state-card.is-error {
+  color: #9f2430;
+  background: #fff6f7;
+  border-color: #f0d5d9;
+}
+
+.catalog-grid {
+  gap: 20px;
+}
+
+.catalog-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+.catalog-card-category,
+.catalog-card-status {
+  color: var(--tk-soft);
+}
+
+.catalog-card-status.is-active {
+  color: #0a7a4e;
+}
+
+.catalog-card-title {
+  color: var(--tk);
+  font-size: 1.3rem;
+}
+
+.catalog-card-subtitle,
+.catalog-card-description {
+  color: var(--tk-muted);
+}
+
+.catalog-price-label {
+  color: var(--tk-soft);
+}
+
+.catalog-price-value {
+  color: var(--tk);
+}
+
+.catalog-impact-pill {
+  background: var(--surface-2);
+  border: 1px solid var(--border-subtle);
+}
+
+.catalog-impact-pill strong {
+  color: var(--tk);
+}
+
+.catalog-impact-pill-label {
+  color: var(--tk-soft);
+}
+
+.catalog-component-panel {
+  background: #fcfaf7;
+  border: 1px solid var(--border-subtle);
+}
+
+.catalog-component-head h3,
+.catalog-component-item strong {
+  color: var(--tk);
+}
+
+.catalog-component-head span,
+.catalog-component-item span,
+.catalog-tag-row {
+  color: var(--tk-muted);
+}
+
+.catalog-chip {
+  background: var(--surface-2);
+  border: 1px solid var(--border-light);
+  color: var(--tk-muted);
+}
+
+.catalog-card-cta {
+  color: #fff;
+  background: linear-gradient(135deg, var(--green), #0a7a4e);
+}
+
+.catalog-disclaimer {
+  background: var(--surface);
+  border: 1.5px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+.catalog-disclaimer-title {
+  color: var(--tk);
+}
+
+.catalog-disclaimer-body p {
+  color: var(--tk-muted);
+}
+
+@media (max-width: 768px) {
+  .catalog-hero {
+    padding-top: 82px;
+  }
+
+  .catalog-title {
+    font-size: 2.2rem;
+  }
+}
+
 /* ═══════════════════════════════════════
    Videos Page
    ═══════════════════════════════════════ */
