@@ -78,7 +78,7 @@ function CatalogProductCard({ product }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Sponsor This Kit
+          Donate via Omprakash
         </a>
       </div>
     </article>
