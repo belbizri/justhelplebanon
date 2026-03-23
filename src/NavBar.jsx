@@ -100,7 +100,6 @@ export default function NavBar({ extra }) {
 
   return (
     <>
-      <MemoryTimerBar />
       <nav className="page-nav">
         <Link to="/" className={`nav-logo ${open ? 'menu-open' : ''}`} onClick={close}>
           <span className="nav-logo-flag-wrap" aria-hidden="true">
@@ -170,6 +169,7 @@ export default function NavBar({ extra }) {
           </div>
         </div>
       </nav>
+      <MemoryTimerBar />
     </>
   );
 }
