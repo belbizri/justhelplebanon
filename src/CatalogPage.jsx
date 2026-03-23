@@ -126,7 +126,7 @@ export default function CatalogPage() {
   }, [filteredProducts]);
 
   return (
-    <div className="page-root catalog-page-root">
+    <div className="page-root donations-page catalog-page-root">
       <NavBar />
 
       <header className="catalog-hero">
@@ -176,7 +176,7 @@ export default function CatalogPage() {
       <main className="catalog-shell">
         <section className="catalog-toolbar">
           <div className="catalog-toolbar-copy">
-            <h2>Browse by need</h2>
+            <h2>Browse aid kits by need</h2>
             <p>Pick a category, inspect what is inside the kit, and sponsor it with clarity.</p>
           </div>
           <div className="catalog-filter-row" role="tablist" aria-label="Aid kit categories">

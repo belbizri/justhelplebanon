@@ -297,10 +297,13 @@ app.use((error, req, res, next) => {
 
 /* ── Start Server ── */
 const startServer = async () => {
+  let dbConnected = false;
+
   try {
     /* Initialize MongoDB connection */
     await dbConnection.connect();
-    
+    dbConnected = true;
+
     /* Check database health */
     const health = await dbConnection.healthCheck();
     if (health.healthy) {
@@ -308,24 +311,22 @@ const startServer = async () => {
     } else {
       console.warn('⚠️ Database health check:', health.message);
     }
-
-    /* Start Express server */
-    app.listen(PORT, () => {
-      console.log(`\n🚀 Server running on http://localhost:${PORT}`);
-      console.log(`📊 Status: ${dbConnection.getStatus().isConnected ? 'Connected to MongoDB' : 'Not connected to MongoDB'}\n`);
-    });
-
-    /* Graceful shutdown */
-    process.on('SIGINT', async () => {
-      console.log('\n🛑 Shutting down server...');
-      await dbConnection.disconnect();
-      process.exit(0);
-    });
-
   } catch (error) {
-    console.error('❌ Failed to start server:', error.message);
-    process.exit(1);
+    console.warn('⚠️ MongoDB unavailable, starting API in fallback mode:', error.message);
   }
+
+  /* Start Express server even when DB is unavailable */
+  app.listen(PORT, () => {
+    console.log(`\n🚀 Server running on http://localhost:${PORT}`);
+    console.log(`📊 Status: ${dbConnected ? 'Connected to MongoDB' : 'Running without MongoDB (fallback mode)'}\n`);
+  });
+
+  /* Graceful shutdown */
+  process.on('SIGINT', async () => {
+    console.log('\n🛑 Shutting down server...');
+    await dbConnection.disconnect();
+    process.exit(0);
+  });
 };
 
 startServer();
