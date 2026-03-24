@@ -29,8 +29,8 @@ const catalogData = {
         short_description: 'Essential food support bundle for daily nutrition.',
         brand: null,
         vendor: null,
-        images: ['https://i.imgur.com/PY8DIXD.jpeg'],
-        thumbnail: 'https://i.imgur.com/PY8DIXD.jpeg',
+        images: ['https://i.imgur.com/dEQkARt.png'],
+        thumbnail: 'https://i.imgur.com/dEQkARt.png',
         attributes: {
           bundle_type: 'assistance_kit',
           target_group: ['individual', 'family'],
@@ -257,8 +257,8 @@ const catalogData = {
         short_description: 'Complete personal hygiene support bundle.',
         brand: null,
         vendor: null,
-        images: ['https://i.imgur.com/4LkpaNz.png'],
-        thumbnail: 'https://i.imgur.com/4LkpaNz.png',
+        images: ['https://i.imgur.com/HJPt19e.png'],
+        thumbnail: 'https://i.imgur.com/HJPt19e.png',
         attributes: {
           bundle_type: 'assistance_kit',
           target_group: ['adult'],
@@ -602,8 +602,8 @@ const catalogData = {
         short_description: 'Essential baby care support bundle.',
         brand: null,
         vendor: null,
-        images: ['https://i.imgur.com/SJgkrWD.jpeg'],
-        thumbnail: 'https://i.imgur.com/SJgkrWD.jpeg',
+        images: ['https://i.imgur.com/j7NECdm.png'],
+        thumbnail: 'https://i.imgur.com/j7NECdm.png',
         attributes: {
           bundle_type: 'assistance_kit',
           target_group: ['baby', 'caregiver'],
