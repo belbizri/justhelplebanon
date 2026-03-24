@@ -4788,34 +4788,82 @@ h1 {
   min-height: 100vh;
 }
 
-.catalog-page-root .catalog-hero {
-  position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: #ffe5ef;
-  background: linear-gradient(135deg, #1A1030 0%, #2D1840 25%, #1E1240 50%, #2A1838 75%, #12101E 100%);
-  background-size: 300% 300%;
-  background: linear-gradient(135deg, rgba(214, 43, 55, 0.16), rgba(168, 85, 247, 0.12));
+/* ── Catalog Hero Animations ─────────────── */
+
+@keyframes catalog-aurora-drift {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(22px, -16px) scale(1.07); }
+  50%  { transform: translate(-14px, 26px) scale(0.96); }
+  75%  { transform: translate(16px, 10px) scale(1.04); }
+  100% { transform: translate(0, 0) scale(1); }
 }
 
-.catalog-page-root .catalog-hero-backdrop {
-  border-color: rgba(255, 184, 196, 0.3);
-  color: #fff6fa;
+@keyframes catalog-pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(224, 49, 63, 0.7); }
+  50%       { opacity: 0.55; transform: scale(0.78); box-shadow: 0 0 0 6px rgba(224, 49, 63, 0); }
+}
+
+@keyframes catalog-slash-grow {
+  from { transform: scaleY(0); transform-origin: top center; }
+  to   { transform: scaleY(1); transform-origin: top center; }
+}
+
+/* ── Hero Shell ─────────────────────────── */
+
+.catalog-page-root .catalog-hero {
+  position: relative;
+  overflow: hidden;
+  background: #080711;
+  color: #fff;
+}
+
+.catalog-hero-aurora {
+  position: absolute;
+  inset: -15%;
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(214, 43, 55, 0.22) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 20%, rgba(10, 143, 94, 0.14) 0%, transparent 50%),
-    radial-gradient(ellipse at 60% 80%, rgba(120, 80, 200, 0.1) 0%, transparent 45%);
+    radial-gradient(ellipse 55% 48% at 16% 68%, rgba(214, 43, 55, 0.32) 0%, transparent 58%),
+    radial-gradient(ellipse 46% 54% at 84% 22%, rgba(110, 50, 195, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 38% 42% at 60% 90%, rgba(10, 143, 94, 0.13) 0%, transparent 52%),
+    radial-gradient(ellipse 28% 28% at 44% 42%, rgba(214, 43, 55, 0.07) 0%, transparent 45%);
+  animation: catalog-aurora-drift 15s ease-in-out infinite;
   z-index: 0;
 }
 
-.catalog-page-root .catalog-hero-grid {
+.catalog-hero-dots {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 44px 44px;
-  opacity: 0.45;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.22;
   z-index: 1;
+}
+
+.catalog-hero-watermark {
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-52%) rotate(-4deg);
+  font-size: clamp(110px, 17vw, 230px);
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.05);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+}
+
+.catalog-hero-slash {
+  position: absolute;
+  left: 0;
+  top: 8%;
+  bottom: 12%;
+  width: 4px;
+  background: linear-gradient(to bottom, transparent, #E0313F 12%, #C2202D 82%, transparent);
+  z-index: 3;
+  animation: catalog-slash-grow 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .catalog-page-root .catalog-hero-inner {
@@ -4823,43 +4871,91 @@ h1 {
   z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 120px 24px 64px;
+  padding: 132px 32px 88px 52px;
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.9fr);
-  gap: 20px;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.82fr);
+  gap: 36px;
   align-items: center;
 }
 
-.catalog-page-root .catalog-eyebrow {
-  margin: 0 0 12px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+/* ── Live Badge ─────────────────────────── */
+
+.catalog-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 99px;
+  padding: 6px 14px 6px 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.52);
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 22px;
+  width: fit-content;
+  backdrop-filter: blur(6px);
 }
+
+.catalog-live-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #E0313F;
+  animation: catalog-pulse-dot 1.9s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.catalog-live-sep {
+  opacity: 0.28;
+  margin: 0 2px;
+}
+
+/* ── Title ──────────────────────────────── */
 
 .catalog-page-root .catalog-title {
   margin: 0;
-  font-family: var(--font-body);
-  font-size: clamp(2rem, 4vw, 3.3rem);
-  font-weight: 800;
-  line-height: 1.12;
-  letter-spacing: -0.03em;
-  color: #fff;
+  font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
 }
 
-.catalog-page-root .catalog-subtitle {
-  margin: 16px 0 0;
-  max-width: 640px;
-  color: rgba(255, 255, 255, 0.64);
-  line-height: 1.75;
+.catalog-title-line1 {
+  display: block;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.64em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
 }
+
+.catalog-title-line2 {
+  display: block;
+  background: linear-gradient(100deg, #ffffff 0%, rgba(255, 255, 255, 0.9) 52%, #ff6b7a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Subtitle ───────────────────────────── */
+
+.catalog-page-root .catalog-subtitle {
+  margin: 20px 0 0;
+  max-width: 580px;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.52);
+  line-height: 1.8;
+}
+
+/* ── Hero Actions ───────────────────────── */
 
 .catalog-page-root .catalog-hero-actions {
   display: flex;
   gap: 12px;
-  margin-top: 24px;
+  margin-top: 28px;
   flex-wrap: wrap;
 }
 
@@ -4869,66 +4965,165 @@ h1 {
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-full);
-  padding: 12px 20px;
+  padding: 13px 26px;
+  font-size: 0.88rem;
   font-weight: 700;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
 }
 
 .catalog-page-root .catalog-primary-btn {
   color: #fff;
   background: linear-gradient(135deg, #E0313F 0%, #C2202D 100%);
-  box-shadow: 0 6px 22px rgba(214, 43, 55, 0.45);
+  box-shadow: 0 6px 28px rgba(214, 43, 55, 0.52), 0 2px 8px rgba(0, 0, 0, 0.28);
+  letter-spacing: 0.01em;
 }
 
 .catalog-page-root .catalog-secondary-btn {
-  color: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(8px);
 }
 
-.catalog-page-root .catalog-primary-btn:hover,
+.catalog-page-root .catalog-primary-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 38px rgba(214, 43, 55, 0.62), 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
 .catalog-page-root .catalog-secondary-btn:hover {
   transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.11);
 }
 
+/* ── Micro-Stats Strip ──────────────────── */
+
+.catalog-hero-micro-stats {
+  display: flex;
+  align-items: center;
+  margin-top: 32px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  width: fit-content;
+  gap: 0;
+}
+
+.catalog-micro-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+  gap: 4px;
+}
+
+.catalog-micro-stat strong {
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+
+.catalog-micro-stat span {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.36);
+}
+
+.catalog-micro-stat-sep {
+  width: 1px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+}
+
+/* ── Highlight Card ─────────────────────── */
+
 .catalog-page-root .catalog-highlight-card {
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(10, 9, 16, 0.42);
-  backdrop-filter: blur(8px);
-  padding: 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(8, 6, 16, 0.58);
+  backdrop-filter: blur(18px);
+  padding: 26px;
+  box-shadow:
+    0 0 0 1px rgba(214, 43, 55, 0.1),
+    0 30px 64px rgba(0, 0, 0, 0.44),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.catalog-highlight-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
 }
 
 .catalog-page-root .catalog-highlight-kicker {
   display: inline-block;
-  font-size: 0.68rem;
+  font-size: 0.67rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(255, 255, 255, 0.46);
+}
+
+.catalog-highlight-verified {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.64rem;
+  font-weight: 700;
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.22);
+  border-radius: 99px;
+  padding: 3px 9px;
+  letter-spacing: 0.04em;
 }
 
 .catalog-page-root .catalog-highlight-list {
   list-style: none;
-  margin: 12px 0 0;
+  margin: 0;
   padding: 0;
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 
 .catalog-page-root .catalog-highlight-list li {
   display: grid;
-  gap: 2px;
+  gap: 3px;
+  padding-left: 14px;
+  border-left: 2px solid rgba(214, 43, 55, 0.45);
 }
 
 .catalog-page-root .catalog-highlight-list strong {
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1.22rem;
+  font-weight: 800;
 }
 
 .catalog-page-root .catalog-highlight-list span {
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.78rem;
+}
+
+.catalog-highlight-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.catalog-highlight-footer-label {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.34);
+}
+
+.catalog-highlight-footer-brand {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.72);
+  letter-spacing: 0.02em;
 }
 
 .catalog-page-root .catalog-shell {
@@ -5284,7 +5479,22 @@ h1 {
 @media (max-width: 900px) {
   .catalog-page-root .catalog-hero-inner {
     grid-template-columns: 1fr;
-    padding-top: 106px;
+    padding: 110px 24px 64px 32px;
+  }
+
+  .catalog-hero-watermark {
+    font-size: clamp(80px, 22vw, 130px);
+    right: -10px;
+    top: 40%;
+  }
+
+  .catalog-hero-micro-stats {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .catalog-micro-stat {
+    padding: 0 12px;
   }
 }
 
