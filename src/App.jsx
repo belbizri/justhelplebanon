@@ -294,11 +294,24 @@ function WhoWeAreSection({ title, paragraphs }) {
 }
 
 /* ── Gallery (#10 — dynamic from /images/galleries/) ── */
-const galleryModules = import.meta.glob('/public/images/galleries/*.{jpg,jpeg,png,webp}', { eager: true, import: 'default' });
-const GALLERY_IMAGES = Object.entries(galleryModules).map(([path, src]) => {
-  const name = path.split('/').pop().replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
-  return { src, alt: name };
-});
+// Images are in public/ and served as static assets; list their public URLs directly.
+// To add images: drop a file in public/images/galleries/ and add an entry here.
+const GALLERY_IMAGES = [
+  '1629212267454.jpeg',
+  '736a0919-536d-4d0e-b8ad-0ee44e27c2ce.png',
+  'Lebanese-Red-Cross-LT3.jpg',
+  'gallery-01.png',
+  'gallery-02.png',
+  'gallery-03.png',
+  'gallery-04.png',
+  'gallery-05.png',
+  'gallery-06.png',
+  'gallery-07.png',
+  'gallery-08.png',
+].map((filename) => ({
+  src: `/images/galleries/${filename}`,
+  alt: filename.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
+}));
 
 function GallerySection() {
   const [ref, visible] = useReveal();
