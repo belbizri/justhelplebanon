@@ -33,10 +33,10 @@ function CatalogProductCard({ product }) {
       )}
       <div className="org-card-body catalog-card-body">
         <div className="catalog-card-topline">
-        <span className="catalog-card-category">{product.category?.name || 'Aid Kit'}</span>
-        <span className={`catalog-card-status ${product.status === 'active' ? 'is-active' : ''}`}>
-          {product.status}
-        </span>
+          <span className="catalog-card-category">{product.category?.name || 'Aid Kit'}</span>
+          <span className={`catalog-card-status ${product.status === 'active' ? 'is-active' : ''}`}>
+            {product.status}
+          </span>
         </div>
 
         <div className="catalog-card-hero">
@@ -180,9 +180,15 @@ export default function CatalogPage() {
             </p>
 
             <div className="catalog-hero-actions">
-              <button type="button" className="catalog-primary-btn" aria-label="Donate now to sponsor an aid kit">
+              <a
+                href="https://www.omprakash.org/global/blue-mission-organization/crowdfund/karama-project---blue-mission-organization"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="catalog-primary-btn"
+                aria-label="Donate via Omprakash to sponsor an aid kit for Lebanon"
+              >
                 Donate Now
-              </button>
+              </a>
               <Link to="/donations" className="catalog-secondary-btn">See Organisations</Link>
             </div>
 
@@ -277,9 +283,9 @@ export default function CatalogPage() {
               as to where their contributions may go.
             </p>
             <p>
-              No profit is generated from this page at any time. 
+              No profit is generated from this page at any time.
             </p>
-           
+
             <p>
               All content is provided for informational purposes only, donations are made independently,
               and are not processed through this page, at any time.
