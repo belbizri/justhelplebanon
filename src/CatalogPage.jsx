@@ -151,6 +151,7 @@ export default function CatalogPage() {
       <header className="catalog-hero">
         <div className="catalog-hero-aurora" aria-hidden="true" />
         <div className="catalog-hero-dots" aria-hidden="true" />
+        <img className="catalog-hero-cedar" src="/images/svg/Cedar.svg" aria-hidden="true" alt="" />
         <div className="catalog-hero-watermark" aria-hidden="true">لبنان</div>
         <div className="catalog-hero-slash" aria-hidden="true" />
 
@@ -165,13 +166,11 @@ export default function CatalogPage() {
 
             <h1 className="catalog-title">
               <span className="catalog-title-line1">Sponsor what</span>
-              <br />
               <span className="catalog-title-line2">Lebanon&nbsp;needs.</span>
             </h1>
 
             <p className="catalog-subtitle">
-              Real bundles. Real prices. Built for real emergencies —
-              food, hygiene, and baby care delivered where it matters.
+              Built for real emergencies
             </p>
 
             <div className="catalog-hero-actions">
