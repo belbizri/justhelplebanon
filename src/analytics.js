@@ -58,32 +58,22 @@ export function trackEvent(eventName, payload = {}) {
     return;
   }
 
-  const dispatch = () => {
+  const eventPayload = {
+    event: eventName,
+    ...payload,
+  };
+
+  try {
     const dataLayer = getWritableDataLayer();
     if (!dataLayer) {
       return;
     }
-
-    const eventPayload = {
-      event: eventName,
-      ...payload,
-    };
 
     dataLayer.push(eventPayload);
 
     if (isAnalyticsDebugEnabled()) {
       console.info('[analytics] event tracked', eventPayload);
     }
-  };
-
-  try {
-    // Keep link/navigation clicks responsive by queuing analytics work.
-    if (typeof window !== 'undefined' && typeof window.requestIdleCallback === 'function') {
-      window.requestIdleCallback(dispatch, { timeout: 300 });
-      return;
-    }
-
-    setTimeout(dispatch, 0);
   } catch {
     // Never let analytics errors impact user actions.
   }
