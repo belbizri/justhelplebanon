@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
+import usePageSeo from './usePageSeo.js';
 
 /* ═══════════════════════════════════════
    SVG Icons — one per category
@@ -572,6 +573,21 @@ function VideoShowcase({ videos, onOpen }) {
    Main Page
    ═══════════════════════════════════════ */
 export default function DonationsPage() {
+  usePageSeo({
+    title: 'Verified Organizations Supporting Lebanon | Just Help Lebanon',
+    description:
+      'Browse verified organizations and fundraisers supporting Lebanon across food aid, healthcare, shelter, education, and recovery.',
+    path: '/donations',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Verified Organizations Supporting Lebanon',
+      url: 'https://justhelplebanon.com/donations',
+      description:
+        'Discover verified organizations and fundraisers supporting humanitarian relief, healthcare, and recovery in Lebanon.',
+    },
+  });
+
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedOrg, setSelectedOrg] = useState(null);

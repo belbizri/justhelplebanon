@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
+import usePageSeo from './usePageSeo.js';
 
 const SOCIAL_FEEDS = [
   {
@@ -66,6 +67,21 @@ const HASHTAGS = [
 ];
 
 export default function SocialPage() {
+  usePageSeo({
+    title: 'Social Hub for Lebanon | Follow and Share the Cause',
+    description:
+      'Follow trusted Lebanon-related accounts, share verified hashtags, and amplify humanitarian support across Instagram, X, Facebook, YouTube, and LinkedIn.',
+    path: '/social',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: 'Social Hub for Lebanon',
+      url: 'https://justhelplebanon.com/social',
+      description:
+        'A social sharing hub for trusted Lebanon-related accounts, hashtags, and awareness channels.',
+    },
+  });
+
   const [activePlatform, setActivePlatform] = useState(null);
 
   return (
