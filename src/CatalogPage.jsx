@@ -12,21 +12,6 @@ const FALLBACK_PRODUCTS = (catalogSeedData?.catalog?.products || []).filter(
 
 const AID_KITS_DONATION_URL = 'https://www.gofundme.com/f/stand-with-lebanon-emergency-relief-for-families-hospitals';
 
-function handleAidKitDonateClick(event, payload) {
-  event.preventDefault();
-
-  trackEvent('aid_kit_click', payload);
-
-  if (typeof window === 'undefined') {
-    return;
-  }
-
-  const popup = window.open(AID_KITS_DONATION_URL, '_blank', 'noopener,noreferrer');
-  if (!popup) {
-    window.location.assign(AID_KITS_DONATION_URL);
-  }
-}
-
 const formatUsd = (value) => new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
@@ -109,8 +94,8 @@ function CatalogProductCard({ product }) {
           href={AID_KITS_DONATION_URL}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={(event) => {
-            handleAidKitDonateClick(event, {
+          onClick={() => {
+            trackEvent('aid_kit_click', {
               location: 'catalog_card',
               product_id: product.id,
               product_title: product.title,
@@ -221,8 +206,8 @@ export default function CatalogPage() {
                 href={AID_KITS_DONATION_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(event) => {
-                  handleAidKitDonateClick(event, {
+                onClick={() => {
+                  trackEvent('aid_kit_click', {
                     location: 'catalog_hero',
                     destination: 'gofundme',
                     visible_kits: summary.totalProducts,
