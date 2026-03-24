@@ -170,8 +170,7 @@ export default function CatalogPage() {
             </h1>
 
             <p className="catalog-subtitle">
-              Real bundles. Real prices. Built for real emergencies —
-              food, hygiene, and baby care delivered where it matters.
+              Built for real emergencies
             </p>
 
             <div className="catalog-hero-actions">
