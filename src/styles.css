@@ -4838,19 +4838,33 @@ h1 {
   z-index: 1;
 }
 
-.catalog-hero-watermark {
+.catalog-hero-cedar {
   position: absolute;
-  right: -30px;
+  left: 50%;
   top: 50%;
-  transform: translateY(-52%) rotate(-4deg);
-  font-size: clamp(110px, 17vw, 230px);
-  font-weight: 900;
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.05);
-  line-height: 1;
+  transform: translate(-50%, -50%);
+  width: clamp(240px, 32vw, 480px);
+  height: auto;
+  opacity: 0.06;
+  filter: brightness(0) invert(1);
   pointer-events: none;
   user-select: none;
   z-index: 1;
+}
+
+.catalog-hero-watermark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -52%) rotate(-4deg);
+  font-size: clamp(110px, 17vw, 230px);
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.07);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
   white-space: nowrap;
   letter-spacing: 0.05em;
 }

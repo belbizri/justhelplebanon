@@ -151,6 +151,7 @@ export default function CatalogPage() {
       <header className="catalog-hero">
         <div className="catalog-hero-aurora" aria-hidden="true" />
         <div className="catalog-hero-dots" aria-hidden="true" />
+        <img className="catalog-hero-cedar" src="/images/svg/Cedar.svg" aria-hidden="true" alt="" />
         <div className="catalog-hero-watermark" aria-hidden="true">لبنان</div>
         <div className="catalog-hero-slash" aria-hidden="true" />
 
