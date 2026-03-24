@@ -329,4 +329,12 @@ const startServer = async () => {
   });
 };
 
+process.on('unhandledRejection', (reason) => {
+  console.error('[server] unhandled promise rejection (process kept alive):', reason);
+});
+
+process.on('uncaughtException', (error) => {
+  console.error('[server] uncaught exception (process kept alive):', error);
+});
+
 startServer();
