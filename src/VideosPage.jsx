@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { trackEvent } from './analytics.js';
 import NavBar from './NavBar.jsx';
 import usePageSeo from './usePageSeo.js';
 
@@ -186,6 +187,11 @@ export default function VideosPage() {
   const hasMore = visible < reversed.length;
 
   const openModal = useCallback((src, title) => {
+    trackEvent('video_open', {
+      title: title || '',
+      location: 'videos_gallery',
+      page: 'videos',
+    });
     setModal({ src, title });
     document.body.style.overflow = 'hidden';
   }, []);

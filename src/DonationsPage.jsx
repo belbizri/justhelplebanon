@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import { trackEvent } from './analytics.js';
 import NavBar from './NavBar.jsx';
 import usePageSeo from './usePageSeo.js';
 
@@ -418,7 +419,21 @@ function OrgProfileModal({ org, onClose }) {
 
         <div className="orgp-footer">
           {org.url ? (
-            <a href={org.url} target="_blank" rel="noopener noreferrer" className="orgp-donate-btn">
+            <a
+              href={org.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="orgp-donate-btn"
+              onClick={() => {
+                trackEvent('organization_click', {
+                  location: 'organization_modal',
+                  organization_name: org.name,
+                  category: org.category,
+                  destination_url: org.url,
+                  page: 'donations',
+                });
+              }}
+            >
               Donate to {org.name} <ExternalIcon />
             </a>
           ) : (
@@ -453,7 +468,15 @@ function OrgCard({ org, onSelect }) {
               rel="noopener noreferrer"
               className="org-whatsapp-icon"
               aria-label={`Contact ${org.name} on WhatsApp`}
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation();
+                trackEvent('organization_whatsapp_click', {
+                  location: 'organization_card',
+                  organization_name: org.name,
+                  category: org.category,
+                  page: 'donations',
+                });
+              }}
             >
               <WhatsappIcon />
             </a>
@@ -473,7 +496,22 @@ function OrgCard({ org, onSelect }) {
           Profile
         </button>
         {org.url ? (
-          <a href={org.url} target="_blank" rel="noopener noreferrer" className="org-card-cta" aria-label={`Donate to ${org.name}`}>
+          <a
+            href={org.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="org-card-cta"
+            aria-label={`Donate to ${org.name}`}
+            onClick={() => {
+              trackEvent('organization_click', {
+                location: 'organization_card',
+                organization_name: org.name,
+                category: org.category,
+                destination_url: org.url,
+                page: 'donations',
+              });
+            }}
+          >
             View / Donate <ExternalIcon />
           </a>
         ) : (
@@ -748,6 +786,13 @@ export default function DonationsPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="donations-btn"
+              onClick={() => {
+                trackEvent('donate_click', {
+                  location: 'donations_page_cta',
+                  destination: 'supportlrc',
+                  page: 'donations',
+                });
+              }}
             >
               Donate Now
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="donations-btn-arrow">

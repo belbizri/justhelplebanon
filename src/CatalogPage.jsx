@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
+import { trackEvent } from './analytics.js';
 import { fetchCatalogProducts } from './services/catalogApi.js';
 import catalogSeedData from '../db/seed-data/catalogData.js';
 import usePageSeo from './usePageSeo.js';
@@ -93,6 +94,16 @@ function CatalogProductCard({ product }) {
           href={AID_KITS_DONATION_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => {
+            trackEvent('aid_kit_click', {
+              location: 'catalog_card',
+              product_id: product.id,
+              product_title: product.title,
+              category: product.category?.name || 'Aid Kit',
+              amount: product.pricing?.base_amount || 0,
+              destination: 'omprakash',
+            });
+          }}
         >
           Donate via Omprakash
         </a>
@@ -195,6 +206,14 @@ export default function CatalogPage() {
                 href={AID_KITS_DONATION_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  trackEvent('aid_kit_click', {
+                    location: 'catalog_hero',
+                    destination: 'omprakash',
+                    visible_kits: summary.totalProducts,
+                    page: 'aid-kits',
+                  });
+                }}
               >
                 Donate via Omprakash
               </a>

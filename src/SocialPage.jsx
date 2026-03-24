@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { trackEvent } from './analytics.js';
 import NavBar from './NavBar.jsx';
 import usePageSeo from './usePageSeo.js';
 
@@ -117,7 +118,16 @@ export default function SocialPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="account-link"
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      trackEvent('social_account_click', {
+                        platform: platform.platform,
+                        account_name: acc.name,
+                        account_handle: acc.handle,
+                        destination_url: acc.url,
+                        page: 'social',
+                      });
+                    }}
                   >
                     <span className="account-name">{acc.name}</span>
                     <span className="account-handle">{acc.handle}</span>
@@ -140,7 +150,13 @@ export default function SocialPage() {
               key={tag}
               type="button"
               className="hashtag-chip"
-              onClick={() => navigator.clipboard?.writeText(tag)}
+              onClick={() => {
+                navigator.clipboard?.writeText(tag);
+                trackEvent('hashtag_copy', {
+                  hashtag: tag,
+                  page: 'social',
+                });
+              }}
               title="Click to copy"
             >
               {tag}
@@ -154,10 +170,10 @@ export default function SocialPage() {
         <h3 className="sources-title">Quick Share</h3>
         <p className="hashtag-sub">Share this initiative with one click</p>
         <div className="quick-share-buttons">
-          <a href="https://wa.me/?text=Support%20the%20Lebanese%20Red%20Cross%20%E2%80%94%20https%3A%2F%2Fjusthelplebanon.com" target="_blank" rel="noopener noreferrer" className="share-btn whatsapp">WhatsApp</a>
-          <a href="https://x.com/intent/tweet?text=Stand%20up%20for%20Lebanon%20%F0%9F%87%B1%F0%9F%87%A7%20Donate%20to%20the%20Lebanese%20Red%20Cross&url=https%3A%2F%2Fjusthelplebanon.com" target="_blank" rel="noopener noreferrer" className="share-btn x-btn">𝕏</a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjusthelplebanon.com" target="_blank" rel="noopener noreferrer" className="share-btn facebook">Facebook</a>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjusthelplebanon.com" target="_blank" rel="noopener noreferrer" className="share-btn linkedin">LinkedIn</a>
+          <a href="https://wa.me/?text=Support%20the%20Lebanese%20Red%20Cross%20%E2%80%94%20https%3A%2F%2Fjusthelplebanon.com" target="_blank" rel="noopener noreferrer" className="share-btn whatsapp" onClick={() => trackEvent('share_click', { platform: 'whatsapp', location: 'social_quick_share', page: 'social' })}>WhatsApp</a>
+          <a href="https://x.com/intent/tweet?text=Stand%20up%20for%20Lebanon%20%F0%9F%87%B1%F0%9F%87%A7%20Donate%20to%20the%20Lebanese%20Red%20Cross&url=https%3A%2F%2Fjusthelplebanon.com" target="_blank" rel="noopener noreferrer" className="share-btn x-btn" onClick={() => trackEvent('share_click', { platform: 'x', location: 'social_quick_share', page: 'social' })}>𝕏</a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjusthelplebanon.com" target="_blank" rel="noopener noreferrer" className="share-btn facebook" onClick={() => trackEvent('share_click', { platform: 'facebook', location: 'social_quick_share', page: 'social' })}>Facebook</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjusthelplebanon.com" target="_blank" rel="noopener noreferrer" className="share-btn linkedin" onClick={() => trackEvent('share_click', { platform: 'linkedin', location: 'social_quick_share', page: 'social' })}>LinkedIn</a>
         </div>
       </section>
 
