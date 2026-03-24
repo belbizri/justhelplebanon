@@ -187,7 +187,7 @@ export default function CatalogPage() {
                 className="catalog-primary-btn"
                 aria-label="Donate via Omprakash to sponsor an aid kit for Lebanon"
               >
-                Donate Now
+              Donate via Omprakash
               </a>
               <Link to="/donations" className="catalog-secondary-btn">See Organisations</Link>
             </div>
