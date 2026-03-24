@@ -602,8 +602,8 @@ const catalogData = {
         short_description: 'Essential baby care support bundle.',
         brand: null,
         vendor: null,
-        images: ['https://i.imgur.com/nq2Yq5d.jpeg'],
-        thumbnail: 'https://i.imgur.com/nq2Yq5d.jpeg',
+        images: ['https://i.imgur.com/eJxhE2E.jpeg'],
+        thumbnail: 'https://i.imgur.com/eJxhE2E.jpeg',
         attributes: {
           bundle_type: 'assistance_kit',
           target_group: ['baby', 'caregiver'],
