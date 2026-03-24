@@ -165,7 +165,6 @@ export default function CatalogPage() {
 
             <h1 className="catalog-title">
               <span className="catalog-title-line1">Sponsor what</span>
-              <br />
               <span className="catalog-title-line2">Lebanon&nbsp;needs.</span>
             </h1>
 
