@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
-import { trackEvent } from './analytics.js';
 import { fetchCatalogProducts } from './services/catalogApi.js';
 import catalogSeedData from '../db/seed-data/catalogData.js';
 import usePageSeo from './usePageSeo.js';
@@ -9,8 +8,6 @@ import usePageSeo from './usePageSeo.js';
 const FALLBACK_PRODUCTS = (catalogSeedData?.catalog?.products || []).filter(
   (p) => p.status === 'active'
 );
-
-const AID_KITS_DONATION_URL = 'https://www.gofundme.com/f/stand-with-lebanon-emergency-relief-for-families-hospitals';
 
 const formatUsd = (value) => new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -89,24 +86,6 @@ function CatalogProductCard({ product }) {
           ))}
           {product.donation?.recurring_supported && <span className="catalog-chip">Recurring</span>}
         </div>
-        <a
-          className="org-card-cta catalog-card-cta"
-          href={AID_KITS_DONATION_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => {
-            trackEvent('aid_kit_click', {
-              location: 'catalog_card',
-              product_id: product.id,
-              product_title: product.title,
-              category: product.category?.name || 'Aid Kit',
-              amount: product.pricing?.base_amount || 0,
-              destination: 'gofundme',
-            });
-          }}
-        >
-          Donate via GoFundMe
-        </a>
       </div>
     </article>
   );
@@ -201,22 +180,6 @@ export default function CatalogPage() {
             </p>
 
             <div className="catalog-hero-actions">
-              <a
-                className="catalog-primary-btn"
-                href={AID_KITS_DONATION_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => {
-                  trackEvent('aid_kit_click', {
-                    location: 'catalog_hero',
-                    destination: 'gofundme',
-                    visible_kits: summary.totalProducts,
-                    page: 'aid-kits',
-                  });
-                }}
-              >
-                Donate via GoFundMe
-              </a>
               <Link to="/donations" className="catalog-secondary-btn">See Organisations</Link>
             </div>
 
@@ -262,10 +225,6 @@ export default function CatalogPage() {
                 <span>kits support recurring giving</span>
               </li>
             </ul>
-            <div className="catalog-highlight-footer">
-              <span className="catalog-highlight-footer-label">Powered by</span>
-              <strong className="catalog-highlight-footer-brand">GoFundMe</strong>
-            </div>
           </aside>
         </div>
       </header>
