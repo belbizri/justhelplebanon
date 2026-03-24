@@ -180,7 +180,7 @@ export default function CatalogPage() {
             </p>
 
             <div className="catalog-hero-actions">
-              <button type="button" className="catalog-primary-btn" aria-label="Donate now test button">
+              <button type="button" className="catalog-primary-btn" aria-label="Donate now to sponsor an aid kit">
                 Donate Now
               </button>
               <Link to="/donations" className="catalog-secondary-btn">See Organisations</Link>
