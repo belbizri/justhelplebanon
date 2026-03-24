@@ -45,7 +45,7 @@ class UserRepository extends BaseRepository {
     return this.model.findByIdAndUpdate(
       id,
       { $addToSet: { roles: role } },
-      { new: true }
+      { returnDocument: 'after' }
     );
   }
 
@@ -56,7 +56,7 @@ class UserRepository extends BaseRepository {
     return this.model.findByIdAndUpdate(
       id,
       { $pull: { roles: role } },
-      { new: true }
+      { returnDocument: 'after' }
     );
   }
 

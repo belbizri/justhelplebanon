@@ -9,33 +9,44 @@ const requiredEnvVars = [
   "R2_BUCKET",
 ];
 
-for (const envVar of requiredEnvVars) {
-  if (!process.env[envVar]) {
-    throw new Error(`${envVar} must be set in the environment.`);
+export const getMissingR2EnvVars = () =>
+  requiredEnvVars.filter((envVar) => !process.env[envVar]);
+
+export const isR2Configured = () => getMissingR2EnvVars().length === 0;
+
+const getR2Client = () => {
+  const missingEnvVars = getMissingR2EnvVars();
+
+  if (missingEnvVars.length > 0) {
+    throw new Error(`${missingEnvVars.join(", ")} must be set in the environment.`);
   }
-}
 
-const s3 = new S3Client({
-  region: "auto",
-  endpoint: process.env.R2_ENDPOINT,
-  credentials: {
-    accessKeyId: process.env.R2_ACCESS_KEY_ID,
-    secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
-  },
+  return new S3Client({
+    region: "auto",
+    endpoint: process.env.R2_ENDPOINT,
+    credentials: {
+      accessKeyId: process.env.R2_ACCESS_KEY_ID,
+      secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
+    },
+  });
+};
+
+const getBuckets = () => ({
+  bucket: process.env.R2_BUCKET,
+  orgBucket: process.env.R2_ORG_BUCKET || "orgvideos",
 });
-
-const BUCKET = process.env.R2_BUCKET;
-const ORG_BUCKET = process.env.R2_ORG_BUCKET || "orgvideos";
 
 export async function getVideoUrl(key, ttl = 3600) {
   if (!key || typeof key !== "string") {
     throw new TypeError("key must be a non-empty string.");
   }
 
+  const s3 = getR2Client();
+  const { bucket } = getBuckets();
   const safeKey = key.replace(/^\/+/, "");
 
   const command = new GetObjectCommand({
-    Bucket: BUCKET,
+    Bucket: bucket,
     Key: safeKey,
   });
 
@@ -47,10 +58,12 @@ export async function getOrgVideoUrl(key, ttl = 3600) {
     throw new TypeError("key must be a non-empty string.");
   }
 
+  const s3 = getR2Client();
+  const { orgBucket } = getBuckets();
   const safeKey = key.replace(/^\/+/, "");
 
   const command = new GetObjectCommand({
-    Bucket: ORG_BUCKET,
+    Bucket: orgBucket,
     Key: safeKey,
   });
 

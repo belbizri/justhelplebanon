@@ -70,11 +70,13 @@ const Icons = {
   play: <I d={<><rect x="2" y="2" width="20" height="20" rx="2.18"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></>}/>,
   calendar: <I d={<><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="12" cy="15" r="1.5" fill="currentColor" stroke="none"/></>}/>,
   megaphone: <I d={<><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></>}/>,
+  box: <I d={<><path d="M21 8.5 12 13 3 8.5"/><path d="M3 8.5 12 3l9 5.5V19L12 21 3 19V8.5z"/><path d="M12 13v8"/></>}/> ,
 };
 
 const NAV_ITEMS = [
   { to: '/', label: 'Home', icon: Icons.home },
   { to: '/donations', label: 'Donations', icon: Icons.heart },
+  { to: '/aid-kits', label: 'Aid Kits', icon: Icons.box },
   { to: '/from-lebanon', label: 'From Lebanon', icon: Icons.flag },
   // { to: '/news', label: 'News', icon: Icons.news },
   // { to: '/videos', label: 'Videos', icon: Icons.play },

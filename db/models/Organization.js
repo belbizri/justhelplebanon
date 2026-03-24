@@ -66,7 +66,6 @@ const organizationSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-organizationSchema.index({ slug: 1 });
 organizationSchema.index({ category: 1 });
 organizationSchema.index({ featured: 1 });
 organizationSchema.index({ 'stats.totalAmount': -1 });

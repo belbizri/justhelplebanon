@@ -1,6 +1,17 @@
 import mongoose from 'mongoose';
 import 'dotenv/config';
 
+export const buildMongoOptions = (dbName) => ({
+  dbName,
+  maxPoolSize: 10,
+  minPoolSize: 5,
+  socketTimeoutMS: 45000,
+  serverSelectionTimeoutMS: 5000,
+  retryWrites: true,
+  retryReads: true,
+  w: 'majority',
+});
+
 /**
  * MongoDB Database Connection Manager
  * Handles connection lifecycle, pooling, and error handling
@@ -31,17 +42,7 @@ class DatabaseConnection {
 
       console.log('🔄 Connecting to MongoDB...');
 
-      this.connection = await mongoose.connect(mongoUri, {
-        dbName,
-        maxPoolSize: 10,
-        minPoolSize: 5,
-        socketTimeoutMS: 45000,
-        serverSelectionTimeoutMS: 5000,
-        socketKeepAliveMS: 30000,
-        retryWrites: true,
-        retryReads: true,
-        w: 'majority',
-      });
+      this.connection = await mongoose.connect(mongoUri, buildMongoOptions(dbName));
 
       this.isConnected = true;
 
@@ -109,6 +110,10 @@ class DatabaseConnection {
    */
   async healthCheck() {
     try {
+      if (!mongoose.connection.db) {
+        return { healthy: false, message: 'MongoDB is not connected' };
+      }
+
       await mongoose.connection.db.admin().ping();
       return { healthy: true, message: 'MongoDB is responsive' };
     } catch (error) {

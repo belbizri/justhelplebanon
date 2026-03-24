@@ -6,8 +6,36 @@ import {
   catalogService,
 } from '../services/DataService.js';
 import dbConnection from '../database.js';
+import catalogSeedData from '../seed-data/catalogData.js';
 
 const router = express.Router();
+
+const getSeedCatalog = () => catalogSeedData?.catalog || { products: [] };
+
+const getSeedProducts = (filters = {}) => {
+  const { status, categoryId, marketCode, limit, skip } = filters;
+  let products = Array.isArray(getSeedCatalog().products)
+    ? [...getSeedCatalog().products]
+    : [];
+
+  if (status) {
+    products = products.filter((product) => product.status === status);
+  }
+
+  if (categoryId) {
+    products = products.filter((product) => product.category?.id === categoryId);
+  }
+
+  if (marketCode) {
+    products = products.filter((product) =>
+      product.availability?.regions?.includes(marketCode)
+    );
+  }
+
+  const offset = Number.isFinite(skip) ? skip : 0;
+  const cappedLimit = Number.isFinite(limit) ? limit : products.length;
+  return products.slice(offset, offset + cappedLimit);
+};
 
 /* ═══════════════════════════════════════
    Organization Routes
@@ -213,13 +241,20 @@ router.get('/catalog', async (req, res) => {
     const catalog = await catalogService.getCatalog();
     res.json({ success: true, data: catalog });
   } catch (error) {
-    res.status(404).json({ success: false, error: error.message });
+    const fallbackCatalog = getSeedCatalog();
+    res.json({
+      success: true,
+      data: fallbackCatalog,
+      source: 'seed_fallback',
+      warning: error.message,
+    });
   }
 });
 
 router.get('/catalog/products', async (req, res) => {
+  const { status, categoryId, marketCode, limit, skip } = req.query;
+
   try {
-    const { status, categoryId, marketCode, limit, skip } = req.query;
     const products = await catalogService.getProducts({
       status,
       categoryId,
@@ -229,7 +264,21 @@ router.get('/catalog/products', async (req, res) => {
     });
     res.json({ success: true, data: products, count: products.length });
   } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+    const fallbackProducts = getSeedProducts({
+      status,
+      categoryId,
+      marketCode,
+      limit: limit ? Number.parseInt(limit, 10) : undefined,
+      skip: skip ? Number.parseInt(skip, 10) : undefined,
+    });
+
+    res.json({
+      success: true,
+      data: fallbackProducts,
+      count: fallbackProducts.length,
+      source: 'seed_fallback',
+      warning: error.message,
+    });
   }
 });
 
@@ -238,7 +287,21 @@ router.get('/catalog/products/:slug', async (req, res) => {
     const product = await catalogService.getProductBySlug(req.params.slug);
     res.json({ success: true, data: product });
   } catch (error) {
-    res.status(404).json({ success: false, error: error.message });
+    const fallbackProduct = getSeedProducts().find(
+      (product) => product.slug === req.params.slug
+    );
+
+    if (!fallbackProduct) {
+      res.status(404).json({ success: false, error: error.message });
+      return;
+    }
+
+    res.json({
+      success: true,
+      data: fallbackProduct,
+      source: 'seed_fallback',
+      warning: error.message,
+    });
   }
 });
 

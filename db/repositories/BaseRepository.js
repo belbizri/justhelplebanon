@@ -66,7 +66,7 @@ export class BaseRepository {
   async upsertOne(query, data, options = {}) {
     try {
       return await this.model.findOneAndUpdate(query, data, {
-        new: true,
+        returnDocument: 'after',
         upsert: true,
         runValidators: true,
         setDefaultsOnInsert: true,
@@ -83,7 +83,7 @@ export class BaseRepository {
   async updateById(id, data) {
     try {
       return await this.model.findByIdAndUpdate(id, data, {
-        new: true,
+        returnDocument: 'after',
         runValidators: true,
       });
     } catch (error) {
