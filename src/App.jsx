@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CrisisDashboard from './CrisisDashboard.jsx';
 import NavBar from './NavBar.jsx';
+import { trackEvent } from './analytics.js';
 import usePageSeo from './usePageSeo.js';
 
 const DONATION_BASE_URL = 'https://give.redcross.ca/page/LHNA';
@@ -228,6 +229,12 @@ function ShareSection({ title, sub }) {
   const msg = 'Support the Lebanese Red Cross — every dollar helps families in Lebanon.';
 
   const share = useCallback((platform) => {
+    trackEvent('share_click', {
+      platform,
+      location: 'home_share_section',
+      page: 'home',
+    });
+
     const encodedUrl = encodeURIComponent(url);
     const encodedMsg = encodeURIComponent(msg);
     const urls = {
@@ -463,14 +470,34 @@ export default function App() {
                   key={value}
                   type="button"
                   className={`amount-btn ${amount === value ? 'active' : ''}`}
-                  onClick={() => setAmount(value)}
+                  onClick={() => {
+                    setAmount(value);
+                    trackEvent('donation_amount_select', {
+                      location: 'home_hero',
+                      amount: value,
+                      page: 'home',
+                    });
+                  }}
                 >
                   {t.donateOpt(value)}
                 </button>
               ))}
             </div>
 
-            <a className="donate-btn" href={donateHref} target="_blank" rel="noopener noreferrer">
+            <a
+              className="donate-btn"
+              href={donateHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                trackEvent('donate_click', {
+                  location: 'home_hero',
+                  amount,
+                  destination: 'lebanese_red_cross',
+                  page: 'home',
+                });
+              }}
+            >
               {t.donateBtn(amount)}
             </a>
           </div>

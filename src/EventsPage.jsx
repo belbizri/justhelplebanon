@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
+import { trackEvent } from './analytics.js';
 import NavBar from './NavBar.jsx';
 import usePageSeo from './usePageSeo.js';
 
@@ -43,7 +44,7 @@ function isPast(iso) {
   return new Date(iso + 'T23:59:59') < new Date();
 }
 
-function EventCard({ event, onImageClick }) {
+function EventCard({ event, onImageClick, onMapClick }) {
   const past = isPast(event.date);
   const [imgSrc, setImgSrc] = useState(`/images/events/${event.id}.jpg`);
   const [imgError, setImgError] = useState(false);
@@ -97,7 +98,13 @@ function EventCard({ event, onImageClick }) {
             <div className="evt-meta-item">
               <span className="evt-meta-icon">📍</span>
               {mapUrl ? (
-                <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="evt-map-link">
+                <a
+                  href={mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="evt-map-link"
+                  onClick={() => onMapClick(event)}
+                >
                   {event.location}
                 </a>
               ) : (
@@ -135,7 +142,13 @@ function EventCard({ event, onImageClick }) {
 
         {/* Google Maps button */}
         {mapUrl && (
-          <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="evt-map-btn">
+          <a
+            href={mapUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="evt-map-btn"
+            onClick={() => onMapClick(event)}
+          >
             📍 Open in Google Maps
           </a>
         )}
@@ -165,6 +178,14 @@ export default function EventsPage() {
 
   const openLightbox = useCallback((src, alt) => setLightbox({ src, alt }), []);
   const closeLightbox = useCallback(() => setLightbox(null), []);
+  const handleMapClick = useCallback((event) => {
+    trackEvent('event_map_click', {
+      event_id: event.id,
+      event_title: event.title,
+      location: event.location || '',
+      page: 'events',
+    });
+  }, []);
 
   useEffect(() => {
     fetch('/data/events.json')
@@ -211,7 +232,7 @@ export default function EventsPage() {
             Upcoming Events
           </h2>
           <div className="evt-grid">
-            {upcoming.map((e) => <EventCard key={e.id} event={e} onImageClick={openLightbox} />)}
+            {upcoming.map((e) => <EventCard key={e.id} event={e} onImageClick={openLightbox} onMapClick={handleMapClick} />)}
           </div>
         </section>
       )}
@@ -224,7 +245,7 @@ export default function EventsPage() {
             Past Events
           </h2>
           <div className="evt-grid">
-            {past.map((e) => <EventCard key={e.id} event={e} onImageClick={openLightbox} />)}
+            {past.map((e) => <EventCard key={e.id} event={e} onImageClick={openLightbox} onMapClick={handleMapClick} />)}
           </div>
         </section>
       )}
