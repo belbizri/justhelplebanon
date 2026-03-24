@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
+import usePageSeo from './usePageSeo.js';
 
 /* ═══════════════════════════════════════
    Category Icons
@@ -320,6 +321,21 @@ function BrandCard({ brand }) {
    Main Page
    ═══════════════════════════════════════ */
 export default function FromLebanonPage() {
+  usePageSeo({
+    title: 'From Lebanon | Discover Lebanese Brands and Businesses',
+    description:
+      'Discover Lebanese brands, restaurants, designers, and makers. Support Lebanon by buying from Lebanese businesses and creators.',
+    path: '/from-lebanon',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'From Lebanon',
+      url: 'https://justhelplebanon.com/from-lebanon',
+      description:
+        'A curated directory of Lebanese brands, food, fashion, beauty, art, and businesses to support from around the world.',
+    },
+  });
+
   const [search, setSearch] = useState('');
   const [activeCat, setActiveCat] = useState('All');
   const [businesses, setBusinesses] = useState([]);

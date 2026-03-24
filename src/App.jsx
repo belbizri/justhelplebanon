@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CrisisDashboard from './CrisisDashboard.jsx';
 import NavBar from './NavBar.jsx';
+import usePageSeo from './usePageSeo.js';
 
 const DONATION_BASE_URL = 'https://give.redcross.ca/page/LHNA';
 const DONATION_OPTIONS = [20, 50, 100];
@@ -403,6 +404,21 @@ function LangToggle({ lang, setLang }) {
 
 /* ── Main App ── */
 export default function App() {
+  usePageSeo({
+    title: 'Help Lebanon — Donate to the Lebanese Red Cross | Just Help Lebanon',
+    description:
+      'Donate to help families in Lebanon with emergency medical kits, shelter, and food through the Lebanese Red Cross. Stand up for Lebanon with a verified, high-clarity donation path.',
+    path: '/',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: 'Help Lebanon — Donate to the Lebanese Red Cross',
+      url: 'https://justhelplebanon.com/',
+      description:
+        'Donate to help families in Lebanon with emergency medical kits, shelter, and food through the Lebanese Red Cross.',
+    },
+  });
+
   const [amount, setAmount] = useState(20);
   const [lang, setLang] = useState('en');
   const t = TRANSLATIONS[lang];

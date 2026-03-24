@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
 import { fetchCatalogProducts } from './services/catalogApi.js';
 import catalogSeedData from '../db/seed-data/catalogData.js';
+import usePageSeo from './usePageSeo.js';
 
 const FALLBACK_PRODUCTS = (catalogSeedData?.catalog?.products || []).filter(
   (p) => p.status === 'active'
@@ -101,6 +102,21 @@ function CatalogProductCard({ product }) {
 }
 
 export default function CatalogPage() {
+  usePageSeo({
+    title: 'Aid Kits for Lebanon | Sponsor Food, Hygiene, and Baby Care Kits',
+    description:
+      'Sponsor aid kits for Lebanon with visible pricing and clear impact. Fund food assistance, hygiene supplies, and baby care kits through a verified humanitarian partner.',
+    path: '/aid-kits',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Aid Kits for Lebanon',
+      url: 'https://justhelplebanon.com/aid-kits',
+      description:
+        'Sponsor food, hygiene, and baby care kits for families in Lebanon with transparent, market-priced options.',
+    },
+  });
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');

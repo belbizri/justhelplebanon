@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import NavBar from './NavBar.jsx';
+import usePageSeo from './usePageSeo.js';
 
 const BATCH_SIZE = 4;
 
@@ -130,6 +131,21 @@ function VideoModal({ src, title, onClose }) {
 }
 
 export default function VideosPage() {
+  usePageSeo({
+    title: 'Lebanon Videos | Stories, Updates, and Solidarity',
+    description:
+      'Watch videos documenting solidarity, humanitarian support, and stories connected to Lebanon.',
+    path: '/videos',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Lebanon Videos',
+      url: 'https://justhelplebanon.com/videos',
+      description:
+        'A video gallery featuring stories, updates, and solidarity content connected to Lebanon.',
+    },
+  });
+
   const [videos, setVideos] = useState([]);
   const [visible, setVisible] = useState(BATCH_SIZE);
   const [error, setError] = useState(null);

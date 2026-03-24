@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
+import usePageSeo from './usePageSeo.js';
 
 const RSS_FEEDS = [
   {
@@ -48,6 +49,21 @@ const RSS_FEEDS = [
 ];
 
 export default function NewsPage() {
+  usePageSeo({
+    title: 'Lebanon News and Humanitarian Updates | Just Help Lebanon',
+    description:
+      'Read recent Lebanon news and humanitarian updates from trusted sources including the Lebanese Red Cross, ICRC, UNHCR, and Reuters.',
+    path: '/news',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Lebanon News and Humanitarian Updates',
+      url: 'https://justhelplebanon.com/news',
+      description:
+        'Curated Lebanon news and humanitarian updates from trusted relief and reporting sources.',
+    },
+  });
+
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {

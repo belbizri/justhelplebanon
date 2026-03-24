@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
+import usePageSeo from './usePageSeo.js';
 
 /* ── Animated counter ── */
 function AnimatedNumber({ value, duration = 1200 }) {
@@ -294,6 +295,21 @@ function GovBar({ name, count, max }) {
    Main Page Component
    ───────────────────────────────────────── */
 export default function LiveUpdatesPage() {
+  usePageSeo({
+    title: 'Lebanon Crisis Live Updates | Verified Humanitarian Data',
+    description:
+      'Track verified humanitarian data for Lebanon, including healthcare attacks, hospital incidents, and crisis reporting from HDX and the Ministry of Public Health.',
+    path: '/live',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'Dataset',
+      name: 'Lebanon Crisis Live Updates',
+      url: 'https://justhelplebanon.com/live',
+      description:
+        'Verified humanitarian crisis reporting and healthcare incident data for Lebanon from HDX and MoPH sources.',
+    },
+  });
+
   const [hdxData, setHdxData] = useState([]);
   const [mophRecords, setMophRecords] = useState([]);
   const [loading, setLoading] = useState(true);

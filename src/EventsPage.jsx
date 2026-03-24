@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import NavBar from './NavBar.jsx';
+import usePageSeo from './usePageSeo.js';
 
 /* ── Image Lightbox Modal ── */
 function ImageModal({ src, alt, onClose }) {
@@ -144,6 +145,21 @@ function EventCard({ event, onImageClick }) {
 }
 
 export default function EventsPage() {
+  usePageSeo({
+    title: 'Lebanon Community Events | Just Help Lebanon',
+    description:
+      'Discover upcoming community events, solidarity gatherings, and fundraisers supporting Lebanon.',
+    path: '/events',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Lebanon Community Events',
+      url: 'https://justhelplebanon.com/events',
+      description:
+        'Upcoming and past community events supporting Lebanon through solidarity, awareness, and fundraising.',
+    },
+  });
+
   const [events, setEvents] = useState([]);
   const [lightbox, setLightbox] = useState(null);
 
