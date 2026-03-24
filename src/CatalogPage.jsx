@@ -2,6 +2,11 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
 import { fetchCatalogProducts } from './services/catalogApi.js';
+import catalogSeedData from '../db/seed-data/catalogData.js';
+
+const FALLBACK_PRODUCTS = (catalogSeedData?.catalog?.products || []).filter(
+  (p) => p.status === 'active'
+);
 
 const AID_KITS_DONATION_URL = 'https://www.omprakash.org/global/blue-mission-organization/crowdfund/karama-project---blue-mission-organization';
 
@@ -101,7 +106,7 @@ export default function CatalogPage() {
       .then((data) => setProducts(Array.isArray(data) ? data : []))
       .catch((fetchError) => {
         if (fetchError.name !== 'AbortError') {
-          setError('Could not load aid kits right now.');
+          setProducts(FALLBACK_PRODUCTS);
         }
       })
       .finally(() => setLoading(false));
