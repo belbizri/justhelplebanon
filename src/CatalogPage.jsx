@@ -149,16 +149,31 @@ export default function CatalogPage() {
       <NavBar />
 
       <header className="catalog-hero">
-        <div className="catalog-hero-backdrop" />
-        <div className="catalog-hero-grid" />
+        <div className="catalog-hero-aurora" aria-hidden="true" />
+        <div className="catalog-hero-dots" aria-hidden="true" />
+        <div className="catalog-hero-watermark" aria-hidden="true">لبنان</div>
+        <div className="catalog-hero-slash" aria-hidden="true" />
+
         <div className="catalog-hero-inner">
           <div className="catalog-hero-copy">
-            <p className="catalog-eyebrow">Market-priced aid bundles for Lebanon</p>
-            <h1 className="catalog-title">Sponsor essential kits with direct, visible impact.</h1>
+            <div className="catalog-live-badge">
+              <span className="catalog-live-dot" />
+              <span>Live Aid Catalog</span>
+              <span className="catalog-live-sep">·</span>
+              <span>Market-Priced · Lebanon</span>
+            </div>
+
+            <h1 className="catalog-title">
+              <span className="catalog-title-line1">Sponsor what</span>
+              <br />
+              <span className="catalog-title-line2">Lebanon&nbsp;needs.</span>
+            </h1>
+
             <p className="catalog-subtitle">
-              Choose practical bundles built for real needs on the ground: food, hygiene, and baby care.
-              Every kit is structured, priced, and ready to fund.
+              Real bundles. Real prices. Built for real emergencies —
+              food, hygiene, and baby care delivered where it matters.
             </p>
+
             <div className="catalog-hero-actions">
               <a
                 className="catalog-primary-btn"
@@ -166,14 +181,39 @@ export default function CatalogPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Donate Now
+                Donate via Omprakash
               </a>
               <Link to="/donations" className="catalog-secondary-btn">See Organisations</Link>
+            </div>
+
+            <div className="catalog-hero-micro-stats">
+              <div className="catalog-micro-stat">
+                <strong>{summary.totalProducts}</strong>
+                <span>kits</span>
+              </div>
+              <div className="catalog-micro-stat-sep" />
+              <div className="catalog-micro-stat">
+                <strong>$21</strong>
+                <span>from</span>
+              </div>
+              <div className="catalog-micro-stat-sep" />
+              <div className="catalog-micro-stat">
+                <strong>100%</strong>
+                <span>transparent</span>
+              </div>
+              <div className="catalog-micro-stat-sep" />
+              <div className="catalog-micro-stat">
+                <strong>Lebanon</strong>
+                <span>delivery</span>
+              </div>
             </div>
           </div>
 
           <aside className="catalog-highlight-card">
-            <span className="catalog-highlight-kicker">Why this format works</span>
+            <div className="catalog-highlight-header">
+              <span className="catalog-highlight-kicker">Why this works</span>
+              <span className="catalog-highlight-verified">✓ Verified</span>
+            </div>
             <ul className="catalog-highlight-list">
               <li>
                 <strong>{summary.totalProducts}</strong>
@@ -181,13 +221,17 @@ export default function CatalogPage() {
               </li>
               <li>
                 <strong>{formatUsd(summary.totalValue)}</strong>
-                <span>combined visible value in this view</span>
+                <span>combined visible value</span>
               </li>
               <li>
                 <strong>{summary.recurringCount}</strong>
-                <span>kits support recurring sponsorship</span>
+                <span>kits support recurring giving</span>
               </li>
             </ul>
+            <div className="catalog-highlight-footer">
+              <span className="catalog-highlight-footer-label">Powered by</span>
+              <strong className="catalog-highlight-footer-brand">Omprakash</strong>
+            </div>
           </aside>
         </div>
       </header>
