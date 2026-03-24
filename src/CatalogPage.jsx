@@ -10,7 +10,7 @@ const FALLBACK_PRODUCTS = (catalogSeedData?.catalog?.products || []).filter(
   (p) => p.status === 'active'
 );
 
-const AID_KITS_DONATION_URL = 'https://www.omprakash.org/global/blue-mission-organization/crowdfund/karama-project---blue-mission-organization';
+const AID_KITS_DONATION_URL = 'https://www.gofundme.com/f/stand-with-lebanon-emergency-relief-for-families-hospitals';
 
 function handleAidKitDonateClick(event, payload) {
   event.preventDefault();
@@ -116,11 +116,11 @@ function CatalogProductCard({ product }) {
               product_title: product.title,
               category: product.category?.name || 'Aid Kit',
               amount: product.pricing?.base_amount || 0,
-              destination: 'omprakash',
+              destination: 'gofundme',
             });
           }}
         >
-          Donate via Omprakash
+          Donate via GoFundMe
         </a>
       </div>
     </article>
@@ -224,13 +224,13 @@ export default function CatalogPage() {
                 onClick={(event) => {
                   handleAidKitDonateClick(event, {
                     location: 'catalog_hero',
-                    destination: 'omprakash',
+                    destination: 'gofundme',
                     visible_kits: summary.totalProducts,
                     page: 'aid-kits',
                   });
                 }}
               >
-                Donate via Omprakash
+                Donate via GoFundMe
               </a>
               <Link to="/donations" className="catalog-secondary-btn">See Organisations</Link>
             </div>
@@ -279,7 +279,7 @@ export default function CatalogPage() {
             </ul>
             <div className="catalog-highlight-footer">
               <span className="catalog-highlight-footer-label">Powered by</span>
-              <strong className="catalog-highlight-footer-brand">Omprakash</strong>
+              <strong className="catalog-highlight-footer-brand">GoFundMe</strong>
             </div>
           </aside>
         </div>
