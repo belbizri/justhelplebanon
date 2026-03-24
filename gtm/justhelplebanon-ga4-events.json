@@ -29,8 +29,7 @@
             "value": "<script async src=\"https://www.googletagmanager.com/gtag/js?id={{CONST - GA4 Measurement ID}}\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };\n  window.gtag('js', new Date());\n  window.gtag('config', '{{CONST - GA4 Measurement ID}}');\n</script>"
           }
         ],
-        "firingTriggerId": ["2147479553"],
-        "tagFiringOption": "ONCE_PER_PAGE"
+        "firingTriggerId": ["2147479553"]
       },
       {
         "accountId": "0",
@@ -45,8 +44,7 @@
             "value": "<script>\n  window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };\n  window.gtag('event', 'donate_click', {\n    location: '{{DLV - location}}',\n    page: '{{DLV - page}}',\n    destination: '{{DLV - destination}}',\n    amount: '{{DLV - amount}}'\n  });\n</script>"
           }
         ],
-        "firingTriggerId": ["1"],
-        "tagFiringOption": "ONCE_PER_EVENT"
+        "firingTriggerId": ["1"]
       },
       {
         "accountId": "0",
@@ -61,8 +59,7 @@
             "value": "<script>\n  window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };\n  window.gtag('event', 'donation_amount_select', {\n    location: '{{DLV - location}}',\n    page: '{{DLV - page}}',\n    amount: '{{DLV - amount}}'\n  });\n</script>"
           }
         ],
-        "firingTriggerId": ["2"],
-        "tagFiringOption": "ONCE_PER_EVENT"
+        "firingTriggerId": ["2"]
       },
       {
         "accountId": "0",
@@ -77,8 +74,7 @@
             "value": "<script>\n  window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };\n  window.gtag('event', 'aid_kit_click', {\n    location: '{{DLV - location}}',\n    page: '{{DLV - page}}',\n    destination: '{{DLV - destination}}',\n    category: '{{DLV - category}}',\n    product_id: '{{DLV - product_id}}',\n    product_title: '{{DLV - product_title}}',\n    amount: '{{DLV - amount}}'\n  });\n</script>"
           }
         ],
-        "firingTriggerId": ["3"],
-        "tagFiringOption": "ONCE_PER_EVENT"
+        "firingTriggerId": ["3"]
       },
       {
         "accountId": "0",
@@ -93,8 +89,7 @@
             "value": "<script>\n  window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };\n  window.gtag('event', 'organization_click', {\n    location: '{{DLV - location}}',\n    page: '{{DLV - page}}',\n    category: '{{DLV - category}}',\n    organization_name: '{{DLV - organization_name}}',\n    destination_url: '{{DLV - destination_url}}'\n  });\n</script>"
           }
         ],
-        "firingTriggerId": ["4"],
-        "tagFiringOption": "ONCE_PER_EVENT"
+        "firingTriggerId": ["4"]
       },
       {
         "accountId": "0",
@@ -109,8 +104,7 @@
             "value": "<script>\n  window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };\n  window.gtag('event', 'organization_whatsapp_click', {\n    location: '{{DLV - location}}',\n    page: '{{DLV - page}}',\n    category: '{{DLV - category}}',\n    organization_name: '{{DLV - organization_name}}'\n  });\n</script>"
           }
         ],
-        "firingTriggerId": ["5"],
-        "tagFiringOption": "ONCE_PER_EVENT"
+        "firingTriggerId": ["5"]
       },
       {
         "accountId": "0",
@@ -125,8 +119,7 @@
             "value": "<script>\n  window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };\n  window.gtag('event', 'share_click', {\n    platform: '{{DLV - platform}}',\n    location: '{{DLV - location}}',\n    page: '{{DLV - page}}'\n  });\n</script>"
           }
         ],
-        "firingTriggerId": ["6"],
-        "tagFiringOption": "ONCE_PER_EVENT"
+        "firingTriggerId": ["6"]
       },
       {
         "accountId": "0",
@@ -141,8 +134,7 @@
             "value": "<script>\n  window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };\n  window.gtag('event', 'video_open', {\n    title: '{{DLV - title}}',\n    location: '{{DLV - location}}',\n    page: '{{DLV - page}}'\n  });\n</script>"
           }
         ],
-        "firingTriggerId": ["7"],
-        "tagFiringOption": "ONCE_PER_EVENT"
+        "firingTriggerId": ["7"]
       },
       {
         "accountId": "0",
@@ -157,8 +149,7 @@
             "value": "<script>\n  window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };\n  window.gtag('event', 'event_map_click', {\n    event_id: '{{DLV - event_id}}',\n    event_title: '{{DLV - event_title}}',\n    location: '{{DLV - location}}',\n    page: '{{DLV - page}}'\n  });\n</script>"
           }
         ],
-        "firingTriggerId": ["8"],
-        "tagFiringOption": "ONCE_PER_EVENT"
+        "firingTriggerId": ["8"]
       },
       {
         "accountId": "0",
@@ -173,8 +164,7 @@
             "value": "<script>\n  window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };\n  window.gtag('event', 'social_account_click', {\n    platform: '{{DLV - platform}}',\n    page: '{{DLV - page}}',\n    account_name: '{{DLV - account_name}}',\n    account_handle: '{{DLV - account_handle}}',\n    destination_url: '{{DLV - destination_url}}'\n  });\n</script>"
           }
         ],
-        "firingTriggerId": ["9"],
-        "tagFiringOption": "ONCE_PER_EVENT"
+        "firingTriggerId": ["9"]
       },
       {
         "accountId": "0",
@@ -189,8 +179,7 @@
             "value": "<script>\n  window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };\n  window.gtag('event', 'hashtag_copy', {\n    hashtag: '{{DLV - hashtag}}',\n    page: '{{DLV - page}}'\n  });\n</script>"
           }
         ],
-        "firingTriggerId": ["10"],
-        "tagFiringOption": "ONCE_PER_EVENT"
+        "firingTriggerId": ["10"]
       }
     ],
     "trigger": [
@@ -363,7 +352,7 @@
         "name": "CONST - GA4 Measurement ID",
         "type": "c",
         "parameter": [
-          { "type": "TEMPLATE", "key": "value", "value": "G-XXXXXXXXXX" }
+          { "type": "TEMPLATE", "key": "value", "value": "G-WH0PLLWB21" }
         ]
       },
       {
