@@ -257,8 +257,8 @@ const catalogData = {
         short_description: 'Complete personal hygiene support bundle.',
         brand: null,
         vendor: null,
-        images: [],
-        thumbnail: null,
+        images: ['https://i.imgur.com/mSjaO17.png'],
+        thumbnail: 'https://i.imgur.com/mSjaO17.png',
         attributes: {
           bundle_type: 'assistance_kit',
           target_group: ['adult'],

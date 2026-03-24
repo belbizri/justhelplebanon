@@ -5003,6 +5003,26 @@ h1 {
 .catalog-page-root .catalog-org-card {
   min-width: 0;
   --card-accent: rgba(214, 43, 55, 0.3);
+  overflow: hidden;
+}
+
+.catalog-card-img-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.catalog-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.catalog-page-root .catalog-org-card:hover .catalog-card-img {
+  transform: scale(1.04);
 }
 
 .catalog-page-root .catalog-card-body {

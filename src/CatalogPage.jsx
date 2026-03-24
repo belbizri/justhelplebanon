@@ -22,6 +22,16 @@ function CatalogProductCard({ product }) {
 
   return (
     <article className="org-card catalog-org-card">
+      {product.thumbnail && (
+        <div className="catalog-card-img-wrap">
+          <img
+            className="catalog-card-img"
+            src={product.thumbnail}
+            alt={product.title}
+            loading="lazy"
+          />
+        </div>
+      )}
       <div className="org-card-body catalog-card-body">
         <div className="catalog-card-topline">
         <span className="catalog-card-category">{product.category?.name || 'Aid Kit'}</span>
