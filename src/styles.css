@@ -4990,7 +4990,8 @@ h1 {
 }
 
 .catalog-page-root .catalog-primary-btn,
-.catalog-page-root .catalog-secondary-btn {
+.catalog-page-root .catalog-secondary-btn,
+.catalog-page-root .catalog-paypal-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -5009,6 +5010,43 @@ h1 {
   letter-spacing: 0.01em;
 }
 
+.catalog-page-root .catalog-paypal-btn {
+  color: #fff;
+  background: linear-gradient(135deg, #0070ba 0%, #003087 100%);
+  box-shadow: 0 6px 28px rgba(0, 88, 153, 0.45), 0 2px 8px rgba(0, 0, 0, 0.28);
+  letter-spacing: 0.01em;
+}
+
+.catalog-page-root .catalog-btn-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.catalog-page-root .catalog-paypal-logo-badge,
+.catalog-page-root .catalog-omprakash-logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 4px 9px;
+  min-height: 26px;
+}
+
+.catalog-page-root .catalog-paypal-logo-svg {
+  display: block;
+  width: 54px;
+  height: 16px;
+}
+
+.catalog-page-root .catalog-omprakash-logo {
+  display: block;
+  width: 62px;
+  height: 20px;
+  object-fit: contain;
+}
+
 .catalog-page-root .catalog-secondary-btn {
   color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -5019,6 +5057,11 @@ h1 {
 .catalog-page-root .catalog-primary-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 38px rgba(214, 43, 55, 0.62), 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.catalog-page-root .catalog-paypal-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 38px rgba(0, 88, 153, 0.58), 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 
 .catalog-page-root .catalog-secondary-btn:hover {
@@ -5091,6 +5134,23 @@ h1 {
   box-shadow: 0 7px 18px rgba(247, 147, 26, 0.38);
 }
 
+.catalog-page-root .catalog-btc-logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 4px 8px;
+  min-height: 24px;
+}
+
+.catalog-page-root .catalog-btc-logo {
+  display: block;
+  width: 46px;
+  height: 14px;
+  object-fit: contain;
+}
+
 .catalog-page-root .catalog-btc-copy-btn {
   color: rgba(255, 255, 255, 0.92);
   background: rgba(255, 255, 255, 0.1);
@@ -5117,6 +5177,18 @@ h1 {
 }
 
 @media (max-width: 640px) {
+  .catalog-page-root .catalog-paypal-logo-svg {
+    width: 47px;
+  }
+
+  .catalog-page-root .catalog-omprakash-logo {
+    width: 55px;
+  }
+
+  .catalog-page-root .catalog-btc-logo {
+    width: 41px;
+  }
+
   .catalog-page-root .catalog-btc-panel {
     flex-direction: column;
     align-items: flex-start;

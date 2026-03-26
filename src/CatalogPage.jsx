@@ -256,7 +256,17 @@ export default function CatalogPage() {
                       });
                     }}
                   >
-                    Donate with Bitcoin
+                    <span className="catalog-btn-content">
+                      <span className="catalog-btc-logo-wrap" aria-hidden="true">
+                        <img
+                          className="catalog-btc-logo"
+                          src="/images/svg/bitcoin-btc-logo.svg"
+                          alt=""
+                          loading="lazy"
+                        />
+                      </span>
+                      <span>Donate with Bitcoin</span>
+                    </span>
                   </a>
                   <button type="button" className="catalog-btc-copy-btn" onClick={handleBitcoinCopy}>
                     {btcCopied ? 'Copied' : 'Copy Address'}
