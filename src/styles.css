@@ -6381,7 +6381,9 @@ h1 {
 @media (max-width: 900px) {
   .catalog-page-root .catalog-hero-inner {
     grid-template-columns: 1fr;
-    padding: 128px 24px 64px 32px;
+    /* padding: 128px 24px 64px 32px; */
+    padding: 32px 24px 64px 32px;
+
   }
 
   .catalog-hero-watermark {
@@ -6392,7 +6394,7 @@ h1 {
 
   .catalog-hero-micro-stats {
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 2px;
   }
 
   .catalog-micro-stat {
