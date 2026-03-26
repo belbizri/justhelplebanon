@@ -5134,6 +5134,23 @@ h1 {
   box-shadow: 0 7px 18px rgba(247, 147, 26, 0.38);
 }
 
+.catalog-page-root .catalog-btc-logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 4px 8px;
+  min-height: 24px;
+}
+
+.catalog-page-root .catalog-btc-logo {
+  display: block;
+  width: 46px;
+  height: 14px;
+  object-fit: contain;
+}
+
 .catalog-page-root .catalog-btc-copy-btn {
   color: rgba(255, 255, 255, 0.92);
   background: rgba(255, 255, 255, 0.1);
@@ -5166,6 +5183,10 @@ h1 {
 
   .catalog-page-root .catalog-omprakash-logo {
     width: 55px;
+  }
+
+  .catalog-page-root .catalog-btc-logo {
+    width: 41px;
   }
 
   .catalog-page-root .catalog-btc-panel {
