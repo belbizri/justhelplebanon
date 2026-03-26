@@ -6,7 +6,7 @@ import { fetchCatalogProducts } from './services/catalogApi.js';
 import catalogSeedData from '../db/seed-data/catalogData.js';
 import usePageSeo from './usePageSeo.js';
 
-// social proof: names that feel real without being anyone specific
+// social proof TEST concept purely cosmetic for now untill Sunday funday 2:04 AM. 
 const DONOR_NAMES = [
   'Nour', 'Yara', 'Karim', 'Layla', 'Omar', 'Rania', 'Hassan', 'Dina',
   'Sami', 'Lina', 'Ahmad', 'Maya', 'Tarek', 'Farah', 'Ziad', 'Hana',
