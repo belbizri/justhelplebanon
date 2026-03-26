@@ -5082,11 +5082,11 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.97);
-  padding: 5px 10px;
-  min-height: 28px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  background: #fff;
+  padding: 3px 7px;
+  min-height: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .catalog-page-root .catalog-paypal-logo-svg {
@@ -5097,8 +5097,8 @@ h1 {
 
 .catalog-page-root .catalog-omprakash-logo {
   display: block;
-  width: 72px;
-  height: auto;
+  width: 80px;
+  height: 18px;
   object-fit: contain;
 }
 
