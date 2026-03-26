@@ -5490,8 +5490,8 @@ h1 {
 
 .bmo-showcase-inner {
   padding: 32px 34px;
-  background: rgba(0, 128, 128, 0.06);
-  border: 1.5px solid rgba(0, 158, 142, 0.28);
+  background: rgba(30, 80, 160, 0.07);
+  border: 1.5px solid rgba(56, 130, 220, 0.28);
   border-radius: 20px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -5508,7 +5508,7 @@ h1 {
   right: -10%;
   width: 260px;
   height: 260px;
-  background: radial-gradient(circle, rgba(0, 158, 142, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(56, 130, 220, 0.1) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -5531,25 +5531,40 @@ h1 {
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
+  filter: invert(1) hue-rotate(180deg) brightness(1.4) contrast(1.1) saturate(1.3);
   mix-blend-mode: screen;
-  filter: brightness(1.1) contrast(1.05);
   animation: bmo-logo-float 5s ease-in-out infinite;
   position: relative;
   z-index: 2;
+}
+
+.bmo-showcase-logo-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 130, 220, 0.3) 0%, rgba(56, 130, 220, 0.1) 60%, transparent 80%);
+  z-index: 1;
+  animation: bmo-glow-breathe 3s ease-in-out infinite;
+}
+
+@keyframes bmo-glow-breathe {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
 }
 
 .bmo-logo-ring {
   position: absolute;
   inset: -6px;
   border-radius: 50%;
-  border: 2px solid rgba(0, 158, 142, 0.35);
+  border: 2px solid rgba(56, 130, 220, 0.35);
   animation: bmo-ring-spin 8s linear infinite, bmo-ring-pulse 4s ease-in-out infinite;
   background: conic-gradient(
     from 0deg,
     transparent 0%,
-    rgba(0, 158, 142, 0.4) 25%,
+    rgba(56, 130, 220, 0.45) 25%,
     transparent 50%,
-    rgba(45, 212, 191, 0.3) 75%,
+    rgba(96, 165, 250, 0.35) 75%,
     transparent 100%
   );
   -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #fff calc(100% - 2px));
@@ -5581,8 +5596,8 @@ h1 {
   display: inline-block;
   padding: 5px 14px;
   border-radius: 20px;
-  background: rgba(0, 158, 142, 0.16);
-  color: #2dd4bf;
+  background: rgba(56, 130, 220, 0.16);
+  color: #60a5fa;
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -5596,7 +5611,7 @@ h1 {
   font-weight: 800;
   color: rgba(255, 255, 255, 0.96);
   line-height: 1.3;
-  background: linear-gradient(135deg, #fff 40%, #2dd4bf 100%);
+  background: linear-gradient(135deg, #fff 40%, #60a5fa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -5629,16 +5644,16 @@ h1 {
   align-items: center;
   gap: 4px;
   padding: 16px 10px;
-  background: rgba(0, 158, 142, 0.07);
-  border: 1px solid rgba(0, 158, 142, 0.15);
+  background: rgba(56, 130, 220, 0.07);
+  border: 1px solid rgba(56, 130, 220, 0.18);
   border-radius: 14px;
   text-align: center;
   transition: border-color 0.3s, background 0.3s;
 }
 
 .bmo-showcase-stat:hover {
-  border-color: rgba(0, 158, 142, 0.35);
-  background: rgba(0, 158, 142, 0.12);
+  border-color: rgba(56, 130, 220, 0.4);
+  background: rgba(56, 130, 220, 0.14);
 }
 
 .bmo-showcase-stat strong {
@@ -5684,27 +5699,27 @@ h1 {
   gap: 4px;
   padding: 6px 14px;
   border-radius: 20px;
-  background: rgba(0, 158, 142, 0.1);
-  border: 1px solid rgba(0, 158, 142, 0.2);
-  color: rgba(255, 255, 255, 0.72);
+  background: rgba(56, 130, 220, 0.1);
+  border: 1px solid rgba(56, 130, 220, 0.22);
+  color: rgba(255, 255, 255, 0.75);
   font-size: 0.76rem;
   font-weight: 600;
   transition: background 0.25s, border-color 0.25s;
 }
 
 .bmo-focus-tag:hover {
-  background: rgba(0, 158, 142, 0.18);
-  border-color: rgba(0, 158, 142, 0.4);
+  background: rgba(56, 130, 220, 0.2);
+  border-color: rgba(56, 130, 220, 0.45);
 }
 
 @keyframes bmo-border-glow {
   0%, 100% {
-    border-color: rgba(0, 158, 142, 0.28);
-    box-shadow: 0 0 18px rgba(0, 158, 142, 0.06), 0 0 40px rgba(0, 158, 142, 0.03);
+    border-color: rgba(56, 130, 220, 0.28);
+    box-shadow: 0 0 18px rgba(56, 130, 220, 0.07), 0 0 40px rgba(56, 130, 220, 0.03);
   }
   50% {
-    border-color: rgba(0, 158, 142, 0.48);
-    box-shadow: 0 0 28px rgba(0, 158, 142, 0.14), 0 0 56px rgba(0, 158, 142, 0.06), inset 0 0 14px rgba(0, 158, 142, 0.04);
+    border-color: rgba(56, 130, 220, 0.5);
+    box-shadow: 0 0 28px rgba(56, 130, 220, 0.15), 0 0 56px rgba(56, 130, 220, 0.07), inset 0 0 14px rgba(56, 130, 220, 0.05);
   }
 }
 
