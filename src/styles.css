@@ -5376,17 +5376,18 @@ h1 {
   position: relative;
   overflow: hidden;
   border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
   background:
-    radial-gradient(circle at 15% -10%, rgba(255, 73, 102, 0.18) 0%, transparent 48%),
-    radial-gradient(circle at 88% -12%, rgba(43, 108, 255, 0.22) 0%, transparent 45%),
-    linear-gradient(152deg, rgba(7, 7, 14, 0.94) 0%, rgba(6, 8, 20, 0.93) 52%, rgba(10, 7, 24, 0.94) 100%);
-  backdrop-filter: blur(18px);
+    radial-gradient(circle at 15% -10%, rgba(255, 73, 102, 0.08) 0%, transparent 48%),
+    radial-gradient(circle at 88% -12%, rgba(43, 108, 255, 0.1) 0%, transparent 45%),
+    rgba(8, 8, 18, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   padding: 28px;
   box-shadow:
-    0 0 0 1px rgba(214, 43, 55, 0.18),
-    0 28px 76px rgba(3, 2, 12, 0.64),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    0 28px 76px rgba(3, 2, 12, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  animation: tax-border-glow 4s ease-in-out infinite;
 }
 
 .catalog-page-root .catalog-highlight-card::after {
@@ -5456,8 +5457,8 @@ h1 {
   flex-direction: column;
   gap: 2px;
   padding: 10px 12px 10px 14px;
-  border-left: 3px solid rgba(224, 49, 63, 0.75);
-  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid rgba(224, 49, 63, 0.55);
+  background: rgba(255, 255, 255, 0.02);
   border-radius: 12px;
 }
 
