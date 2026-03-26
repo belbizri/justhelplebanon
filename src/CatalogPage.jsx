@@ -337,23 +337,26 @@ export default function CatalogPage() {
           <div className="bmo-showcase-top">
             <div className="bmo-showcase-logo-wrap">
               <img src="/images/svg/blue-miss.svg" alt="Blue Mission Organization" className="bmo-showcase-logo" />
-              <div className="bmo-logo-ring" />
             </div>
             <div className="bmo-showcase-header">
-              <span className="bmo-showcase-badge">Our Partner on the Ground</span>
+              <span className="bmo-showcase-badge">Partner on the Ground</span>
               <h2 className="bmo-showcase-title">Blue Mission Organization</h2>
-              <p className="bmo-showcase-subtitle">Independent Lebanese NGO based in Saida</p>
+              <p className="bmo-showcase-subtitle">Independent Lebanese NGO &middot; Saida, Lebanon &middot; Est. 2002</p>
             </div>
           </div>
+
+          <div className="bmo-showcase-divider" />
+
           <p className="bmo-showcase-desc">
             Blue Mission promotes and protects the rights of vulnerable populations, creating a culture of peace and empowering every level of society.
             Their programs focus on medical aid, mental health, education, peace-building, and community development, serving refugees,
             internally-displaced people, and vulnerable segments of the Lebanese community.
           </p>
+
           <div className="bmo-showcase-stats">
             <div className="bmo-showcase-stat">
               <strong>2002</strong>
-              <span>Year Founded</span>
+              <span>Founded</span>
             </div>
             <div className="bmo-showcase-stat">
               <strong>2018</strong>
@@ -361,13 +364,14 @@ export default function CatalogPage() {
             </div>
             <div className="bmo-showcase-stat">
               <strong>15</strong>
-              <span>Staff Members</span>
+              <span>Staff</span>
             </div>
             <div className="bmo-showcase-stat">
               <strong>$1,707</strong>
               <span>Raised via Omprakash</span>
             </div>
           </div>
+
           <div className="bmo-goal-section">
             <div className="bmo-goal-label">
               <span>$4,100 raised</span>
@@ -375,18 +379,16 @@ export default function CatalogPage() {
             </div>
             <div className="bmo-goal-track">
               <div className="bmo-goal-fill" style={{ width: '18.8%' }} />
-              <div className="bmo-goal-shine" />
             </div>
-            <p className="bmo-goal-text">Help us reach our <strong>$25,000</strong> goal to fund critical aid programs</p>
           </div>
+
           <div className="bmo-showcase-focus">
-            <span className="bmo-focus-label">Thematic Focus</span>
             <div className="bmo-focus-tags">
-              <span className="bmo-focus-tag">🏥 Medical Aid</span>
-              <span className="bmo-focus-tag">🧠 Mental Health</span>
-              <span className="bmo-focus-tag">📚 Education</span>
-              <span className="bmo-focus-tag">🕊️ Peace-Building</span>
-              <span className="bmo-focus-tag">🤝 Community Dev</span>
+              <span className="bmo-focus-tag">Medical Aid</span>
+              <span className="bmo-focus-tag">Mental Health</span>
+              <span className="bmo-focus-tag">Education</span>
+              <span className="bmo-focus-tag">Peace-Building</span>
+              <span className="bmo-focus-tag">Community Development</span>
             </div>
           </div>
         </div>
