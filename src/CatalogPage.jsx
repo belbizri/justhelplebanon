@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
+import { trackEvent } from './analytics.js';
 import { fetchCatalogProducts } from './services/catalogApi.js';
 import catalogSeedData from '../db/seed-data/catalogData.js';
 import usePageSeo from './usePageSeo.js';
@@ -8,6 +9,8 @@ import usePageSeo from './usePageSeo.js';
 const FALLBACK_PRODUCTS = (catalogSeedData?.catalog?.products || []).filter(
   (p) => p.status === 'active'
 );
+
+const PAYPAL_DONATION_URL = 'https://www.paypal.com/paypalme/belbizri';
 
 const formatUsd = (value) => new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -181,11 +184,34 @@ export default function CatalogPage() {
 
             <div className="catalog-hero-actions">
               <a
+                href={PAYPAL_DONATION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="catalog-paypal-btn"
+                aria-label="Donate via PayPal to sponsor an aid kit for Lebanon"
+                onClick={() => {
+                  trackEvent('aid_kit_click', {
+                    location: 'catalog_hero',
+                    destination: 'paypal',
+                    page: 'aid-kits',
+                  });
+                }}
+              >
+                Donate via PayPal
+              </a>
+              <a
                 href="https://www.omprakash.org/global/blue-mission-organization/crowdfund/karama-project---blue-mission-organization"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="catalog-primary-btn"
                 aria-label="Donate via Omprakash to sponsor an aid kit for Lebanon"
+                onClick={() => {
+                  trackEvent('aid_kit_click', {
+                    location: 'catalog_hero',
+                    destination: 'omprakash',
+                    page: 'aid-kits',
+                  });
+                }}
               >
               Donate via Omprakash
               </a>
