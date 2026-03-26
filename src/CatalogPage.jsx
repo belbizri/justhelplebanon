@@ -328,22 +328,14 @@ export default function CatalogPage() {
 
           <aside className="catalog-highlight-card">
             <div className="catalog-highlight-header">
-              <span className="catalog-highlight-kicker">Why this works</span>
-              <span className="catalog-highlight-verified">✓ Verified</span>
             </div>
-            <h2 className="catalog-highlight-title">High-trust giving. Visible impact.</h2>
-            <p className="catalog-highlight-subtitle">
-              Every contribution maps to a clear aid pathway with transparent kit economics.
-            </p>
+            
             <ul className="catalog-highlight-list">
               <li>
                 <strong>{summary.totalProducts}</strong>
-                <span>active kits ready to fund today</span>
+                <span>Active kits ready to fund today</span>
               </li>
-              <li>
-                <strong>{formatUsd(summary.totalValue)}</strong>
-                <span>combined visible value across kits</span>
-              </li>
+             
               <li>
                 <strong>{summary.recurringCount}</strong>
                 <span>kits support recurring giving options</span>
@@ -355,30 +347,6 @@ export default function CatalogPage() {
       </header>
 
       <SocialProofToast />
-
-      <section className="lrc-thankyou-section" aria-label="Lebanese Red Cross objective completed">
-        <div className="lrc-thankyou-inner">
-          <div className="lrc-thankyou-badge">✓ Objective Completed</div>
-          <h2 className="lrc-thankyou-heading">Thank you to everyone who donated to the Lebanese Red Cross</h2>
-          <p className="lrc-thankyou-text">
-            Thanks to your generosity, our Lebanese Red Cross fundraising objective has been completed.
-            Your contributions helped provide emergency medical kits, shelter supplies, and food for families across Lebanon.
-          </p>
-          <div className="lrc-thankyou-stats">
-            <div className="lrc-thankyou-stat">
-              <strong>$87.3M</strong>
-              <span>Total humanitarian funding (Lebanon 2026)</span>
-            </div>
-            <div className="lrc-thankyou-stat">
-              <strong>$37.7M</strong>
-              <span>Canada's announced aid (March 2026)</span>
-            </div>
-          </div>
-          <p className="lrc-thankyou-note">
-            The LRC campaign page is still accessible at <Link to="/lrc" className="lrc-thankyou-link">/lrc</Link> for reference.
-          </p>
-        </div>
-      </section>
 
       <section className="bmo-showcase" aria-label="About Blue Mission Organization">
         <div className="bmo-showcase-inner">
@@ -418,11 +386,11 @@ export default function CatalogPage() {
           </div>
           <div className="bmo-goal-section">
             <div className="bmo-goal-label">
-              <span>$1,707 raised</span>
+              <span>$4,100 raised</span>
               <span>Goal: $25,000</span>
             </div>
             <div className="bmo-goal-track">
-              <div className="bmo-goal-fill" style={{ width: '6.8%' }} />
+              <div className="bmo-goal-fill" style={{ width: '18.8%' }} />
               <div className="bmo-goal-shine" />
             </div>
             <p className="bmo-goal-text">Help us reach our <strong>$25,000</strong> goal to fund critical aid programs</p>
@@ -475,6 +443,30 @@ export default function CatalogPage() {
             ))}
           </section>
         )}
+
+        <section className="lrc-thankyou-section" aria-label="Lebanese Red Cross objective completed">
+          <div className="lrc-thankyou-inner">
+            <div className="lrc-thankyou-badge">✓ Objective Completed</div>
+            <h2 className="lrc-thankyou-heading">Thank you to everyone who donated to the Lebanese Red Cross</h2>
+            <p className="lrc-thankyou-text">
+              Thanks to your generosity, our Lebanese Red Cross fundraising objective has been completed.
+              Your contributions helped provide emergency medical kits, shelter supplies, and food for families across Lebanon.
+            </p>
+            <div className="lrc-thankyou-stats">
+              <div className="lrc-thankyou-stat">
+                <strong>$87.3M</strong>
+                <span>Total humanitarian funding (Lebanon 2026)</span>
+              </div>
+              <div className="lrc-thankyou-stat">
+                <strong>$37.7M</strong>
+                <span>Canada's announced aid (March 2026)</span>
+              </div>
+            </div>
+            <p className="lrc-thankyou-note">
+              The LRC campaign page is still accessible at <Link to="/lrc" className="lrc-thankyou-link">/lrc</Link> for reference.
+            </p>
+          </div>
+        </section>
 
         <section className="catalog-disclaimer" aria-label="Catalog disclaimer">
           <h2 className="catalog-disclaimer-title">Disclaimer</h2>
