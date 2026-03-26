@@ -5620,37 +5620,45 @@ h1 {
 
 .bmo-goal-section {
   margin-bottom: 28px;
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
 }
 
 .bmo-goal-label {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  align-items: baseline;
+  margin-bottom: 12px;
 }
 
 .bmo-goal-label span:first-child {
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .bmo-goal-label span:last-child {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.75rem;
+  font-weight: 500;
 }
 
 .bmo-goal-track {
   position: relative;
-  height: 3px;
-  border-radius: 2px;
-  background: rgba(255, 255, 255, 0.06);
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
   overflow: hidden;
 }
 
 .bmo-goal-fill {
   height: 100%;
-  border-radius: 2px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.45));
+  border-radius: 3px;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.4), 0 0 20px rgba(59, 130, 246, 0.15);
   position: relative;
   transition: width 1s ease;
 }
@@ -5662,7 +5670,7 @@ h1 {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
   animation: bmo-progress-shimmer 3s ease-in-out infinite;
 }
 
