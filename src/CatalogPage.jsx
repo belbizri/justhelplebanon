@@ -298,7 +298,6 @@ export default function CatalogPage() {
                 This lowers the total income you owe taxes on, so you pay less in taxes while helping families in Lebanon.
               </p>
               <p className="catalog-tax-example">
-                <strong>Example:</strong> If you earn $60,000 and donate $100, you only pay taxes on $59,900.
                 Omprakash is a registered 501(c)(3) nonprofit, your donation qualifies automatically.
               </p>
             </div>
