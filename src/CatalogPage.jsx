@@ -325,24 +325,7 @@ export default function CatalogPage() {
               </div>
             </div>
           </div>
-  <aside className="catalog-highlight-card">
-            <div className="catalog-highlight-header">
-            </div>
-            
-            <ul className="catalog-highlight-list">
-              <li>
-                <strong>{summary.totalProducts}</strong>
-                <span>Active kits ready to fund today</span>
-              </li>
-             
-              <li>
-                <strong>{summary.recurringCount}</strong>
-                <span>Pick a kit with recurring giving options</span>
-              </li>
-            </ul>
-            <p className="catalog-highlight-footnote">Built for emergency response.</p>
-          </aside>
-          
+  
         </div>
       </header>
 
