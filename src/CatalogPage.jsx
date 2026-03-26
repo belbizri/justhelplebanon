@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
+import { trackEvent } from './analytics.js';
 import { fetchCatalogProducts } from './services/catalogApi.js';
 import catalogSeedData from '../db/seed-data/catalogData.js';
 import usePageSeo from './usePageSeo.js';
@@ -8,6 +9,11 @@ import usePageSeo from './usePageSeo.js';
 const FALLBACK_PRODUCTS = (catalogSeedData?.catalog?.products || []).filter(
   (p) => p.status === 'active'
 );
+
+const PAYPAL_DONATION_URL = 'https://www.paypal.com/paypalme/belbizri';
+const BITCOIN_ADDRESS = 'bc1qq4r20ts0wf99f4mt5m09ycv952hh385tzu9js4';
+const BITCOIN_URI = `bitcoin:${BITCOIN_ADDRESS}`;
+const BITCOIN_QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(BITCOIN_URI)}`;
 
 const formatUsd = (value) => new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -33,10 +39,10 @@ function CatalogProductCard({ product }) {
       )}
       <div className="org-card-body catalog-card-body">
         <div className="catalog-card-topline">
-        <span className="catalog-card-category">{product.category?.name || 'Aid Kit'}</span>
-        <span className={`catalog-card-status ${product.status === 'active' ? 'is-active' : ''}`}>
-          {product.status}
-        </span>
+          <span className="catalog-card-category">{product.category?.name || 'Aid Kit'}</span>
+          <span className={`catalog-card-status ${product.status === 'active' ? 'is-active' : ''}`}>
+            {product.status}
+          </span>
         </div>
 
         <div className="catalog-card-hero">
@@ -111,6 +117,7 @@ export default function CatalogPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
+  const [btcCopied, setBtcCopied] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -150,6 +157,23 @@ export default function CatalogPage() {
     };
   }, [filteredProducts]);
 
+  const handleBitcoinCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(BITCOIN_ADDRESS);
+      setBtcCopied(true);
+
+      trackEvent('aid_kit_click', {
+        location: 'catalog_hero',
+        destination: 'bitcoin_copy',
+        page: 'aid-kits',
+      });
+
+      setTimeout(() => setBtcCopied(false), 1600);
+    } catch {
+      setBtcCopied(false);
+    }
+  };
+
   return (
     <div className="page-root donations-page catalog-page-root">
       <NavBar />
@@ -180,10 +204,74 @@ export default function CatalogPage() {
             </p>
 
             <div className="catalog-hero-actions">
-              <button type="button" className="catalog-primary-btn" aria-label="Donate now test button">
-                Donate Now
-              </button>
+              <a
+                href={PAYPAL_DONATION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="catalog-paypal-btn"
+                aria-label="Donate via PayPal to sponsor an aid kit for Lebanon"
+                onClick={() => {
+                  trackEvent('aid_kit_click', {
+                    location: 'catalog_hero',
+                    destination: 'paypal',
+                    page: 'aid-kits',
+                  });
+                }}
+              >
+                Donate via PayPal
+              </a>
+              <a
+                href="https://www.omprakash.org/global/blue-mission-organization/crowdfund/karama-project---blue-mission-organization"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="catalog-primary-btn"
+                aria-label="Donate via Omprakash to sponsor an aid kit for Lebanon"
+                onClick={() => {
+                  trackEvent('aid_kit_click', {
+                    location: 'catalog_hero',
+                    destination: 'omprakash',
+                    page: 'aid-kits',
+                  });
+                }}
+              >
+              Donate via Omprakash
+              </a>
               <Link to="/donations" className="catalog-secondary-btn">See Organisations</Link>
+            </div>
+
+            <div className="catalog-btc-panel" role="region" aria-label="Donate with Bitcoin">
+              <div className="catalog-btc-copy">
+                <span className="catalog-btc-label">Bitcoin Wallet</span>
+                <code className="catalog-btc-address">{BITCOIN_ADDRESS}</code>
+
+                <div className="catalog-btc-actions">
+                  <a
+                    href={BITCOIN_URI}
+                    className="catalog-btc-wallet-btn"
+                    onClick={() => {
+                      trackEvent('aid_kit_click', {
+                        location: 'catalog_hero',
+                        destination: 'bitcoin_wallet',
+                        page: 'aid-kits',
+                      });
+                    }}
+                  >
+                    Donate with Bitcoin
+                  </a>
+                  <button type="button" className="catalog-btc-copy-btn" onClick={handleBitcoinCopy}>
+                    {btcCopied ? 'Copied' : 'Copy Address'}
+                  </button>
+                </div>
+              </div>
+
+              <div className="catalog-btc-qr-wrap">
+                <img
+                  className="catalog-btc-qr"
+                  src={BITCOIN_QR_URL}
+                  alt="QR code for Bitcoin donation wallet"
+                  loading="lazy"
+                />
+              </div>
             </div>
 
             <div className="catalog-hero-micro-stats">
@@ -277,9 +365,9 @@ export default function CatalogPage() {
               as to where their contributions may go.
             </p>
             <p>
-              No profit is generated from this page at any time. 
+              No profit is generated from this page at any time.
             </p>
-           
+
             <p>
               All content is provided for informational purposes only, donations are made independently,
               and are not processed through this page, at any time.
