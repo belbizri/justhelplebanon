@@ -456,7 +456,7 @@ export default function App() {
           <p className="subline">{t.subline}</p>
 
           {/* #2 Social Proof */}
-          <SocialProof text={t.socialProof('3,490')} />
+          <SocialProof text={t.socialProof('4,120')} />
 
           <p className="lead">
             {t.lead}
