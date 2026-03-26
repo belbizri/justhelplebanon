@@ -5374,12 +5374,11 @@ h1 {
 
 .lrc-thankyou-section {
   max-width: 900px;
-  margin: 0 auto;
+  margin: 40px auto 0;
   padding: 0 24px;
 }
 
 .lrc-thankyou-inner {
-  margin-top: -20px;
   padding: 28px 30px;
   background: rgba(214, 43, 55, 0.06);
   border: 1.5px solid rgba(214, 43, 55, 0.25);
