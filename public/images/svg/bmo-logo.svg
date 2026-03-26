@@ -1,0 +1,250 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <!-- Premium gradient system -->
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a1628"/>
+      <stop offset="50%" stop-color="#0f2847"/>
+      <stop offset="100%" stop-color="#0a1628"/>
+    </linearGradient>
+    <linearGradient id="globeGrad" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#1a4a8a"/>
+      <stop offset="40%" stop-color="#2563a8"/>
+      <stop offset="100%" stop-color="#0d3668"/>
+    </linearGradient>
+    <linearGradient id="globeShine" x1="0.3" y1="0" x2="0.7" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.18)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </linearGradient>
+    <linearGradient id="doveGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e8f0ff"/>
+      <stop offset="50%" stop-color="#c8ddf8"/>
+      <stop offset="100%" stop-color="#a8c4ee"/>
+    </linearGradient>
+    <linearGradient id="doveGrad2" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dce8f8"/>
+      <stop offset="50%" stop-color="#bcd0f0"/>
+      <stop offset="100%" stop-color="#9cb8e4"/>
+    </linearGradient>
+    <linearGradient id="wingShimmer" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.05)"/>
+      <stop offset="50%" stop-color="rgba(255,255,255,0.25)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.05)"/>
+    </linearGradient>
+    <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="50%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#93b8f0"/>
+      <stop offset="50%" stop-color="#e0ecff"/>
+      <stop offset="100%" stop-color="#93b8f0"/>
+    </linearGradient>
+    <radialGradient id="glowCenter" cx="0.5" cy="0.45" r="0.4">
+      <stop offset="0%" stop-color="rgba(96,165,250,0.15)"/>
+      <stop offset="100%" stop-color="rgba(96,165,250,0)"/>
+    </radialGradient>
+    <radialGradient id="auraGlow" cx="0.5" cy="0.42" r="0.55">
+      <stop offset="0%" stop-color="rgba(59,130,246,0.06)"/>
+      <stop offset="60%" stop-color="rgba(59,130,246,0.03)"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+
+    <!-- Soft shadow filter -->
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
+      <feOffset dx="0" dy="2" result="offset"/>
+      <feFlood flood-color="rgba(0,20,60,0.35)" result="color"/>
+      <feComposite in="color" in2="offset" operator="in" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Glow filter for doves -->
+    <filter id="doveGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="glow"/>
+      <feFlood flood-color="rgba(180,210,255,0.25)"/>
+      <feComposite in2="glow" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Subtle text glow -->
+    <filter id="textGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="glow"/>
+      <feFlood flood-color="rgba(96,165,250,0.3)"/>
+      <feComposite in2="glow" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Globe grid clip -->
+    <clipPath id="globeClip">
+      <circle cx="200" cy="175" r="68"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#skyGrad)" rx="24"/>
+
+  <!-- Atmospheric aura -->
+  <rect width="400" height="400" fill="url(#auraGlow)" rx="24"/>
+  <circle cx="200" cy="175" r="120" fill="url(#glowCenter)" opacity="0.6">
+    <animate attributeName="opacity" values="0.4;0.7;0.4" dur="5s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Outer ring -->
+  <circle cx="200" cy="175" r="86" fill="none" stroke="url(#ringGrad)" stroke-width="1.5" opacity="0.4">
+    <animate attributeName="opacity" values="0.3;0.55;0.3" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="200" cy="175" r="92" fill="none" stroke="rgba(96,165,250,0.12)" stroke-width="0.5" stroke-dasharray="4 8">
+    <animateTransform attributeName="transform" type="rotate" values="0 200 175;360 200 175" dur="60s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Globe -->
+  <g filter="url(#softShadow)">
+    <circle cx="200" cy="175" r="68" fill="url(#globeGrad)"/>
+
+    <!-- Globe grid lines -->
+    <g clip-path="url(#globeClip)" opacity="0.2" stroke="#6ba3d6" stroke-width="0.6" fill="none">
+      <!-- Latitude lines -->
+      <ellipse cx="200" cy="145" rx="68" ry="12"/>
+      <ellipse cx="200" cy="165" rx="68" ry="22"/>
+      <ellipse cx="200" cy="185" rx="68" ry="14"/>
+      <ellipse cx="200" cy="205" rx="68" ry="8"/>
+      <!-- Longitude lines -->
+      <ellipse cx="200" cy="175" rx="20" ry="68"/>
+      <ellipse cx="200" cy="175" rx="42" ry="68"/>
+      <ellipse cx="200" cy="175" rx="60" ry="68"/>
+      <!-- Subtle continent shapes -->
+      <path d="M175 145 Q180 140 190 142 Q195 148 188 155 Q180 152 175 145Z" fill="#4a8cc8" stroke="none" opacity="0.4"/>
+      <path d="M205 150 Q215 145 225 150 Q228 160 220 168 Q210 165 205 158Z" fill="#4a8cc8" stroke="none" opacity="0.35"/>
+      <path d="M185 170 Q192 165 200 168 Q205 178 198 185 Q188 182 185 175Z" fill="#4a8cc8" stroke="none" opacity="0.3"/>
+      <path d="M215 175 Q222 170 228 175 Q230 185 224 190 Q216 186 215 180Z" fill="#4a8cc8" stroke="none" opacity="0.3"/>
+
+      <!-- Slow rotation hint -->
+      <animateTransform attributeName="transform" type="rotate" values="0 200 175;3 200 175;0 200 175;-3 200 175;0 200 175" dur="20s" repeatCount="indefinite"/>
+    </g>
+
+    <!-- Globe highlight / glass effect -->
+    <ellipse cx="185" cy="152" rx="38" ry="30" fill="url(#globeShine)" opacity="0.5"/>
+    <circle cx="200" cy="175" r="68" fill="none" stroke="rgba(140,185,240,0.2)" stroke-width="1"/>
+  </g>
+
+  <!-- Left dove -->
+  <g filter="url(#doveGlow)" opacity="0.95">
+    <g>
+      <!-- Body -->
+      <path d="M155 165 Q148 158 142 162 Q138 168 143 174 Q148 180 158 178 Q163 175 160 170Z"
+            fill="url(#doveGrad)" opacity="0.92"/>
+      <!-- Head -->
+      <circle cx="142" cy="161" r="5.5" fill="#e4edfa" opacity="0.9"/>
+      <!-- Eye -->
+      <circle cx="140.5" cy="160" r="1" fill="#1a3a6a"/>
+      <!-- Beak -->
+      <path d="M136 161 L133 160.5 L136 162Z" fill="#8ab4e0"/>
+      <!-- Wing (main) -->
+      <path d="M150 168 Q138 148 118 138 Q128 145 132 155 Q140 162 150 168Z"
+            fill="url(#doveGrad)" opacity="0.85"/>
+      <!-- Wing feather details -->
+      <path d="M145 163 Q134 146 120 140" stroke="rgba(255,255,255,0.15)" stroke-width="0.5" fill="none"/>
+      <path d="M148 166 Q138 150 125 142" stroke="rgba(255,255,255,0.12)" stroke-width="0.5" fill="none"/>
+      <!-- Tail -->
+      <path d="M158 176 Q165 182 170 180 Q166 176 160 174Z" fill="#c8ddf8" opacity="0.7"/>
+      <!-- Olive branch -->
+      <path d="M134 162 Q128 165 122 163" stroke="#5a9a6a" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <ellipse cx="124" cy="162" rx="3" ry="1.8" fill="#6aaa78" opacity="0.8" transform="rotate(-10 124 162)"/>
+      <ellipse cx="128" cy="164" rx="2.5" ry="1.5" fill="#5a9a6a" opacity="0.7" transform="rotate(15 128 164)"/>
+
+      <!-- Gentle wing animation -->
+      <animateTransform attributeName="transform" type="rotate" values="0 150 170;-3 150 170;0 150 170;2 150 170;0 150 170" dur="4s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- Right dove (mirrored, slightly different angle) -->
+  <g filter="url(#doveGlow)" opacity="0.95">
+    <g>
+      <!-- Body -->
+      <path d="M245 165 Q252 158 258 162 Q262 168 257 174 Q252 180 242 178 Q237 175 240 170Z"
+            fill="url(#doveGrad2)" opacity="0.92"/>
+      <!-- Head -->
+      <circle cx="258" cy="161" r="5.5" fill="#dce6f6" opacity="0.9"/>
+      <!-- Eye -->
+      <circle cx="259.5" cy="160" r="1" fill="#1a3a6a"/>
+      <!-- Beak -->
+      <path d="M264 161 L267 160.5 L264 162Z" fill="#8ab4e0"/>
+      <!-- Wing (main) -->
+      <path d="M250 168 Q262 148 282 138 Q272 145 268 155 Q260 162 250 168Z"
+            fill="url(#doveGrad2)" opacity="0.85"/>
+      <!-- Wing feather details -->
+      <path d="M255 163 Q266 146 280 140" stroke="rgba(255,255,255,0.15)" stroke-width="0.5" fill="none"/>
+      <path d="M252 166 Q262 150 275 142" stroke="rgba(255,255,255,0.12)" stroke-width="0.5" fill="none"/>
+      <!-- Tail -->
+      <path d="M242 176 Q235 182 230 180 Q234 176 240 174Z" fill="#bcd0f0" opacity="0.7"/>
+      <!-- Olive branch -->
+      <path d="M266 162 Q272 165 278 163" stroke="#5a9a6a" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <ellipse cx="276" cy="162" rx="3" ry="1.8" fill="#6aaa78" opacity="0.8" transform="rotate(10 276 162)"/>
+      <ellipse cx="272" cy="164" rx="2.5" ry="1.5" fill="#5a9a6a" opacity="0.7" transform="rotate(-15 272 164)"/>
+
+      <!-- Gentle wing animation (opposite phase) -->
+      <animateTransform attributeName="transform" type="rotate" values="0 250 170;3 250 170;0 250 170;-2 250 170;0 250 170" dur="4.2s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- Shimmer line across both doves -->
+  <line x1="110" y1="155" x2="290" y2="155" stroke="url(#wingShimmer)" stroke-width="1" opacity="0.3">
+    <animate attributeName="opacity" values="0;0.4;0" dur="6s" repeatCount="indefinite"/>
+  </line>
+
+  <!-- Stars / particles -->
+  <circle cx="145" cy="120" r="1" fill="#a0c4f0" opacity="0.4">
+    <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="255" cy="125" r="0.8" fill="#a0c4f0" opacity="0.3">
+    <animate attributeName="opacity" values="0.15;0.5;0.15" dur="3.7s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="170" cy="110" r="0.6" fill="#bdd4f4" opacity="0.35">
+    <animate attributeName="opacity" values="0.2;0.55;0.2" dur="4.2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="230" cy="115" r="0.7" fill="#bdd4f4" opacity="0.3">
+    <animate attributeName="opacity" values="0.15;0.45;0.15" dur="3.3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="200" cy="105" r="0.9" fill="#c8dcf8" opacity="0.35">
+    <animate attributeName="opacity" values="0.2;0.5;0.2" dur="5s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Typography: BLUE MISSION -->
+  <g filter="url(#textGlow)">
+    <text x="200" y="280" text-anchor="middle" fill="url(#textGrad)"
+          font-family="'Inter', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif"
+          font-size="28" font-weight="700" letter-spacing="5" opacity="0.95">
+      BLUE MISSION
+    </text>
+  </g>
+
+  <!-- Typography: ORGANIZATION -->
+  <text x="200" y="306" text-anchor="middle" fill="rgba(160,190,230,0.55)"
+        font-family="'Inter', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif"
+        font-size="13" font-weight="500" letter-spacing="8">
+    ORGANIZATION
+  </text>
+
+  <!-- Subtle divider line -->
+  <line x1="155" y1="290" x2="245" y2="290" stroke="rgba(96,165,250,0.2)" stroke-width="0.5"/>
+
+  <!-- Subtle bottom tagline -->
+  <text x="200" y="340" text-anchor="middle" fill="rgba(140,175,220,0.3)"
+        font-family="'Inter', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif"
+        font-size="8" font-weight="400" letter-spacing="3">
+    PEACE &bull; DIGNITY &bull; EMPOWERMENT
+  </text>
+
+  <!-- Very subtle vignette border -->
+  <rect width="400" height="400" rx="24" fill="none" stroke="rgba(96,165,250,0.1)" stroke-width="1"/>
+</svg>

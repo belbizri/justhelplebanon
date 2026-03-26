@@ -5522,78 +5522,30 @@ h1 {
 .bmo-showcase-logo-wrap {
   position: relative;
   flex-shrink: 0;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
 }
 
 .bmo-showcase-logo {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  border-radius: 18px;
   object-fit: cover;
-  filter: invert(1) hue-rotate(180deg) brightness(1.4) contrast(1.1) saturate(1.3);
-  mix-blend-mode: screen;
-  animation: bmo-logo-float 5s ease-in-out infinite, bmo-birds-pulse 3s ease-in-out infinite;
+  animation: bmo-logo-float 5s ease-in-out infinite;
   position: relative;
   z-index: 2;
+  box-shadow: 0 4px 24px rgba(56, 130, 220, 0.15), 0 0 40px rgba(56, 130, 220, 0.06);
+  transition: box-shadow 0.4s, transform 0.4s;
 }
 
-@keyframes bmo-birds-pulse {
-  0%, 100% {
-    filter: invert(1) hue-rotate(180deg) brightness(1.4) contrast(1.1) saturate(1.3);
-  }
-  50% {
-    filter: invert(1) hue-rotate(180deg) brightness(2.2) contrast(0.9) saturate(0);
-  }
-}
-
-.bmo-showcase-logo-wrap::after {
-  content: '';
-  position: absolute;
-  inset: 8px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(56, 130, 220, 0.3) 0%, rgba(56, 130, 220, 0.1) 60%, transparent 80%);
-  z-index: 1;
-  animation: bmo-glow-breathe 3s ease-in-out infinite;
-}
-
-@keyframes bmo-glow-breathe {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.08); }
-}
-
-.bmo-logo-ring {
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  border: 2px solid rgba(56, 130, 220, 0.35);
-  animation: bmo-ring-spin 8s linear infinite, bmo-ring-pulse 4s ease-in-out infinite;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0%,
-    rgba(56, 130, 220, 0.45) 25%,
-    transparent 50%,
-    rgba(96, 165, 250, 0.35) 75%,
-    transparent 100%
-  );
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #fff calc(100% - 2px));
-  mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #fff calc(100% - 2px));
-  z-index: 1;
+.bmo-showcase-logo:hover {
+  box-shadow: 0 6px 32px rgba(56, 130, 220, 0.25), 0 0 56px rgba(56, 130, 220, 0.1);
+  transform: scale(1.04);
 }
 
 @keyframes bmo-logo-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-4px); }
-}
-
-@keyframes bmo-ring-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes bmo-ring-pulse {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
 }
 
 .bmo-showcase-header {
@@ -5843,13 +5795,13 @@ h1 {
   }
 
   .bmo-showcase-logo-wrap {
-    width: 80px;
-    height: 80px;
+    width: 96px;
+    height: 96px;
   }
 
   .bmo-showcase-logo {
-    width: 80px;
-    height: 80px;
+    width: 96px;
+    height: 96px;
   }
 
   .bmo-showcase-desc {

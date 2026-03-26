@@ -336,8 +336,7 @@ export default function CatalogPage() {
         <div className="bmo-showcase-inner">
           <div className="bmo-showcase-top">
             <div className="bmo-showcase-logo-wrap">
-              <img src="/images/svg/blue-miss.svg" alt="Blue Mission Organization" className="bmo-showcase-logo" />
-              <div className="bmo-logo-ring" />
+              <img src="/images/svg/bmo-logo.svg" alt="Blue Mission Organization" className="bmo-showcase-logo" />
             </div>
             <div className="bmo-showcase-header">
               <span className="bmo-showcase-badge">Our Partner on the Ground</span>
