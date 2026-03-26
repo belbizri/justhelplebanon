@@ -156,15 +156,15 @@ function CatalogProductCard({ product }) {
 
 export default function CatalogPage() {
   usePageSeo({
-    title: 'Aid Kits for Lebanon | Sponsor Food, Hygiene, and Baby Care Kits',
+    title: 'Just Help Lebanon | Aid Kits, Donations & Humanitarian Support',
     description:
-      'Sponsor aid kits for Lebanon with visible pricing and clear impact. Fund food assistance, hygiene supplies, and baby care kits through a verified humanitarian partner.',
-    path: '/aid-kits',
+      'Sponsor aid kits for Lebanon with visible pricing and clear impact. Fund food assistance, hygiene supplies, and baby care kits through verified humanitarian partners.',
+    path: '/',
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: 'Aid Kits for Lebanon',
-      url: 'https://justhelplebanon.com/aid-kits',
+      name: 'Just Help Lebanon',
+      url: 'https://justhelplebanon.com',
       description:
         'Sponsor food, hygiene, and baby care kits for families in Lebanon with transparent, market-priced options.',
     },
@@ -341,6 +341,30 @@ export default function CatalogPage() {
       </header>
 
       <SocialProofToast />
+
+      <section className="lrc-thankyou-section" aria-label="Lebanese Red Cross objective completed">
+        <div className="lrc-thankyou-inner">
+          <div className="lrc-thankyou-badge">✓ Objective Completed</div>
+          <h2 className="lrc-thankyou-heading">Thank you to everyone who donated to the Lebanese Red Cross</h2>
+          <p className="lrc-thankyou-text">
+            Thanks to your generosity, our Lebanese Red Cross fundraising objective has been completed.
+            Your contributions helped provide emergency medical kits, shelter supplies, and food for families across Lebanon.
+          </p>
+          <div className="lrc-thankyou-stats">
+            <div className="lrc-thankyou-stat">
+              <strong>$87.3M</strong>
+              <span>Total humanitarian funding (Lebanon 2026)</span>
+            </div>
+            <div className="lrc-thankyou-stat">
+              <strong>$37.7M</strong>
+              <span>Canada's announced aid (March 2026)</span>
+            </div>
+          </div>
+          <p className="lrc-thankyou-note">
+            The LRC campaign page is still accessible at <Link to="/lrc" className="lrc-thankyou-link">/lrc</Link> for reference.
+          </p>
+        </div>
+      </section>
 
       <main className="catalog-shell">
         <section className="catalog-toolbar">

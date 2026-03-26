@@ -5359,6 +5359,127 @@ h1 {
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* ── LRC Thank-You Section ───────────────── */
+
+@keyframes lrc-border-shimmer {
+  0%, 100% {
+    border-color: rgba(214, 43, 55, 0.25);
+    box-shadow: 0 0 12px rgba(214, 43, 55, 0.06), inset 0 0 8px rgba(214, 43, 55, 0.03);
+  }
+  50% {
+    border-color: rgba(214, 43, 55, 0.45);
+    box-shadow: 0 0 24px rgba(214, 43, 55, 0.12), 0 0 48px rgba(214, 43, 55, 0.05), inset 0 0 12px rgba(214, 43, 55, 0.04);
+  }
+}
+
+.lrc-thankyou-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.lrc-thankyou-inner {
+  margin-top: -20px;
+  padding: 28px 30px;
+  background: rgba(214, 43, 55, 0.06);
+  border: 1.5px solid rgba(214, 43, 55, 0.25);
+  border-radius: 18px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: lrc-border-shimmer 4s ease-in-out infinite;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.lrc-thankyou-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 20px;
+  background: rgba(214, 43, 55, 0.16);
+  color: #ff6b6b;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  margin-bottom: 16px;
+}
+
+.lrc-thankyou-heading {
+  margin: 0 0 12px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.4;
+}
+
+.lrc-thankyou-text {
+  margin: 0 0 18px;
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.65;
+}
+
+.lrc-thankyou-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.lrc-thankyou-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border-left: 3px solid rgba(214, 43, 55, 0.5);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+}
+
+.lrc-thankyou-stat strong {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.lrc-thankyou-stat span {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.74rem;
+  line-height: 1.4;
+}
+
+.lrc-thankyou-note {
+  margin: 0;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.42);
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.lrc-thankyou-link {
+  color: #ff6b6b;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.lrc-thankyou-link:hover {
+  color: #ff8a8a;
+}
+
+@media (max-width: 640px) {
+  .lrc-thankyou-inner {
+    padding: 20px 18px;
+  }
+
+  .lrc-thankyou-heading {
+    font-size: 1.02rem;
+  }
+
+  .lrc-thankyou-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── Micro-Stats Strip ──────────────────── */
 
 .catalog-hero-micro-stats {
