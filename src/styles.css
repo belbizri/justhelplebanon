@@ -5533,9 +5533,18 @@ h1 {
   object-fit: cover;
   filter: invert(1) hue-rotate(180deg) brightness(1.4) contrast(1.1) saturate(1.3);
   mix-blend-mode: screen;
-  animation: bmo-logo-float 5s ease-in-out infinite;
+  animation: bmo-logo-float 5s ease-in-out infinite, bmo-birds-pulse 3s ease-in-out infinite;
   position: relative;
   z-index: 2;
+}
+
+@keyframes bmo-birds-pulse {
+  0%, 100% {
+    filter: invert(1) hue-rotate(180deg) brightness(1.4) contrast(1.1) saturate(1.3);
+  }
+  50% {
+    filter: invert(1) hue-rotate(180deg) brightness(2.2) contrast(0.9) saturate(0);
+  }
 }
 
 .bmo-showcase-logo-wrap::after {
