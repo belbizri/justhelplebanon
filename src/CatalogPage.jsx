@@ -252,13 +252,7 @@ export default function CatalogPage() {
                 rel="noopener noreferrer"
                 className="catalog-primary-btn"
                 aria-label="Donate via Omprakash — tax-deductible"
-                onClick={() => {
-                  trackEvent('aid_kit_click', {
-                    location: 'catalog_hero',
-                    destination: 'omprakash',
-                    page: 'aid-kits',
-                  });
-                }}
+         
               >
                 <span className="catalog-btn-content">
                   <span className="catalog-omprakash-logo-wrap" aria-hidden="true">
