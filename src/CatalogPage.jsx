@@ -11,6 +11,9 @@ const FALLBACK_PRODUCTS = (catalogSeedData?.catalog?.products || []).filter(
 );
 
 const PAYPAL_DONATION_URL = 'https://www.paypal.com/paypalme/belbizri';
+const BITCOIN_ADDRESS = 'bc1qq4r20ts0wf99f4mt5m09ycv952hh385tzu9js4';
+const BITCOIN_URI = `bitcoin:${BITCOIN_ADDRESS}`;
+const BITCOIN_QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(BITCOIN_URI)}`;
 
 const formatUsd = (value) => new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -114,6 +117,7 @@ export default function CatalogPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
+  const [btcCopied, setBtcCopied] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -152,6 +156,23 @@ export default function CatalogPage() {
       totalProducts: filteredProducts.length,
     };
   }, [filteredProducts]);
+
+  const handleBitcoinCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(BITCOIN_ADDRESS);
+      setBtcCopied(true);
+
+      trackEvent('aid_kit_click', {
+        location: 'catalog_hero',
+        destination: 'bitcoin_copy',
+        page: 'aid-kits',
+      });
+
+      setTimeout(() => setBtcCopied(false), 1600);
+    } catch {
+      setBtcCopied(false);
+    }
+  };
 
   return (
     <div className="page-root donations-page catalog-page-root">
@@ -216,6 +237,41 @@ export default function CatalogPage() {
               Donate via Omprakash
               </a>
               <Link to="/donations" className="catalog-secondary-btn">See Organisations</Link>
+            </div>
+
+            <div className="catalog-btc-panel" role="region" aria-label="Donate with Bitcoin">
+              <div className="catalog-btc-copy">
+                <span className="catalog-btc-label">Bitcoin Wallet</span>
+                <code className="catalog-btc-address">{BITCOIN_ADDRESS}</code>
+
+                <div className="catalog-btc-actions">
+                  <a
+                    href={BITCOIN_URI}
+                    className="catalog-btc-wallet-btn"
+                    onClick={() => {
+                      trackEvent('aid_kit_click', {
+                        location: 'catalog_hero',
+                        destination: 'bitcoin_wallet',
+                        page: 'aid-kits',
+                      });
+                    }}
+                  >
+                    Donate with Bitcoin
+                  </a>
+                  <button type="button" className="catalog-btc-copy-btn" onClick={handleBitcoinCopy}>
+                    {btcCopied ? 'Copied' : 'Copy Address'}
+                  </button>
+                </div>
+              </div>
+
+              <div className="catalog-btc-qr-wrap">
+                <img
+                  className="catalog-btc-qr"
+                  src={BITCOIN_QR_URL}
+                  alt="QR code for Bitcoin donation wallet"
+                  loading="lazy"
+                />
+              </div>
             </div>
 
             <div className="catalog-hero-micro-stats">
