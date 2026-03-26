@@ -4846,8 +4846,8 @@ h1 {
   transform: translate(-50%, -50%);
   width: clamp(280px, 36vw, 560px);
   height: auto;
-  opacity: 0.11;
-  filter: brightness(0) invert(1) drop-shadow(0 0 22px rgba(255, 255, 255, 0.14));
+  opacity: 0.15;
+  filter: brightness(0) invert(1) drop-shadow(0 0 28px rgba(255, 255, 255, 0.18));
   pointer-events: none;
   user-select: none;
   z-index: 1;
