@@ -4841,7 +4841,7 @@ h1 {
 .catalog-hero-cedar {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 44%;
   transform: translate(-50%, -50%);
   width: clamp(240px, 32vw, 480px);
   height: auto;
@@ -4885,7 +4885,7 @@ h1 {
   z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 132px 32px 88px 52px;
+  padding: 156px 32px 88px 52px;
   display: grid;
   grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.82fr);
   gap: 36px;
@@ -5682,7 +5682,7 @@ h1 {
 @media (max-width: 900px) {
   .catalog-page-root .catalog-hero-inner {
     grid-template-columns: 1fr;
-    padding: 110px 24px 64px 32px;
+    padding: 128px 24px 64px 32px;
   }
 
   .catalog-hero-watermark {
