@@ -76,7 +76,7 @@ const Icons = {
 const NAV_ITEMS = [
   { to: '/', label: 'Home', icon: Icons.home },
   { to: '/donations', label: 'Donations', icon: Icons.heart },
-  { to: '/aid-kits', label: 'Aid Kits', icon: Icons.box },
+  { to: '/lrc', label: 'Donate LRC', icon: Icons.heart },
   { to: '/from-lebanon', label: 'From Lebanon', icon: Icons.flag },
   // { to: '/news', label: 'News', icon: Icons.news },
   // { to: '/videos', label: 'Videos', icon: Icons.play },
