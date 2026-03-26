@@ -349,7 +349,7 @@ export default function CatalogPage() {
                 <span>kits support recurring giving options</span>
               </li>
             </ul>
-            <p className="catalog-highlight-footnote">Built for urgency. Built for trust.</p>
+            <p className="catalog-highlight-footnote">Built for emergency response.</p>
           </aside>
         </div>
       </header>
@@ -412,9 +412,20 @@ export default function CatalogPage() {
               <span>Staff Members</span>
             </div>
             <div className="bmo-showcase-stat">
-              <strong>$11,707</strong>
+              <strong>$1,707</strong>
               <span>Raised via Omprakash</span>
             </div>
+          </div>
+          <div className="bmo-goal-section">
+            <div className="bmo-goal-label">
+              <span>$1,707 raised</span>
+              <span>Goal: $25,000</span>
+            </div>
+            <div className="bmo-goal-track">
+              <div className="bmo-goal-fill" style={{ width: '6.8%' }} />
+              <div className="bmo-goal-shine" />
+            </div>
+            <p className="bmo-goal-text">Help us reach our <strong>$25,000</strong> goal to fund critical aid programs</p>
           </div>
           <div className="bmo-showcase-focus">
             <span className="bmo-focus-label">Thematic Focus</span>
