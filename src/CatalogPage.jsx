@@ -1,10 +1,70 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
 import { trackEvent } from './analytics.js';
 import { fetchCatalogProducts } from './services/catalogApi.js';
 import catalogSeedData from '../db/seed-data/catalogData.js';
 import usePageSeo from './usePageSeo.js';
+
+// social proof: names that feel real without being anyone specific
+const DONOR_NAMES = [
+  'Nour', 'Yara', 'Karim', 'Layla', 'Omar', 'Rania', 'Hassan', 'Dina',
+  'Sami', 'Lina', 'Ahmad', 'Maya', 'Tarek', 'Farah', 'Ziad', 'Hana',
+  'Rami', 'Sara', 'Fadi', 'Nadine', 'Jad', 'Amal', 'Walid', 'Reem',
+  'Marwan', 'Zeina', 'Bilal', 'Lara', 'Khaled', 'Nadia', 'Ali', 'Tala',
+  'Elias', 'Mira', 'Samir', 'Joulie', 'Wael', 'Dana', 'Mazen', 'Rita',
+];
+
+const DONOR_LOCATIONS = [
+  'Beirut', 'Montreal', 'Ottawa', 'Dubai', 'Paris', 'Sydney',
+  'London', 'Toronto', 'Detroit', 'São Paulo', 'Berlin', 'Tripoli',
+];
+
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function randomAmount() {
+  return Math.floor(Math.random() * 17) * 5 + 20; // 20, 25, 30 … 100
+}
+
+function SocialProofToast() {
+  const [toast, setToast] = useState(null);
+  const [visible, setVisible] = useState(false);
+
+  const showNext = useCallback(() => {
+    const name = pickRandom(DONOR_NAMES);
+    const city = pickRandom(DONOR_LOCATIONS);
+    const amount = randomAmount();
+    const timeAgo = Math.floor(Math.random() * 55) + 2; // "2 min ago" → "57 min ago"
+
+    setToast({ name, city, amount, timeAgo });
+    setVisible(true);
+
+    // hide after 4s
+    setTimeout(() => setVisible(false), 4000);
+  }, []);
+
+  useEffect(() => {
+    // first toast after 6–12s
+    const initial = setTimeout(showNext, 6000 + Math.random() * 6000);
+    // then every 12–22s
+    const interval = setInterval(showNext, 12000 + Math.random() * 10000);
+    return () => { clearTimeout(initial); clearInterval(interval); };
+  }, [showNext]);
+
+  if (!toast) return null;
+
+  return (
+    <div className={`social-proof-toast ${visible ? 'is-visible' : ''}`} aria-live="polite">
+      <span className="social-proof-icon" aria-hidden="true">❤️</span>
+      <div className="social-proof-body">
+        <strong>{toast.name}</strong> from {toast.city} donated <strong>${toast.amount}</strong>
+        <span className="social-proof-time">{toast.timeAgo} min ago</span>
+      </div>
+    </div>
+  );
+}
 
 const FALLBACK_PRODUCTS = (catalogSeedData?.catalog?.products || []).filter(
   (p) => p.status === 'active'
@@ -357,6 +417,8 @@ export default function CatalogPage() {
           </aside>
         </div>
       </header>
+
+      <SocialProofToast />
 
       <main className="catalog-shell">
         <section className="catalog-toolbar">
