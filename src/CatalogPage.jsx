@@ -264,9 +264,8 @@ export default function CatalogPage() {
                   <span className="catalog-omprakash-logo-wrap" aria-hidden="true">
                     <img
                       className="catalog-omprakash-logo"
-                      src="/images/Omprakash__footer__logo.webp"
+                      src="/images/svg/omprakash_logo.svg"
                       alt=""
-                      loading="lazy"
                     />
                   </span>
                   <span>Donate via Omprakash</span>

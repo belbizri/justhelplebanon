@@ -5036,11 +5036,32 @@ h1 {
   transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
 }
 
+@keyframes btn-shine {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes btn-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 6px 28px rgba(214, 43, 55, 0.52), 0 2px 8px rgba(0, 0, 0, 0.28);
+  }
+  50% {
+    box-shadow: 0 8px 36px rgba(214, 43, 55, 0.68), 0 0 20px rgba(214, 43, 55, 0.25), 0 2px 8px rgba(0, 0, 0, 0.28);
+  }
+}
+
 .catalog-page-root .catalog-primary-btn {
   color: #fff;
-  background: linear-gradient(135deg, #E0313F 0%, #C2202D 100%);
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%) no-repeat,
+    linear-gradient(135deg, #E0313F 0%, #C2202D 100%);
+  background-size: 200% 100%, 100% 100%;
   box-shadow: 0 6px 28px rgba(214, 43, 55, 0.52), 0 2px 8px rgba(0, 0, 0, 0.28);
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
+  animation: btn-shine 3s ease-in-out infinite, btn-glow-pulse 2.5s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
 .catalog-page-root .catalog-paypal-btn {
@@ -5061,10 +5082,11 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.96);
-  padding: 4px 9px;
-  min-height: 26px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.97);
+  padding: 5px 10px;
+  min-height: 28px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
 }
 
 .catalog-page-root .catalog-paypal-logo-svg {
@@ -5075,8 +5097,8 @@ h1 {
 
 .catalog-page-root .catalog-omprakash-logo {
   display: block;
-  width: 62px;
-  height: 20px;
+  width: 72px;
+  height: auto;
   object-fit: contain;
 }
 
@@ -5088,8 +5110,9 @@ h1 {
 }
 
 .catalog-page-root .catalog-primary-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 38px rgba(214, 43, 55, 0.62), 0 4px 14px rgba(0, 0, 0, 0.4);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 14px 44px rgba(214, 43, 55, 0.7), 0 0 28px rgba(214, 43, 55, 0.3), 0 4px 14px rgba(0, 0, 0, 0.4);
+  animation: btn-glow-pulse 1.5s ease-in-out infinite;
 }
 
 .catalog-page-root .catalog-paypal-btn:hover {
