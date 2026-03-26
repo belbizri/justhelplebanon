@@ -5234,53 +5234,76 @@ h1 {
 
 /* ── Tax-Deductible Info Panel ────────────── */
 
+@keyframes tax-border-glow {
+  0%, 100% {
+    border-color: rgba(52, 211, 153, 0.3);
+    box-shadow:
+      0 0 8px rgba(52, 211, 153, 0.08),
+      inset 0 0 8px rgba(52, 211, 153, 0.03);
+  }
+  50% {
+    border-color: rgba(52, 211, 153, 0.55);
+    box-shadow:
+      0 0 18px rgba(52, 211, 153, 0.15),
+      0 0 40px rgba(52, 211, 153, 0.06),
+      inset 0 0 12px rgba(52, 211, 153, 0.05);
+  }
+}
+
 .catalog-tax-info {
-  margin-top: 24px;
-  padding: 20px 22px;
+  margin-top: 28px;
+  padding: 24px 26px;
   background: rgba(10, 143, 94, 0.08);
-  border: 1px solid rgba(10, 143, 94, 0.22);
-  border-radius: 14px;
-  max-width: 420px;
+  border: 1.5px solid rgba(52, 211, 153, 0.3);
+  border-radius: 16px;
+  max-width: 440px;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  animation: tax-border-glow 3.5s ease-in-out infinite;
 }
 
 .catalog-tax-badge {
   display: inline-block;
-  padding: 4px 12px;
+  padding: 5px 14px;
   border-radius: 20px;
   background: rgba(10, 143, 94, 0.18);
   color: #34d399;
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 12px;
+  letter-spacing: 0.09em;
+  margin-bottom: 16px;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
 .catalog-tax-headline {
-  margin: 0 0 10px;
-  font-size: 0.92rem;
-  color: rgba(255, 255, 255, 0.92);
-  line-height: 1.5;
+  margin: 0 0 14px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.93);
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 .catalog-tax-explain {
-  margin: 0 0 10px;
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.62);
-  line-height: 1.55;
+  margin: 0 0 14px;
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.64);
+  line-height: 1.65;
+  letter-spacing: 0.01em;
 }
 
 .catalog-tax-example {
   margin: 0;
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.52);
-  line-height: 1.5;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.54);
+  line-height: 1.6;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  letter-spacing: 0.01em;
 }
 
 .catalog-tax-example strong {
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* ── Micro-Stats Strip ──────────────────── */
