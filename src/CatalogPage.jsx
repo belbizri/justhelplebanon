@@ -6,49 +6,54 @@ import { fetchCatalogProducts } from './services/catalogApi.js';
 import catalogSeedData from '../db/seed-data/catalogData.js';
 import usePageSeo from './usePageSeo.js';
 
-// social proof TEST concept purely cosmetic for now untill Sunday funday 2:04 AM. 
-const DONOR_NAMES = [
-  'Nour', 'Yara', 'Karim', 'Layla', 'Omar', 'Rania', 'Hassan', 'Dina',
-  'Sami', 'Lina', 'Ahmad', 'Maya', 'Tarek', 'Farah', 'Ziad', 'Hana',
-  'Rami', 'Sara', 'Fadi', 'Nadine', 'Jad', 'Amal', 'Walid', 'Reem',
-  'Marwan', 'Zeina', 'Bilal', 'Lara', 'Khaled', 'Nadia', 'Ali', 'Tala',
-  'Elias', 'Mira', 'Samir', 'Joulie', 'Wael', 'Dana', 'Mazen', 'Rita',
+// Real donor data from Omprakash — March 2026
+const REAL_DONATIONS = [
+  { name: 'Sana Zeitoun', amount: 150, date: '2026-03-21' },
+  { name: 'Jade Forestier', amount: 51.42, date: '2026-03-17' },
+  { name: 'Paul Forestier', amount: 10, date: '2026-03-17' },
+  { name: 'John Kilner', amount: 30, date: '2026-03-17' },
+  { name: 'Mayssoon Saleh', amount: 100, date: '2026-03-15' },
+  { name: 'Anonymous', amount: 30.97, date: '2026-03-14' },
+  { name: 'Hansjuerg Moser', amount: 102.55, date: '2026-03-14' },
+  { name: 'Hannah Fox', amount: 50, date: '2026-03-13' },
+  { name: 'Vicken K.', amount: 250, date: '2026-03-11' },
+  { name: 'Sara Frodge', amount: 51.42, date: '2026-03-08' },
+  { name: 'Samer Eldika', amount: 100, date: '2026-03-07' },
+  { name: 'Raja Hammoud', amount: 200, date: '2026-03-07' },
+  { name: 'Anonymous', amount: 100, date: '2026-03-06' },
+  { name: 'Laurie King', amount: 51.42, date: '2026-03-05' },
+  { name: 'Nabila Kesrewan', amount: 20, date: '2026-03-02' },
+  { name: 'Sana Zeitoun', amount: 100, date: '2026-03-02' },
+  { name: 'William Kilner', amount: 30.97, date: '2026-03-02' },
+  { name: 'Sana Zeitoun', amount: 50, date: '2026-03-01' },
 ];
 
-const DONOR_LOCATIONS = [
-  'Beirut', 'Montreal', 'Ottawa', 'Dubai', 'Paris', 'Sydney',
-  'London', 'Toronto', 'Detroit', 'São Paulo', 'Berlin', 'Tripoli',
-];
-
-function pickRandom(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
-function randomAmount() {
-  return Math.floor(Math.random() * 17) * 5 + 20; // 20, 25, 30 … 100
+function daysAgo(dateStr) {
+  const diff = Math.floor((Date.now() - new Date(dateStr).getTime()) / 86400000);
+  return diff <= 0 ? 'today' : diff === 1 ? '1 day ago' : `${diff} days ago`;
 }
 
 function SocialProofToast() {
   const [toast, setToast] = useState(null);
   const [visible, setVisible] = useState(false);
+  const indexRef = React.useRef(Math.floor(Math.random() * REAL_DONATIONS.length));
 
   const showNext = useCallback(() => {
-    const name = pickRandom(DONOR_NAMES);
-    const city = pickRandom(DONOR_LOCATIONS);
-    const amount = randomAmount();
-    const timeAgo = Math.floor(Math.random() * 55) + 2; // "2 min ago" → "57 min ago"
+    const donation = REAL_DONATIONS[indexRef.current % REAL_DONATIONS.length];
+    indexRef.current += 1;
 
-    setToast({ name, city, amount, timeAgo });
+    setToast({
+      name: donation.name,
+      amount: donation.amount % 1 === 0 ? `${donation.amount}` : donation.amount.toFixed(2),
+      timeAgo: daysAgo(donation.date),
+    });
     setVisible(true);
 
-    // hide after 4s
     setTimeout(() => setVisible(false), 4000);
   }, []);
 
   useEffect(() => {
-    // first toast after 6–12s
     const initial = setTimeout(showNext, 6000 + Math.random() * 6000);
-    // then every 12–22s
     const interval = setInterval(showNext, 12000 + Math.random() * 10000);
     return () => { clearTimeout(initial); clearInterval(interval); };
   }, [showNext]);
@@ -59,8 +64,8 @@ function SocialProofToast() {
     <div className={`social-proof-toast ${visible ? 'is-visible' : ''}`} aria-live="polite">
       <span className="social-proof-icon" aria-hidden="true">❤️</span>
       <div className="social-proof-body">
-        <strong>{toast.name}</strong> from {toast.city} donated <strong>${toast.amount}</strong>
-        <span className="social-proof-time">{toast.timeAgo} min ago</span>
+        <strong>{toast.name}</strong> donated <strong>${toast.amount}</strong>
+        <span className="social-proof-time">{toast.timeAgo}</span>
       </div>
     </div>
   );
@@ -372,6 +377,49 @@ export default function CatalogPage() {
           <p className="lrc-thankyou-note">
             The LRC campaign page is still accessible at <Link to="/lrc" className="lrc-thankyou-link">/lrc</Link> for reference.
           </p>
+        </div>
+      </section>
+
+      <section className="bmo-showcase" aria-label="About Blue Mission Organization">
+        <div className="bmo-showcase-inner">
+          <div className="bmo-showcase-header">
+            <span className="bmo-showcase-badge">Our Partner on the Ground</span>
+            <h2 className="bmo-showcase-title">Blue Mission Organization</h2>
+            <p className="bmo-showcase-subtitle">Independent Lebanese NGO based in Saida</p>
+          </div>
+          <p className="bmo-showcase-desc">
+            Blue Mission promotes and protects the rights of vulnerable populations, creating a culture of peace and empowering every level of society.
+            Their programs focus on medical aid, mental health, education, peace-building, and community development &mdash; serving refugees,
+            internally-displaced people, and vulnerable segments of the Lebanese community.
+          </p>
+          <div className="bmo-showcase-stats">
+            <div className="bmo-showcase-stat">
+              <strong>2002</strong>
+              <span>Year Founded</span>
+            </div>
+            <div className="bmo-showcase-stat">
+              <strong>2018</strong>
+              <span>Joined Omprakash</span>
+            </div>
+            <div className="bmo-showcase-stat">
+              <strong>15</strong>
+              <span>Staff Members</span>
+            </div>
+            <div className="bmo-showcase-stat">
+              <strong>$11,707</strong>
+              <span>Raised via Omprakash</span>
+            </div>
+          </div>
+          <div className="bmo-showcase-focus">
+            <span className="bmo-focus-label">Thematic Focus</span>
+            <div className="bmo-focus-tags">
+              <span className="bmo-focus-tag">🏥 Medical Aid</span>
+              <span className="bmo-focus-tag">🧠 Mental Health</span>
+              <span className="bmo-focus-tag">📚 Education</span>
+              <span className="bmo-focus-tag">🕊️ Peace-Building</span>
+              <span className="bmo-focus-tag">🤝 Community Dev</span>
+            </div>
+          </div>
         </div>
       </section>
 
