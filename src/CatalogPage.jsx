@@ -214,7 +214,22 @@ export default function CatalogPage() {
     };
   }, [filteredProducts]);
 
+  const isDesktop = typeof window !== 'undefined' && window.innerWidth > 768;
 
+  const handleDonateClick = () => {
+    if (!isDesktop) return;
+    try {
+      (window.requestIdleCallback || setTimeout)(() => {
+        trackEvent('aid_kit_click', {
+          location: 'catalog_hero',
+          destination: 'omprakash',
+          page: 'aid-kits',
+        });
+      });
+    } catch (e) {
+      console.error('trackEvent failed', e);
+    }
+  };
 
   return (
     <div className="page-root donations-page catalog-page-root">
@@ -252,7 +267,7 @@ export default function CatalogPage() {
                 rel="noopener noreferrer"
                 className="catalog-primary-btn"
                 aria-label="Donate via Omprakash — tax-deductible"
-         
+                onClick={handleDonateClick}
               >
                 <span className="catalog-btn-content">
                   <span className="catalog-omprakash-logo-wrap" aria-hidden="true">
