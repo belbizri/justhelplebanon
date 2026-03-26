@@ -336,10 +336,7 @@ export default function CatalogPage() {
                 <span>Active kits ready to fund today</span>
               </li>
              
-              <li>
-                <strong>{summary.recurringCount}</strong>
-                <span>kits support recurring giving options</span>
-              </li>
+               
             </ul>
             <p className="catalog-highlight-footnote">Built for emergency response.</p>
           </aside>
