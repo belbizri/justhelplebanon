@@ -382,14 +382,20 @@ export default function CatalogPage() {
 
       <section className="bmo-showcase" aria-label="About Blue Mission Organization">
         <div className="bmo-showcase-inner">
-          <div className="bmo-showcase-header">
-            <span className="bmo-showcase-badge">Our Partner on the Ground</span>
-            <h2 className="bmo-showcase-title">Blue Mission Organization</h2>
-            <p className="bmo-showcase-subtitle">Independent Lebanese NGO based in Saida</p>
+          <div className="bmo-showcase-top">
+            <div className="bmo-showcase-logo-wrap">
+              <img src="/images/svg/blue-miss.svg" alt="Blue Mission Organization" className="bmo-showcase-logo" />
+              <div className="bmo-logo-ring" />
+            </div>
+            <div className="bmo-showcase-header">
+              <span className="bmo-showcase-badge">Our Partner on the Ground</span>
+              <h2 className="bmo-showcase-title">Blue Mission Organization</h2>
+              <p className="bmo-showcase-subtitle">Independent Lebanese NGO based in Saida</p>
+            </div>
           </div>
           <p className="bmo-showcase-desc">
             Blue Mission promotes and protects the rights of vulnerable populations, creating a culture of peace and empowering every level of society.
-            Their programs focus on medical aid, mental health, education, peace-building, and community development &mdash; serving refugees,
+            Their programs focus on medical aid, mental health, education, peace-building, and community development, serving refugees,
             internally-displaced people, and vulnerable segments of the Lebanese community.
           </p>
           <div className="bmo-showcase-stats">
