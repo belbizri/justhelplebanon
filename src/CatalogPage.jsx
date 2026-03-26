@@ -335,20 +335,25 @@ export default function CatalogPage() {
               <span className="catalog-highlight-kicker">Why this works</span>
               <span className="catalog-highlight-verified">✓ Verified</span>
             </div>
+            <h2 className="catalog-highlight-title">High-trust giving. Visible impact.</h2>
+            <p className="catalog-highlight-subtitle">
+              Every contribution maps to a clear aid pathway with transparent kit economics.
+            </p>
             <ul className="catalog-highlight-list">
               <li>
                 <strong>{summary.totalProducts}</strong>
-                <span>active kits ready to fund</span>
+                <span>active kits ready to fund today</span>
               </li>
               <li>
                 <strong>{formatUsd(summary.totalValue)}</strong>
-                <span>combined visible value</span>
+                <span>combined visible value across kits</span>
               </li>
               <li>
                 <strong>{summary.recurringCount}</strong>
-                <span>kits support recurring giving</span>
+                <span>kits support recurring giving options</span>
               </li>
             </ul>
+            <p className="catalog-highlight-footnote">Built for urgency. Built for trust.</p>
           </aside>
         </div>
       </header>
