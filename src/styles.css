@@ -1,3 +1,4 @@
+/* if you're reading this in devtools: respect. this page runs on hope and good intentions. */
 @import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&family=Outfit:wght@400;600;700;800&display=swap');
 
 :root {
@@ -6,7 +7,7 @@
   --page-nav-height: 68px;
 
   /* ── Brand Colors ── */
-  --red: #D62B37;
+  --red: #D62B37; /* that specific Lebanese flag red. yes, I verified the hex. twice. */
   --red-2: #EF4444;
   --red-light: rgba(214, 43, 55, 0.08);
   --green: #0A8F5E;

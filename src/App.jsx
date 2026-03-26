@@ -1,3 +1,4 @@
+// no bugs, only unexpected features
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CrisisDashboard from './CrisisDashboard.jsx';
@@ -5,7 +6,7 @@ import NavBar from './NavBar.jsx';
 import { trackEvent } from './analytics.js';
 import usePageSeo from './usePageSeo.js';
 
-const DONATION_BASE_URL = 'https://give.redcross.ca/page/LHNA';
+const DONATION_BASE_URL = 'https://give.redcross.ca/page/LHNA'; // the most important constant in this file. no pressure.
 const DONATION_OPTIONS = [20, 50, 100];
 
 const IMPACT_DATA = [

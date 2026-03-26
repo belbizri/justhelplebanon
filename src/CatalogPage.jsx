@@ -11,11 +11,11 @@ const FALLBACK_PRODUCTS = (catalogSeedData?.catalog?.products || []).filter(
 );
 
 const PAYPAL_DONATION_URL = 'https://www.paypal.com/paypalme/belbizri';
-const BITCOIN_ADDRESS = 'bc1qq4r20ts0wf99f4mt5m09ycv952hh385tzu9js4';
+const BITCOIN_ADDRESS = 'bc1qq4r20ts0wf99f4mt5m09ycv952hh385tzu9js4'; // a Bitcoin address, hardcoded in a .jsx file. art.
 const BITCOIN_URI = `bitcoin:${BITCOIN_ADDRESS}`;
 const BITCOIN_QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(BITCOIN_URI)}`;
 
-const formatUsd = (value) => new Intl.NumberFormat('en-US', {
+const formatUsd = (value) => new Intl.NumberFormat('en-US', { // || 0 below: because NaN in a donation total is not a vibe
   style: 'currency',
   currency: 'USD',
   minimumFractionDigits: 2,

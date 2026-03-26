@@ -16,16 +16,16 @@ let orgMediaMap = {};
 const mapPath = path.join(__dirname, "data", "orgmedia-map.json");
 try {
   orgMediaMap = JSON.parse(await fs.readFile(mapPath, "utf-8"));
-} catch { /* file missing or invalid — start empty */ }
+} catch { /* file missing or invalid — start empty. we improvise. we're Lebanese. */ }
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000; // all roads lead to Rome. all tutorials lead to 3000.
 const PUBLIC_DIR = path.join(__dirname, "public");
 const PUBLIC_VIDEOS_DIR = path.join(PUBLIC_DIR, "videos");
 const PUBLIC_DATA_DIR = path.join(PUBLIC_DIR, "data");
 const VIDEOS_MANIFEST_PATH = path.join(PUBLIC_DATA_DIR, "videos.json");
 
-app.use(express.json());
+app.use(express.json()); // yes, I checked this before deploying. twice, actually.
 app.use(express.urlencoded({ extended: true }));
 
 const ALLOWED_VIDEO_EXTENSIONS = new Set([".mp4", ".mov", ".webm", ".m4v"]);

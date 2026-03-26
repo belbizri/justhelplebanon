@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-const TIMER_START_DATE = new Date(2006, 7, 16, 0, 0, 0, 0);
+const TIMER_START_DATE = new Date(2006, 7, 16, 0, 0, 0, 0); // month is 0-indexed. JavaScript is fine. everything is fine.
 
 function getElapsedFromStart(now, start) {
   let years = now.getFullYear() - start.getFullYear();
@@ -14,7 +14,7 @@ function getElapsedFromStart(now, start) {
   }
 
   const remainderMs = now - anniversary;
-  const totalMinutes = Math.max(0, Math.floor(remainderMs / 60000));
+  const totalMinutes = Math.max(0, Math.floor(remainderMs / 60000)); // Math.max(0, ...) — optimism, enforced by law
   const days = Math.floor(totalMinutes / (60 * 24));
   const hours = Math.floor((totalMinutes % (60 * 24)) / 60);
   const minutes = totalMinutes % 60;
