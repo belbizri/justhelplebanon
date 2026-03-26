@@ -4846,11 +4846,41 @@ h1 {
   transform: translate(-50%, -50%);
   width: clamp(280px, 36vw, 560px);
   height: auto;
-  opacity: 0.15;
-  filter: brightness(0) invert(1) drop-shadow(0 0 28px rgba(255, 255, 255, 0.18));
+  opacity: 0.18;
+  filter: brightness(0) invert(1)
+    drop-shadow(0 0 18px rgba(214, 43, 55, 0.45))
+    drop-shadow(0 0 48px rgba(214, 43, 55, 0.18))
+    drop-shadow(0 0 6px rgba(255, 255, 255, 0.12));
   pointer-events: none;
   user-select: none;
   z-index: 1;
+  animation: cedar-pulse 4s ease-in-out infinite, cedar-float 8s ease-in-out infinite;
+}
+
+@keyframes cedar-pulse {
+  0%, 100% {
+    filter: brightness(0) invert(1)
+      drop-shadow(0 0 18px rgba(214, 43, 55, 0.45))
+      drop-shadow(0 0 48px rgba(214, 43, 55, 0.18))
+      drop-shadow(0 0 6px rgba(255, 255, 255, 0.12));
+    opacity: 0.18;
+  }
+  50% {
+    filter: brightness(0) invert(1)
+      drop-shadow(0 0 32px rgba(214, 43, 55, 0.7))
+      drop-shadow(0 0 72px rgba(214, 43, 55, 0.3))
+      drop-shadow(0 0 10px rgba(255, 120, 120, 0.25));
+    opacity: 0.24;
+  }
+}
+
+@keyframes cedar-float {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -51.5%) scale(1.015);
+  }
 }
 
 .catalog-hero-watermark {
