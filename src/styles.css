@@ -5339,6 +5339,7 @@ h1 {
 
 .catalog-tax-explain {
   visibility: hidden;
+  display: none;
   margin: 0 0 14px;
   font-size: 0.84rem;
   color: rgba(255, 255, 255, 0.64);
