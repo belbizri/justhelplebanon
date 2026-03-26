@@ -712,7 +712,7 @@ export default function DonationsPage() {
 
         {/* ── Search & Filter Bar ── */}
         <div className="don-toolbar">
-          <div className="don-search">
+          <div className="orin-search-interface">
             <SearchIcon />
             <input
               type="text"

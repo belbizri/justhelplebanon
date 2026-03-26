@@ -4111,7 +4111,7 @@ h1 {
   margin-bottom: 44px;
 }
 
-.don-search {
+.orin-search-interface {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -4124,17 +4124,17 @@ h1 {
   box-shadow: var(--shadow-sm);
 }
 
-.don-search:focus-within {
+.orin-search-interface:focus-within {
   border-color: var(--red);
   box-shadow: 0 0 0 3px rgba(214, 43, 55, 0.08), var(--shadow-sm);
 }
 
-.don-search svg {
+.orin-search-interface svg {
   color: var(--tk-soft);
   flex-shrink: 0;
 }
 
-.don-search input {
+.orin-search-interface input {
   flex: 1;
   background: none;
   border: none;
@@ -4145,7 +4145,7 @@ h1 {
   font-weight: 500;
 }
 
-.don-search input::placeholder {
+.orin-search-interface input::placeholder {
   color: var(--tk-soft);
   font-weight: 400;
 }
