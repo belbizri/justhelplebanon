@@ -1,97 +1,134 @@
-// no bugs, only unexpected features
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import CrisisDashboard from './CrisisDashboard.jsx';
-import NavBar from './NavBar.jsx';
-import { trackEvent } from './analytics.js';
-import usePageSeo from './usePageSeo.js';
+// ── Disclaimer Modal ──
+function DisclaimerModal({ onAcknowledge }) {
+  return (
+    <div className="disclaimer-backdrop">
+      <div className="disclaimer-modal">
+        <div className="disclaimer-icon">⚖️</div>
+        <h2 className="disclaimer-title">Disclaimer and User Acknowledgment</h2>
+        <div className="disclaimer-body">
+          <p>By clicking <b>“OK”</b>, accessing, browsing, or otherwise using this website, you acknowledge and agree to the following:</p>
+          <ul>
+            <li>This website is a personal and independent initiative, conceived, developed, and maintained entirely outside the scope of any employment, contractual obligation, or professional engagement. It operates independently and is not affiliated with, endorsed by, sponsored by, or otherwise associated with any employer, company, organization, institution, or governmental or public authority, whether domestic or international.</li>
+            <li>All content, views, opinions, and activities presented on this website are solely those of the creator and are expressed in an individual capacity. They do not reflect, represent, or imply the views, positions, policies, or interests of any current or former employer, organization, governmental body, or any other entity.</li>
+            <li>No resources, systems, equipment, funding, proprietary information, confidential materials, trade secrets, or intellectual property belonging to any employer, organization, or governmental authority, whether internal or external, have been used, accessed, or relied upon in the creation, development, or operation of this website.</li>
+            <li>All work associated with this website has been performed independently, on personal time, and using exclusively personal resources and infrastructure.</li>
+            <li>The creator retains full and exclusive ownership of this website and its content, subject to applicable laws, and assumes sole responsibility for all materials published herein.</li>
+            <li>This website is provided for informational and general purposes only and does not constitute professional, legal, financial, or other advice. No reliance should be placed on the content without independent verification.</li>
+            <li>Your continued use of this website constitutes your acknowledgment and acceptance of the terms set forth above.</li>
+          </ul>
+        </div>
+        <button className="disclaimer-ok-btn" onClick={onAcknowledge}>OK</button>
+      </div>
+    </div>
+  );
+}
+export default function App() {
+  const [amount, setAmount] = useState(20);
+  const [lang, setLang] = useState('en');
+  const t = TRANSLATIONS[lang];
+  const isRtl = lang === 'ar';
 
-const DONATION_BASE_URL = 'https://give.redcross.ca/page/LHNA'; // the most important constant in this file. no pressure.
-const DONATION_OPTIONS = [20, 50, 100];
+  // Disclaimer state
+  const [showDisclaimer, setShowDisclaimer] = useState(() => {
+    try {
+      return !localStorage.getItem('disclaimer_acknowledged');
+    } catch {
+      return true;
+    }
+  });
 
-const IMPACT_DATA = [
-  { amount: 20, icon: '', desc: 'Emergency medical kits', image: '/images/medical-kit.jpg' },
-  { amount: 50, icon: '', desc: 'Shelter supplies for a family', image: '/images/lebShelter.jpg' },
-  { amount: 100, icon: '', desc: 'Food for a family for 1 month',image: '/images/leb_food.jpeg' },
-];
+  const handleAcknowledge = () => {
+    try {
+      localStorage.setItem('disclaimer_acknowledged', '1');
+    } catch {}
+    setShowDisclaimer(false);
+  };
 
-const TRANSLATIONS = {
-  en: {
-    eyebrow: 'Lebanon Humanitarian Appeal • Ottawa • MTL',
-    heading: 'لبيك يا لبنان',
-    subline: '• For Families • For Lebanon',
-    lead: 'Your home country is calling.',
-    lead2: 'Stand up for Lebanon and give what you can to help your people now.',
-    donateBtn: (a) => `Donate $${a} to the Lebanese Red Cross`,
-    donateOpt: (v) => `Donate $${v}`,
-    note: 'You are redirected to the official secure donation page.',
-    impactTitle: 'Your Impact',
-    impactSub: 'See how your donation helps',
-    testimonialTitle: 'From the Ground',
-    whoTitle: 'Who We Are',
-    whoParagraphs: [
-      'So yes, I\'m the guy on the right. Not the one on the left, mostly because, unfortunately, he still doesn\'t know how to code in Node.js.',
-      'At some point I got bored, and boredom can be a dangerous thing.',
-      'Instead of doing absolutely nothing about the problems around us, I decided to build something, something that stands up for my home country, a country I haven\'t spoken to in over twenty years, for reasons I still don\'t fully understand.',
-      'As a friend of mine, who happens to be the finance minister of a small country where everyone has an opinion, half the population is building startups, nobody waits for permission to act, and the driving skills are&hellip; let\'s say, very similar to my people\'s, once said, <strong>&ldquo;If you do nothing, you get nothing.&rdquo;</strong> So I decided to stop doing nothing and stand up for my home country.',
-      'That\'s how this initiative started.',
-    ],
-    shareTitle: 'Spread the Word',
-    shareText: 'Share this page and help us reach more people.',
-    urgency: 'Every minute counts — families in Lebanon need your help now',
-    socialProof: (c) => `Join ${c}+ Canadians who've donated`,
-    goal: 'Goal',
-  },
-  ar: {
-    eyebrow: 'نداء لبنان الإنساني • أوتاوا • مونتريال',
-    heading: 'لبيك يا لبنان',
-    subline: 'للكرامة • للعائلات • للبنان',
-    lead: '.وطنك ينادي',
-    lead2: '.قف مع لبنان وقدّم ما تستطيع لمساعدة شعبك الآن',
-    donateBtn: (a) => `تبرّع $${a} للصليب الأحمر اللبناني`,
-    donateOpt: (v) => `$${v} تبرّع`,
-    note: '.سيتم توجيهك إلى صفحة التبرع الرسمية الآمنة',
-    impactTitle: 'أثر تبرّعك',
-    impactSub: 'شاهد كيف يساعد تبرّعك',
-    testimonialTitle: 'من الميدان',
-    whoTitle: 'من نحن',
-    whoParagraphs: [
-      'نعم، أنا الشخص على اليمين. ليس الذي على اليسار &mdash; غالباً لأنه، للأسف، لا يزال لا يعرف كيف يبرمج بـ Node.js.',
-      'في مرحلة ما شعرت بالملل، والملل قد يكون شيئاً خطيراً.',
-      'بدلاً من عدم فعل أي شيء حيال المشاكل من حولنا، قررت أن أبني شيئاً &mdash; شيئاً يقف لأجل وطني، بلد لم أتحدث إليه منذ أكثر من عشرين عاماً، لأسباب لا أفهمها حتى الآن.',
-      'كما قال صديق لي، وهو وزير مالية بلد صغير حيث لكل شخص رأي، ونصف السكان يبنون شركات ناشئة، ولا أحد ينتظر إذناً للتصرف، ومهارات القيادة&hellip; لنقل إنها مشابهة جداً لمهارات شعبي، قال ذات مرة، <strong>&ldquo;إذا لم تفعل شيئاً، لن تحصل على شيء.&rdquo;</strong> لذلك قررت التوقف عن عدم فعل أي شيء والوقوف لأجل وطني.',
-      'هكذا بدأت هذه المبادرة.',
-    ],
-    shareTitle: 'انشر الكلمة',
-    shareText: '.شارك هذه الصفحة وساعدنا في الوصول لأكبر عدد',
-    urgency: 'كل دقيقة مهمة — عائلات في لبنان بحاجة لمساعدتك الآن',
-    socialProof: (c) => `انضم إلى ${c}+ كندي تبرعوا`,
-    goal: 'الهدف',
-  },
-  fr: {
-    eyebrow: 'Appel humanitaire pour le Liban • Ottawa • MTL',
-    heading: 'لبيك يا لبنان',
-    subline: 'Pour la dignité • Pour les familles • Pour le Liban',
-    lead: 'Votre pays d\'origine vous appelle.',
-    lead2: 'Soutenez le Liban et donnez ce que vous pouvez pour aider votre peuple.',
-    donateBtn: (a) => `Donner ${a}$ à la Croix-Rouge libanaise`,
-    donateOpt: (v) => `Donner ${v}$`,
-    note: 'Vous serez redirigé vers la page de don officielle sécurisée.',
-    impactTitle: 'Votre Impact',
-    impactSub: 'Voyez comment votre don aide',
-    testimonialTitle: 'Du Terrain',
-    whoTitle: 'Qui sommes-nous',
-    whoParagraphs: [
-      'Alors oui, c\'est moi à droite. Pas celui à gauche &mdash; principalement parce que, malheureusement, il ne sait toujours pas coder en Node.js.',
-      'À un moment donné, je m\'ennuyais, et l\'ennui peut être dangereux.',
-      'Au lieu de ne rien faire face aux problèmes autour de nous, j\'ai décidé de construire quelque chose &mdash; quelque chose qui défend mon pays d\'origine, un pays à qui je n\'ai pas parlé depuis plus de vingt ans, pour des raisons que je ne comprends toujours pas.',
-      'Comme l\'a dit un ami à moi, qui se trouve être le ministre des finances d\'un petit pays où tout le monde a un avis, la moitié de la population lance des startups, personne n\'attend la permission pour agir, et les compétences de conduite sont&hellip; disons, très similaires à celles de mon peuple, <strong>&laquo; Si tu ne fais rien, tu n\'obtiens rien. &raquo;</strong> Alors j\'ai décidé d\'arrêter de ne rien faire et de défendre mon pays.',
-      'C\'est comme ça que cette initiative a commencé.',
-    ],
-    shareTitle: 'Partagez',
-    shareText: 'Partagez cette page et aidez-nous à atteindre plus de gens.',
-    urgency: 'Chaque minute compte — des familles au Liban ont besoin de votre aide',
-    socialProof: (c) => `Rejoignez ${c}+ Canadiens qui ont donné`,
+  const donateHref = useMemo(() => `${DONATION_BASE_URL}?amount=${amount}`, [amount]);
+
+  return (
+    <div className={`app-root ${isRtl ? 'rtl' : ''}`} dir={isRtl ? 'rtl' : 'ltr'}>
+      {showDisclaimer && <DisclaimerModal onAcknowledge={handleAcknowledge} />}
+
+      {/* #1 Urgency Banner */}
+      <UrgencyBanner text={t.urgency} />
+
+      {/* Navigation */}
+      <NavBar extra={<LangToggle lang={lang} setLang={setLang} />} />
+
+      {/* Widget with progress bar (#7) */}
+      {/* <DonationWidget lang={lang} /> */}
+
+      {/* Hero */}
+      <section className="hero" aria-label="Donate to support the Lebanese Red Cross">
+        <div className="cross-glow" />
+        <div className="grain" />
+
+        <div className="content">
+          <div className="eyebrow">{t.eyebrow}</div>
+          <h1 className="hero-ar" lang="ar">{t.heading}</h1>
+          <p className="subline">{t.subline}</p>
+
+          {/* #2 Social Proof */}
+          <SocialProof text={t.socialProof('3,490')} />
+
+          <p className="lead">
+            {t.lead}
+            <br />
+            {t.lead2}
+          </p>
+
+          <div className="action-wrap">
+            <div className="amounts">
+              {DONATION_OPTIONS.map((value) => (
+                <button
+                  key={value}
+                  type="button"
+                  className={`amount-btn ${amount === value ? 'active' : ''}`}
+                  onClick={() => setAmount(value)}
+                >
+                  {t.donateOpt(value)}
+                </button>
+              ))}
+            </div>
+
+            <a className="donate-btn" href={donateHref} target="_blank" rel="noopener noreferrer">
+              {t.donateBtn(amount)}
+            </a>
+          </div>
+
+          <div className="bottom-note">{t.note}</div>
+        </div>
+
+        <div className="bottom-fade" />
+      </section>
+
+      {/* #3 Impact Breakdown */}
+      <ImpactSection title={t.impactTitle} sub={t.impactSub} />
+
+      {/* Crisis Dashboard — live data */}
+      <CrisisDashboard />
+      {/* #6 Testimonial */}
+      <TestimonialSection title={t.testimonialTitle} />
+
+      {/* #8 Who We Are */}
+      <WhoWeAreSection title={t.whoTitle} paragraphs={t.whoParagraphs} />
+      {/* Video */}
+      <VideoSection />
+      {/* Gallery (scroll-triggered #10) */}
+      <GallerySection />
+
+      {/* #4 Share Buttons */}
+      <ShareSection title={t.shareTitle} sub={t.shareText} />
+
+      {/* Footer */}
+      <footer className="site-footer">
+        <p>© {new Date().getFullYear()} Just Help Lebanon. All donations go to the Lebanese Red Cross.</p>
+      </footer>
+    </div>
+  );
+}
     goal: 'Objectif',
   },
 };
@@ -230,12 +267,6 @@ function ShareSection({ title, sub }) {
   const msg = 'Support the Lebanese Red Cross — every dollar helps families in Lebanon.';
 
   const share = useCallback((platform) => {
-    trackEvent('share_click', {
-      platform,
-      location: 'home_share_section',
-      page: 'home',
-    });
-
     const encodedUrl = encodeURIComponent(url);
     const encodedMsg = encodeURIComponent(msg);
     const urls = {
@@ -303,24 +334,11 @@ function WhoWeAreSection({ title, paragraphs }) {
 }
 
 /* ── Gallery (#10 — dynamic from /images/galleries/) ── */
-// Images are in public/ and served as static assets; list their public URLs directly.
-// To add images: drop a file in public/images/galleries/ and add an entry here.
-const GALLERY_IMAGES = [
-  '1629212267454.jpeg',
-  '736a0919-536d-4d0e-b8ad-0ee44e27c2ce.png',
-  'Lebanese-Red-Cross-LT3.jpg',
-  'gallery-01.png',
-  'gallery-02.png',
-  'gallery-03.png',
-  'gallery-04.png',
-  'gallery-05.png',
-  'gallery-06.png',
-  'gallery-07.png',
-  'gallery-08.png',
-].map((filename) => ({
-  src: `/images/galleries/${filename}`,
-  alt: filename.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
-}));
+const galleryModules = import.meta.glob('/public/images/galleries/*.{jpg,jpeg,png,webp}', { eager: true, import: 'default' });
+const GALLERY_IMAGES = Object.entries(galleryModules).map(([path, src]) => {
+  const name = path.split('/').pop().replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
+  return { src, alt: name };
+});
 
 function GallerySection() {
   const [ref, visible] = useReveal();
@@ -412,21 +430,6 @@ function LangToggle({ lang, setLang }) {
 
 /* ── Main App ── */
 export default function App() {
-  usePageSeo({
-    title: 'Help Lebanon — Donate to the Lebanese Red Cross | Just Help Lebanon',
-    description:
-      'Donate to help families in Lebanon with emergency medical kits, shelter, and food through the Lebanese Red Cross. Stand up for Lebanon with a verified, high-clarity donation path.',
-    path: '/',
-    structuredData: {
-      '@context': 'https://schema.org',
-      '@type': 'WebPage',
-      name: 'Help Lebanon — Donate to the Lebanese Red Cross',
-      url: 'https://justhelplebanon.com/',
-      description:
-        'Donate to help families in Lebanon with emergency medical kits, shelter, and food through the Lebanese Red Cross.',
-    },
-  });
-
   const [amount, setAmount] = useState(20);
   const [lang, setLang] = useState('en');
   const t = TRANSLATIONS[lang];
@@ -456,7 +459,7 @@ export default function App() {
           <p className="subline">{t.subline}</p>
 
           {/* #2 Social Proof */}
-          <SocialProof text={t.socialProof('4,120')} />
+          <SocialProof text={t.socialProof('3,490')} />
 
           <p className="lead">
             {t.lead}
@@ -471,34 +474,14 @@ export default function App() {
                   key={value}
                   type="button"
                   className={`amount-btn ${amount === value ? 'active' : ''}`}
-                  onClick={() => {
-                    setAmount(value);
-                    trackEvent('donation_amount_select', {
-                      location: 'home_hero',
-                      amount: value,
-                      page: 'home',
-                    });
-                  }}
+                  onClick={() => setAmount(value)}
                 >
                   {t.donateOpt(value)}
                 </button>
               ))}
             </div>
 
-            <a
-              className="donate-btn"
-              href={donateHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => {
-                trackEvent('donate_click', {
-                  location: 'home_hero',
-                  amount,
-                  destination: 'lebanese_red_cross',
-                  page: 'home',
-                });
-              }}
-            >
+            <a className="donate-btn" href={donateHref} target="_blank" rel="noopener noreferrer">
               {t.donateBtn(amount)}
             </a>
           </div>
