@@ -4,7 +4,7 @@ function DisclaimerModal({ onAcknowledge }) {
   return (
     <div className="disclaimer-backdrop">
       <div className="disclaimer-modal">
-        <div className="disclaimer-icon">⚖️</div>
+        <div className="disclaimer-icon"></div>
         <h2 className="disclaimer-title">Disclaimer and User Acknowledgment</h2>
         <div className="disclaimer-body">
           <p>By clicking <b>“OK”</b>, accessing, browsing, or otherwise using this website, you acknowledge and agree to the following:</p>
