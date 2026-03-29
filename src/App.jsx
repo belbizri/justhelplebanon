@@ -507,7 +507,7 @@ export default function App() {
       <WhoWeAreSection title={t.whoTitle} paragraphs={t.whoParagraphs} />
  {/* Video */}
       <VideoSection />
-      {/* Gallery (scroll-triggered #10) */}
+      {/* Gallery (scroll-triggered #10) dd*/}
       <GallerySection />
 
       {/* #4 Share Buttons */}
