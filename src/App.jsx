@@ -129,9 +129,8 @@ export default function App() {
     </div>
   );
 }
-    goal: 'Objectif',
-  },
-};
+  
+
 
 /* ── Scroll-triggered fade-in ── */
 function useReveal() {
@@ -507,7 +506,7 @@ export default function App() {
       <WhoWeAreSection title={t.whoTitle} paragraphs={t.whoParagraphs} />
  {/* Video */}
       <VideoSection />
-      {/* Gallery (scroll-triggered #10) dd*/}
+      {/* Gallery (scroll-triggered #10) */}
       <GallerySection />
 
       {/* #4 Share Buttons */}
