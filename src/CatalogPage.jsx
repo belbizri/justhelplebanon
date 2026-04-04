@@ -447,7 +447,7 @@ export default function CatalogPage() {
               </div>
             </div>
             <p className="lrc-thankyou-note">
-              The LRC campaign page is still accessible at <Link to="/lrc" className="lrc-thankyou-link">/lrc</Link> for reference.
+              The LRC campaign page is still accessible at <a href="https://theysaved.us/lrc" target="_blank" rel="noopener noreferrer" className="lrc-thankyou-link">theysaved.us/lrc</a> for reference.
             </p>
           </div>
         </section>
