@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState, useCallback } from 'react';
+﻿import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
 import { trackEvent } from './analytics.js';
@@ -453,21 +453,21 @@ export default function CatalogPage() {
         </section>
 
         <section className="catalog-disclaimer" aria-label="Catalog disclaimer">
-          <h2 className="catalog-disclaimer-title">Disclaimer</h2>
+          <h2 className="catalog-disclaimer-title">Disclaimer and User Acknowledgment</h2>
           <div className="catalog-disclaimer-body">
-            <p>
-              This page is not a commercial platform, and does not use any e-commerce system whatsoever,
-              it exists solely as a basic catalog intended to provide transparency and guide potential donors
-              as to where their contributions may go.
+            <p className="catalog-disclaimer-lead">
+              By clicking <strong>&ldquo;OK,&rdquo;</strong> accessing, browsing, or otherwise using this website,
+              you acknowledge and agree to the following:
             </p>
-            <p>
-              No profit is generated from this page at any time.
-            </p>
-
-            <p>
-              All content is provided for informational purposes only, donations are made independently,
-              and are not processed through this page, at any time.
-            </p>
+            <ul className="catalog-disclaimer-list">
+              <li>This website is a personal and independent initiative, conceived, developed, and maintained entirely outside the scope of any employment, contractual obligation, or professional engagement. It operates independently and is not affiliated with, endorsed by, sponsored by, or otherwise associated with any employer, company, organization, institution, or governmental or public authority, whether domestic or international.</li>
+              <li>All content, views, opinions, and activities presented on this website are solely those of the creator and are expressed in an individual capacity. They do not reflect, represent, or imply the views, positions, policies, or interests of any current or former employer, organization, governmental body, or any other entity.</li>
+              <li>No resources, systems, equipment, funding, proprietary information, confidential materials, trade secrets, or intellectual property belonging to any employer, organization, or governmental authority, whether internal or external, have been used, accessed, or relied upon in the creation, development, or operation of this website.</li>
+              <li>All work associated with this website has been performed independently, on personal time, and using exclusively personal resources and infrastructure.</li>
+              <li>The creator retains full and exclusive ownership of this website and its content, subject to applicable laws, and assumes sole responsibility for all materials published herein.</li>
+              <li>This website is provided for informational and general purposes only and does not constitute professional, legal, financial, or other advice. No reliance should be placed on the content without independent verification.</li>
+              <li>Your continued use of this website constitutes your acknowledgment and acceptance of the terms set forth above.</li>
+            </ul>
           </div>
         </section>
       </main>
