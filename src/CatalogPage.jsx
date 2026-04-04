@@ -452,6 +452,105 @@ export default function CatalogPage() {
           </div>
         </section>
 
+        <section className="canada-tribute-section" aria-label="Acknowledgment of Canada's humanitarian commitment">
+          <div className="canada-tribute-aurora" aria-hidden="true" />
+          <div className="canada-tribute-inner">
+            <div className="canada-tribute-visuals">
+              <div className="canada-tribute-flag-wrap">
+                <img
+                  src="/images/svg/Flag_of_the_Red_Cedar.svg"
+                  alt="Flag of Canada"
+                  className="canada-tribute-flag"
+                />
+                <div className="canada-tribute-flag-glow" aria-hidden="true" />
+              </div>
+              <div className="canada-tribute-maple-float" aria-hidden="true">
+                <img
+                  src="/images/svg/Canada_mapple.svg"
+                  alt=""
+                  className="canada-tribute-maple canada-tribute-maple-1"
+                />
+                <img
+                  src="/images/svg/Canada_mapple.svg"
+                  alt=""
+                  className="canada-tribute-maple canada-tribute-maple-2"
+                />
+                <img
+                  src="/images/svg/Canada_mapple.svg"
+                  alt=""
+                  className="canada-tribute-maple canada-tribute-maple-3"
+                />
+              </div>
+            </div>
+
+            <div className="canada-tribute-content">
+              <div className="canada-tribute-badge">
+                <span className="canada-tribute-badge-dot" />
+                Diplomatic Acknowledgment
+              </div>
+
+              <h2 className="canada-tribute-heading">
+                Canada stands with Lebanon
+              </h2>
+
+              <p className="canada-tribute-lead">
+                The Government of Canada, under the leadership of Prime Minister Mark Carney, has reaffirmed its 
+                steadfast commitment to the people of Lebanon through significant humanitarian assistance and 
+                diplomatic engagement during a period of extraordinary need.
+              </p>
+
+              <div className="canada-tribute-quote">
+                <blockquote>
+                  Canada's $37.7 million commitment to Lebanon in March 2026 represents not only financial support, 
+                  but a profound expression of solidarity — standing with Lebanese families who have endured displacement, 
+                  loss, and uncertainty with remarkable resilience.
+                </blockquote>
+              </div>
+
+              <div className="canada-tribute-stats-row">
+                <div className="canada-tribute-stat">
+                  <strong>$37.7M</strong>
+                  <span>Humanitarian aid committed</span>
+                </div>
+                <div className="canada-tribute-stat-divider" />
+                <div className="canada-tribute-stat">
+                  <strong>March 2026</strong>
+                  <span>Announced by PM Carney</span>
+                </div>
+                <div className="canada-tribute-stat-divider" />
+                <div className="canada-tribute-stat">
+                  <strong>Ongoing</strong>
+                  <span>Diplomatic partnership</span>
+                </div>
+              </div>
+
+              <div className="canada-tribute-pm-row">
+                <div className="canada-tribute-pm-portrait-wrap">
+                  <img
+                    src="/images/svg/Prime_Minister_of_Canada,_Mark_Carney_0.svg"
+                    alt="Prime Minister Mark Carney"
+                    className="canada-tribute-pm-portrait"
+                  />
+                </div>
+                <div className="canada-tribute-pm-info">
+                  <strong className="canada-tribute-pm-name">The Rt. Hon. Mark Carney</strong>
+                  <span className="canada-tribute-pm-title">Prime Minister of Canada</span>
+                  <p className="canada-tribute-pm-note">
+                    Under PM Carney's direction, Canada has expanded support for Lebanese communities 
+                    affected by the crisis — channeling aid through trusted international partners for 
+                    food security, medical care, and shelter.
+                  </p>
+                </div>
+              </div>
+
+              <p className="canada-tribute-closing">
+                On behalf of every family reached by this generosity — <em>thank you, Canada</em>. 
+                Your leadership in Lebanon's most difficult chapter will not be forgotten.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section className="catalog-disclaimer" aria-label="Catalog disclaimer">
           <h2 className="catalog-disclaimer-title">Disclaimer and User Acknowledgment</h2>
           <div className="catalog-disclaimer-body">
