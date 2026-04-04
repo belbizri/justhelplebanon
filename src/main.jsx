@@ -10,6 +10,7 @@ import SocialPage from './SocialPage.jsx';
 import VideosPage from './VideosPage.jsx';
 import FromLebanonPage from './FromLebanonPage.jsx';
 import EventsPage from './EventsPage.jsx';
+import MartyrsPage from './Martyrs.jsx';
 import './styles.css';
 
 class ErrorBoundary extends React.Component {
