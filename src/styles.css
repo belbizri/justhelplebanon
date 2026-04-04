@@ -10466,16 +10466,16 @@ h1 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 5px 16px 5px 12px;
+  padding: 6px 18px 6px 14px;
   border-radius: 24px;
-  background: linear-gradient(135deg, rgba(214, 43, 55, 0.14), rgba(214, 43, 55, 0.06));
-  border: 1px solid rgba(214, 43, 55, 0.2);
-  color: rgba(255, 200, 200, 0.9);
-  font-size: 0.7rem;
+  background: linear-gradient(135deg, rgba(214, 43, 55, 0.16), rgba(214, 43, 55, 0.07));
+  border: 1px solid rgba(214, 43, 55, 0.25);
+  color: #f2a0a4;
+  font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 20px;
+  letter-spacing: 0.12em;
+  margin-bottom: 22px;
 }
 
 .canada-tribute-badge-dot {
@@ -10489,19 +10489,23 @@ h1 {
 /* ── Heading ── */
 
 .canada-tribute-heading {
-  margin: 0 0 16px;
-  font-size: 1.55rem;
+  margin: 0 0 18px;
+  font-size: 1.85rem;
   font-weight: 800;
-  color: #fff;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #ffffff 0%, #ffd6d8 45%, #ff9ea2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
 }
 
 .canada-tribute-lead {
-  margin: 0 0 24px;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.65);
-  line-height: 1.75;
+  margin: 0 0 26px;
+  font-size: 0.95rem;
+  color: rgba(235, 225, 228, 0.78);
+  line-height: 1.8;
+  font-weight: 400;
 }
 
 /* ── Blockquote ── */
@@ -10529,10 +10533,11 @@ h1 {
 
 .canada-tribute-quote blockquote {
   margin: 0;
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.72);
-  line-height: 1.8;
+  font-size: 0.92rem;
+  color: rgba(255, 220, 222, 0.82);
+  line-height: 1.85;
   font-style: italic;
+  font-weight: 400;
 }
 
 /* ── Stats Row ── */
@@ -10572,16 +10577,21 @@ h1 {
 }
 
 .canada-tribute-stat strong {
-  font-size: 1.35rem;
+  font-size: 1.55rem;
   font-weight: 800;
-  color: #fff;
+  background: linear-gradient(to bottom, #ffffff, #e8cfd1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   line-height: 1;
 }
 
 .canada-tribute-stat span {
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.48);
-  line-height: 1.4;
+  font-size: 0.74rem;
+  color: rgba(220, 200, 205, 0.6);
+  line-height: 1.45;
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 .canada-tribute-stat-divider {
@@ -10629,43 +10639,47 @@ h1 {
 }
 
 .canada-tribute-pm-name {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.92);
+  color: #f5f0f1;
+  letter-spacing: -0.005em;
 }
 
 .canada-tribute-pm-title {
-  font-size: 0.74rem;
-  color: rgba(214, 43, 55, 0.65);
-  font-weight: 600;
+  font-size: 0.73rem;
+  color: #d44a54;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 8px;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
 }
 
 .canada-tribute-pm-note {
   margin: 0;
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.52);
-  line-height: 1.7;
+  font-size: 0.86rem;
+  color: rgba(230, 218, 222, 0.62);
+  line-height: 1.75;
+  font-weight: 400;
 }
 
 /* ── Closing ── */
 
 .canada-tribute-closing {
   margin: 0;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.55);
-  line-height: 1.7;
-  padding-top: 18px;
+  font-size: 0.9rem;
+  color: rgba(230, 220, 224, 0.6);
+  line-height: 1.75;
+  padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   text-align: center;
+  font-weight: 400;
 }
 
 .canada-tribute-closing em {
-  color: rgba(214, 43, 55, 0.85);
+  color: #e25460;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
 /* ── Canada Tribute Mobile ── */
@@ -10680,7 +10694,7 @@ h1 {
   }
 
   .canada-tribute-heading {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 
   .canada-tribute-stats-row {

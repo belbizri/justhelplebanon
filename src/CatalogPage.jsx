@@ -502,7 +502,7 @@ export default function CatalogPage() {
               <div className="canada-tribute-quote">
                 <blockquote>
                   Canada's $37.7 million commitment to Lebanon in March 2026 represents not only financial support, 
-                  but a profound expression of solidarity — standing with Lebanese families who have endured displacement, 
+                  but a profound expression of solidarity, standing with Lebanese families who have endured displacement, 
                   loss, and uncertainty with remarkable resilience.
                 </blockquote>
               </div>
@@ -537,14 +537,14 @@ export default function CatalogPage() {
                   <span className="canada-tribute-pm-title">Prime Minister of Canada</span>
                   <p className="canada-tribute-pm-note">
                     Under PM Carney's direction, Canada has expanded support for Lebanese communities 
-                    affected by the crisis — channeling aid through trusted international partners for 
+                    affected by the crisis, channeling aid through trusted international partners for 
                     food security, medical care, and shelter.
                   </p>
                 </div>
               </div>
 
               <p className="canada-tribute-closing">
-                On behalf of every family reached by this generosity — <em>thank you, Canada</em>. 
+                On behalf of every family reached by this generosity, <em>thank you, Canada</em>. 
                 Your leadership in Lebanon's most difficult chapter will not be forgotten.
               </p>
             </div>
