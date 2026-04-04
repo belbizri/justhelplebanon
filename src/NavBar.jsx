@@ -80,6 +80,8 @@ const NAV_ITEMS = [
   { to: '/from-lebanon', label: 'From Lebanon', icon: Icons.flag },
   // { to: '/news', label: 'News', icon: Icons.news },
   // { to: '/videos', label: 'Videos', icon: Icons.play },
+    { to: '/martyrs', label: 'Martyrs', icon: Icons.heart },
+
   { to: '/events', label: 'Events', icon: Icons.calendar },
   { to: '/social', label: 'Social', icon: Icons.megaphone },
 ];

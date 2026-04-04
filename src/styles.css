@@ -9411,3 +9411,629 @@ h1 {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════
+   MARTYRS PAGE — Lebanese Red Cross Memorial
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Page Root ── */
+.martyrs-page {
+  background: #080609;
+  min-height: 100vh;
+}
+
+/* ── Hero Section ── */
+.martyrs-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.martyrs-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(180, 20, 30, 0.15), transparent 55%),
+    radial-gradient(ellipse at 20% 80%, rgba(120, 10, 20, 0.08), transparent 45%),
+    radial-gradient(ellipse at 80% 70%, rgba(140, 15, 25, 0.06), transparent 40%),
+    linear-gradient(180deg, #0a0608 0%, #110a0d 40%, #0d0810 100%);
+  z-index: 0;
+}
+
+.martyrs-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.02) 40%,
+    rgba(0, 0, 0, 0.45) 85%,
+    rgba(8, 6, 9, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.martyrs-hero-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.9) 0.5px, transparent 0.5px);
+  background-size: 8px 8px;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Glowing cross behind hero content */
+.martyrs-cross-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 2s ease 0.3s;
+}
+
+.martyrs-hero--visible .martyrs-cross-glow {
+  opacity: 1;
+}
+
+.martyrs-hero-cross {
+  color: rgba(214, 43, 55, 0.08);
+  filter: blur(2px);
+  animation: martyrCrossPulse 6s ease-in-out infinite;
+}
+
+@keyframes martyrCrossPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+/* Hero content */
+.martyrs-hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 24px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s ease 0.4s, transform 1.2s ease 0.4s;
+}
+
+.martyrs-hero--visible .martyrs-hero-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.martyrs-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border-radius: 999px;
+  background: rgba(214, 43, 55, 0.1);
+  border: 1px solid rgba(214, 43, 55, 0.3);
+  color: #f2a4a9;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.68rem;
+  font-weight: 800;
+  font-family: var(--font-body);
+  backdrop-filter: blur(10px);
+  margin-bottom: 32px;
+}
+
+.martyrs-eyebrow-cross {
+  color: #D62B37;
+}
+
+.martyrs-title {
+  font-family: 'Aref Ruqaa Ink', 'Noto Kufi Arabic', 'Tahoma', sans-serif;
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #fff5f5;
+  margin: 0 0 16px;
+  direction: rtl;
+  text-shadow:
+    0 4px 20px rgba(214, 43, 55, 0.25),
+    0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+.martyrs-subtitle {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.65rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(255, 220, 220, 0.75);
+  margin: 0 0 28px;
+  text-transform: uppercase;
+}
+
+.martyrs-lead {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.85;
+  color: rgba(242, 226, 222, 0.85);
+  max-width: 55ch;
+  margin: 0 auto 12px;
+  font-weight: 500;
+}
+
+.martyrs-lead-ar {
+  font-family: 'Aref Ruqaa Ink', 'Noto Kufi Arabic', sans-serif;
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  color: rgba(242, 206, 206, 0.7);
+  margin-bottom: 36px;
+}
+
+.martyrs-hero-count {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  padding: 16px 28px;
+  border-radius: 16px;
+  background: rgba(214, 43, 55, 0.08);
+  border: 1px solid rgba(214, 43, 55, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.martyrs-count-number {
+  font-family: 'Outfit', var(--font-body);
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #D62B37;
+  line-height: 1;
+  text-shadow: 0 4px 16px rgba(214, 43, 55, 0.35);
+}
+
+.martyrs-count-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(255, 200, 200, 0.6);
+}
+
+.martyrs-hero-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 200px;
+  background: linear-gradient(180deg, transparent 0%, #080609 100%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* ── Quote Section ── */
+.martyrs-quote-section {
+  padding: 60px 24px 70px;
+  text-align: center;
+  background: #080609;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.martyrs-quote-section.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.martyrs-quote-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.martyrs-quote-cross {
+  color: rgba(214, 43, 55, 0.35);
+  margin-bottom: 20px;
+}
+
+.martyrs-quote {
+  margin: 0;
+  padding: 0;
+}
+
+.martyrs-quote p {
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  line-height: 1.9;
+  color: rgba(255, 240, 240, 0.75);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+}
+
+.martyrs-quote-line {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(214, 43, 55, 0.5), transparent);
+  margin: 28px auto 0;
+}
+
+/* ── Martyrs Grid Section ── */
+.martyrs-grid-section {
+  padding: 40px 24px 80px;
+  background: linear-gradient(180deg, #080609 0%, #0c0a0e 30%, #0e0b11 100%);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.martyrs-grid-section.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.martyrs-section-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 52px;
+}
+
+.martyrs-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 12px;
+  letter-spacing: 0.02em;
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.martyrs-title-candle {
+  flex-shrink: 0;
+}
+
+.martyrs-section-sub {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--soft);
+  font-weight: 500;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Grid layout */
+.martyrs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Individual Martyr Card ── */
+.martyr-card {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.martyr-card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.martyr-card-inner {
+  position: relative;
+  display: flex;
+  gap: 18px;
+  padding: 24px;
+  border-radius: 18px;
+  background:
+    linear-gradient(165deg,
+      rgba(20, 14, 18, 0.95),
+      rgba(14, 10, 16, 0.98)
+    );
+  border: 1px solid rgba(214, 43, 55, 0.12);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  overflow: hidden;
+}
+
+.martyr-card-inner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(214, 43, 55, 0.4), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.martyr-card-inner:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 16px 48px rgba(214, 43, 55, 0.12),
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border-color: rgba(214, 43, 55, 0.25);
+}
+
+.martyr-card-inner:hover::before {
+  opacity: 1;
+}
+
+/* Photo */
+.martyr-photo-wrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+}
+
+.martyr-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.martyr-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 40% 35%, rgba(214, 43, 55, 0.15), rgba(214, 43, 55, 0.04));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(214, 43, 55, 0.2);
+}
+
+.martyr-placeholder-cross {
+  color: rgba(214, 43, 55, 0.45);
+}
+
+.martyr-photo-frame {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid rgba(214, 43, 55, 0.2);
+  pointer-events: none;
+}
+
+/* Info */
+.martyr-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.martyr-name {
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 2px;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+.martyr-name-ar {
+  font-family: 'Aref Ruqaa Ink', 'Noto Kufi Arabic', sans-serif;
+  font-size: 0.88rem;
+  color: rgba(214, 160, 160, 0.6);
+  display: block;
+  margin-bottom: 6px;
+  direction: rtl;
+}
+
+.martyr-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(214, 43, 55, 0.75);
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+
+.martyr-date svg {
+  color: rgba(214, 43, 55, 0.5);
+}
+
+.martyr-desc {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: rgba(212, 200, 200, 0.7);
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Decorative candle */
+.martyr-candle {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  opacity: 0.18;
+  transition: opacity 0.35s ease;
+}
+
+.martyr-card-inner:hover .martyr-candle {
+  opacity: 0.35;
+}
+
+/* ── Eternal Flame Footer ── */
+.martyrs-eternal {
+  padding: 80px 24px 100px;
+  text-align: center;
+  background: linear-gradient(180deg, #0e0b11 0%, #0a0608 100%);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.martyrs-eternal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.martyrs-eternal-inner {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Eternal flame animation */
+.martyrs-flame-wrap {
+  position: relative;
+  width: 40px;
+  height: 60px;
+  margin: 0 auto 28px;
+}
+
+.martyrs-flame {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 40px;
+  background:
+    radial-gradient(ellipse at 50% 80%,
+      #FFE08A 0%,
+      #F6AD55 30%,
+      #E53E3E 60%,
+      transparent 100%
+    );
+  border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+  animation: martyrFlame 2.5s ease-in-out infinite alternate;
+  filter: blur(0.5px);
+}
+
+.martyrs-flame-glow {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(246, 173, 85, 0.2), transparent 65%);
+  animation: martyrFlameGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes martyrFlame {
+  0% { height: 36px; opacity: 0.85; }
+  33% { height: 42px; opacity: 1; transform: translateX(-50%) skewX(-2deg); }
+  66% { height: 38px; opacity: 0.9; transform: translateX(-50%) skewX(2deg); }
+  100% { height: 44px; opacity: 1; }
+}
+
+@keyframes martyrFlameGlow {
+  0% { opacity: 0.3; transform: translateX(-50%) scale(0.9); }
+  100% { opacity: 0.55; transform: translateX(-50%) scale(1.15); }
+}
+
+.martyrs-eternal-text {
+  font-family: 'Aref Ruqaa Ink', 'Noto Kufi Arabic', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: rgba(255, 240, 240, 0.85);
+  margin: 0 0 8px;
+  text-shadow: 0 4px 16px rgba(214, 43, 55, 0.2);
+}
+
+.martyrs-eternal-eng {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.85rem, 1.3vw, 1rem);
+  color: rgba(255, 210, 210, 0.45);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 32px;
+  font-weight: 400;
+}
+
+.martyrs-eternal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.martyrs-eternal-bar span {
+  display: block;
+  height: 1px;
+  background: rgba(214, 43, 55, 0.25);
+}
+
+.martyrs-eternal-bar span:nth-child(1) { width: 20px; }
+.martyrs-eternal-bar span:nth-child(2) { width: 40px; background: rgba(214, 43, 55, 0.45); }
+.martyrs-eternal-bar span:nth-child(3) { width: 20px; }
+
+/* ── Responsive — Martyrs ── */
+@media (max-width: 768px) {
+  .martyrs-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .martyrs-hero-content {
+    padding: 0 16px;
+  }
+
+  .martyrs-title {
+    font-size: clamp(2rem, 9vw, 3.2rem);
+  }
+
+  .martyrs-subtitle {
+    font-size: clamp(0.9rem, 3vw, 1.15rem);
+    letter-spacing: 0.04em;
+  }
+}
+
+@media (max-width: 480px) {
+  .martyr-card-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    padding: 20px 18px;
+  }
+
+  .martyr-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .martyr-candle {
+    position: static;
+    margin-top: 8px;
+  }
+
+  .martyrs-section-title {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .martyrs-lead {
+    font-size: 0.95rem;
+  }
+
+  .martyrs-quote p {
+    font-size: 0.95rem;
+  }
+}

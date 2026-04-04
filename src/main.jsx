@@ -54,6 +54,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/" element={<CatalogPage />} />
         <Route path="/aid-kits" element={<CatalogPage />} />
         <Route path="/lrc" element={<App />} />
+        <Route path="/martyrs" element={<MartyrsPage />} />
         <Route path="/donations" element={<DonationsPage />} />
         <Route path="/live" element={<LiveUpdatesPage />} />
         <Route path="/news" element={<NewsPage />} />
