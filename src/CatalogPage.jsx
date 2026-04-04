@@ -501,8 +501,8 @@ export default function CatalogPage() {
 
               <div className="canada-tribute-quote">
                 <blockquote>
-                  Canada's $37.7 million commitment to Lebanon in March 2026 represents not only financial support, 
-                  but a profound expression of solidarity, standing with Lebanese families who have endured displacement, 
+                  Canada's $37.7 million commitment to Lebanon in March 2026 represents 
+                   a profound expression of solidarity, standing with Lebanese families who have endured displacement, 
                   loss, and uncertainty with remarkable resilience.
                 </blockquote>
               </div>

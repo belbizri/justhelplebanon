@@ -10664,6 +10664,30 @@ h1 {
 
 /* ── Closing ── */
 
+.canada-tribute-cedar-maple {
+  margin: 0;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.72);
+  letter-spacing: 0.02em;
+  padding: 20px 0 4px;
+  line-height: 1.6;
+}
+
+.canada-tribute-red {
+  color: #e25460;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.canada-tribute-green {
+  color: #4ebd6a;
+  font-weight: 800;
+  font-style: normal;
+}
+
 .canada-tribute-closing {
   margin: 0;
   font-size: 0.9rem;
