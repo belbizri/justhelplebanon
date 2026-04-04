@@ -96,6 +96,34 @@ const TRANSLATIONS = {
   },
 };
 
+/* ── Disclaimer Modal ── */
+function DisclaimerModal({ onAcknowledge }) {
+  return (
+    <div className="disclaimer-backdrop">
+      <div className="disclaimer-modal">
+        <div className="disclaimer-icon">⚖️</div>
+        <h2 className="disclaimer-title">Disclaimer and User Acknowledgment</h2>
+        <div className="disclaimer-body">
+          <p className="disclaimer-lead">
+            By clicking <strong>"OK"</strong>, accessing, browsing, or otherwise using this website,
+            you acknowledge and agree to the following:
+          </p>
+          <ul>
+            <li>This website is a personal and independent initiative, conceived, developed, and maintained entirely outside the scope of any employment, contractual obligation, or professional engagement. It operates independently and is not affiliated with, endorsed by, sponsored by, or otherwise associated with any employer, company, organization, institution, or governmental or public authority, whether domestic or international.</li>
+            <li>All content, views, opinions, and activities presented on this website are solely those of the creator and are expressed in an individual capacity. They do not reflect, represent, or imply the views, positions, policies, or interests of any current or former employer, organization, governmental body, or any other entity.</li>
+            <li>No resources, systems, equipment, funding, proprietary information, confidential materials, trade secrets, or intellectual property belonging to any employer, organization, or governmental authority, whether internal or external, have been used, accessed, or relied upon in the creation, development, or operation of this website.</li>
+            <li>All work associated with this website has been performed independently, on personal time, and using exclusively personal resources and infrastructure.</li>
+            <li>The creator retains full and exclusive ownership of this website and its content, subject to applicable laws, and assumes sole responsibility for all materials published herein.</li>
+            <li>This website is provided for informational and general purposes only and does not constitute professional, legal, financial, or other advice. No reliance should be placed on the content without independent verification.</li>
+            <li>Your continued use of this website constitutes your acknowledgment and acceptance of the terms set forth above.</li>
+          </ul>
+        </div>
+        <button className="disclaimer-ok-btn" onClick={onAcknowledge}>OK</button>
+      </div>
+    </div>
+  );
+}
+
 /* ── Scroll-triggered fade-in ── */
 function useReveal() {
   const ref = useRef(null);
@@ -429,13 +457,22 @@ export default function App() {
 
   const [amount, setAmount] = useState(20);
   const [lang, setLang] = useState('en');
+  const [showDisclaimer, setShowDisclaimer] = useState(
+    () => !localStorage.getItem('disclaimerAcknowledged')
+  );
   const t = TRANSLATIONS[lang];
   const isRtl = lang === 'ar';
+
+  const handleAcknowledge = useCallback(() => {
+    localStorage.setItem('disclaimerAcknowledged', '1');
+    setShowDisclaimer(false);
+  }, []);
 
   const donateHref = useMemo(() => `${DONATION_BASE_URL}?amount=${amount}`, [amount]);
 
   return (
     <div className={`app-root ${isRtl ? 'rtl' : ''}`} dir={isRtl ? 'rtl' : 'ltr'}>
+      {showDisclaimer && <DisclaimerModal onAcknowledge={handleAcknowledge} />}
       {/* #1 Urgency Banner */}
       <UrgencyBanner text={t.urgency} />
 
