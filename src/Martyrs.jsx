@@ -235,7 +235,7 @@ export default function MartyrsPage() {
             <RedCrossIcon size={20} />
           </div>
           <blockquote className="martyrs-quote">
-            <p>"The volunteers of the Lebanese Red Cross are not just first responders — they are the heartbeat of a nation that refuses to stop beating."</p>
+            <p>"The volunteers of the Lebanese Red Cross are the heartbeat of a nation that refuses to stop beating."</p>
           </blockquote>
           <div className="martyrs-quote-line" />
         </div>
