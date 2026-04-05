@@ -4846,14 +4846,14 @@ h1 {
   transform: translate(-50%, -50%);
   width: clamp(280px, 36vw, 560px);
   height: auto;
-  opacity: 0.18;
+  opacity: 0.22;
   filter: brightness(0) invert(1)
     drop-shadow(0 0 18px rgba(214, 43, 55, 0.45))
     drop-shadow(0 0 48px rgba(214, 43, 55, 0.18))
     drop-shadow(0 0 6px rgba(255, 255, 255, 0.12));
   pointer-events: none;
   user-select: none;
-  z-index: 1;
+  z-index: 2;
   animation: cedar-pulse 4s ease-in-out infinite, cedar-float 8s ease-in-out infinite;
 }
 
@@ -4913,7 +4913,7 @@ h1 {
 
 .catalog-page-root .catalog-hero-inner {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: 1200px;
   margin: 0 auto;
   padding: 156px 32px 88px 52px;
