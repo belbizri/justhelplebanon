@@ -10776,43 +10776,47 @@ h1 {
 .canada-tribute-cedar-maple {
   margin: 0;
   text-align: center;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.35rem;
+  font-weight: 700;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.72);
-  letter-spacing: 0.02em;
-  padding: 20px 0 4px;
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.015em;
+  padding: 24px 0 6px;
+  line-height: 1.5;
+  font-family: 'Georgia', 'Times New Roman', serif;
 }
 
 .canada-tribute-red {
-  color: #e25460;
+  color: #ff4050;
   font-weight: 800;
   font-style: normal;
+  text-shadow: 0 0 18px rgba(255, 64, 80, 0.45);
 }
 
 .canada-tribute-green {
-  color: #4ebd6a;
+  color: #34d058;
   font-weight: 800;
   font-style: normal;
+  text-shadow: 0 0 18px rgba(52, 208, 88, 0.45);
 }
 
 .canada-tribute-closing {
   margin: 0;
-  font-size: 0.9rem;
-  color: rgba(230, 220, 224, 0.6);
+  font-size: 1rem;
+  color: rgba(240, 232, 236, 0.76);
   line-height: 1.75;
   padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   text-align: center;
   font-weight: 400;
 }
 
 .canada-tribute-closing em {
-  color: #e25460;
+  color: #ff5c6a;
   font-style: italic;
   font-weight: 700;
   letter-spacing: 0.01em;
+  text-shadow: 0 0 12px rgba(255, 92, 106, 0.3);
 }
 
 /* ── Canada Tribute Mobile ── */
