@@ -10667,8 +10667,8 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 18px 12px;
+  gap: 8px;
+  padding: 22px 14px;
   text-align: center;
   animation: canada-stat-glow 6s ease-in-out infinite;
 }
@@ -10686,18 +10686,17 @@ h1 {
 }
 
 .canada-tribute-stat strong {
-  font-size: 1.55rem;
+  font-size: 1.65rem;
   font-weight: 800;
-  background: linear-gradient(to bottom, #ffffff, #e8cfd1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #ffffff;
   line-height: 1;
+  letter-spacing: -0.01em;
+  text-shadow: 0 0 20px rgba(214, 43, 55, 0.25);
 }
 
 .canada-tribute-stat span {
-  font-size: 0.74rem;
-  color: rgba(220, 200, 205, 0.6);
+  font-size: 0.82rem;
+  color: rgba(235, 220, 225, 0.72);
   line-height: 1.45;
   font-weight: 500;
   letter-spacing: 0.01em;
