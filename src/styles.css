@@ -11069,12 +11069,22 @@ h1 {
   }
 
   .canada-tribute-cedar-maple {
-    font-size: 1.25rem;
-    padding-top: 22px;
+    font-size: 1.3rem;
+  }
+
+  .canada-tribute-finale {
+    padding: 28px 20px 26px;
+  }
+
+  .canada-tribute-thankyou {
+    font-size: 1.7rem;
   }
 
   .canada-tribute-closing {
     font-size: 1.05rem;
-    padding: 22px 18px;
+  }
+
+  .canada-tribute-closing-sub {
+    font-size: 0.95rem;
   }
 }
