@@ -10853,59 +10853,134 @@ h1 {
   font-weight: 400;
 }
 
-/* ── Closing ── */
+/* ── Finale Block ── */
+
+@keyframes canada-finale-shimmer {
+  0% { left: -100%; opacity: 0; }
+  20% { opacity: 1; }
+  100% { left: 200%; opacity: 0; }
+}
+
+@keyframes canada-thankyou-glow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(255, 64, 80, 0.4), 0 0 50px rgba(255, 64, 80, 0.15), 0 2px 6px rgba(0, 0, 0, 0.3);
+    filter: brightness(1);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(255, 64, 80, 0.6), 0 0 70px rgba(255, 64, 80, 0.25), 0 0 100px rgba(255, 64, 80, 0.1), 0 2px 6px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.05);
+  }
+}
+
+.canada-tribute-finale {
+  position: relative;
+  text-align: center;
+  padding: 36px 32px 32px;
+  margin-top: 12px;
+  background: linear-gradient(160deg, rgba(214, 43, 55, 0.07) 0%, rgba(20, 10, 14, 0.6) 40%, rgba(214, 43, 55, 0.04) 100%);
+  border: 1px solid rgba(214, 43, 55, 0.15);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.canada-tribute-finale-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 30%, rgba(214, 43, 55, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 30% 80%, rgba(214, 43, 55, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.canada-tribute-finale::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+  animation: canada-finale-shimmer 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.canada-tribute-finale > * {
+  position: relative;
+  z-index: 2;
+}
+
+.canada-tribute-finale-divider {
+  width: 60px;
+  height: 2px;
+  margin: 16px auto 20px;
+  background: linear-gradient(90deg, transparent, rgba(214, 43, 55, 0.5), transparent);
+  border-radius: 2px;
+}
 
 .canada-tribute-cedar-maple {
   margin: 0;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.94);
+  color: rgba(255, 255, 255, 0.95);
   letter-spacing: 0.01em;
-  padding: 28px 0 8px;
-  line-height: 1.45;
-  font-family: 'Georgia', 'Times New Roman', serif;
+  padding: 0;
+  line-height: 1.4;
+  font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
 }
 
 .canada-tribute-red {
-  color: #ff4050;
+  color: #ff3d4f;
   font-weight: 800;
   font-style: normal;
-  text-shadow: 0 0 22px rgba(255, 64, 80, 0.5), 0 0 44px rgba(255, 64, 80, 0.2);
+  text-shadow: 0 0 24px rgba(255, 61, 79, 0.55), 0 0 50px rgba(255, 61, 79, 0.2);
 }
 
 .canada-tribute-green {
-  color: #34d058;
+  color: #2dd856;
   font-weight: 800;
   font-style: normal;
-  text-shadow: 0 0 22px rgba(52, 208, 88, 0.5), 0 0 44px rgba(52, 208, 88, 0.2);
+  text-shadow: 0 0 24px rgba(45, 216, 86, 0.55), 0 0 50px rgba(45, 216, 86, 0.2);
 }
 
 .canada-tribute-closing {
   margin: 0;
   font-size: 1.15rem;
-  color: rgba(250, 244, 246, 0.88);
-  line-height: 1.8;
-  padding: 28px 24px;
-  margin-top: 8px;
-  border-top: none;
+  color: rgba(248, 240, 244, 0.82);
+  line-height: 1.7;
   text-align: center;
   font-weight: 400;
-  font-family: 'Georgia', 'Times New Roman', serif;
-  background: linear-gradient(135deg, rgba(214, 43, 55, 0.05), rgba(214, 43, 55, 0.02));
-  border: 1px solid rgba(214, 43, 55, 0.1);
-  border-radius: 16px;
-  position: relative;
+  font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
 }
 
-.canada-tribute-closing em {
-  color: #ff4a5a;
-  font-style: italic;
+.canada-tribute-thankyou {
+  margin: 10px 0 8px;
+  font-size: 2.2rem;
   font-weight: 800;
-  font-size: 1.22rem;
-  letter-spacing: 0.015em;
-  text-shadow: 0 0 20px rgba(255, 74, 90, 0.45), 0 0 40px rgba(255, 74, 90, 0.15);
+  font-style: italic;
+  font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+  background: linear-gradient(135deg, #ff5c6a 0%, #ff8a94 40%, #ffffff 60%, #ff5c6a 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: canada-thankyou-glow 4s ease-in-out infinite;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.canada-tribute-closing-sub {
+  margin: 0;
+  font-size: 1.05rem;
+  color: rgba(235, 225, 230, 0.6);
+  line-height: 1.7;
+  text-align: center;
+  font-weight: 400;
+  font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
 }
 
 /* ── Canada Tribute Mobile ── */

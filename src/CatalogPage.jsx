@@ -544,14 +544,22 @@ export default function CatalogPage() {
                 </div>
               </div>
 
-              <p className="canada-tribute-cedar-maple">
-                From the <span className="canada-tribute-red">red</span> of the maple to the <span className="canada-tribute-green">green</span> of the cedar.
-              </p>
-
-              <p className="canada-tribute-closing">
-                On behalf of every family reached by this generosity, <em>thank you, Canada</em>. 
-                Your leadership in Lebanon's most difficult chapter will not be forgotten.
-              </p>
+              <div className="canada-tribute-finale">
+                <div className="canada-tribute-finale-glow" aria-hidden="true" />
+                <p className="canada-tribute-cedar-maple">
+                  From the <span className="canada-tribute-red">red</span> of the maple to the <span className="canada-tribute-green">green</span> of the cedar.
+                </p>
+                <div className="canada-tribute-finale-divider" aria-hidden="true" />
+                <p className="canada-tribute-closing">
+                  On behalf of every family reached by this generosity,
+                </p>
+                <p className="canada-tribute-thankyou">
+                  thank you, Canada
+                </p>
+                <p className="canada-tribute-closing-sub">
+                  Your leadership in Lebanon's most difficult chapter will not be forgotten.
+                </p>
+              </div>
             </div>
           </div>
         </section>
