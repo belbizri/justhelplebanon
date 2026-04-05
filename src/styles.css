@@ -10884,21 +10884,28 @@ h1 {
 
 .canada-tribute-closing {
   margin: 0;
-  font-size: 1.05rem;
-  color: rgba(245, 238, 240, 0.78);
-  line-height: 1.75;
-  padding-top: 22px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 1.15rem;
+  color: rgba(250, 244, 246, 0.88);
+  line-height: 1.8;
+  padding: 28px 24px;
+  margin-top: 8px;
+  border-top: none;
   text-align: center;
   font-weight: 400;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: linear-gradient(135deg, rgba(214, 43, 55, 0.05), rgba(214, 43, 55, 0.02));
+  border: 1px solid rgba(214, 43, 55, 0.1);
+  border-radius: 16px;
+  position: relative;
 }
 
 .canada-tribute-closing em {
-  color: #ff5c6a;
+  color: #ff4a5a;
   font-style: italic;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  text-shadow: 0 0 16px rgba(255, 92, 106, 0.35);
+  font-weight: 800;
+  font-size: 1.22rem;
+  letter-spacing: 0.015em;
+  text-shadow: 0 0 20px rgba(255, 74, 90, 0.45), 0 0 40px rgba(255, 74, 90, 0.15);
 }
 
 /* ── Canada Tribute Mobile ── */
@@ -10992,7 +10999,7 @@ h1 {
   }
 
   .canada-tribute-closing {
-    font-size: 0.95rem;
-    padding-top: 18px;
+    font-size: 1.05rem;
+    padding: 22px 18px;
   }
 }
