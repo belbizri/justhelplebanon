@@ -5374,15 +5374,15 @@ h1 {
 
 .lrc-thankyou-section {
   max-width: 900px;
-  margin: 40px auto 0;
-  padding: 0 24px;
+  margin: 48px auto 0;
+  padding: 0 20px;
 }
 
 .lrc-thankyou-inner {
-  padding: 28px 30px;
+  padding: 32px 36px;
   background: rgba(214, 43, 55, 0.06);
   border: 1.5px solid rgba(214, 43, 55, 0.25);
-  border-radius: 18px;
+  border-radius: 20px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   animation: lrc-border-shimmer 4s ease-in-out infinite;
@@ -5391,88 +5391,100 @@ h1 {
 
 .lrc-thankyou-badge {
   display: inline-block;
-  padding: 5px 14px;
+  padding: 6px 16px;
   border-radius: 20px;
   background: rgba(214, 43, 55, 0.16);
   color: #ff6b6b;
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.09em;
-  margin-bottom: 16px;
+  letter-spacing: 0.08em;
+  margin-bottom: 18px;
 }
 
 .lrc-thankyou-heading {
-  margin: 0 0 12px;
-  font-size: 1.15rem;
+  margin: 0 0 14px;
+  font-size: 1.35rem;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.95);
-  line-height: 1.4;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
 }
 
 .lrc-thankyou-text {
-  margin: 0 0 18px;
-  font-size: 0.86rem;
-  color: rgba(255, 255, 255, 0.62);
-  line-height: 1.65;
+  margin: 0 0 22px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
 }
 
 .lrc-thankyou-stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
 
 .lrc-thankyou-stat {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 14px 16px;
+  gap: 6px;
+  padding: 16px 18px;
   border-left: 3px solid rgba(214, 43, 55, 0.5);
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.025);
   border-radius: 12px;
 }
 
 .lrc-thankyou-stat strong {
   color: #fff;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 800;
   line-height: 1;
 }
 
 .lrc-thankyou-stat span {
-  color: rgba(255, 255, 255, 0.55);
-  font-size: 0.74rem;
-  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.lrc-thankyou-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  flex-wrap: wrap;
 }
 
 .lrc-thankyou-note {
   margin: 0;
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.42);
-  padding-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  line-height: 1.5;
 }
 
 .lrc-thankyou-link {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   color: #fff;
   font-family: 'Inter', 'Manrope', system-ui, sans-serif;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 0.88rem;
   text-decoration: none;
-  padding: 8px 20px;
+  padding: 10px 22px;
   border-radius: 999px;
   background: linear-gradient(135deg, rgba(214, 43, 55, 0.28) 0%, rgba(214, 43, 55, 0.14) 100%);
   border: 1.5px solid rgba(214, 43, 55, 0.45);
   transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
   letter-spacing: 0.02em;
-  box-shadow: 0 2px 12px rgba(214, 43, 55, 0.18), 0 0 0 0 rgba(214, 43, 55, 0);
+  box-shadow: 0 2px 12px rgba(214, 43, 55, 0.18);
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .lrc-thankyou-link::after {
@@ -5510,17 +5522,69 @@ h1 {
   transform: translateX(3px);
 }
 
+/* ── LRC Mobile ── */
 @media (max-width: 640px) {
+  .lrc-thankyou-section {
+    padding: 0 14px;
+    margin-top: 32px;
+  }
+
   .lrc-thankyou-inner {
-    padding: 20px 18px;
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+
+  .lrc-thankyou-badge {
+    font-size: 0.72rem;
+    padding: 5px 12px;
+    margin-bottom: 14px;
   }
 
   .lrc-thankyou-heading {
-    font-size: 1.02rem;
+    font-size: 1.12rem;
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+
+  .lrc-thankyou-text {
+    font-size: 0.88rem;
+    margin-bottom: 18px;
+    line-height: 1.6;
   }
 
   .lrc-thankyou-stats {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .lrc-thankyou-stat {
+    padding: 12px 14px;
+  }
+
+  .lrc-thankyou-stat strong {
+    font-size: 1.3rem;
+  }
+
+  .lrc-thankyou-stat span {
+    font-size: 0.78rem;
+  }
+
+  .lrc-thankyou-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding-top: 16px;
+  }
+
+  .lrc-thankyou-note {
+    font-size: 0.8rem;
+  }
+
+  .lrc-thankyou-link {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 0.9rem;
   }
 }
 

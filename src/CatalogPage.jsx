@@ -446,9 +446,10 @@ export default function CatalogPage() {
                 <span>Canada's announced aid (March 2026)</span>
               </div>
             </div>
-            <p className="lrc-thankyou-note">
-              The LRC campaign page is still accessible at <a href="https://theysaved.us/lrc" target="_blank" rel="noopener noreferrer" className="lrc-thankyou-link">theysaved.us/lrc</a> for reference.
-            </p>
+            <div className="lrc-thankyou-footer">
+              <p className="lrc-thankyou-note">The LRC campaign page is still accessible for reference.</p>
+              <a href="https://theysaved.us/lrc" target="_blank" rel="noopener noreferrer" className="lrc-thankyou-link">theysaved.us/lrc</a>
+            </div>
           </div>
         </section>
 
